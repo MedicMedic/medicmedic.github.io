@@ -16,13 +16,24 @@
             }
             section
             {
-               height: 80vw;
-               padding-top: 60px;
+                height: 80vw;
+                padding-top: 60px;
             }
             h1
             {
-               padding: 0;
-               margin: 0;
+                padding: 0;
+                margin: 0;
+
+                font-family: monospace;
+                font-size: 3em;
+                animation: color-change 1s infinite;
+            }
+
+            @keyframes color-change 
+            {
+                0% { color: rgb(216, 74, 255); }
+                50% { color: rgb(242, 255, 0); }
+                100% { color: rgb(255, 74, 255); }
             }
          </style>
     </head>
@@ -41,6 +52,7 @@
          <section id = "home" alignment = "center">
             <div class="container">
                 <h1>Welcome to The Medic Zone!</h1>
+
                 <h2>Marianne Edic</h2>
                 <h3>Singer, Songwriter, Writer, Drawer (Artist), Coder</h3>
             </div>
