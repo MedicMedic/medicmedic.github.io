@@ -31,26 +31,37 @@
 
             .marianne1
             {
-                position: absolute;
-                top: 0;
-                left: 0;
                 animation: photo-change1 30s infinite;
+                z-index: 2
             }
 
             .marianne2
             {
-                position: absolute;
-                top: 0;
-                left: 0;
                 animation: photo-change2 30s infinite;
+                z-index: 1;
             }
 
             .marianne3
             {
+                animation: photo-change3 30s infinite;
+                z-index: 0;
+            }
+
+            .image-stack 
+            {
+                width: 50px; /* Adjust as needed */
+                height: 50px; /* Adjust as needed */
+                position: relative;
+            }
+
+            .image-stack img 
+            {
                 position: absolute;
                 top: 0;
                 left: 0;
-                animation: photo-change3 30s infinite;
+                width: 100%;
+                height: 100%;
+                object-fit: cover; /* Maintain aspect ratio */
             }
 
             @keyframes color-change 
@@ -62,26 +73,25 @@
 
             @keyframes photo-change1 
             {
-                0% {opacity:1}
-                49% {opacity:1}
-                50% {opacity:0}
-                100% {opacity:0}
+                0%, 33.33% { opacity: 1; }
+                33.34%, 66.66% { opacity: 0; }
+                66.67%, 100% { opacity: 0; }
             }
+
             @keyframes photo-change2 
             {
-                0% {opacity:0}
-                49% {opacity: 0}
-                50% {opacity:1}
-                99% {opacity:1}
-                100% {opacity:0}
+                0%, 33.33% { opacity: 0; }
+                33.34%, 66.66% { opacity: 1; }
+                66.67%, 100% { opacity: 0; }
             }
-            @keyframes photo-change3
+
+            @keyframes photo-change3 
             {
-                0% {opacity:0}
-                50% {opacity:0}
-                99% {opacity:0}
-                100% {opacity:1}
+                0%, 33.33% { opacity: 0; }
+                33.34%, 66.66% { opacity: 0; }
+                66.67%, 100% { opacity: 1; }
             }
+
          </style>
     </head>
 
@@ -99,10 +109,10 @@
          <section id = "home" alignment = "center">
             <div class="container">
                 <h1>Welcome to The Medic Zone!</h1>
-                <div class="text-center rounded-circle" style="width:50; height: 50; position: relative;">
-                    <img class=marianne1 src="pics/serious.png">
-                    <img class=marianne2 src="pics/hats.png">
-                    <img class=marianne3 src="pics/thumbsup.png">
+                <div class="image-stack text-center rounded-circle" style="width:50; height: 50; position: relative;">
+                    <img style="width:200; height: 200;" class="marianne1" src="pics/serious.png">
+                    <img style="width:200; height: 200;" class="marianne2" src="pics/hats.png">
+                    <img style="width:200; height: 200;" class="marianne3" src="pics/thumbsup.png">
                 </div>
                 <h2>Marianne Edic</h2>
                 <h3>Singer, Songwriter, Writer, Drawer (Artist), Coder</h3>
