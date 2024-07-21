@@ -17,24 +17,8 @@
                 color: inherit; /* Inherit the text color from parent */
                 cursor: pointer; /* Change cursor on hover */
             }
-            .accordion-header .bi-chevron-down 
-            {
-                transition: transform 0.5s;
-            }
-
-            .accordion-header.collapsed .bi-chevron-down 
-            {
-                transform: rotate(90deg);
-            }
         </style>
         <script>
-            const accordionHeaders = document.querySelectorAll('.accordion-header');
-            accordionHeaders.forEach((header) => {
-                header.addEventListener('click', () => {
-                    header.classList.toggle('collapsed');
-                });
-            });
-
             $(document).ready(function () {
                $('body').scrollspy({ target: '.navbar', offset: 50 });
             });
