@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>The Medic Zone: The Creatives</title>
+        <link rel="icon" href="pics/marianne_gagnamagnid.png">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <style>
+            div
+            {
+                padding: top 500px;
+            }
+            a 
+            {
+                text-decoration: none; /* Remove underlines */
+                color: inherit; /* Inherit the text color from parent */
+                cursor: pointer; /* Change cursor on hover */
+            }
+            h1
+            {
+                padding: top 500px;
+                padding: bottom 10px;
+                margin: 30px;
+                z-index: 2;
+
+                font-size: 3em;
+                animation: color-change 20s infinite;
+            }
+            @keyframes color-change 
+            {
+                0% { color: rgb(173, 173, 173); }
+                25% { color: rgb(246, 255, 208); }
+                50% { color: rgb(215, 151, 255); }
+                75% { color: rgb(0, 105, 191); }
+            }
+        </style>
+        <script>
+            $(document).ready(function () {
+               $('body').scrollspy({ target: '.coding-projects', offset: 50 });
+            });
+        </script>
+    </head>
+
+    <body data-bs-spy="scroll" data-bs-target=".navbar" style = "background: #fee1f4;">
+        <nav class="navbar navbar-expand-lg fixed-top d-flex justify-content-between">
+            <span class="font-weight-bold" style="font-size: x-large; color: rgb(255, 43, 139);">
+                <img src="pics/marianne_gagnamagnid.png"> Medic's (Marianne Edic)
+            </span>
+            <ul class="text-light navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="../">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="../projects">Coding Projects</a></li>
+                <li class="nav-item"><a class="nav-link active">The Creatives</a></li>
+                <li class="nav-item"><a class="nav-link" href="../about_me">About Me</a></li>
+            </ul>
+        </nav>
+        <nav class="navbar navbar-expand-lg fixed-bottom d-flex justify-content-between coding-projects" style="background: #ffef95;">
+            <span class="font-weight-bold" style="font-size: x-large;">Coding Projects</span>
+            <ul class="text-light navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="#songsAccordion">Code</a></li>
+                <li class="nav-item"><a class="nav-link" href="#artAccordion">Sites</a></li>
+                <li class="nav-item"><a class="nav-link" href="#literatureAccordion">Games</a></li>
+                <li class="nav-item"><a class="nav-link" href="#coversAccordion">Apps</a></li>
+            </ul>
+        </nav>
+        <br/>
+        <br/>
+        <br/>
+        <div class="container text-center">
+            <h1>The Creatives</h1>
+            <p>
+                Deep down, I'm an artist. I create music, art, and literature.
+            </p>
+            <p>
+                Check out my work! They're made with passion and love.
+            </p>
+        </div>
+        <div class = "container-fluid">
+            <div class = "accordion" id="codeAccordion">
+                <div class = "accordion-item" id="code">
+                    <h4 class = "accordion-header">
+                        <button style="background-color: rgb(173, 173, 173);" class="accordion-button d-flex justify-content-between" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCode" aria-expanded="true" aria-controls="collapseCode">
+                            Code
+                        </button>
+                    </h4>
+                    <div id="collapseCode" class="accordion-collapse collapse" data-bs-parent="#codeAccordion">
+                        <div class = "accordion-body text-center" style="background-color: rgb(173, 173, 173);">
+                            <a href="https://github.com/stars/MedicMedic/lists/code">
+                                <img style="width:auto" src="https://opengraph.githubassets.com/a687952e75ea331fbb52c7bb0cd04c20ace95fcc713b1f2a48eeae6ef77bd5bd/stars/MedicMedic/lists/code">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class = "accordion" id="sitesAccordion">
+                <div class = "accordion-item" id="sites">
+                    <h4 class = "accordion-header">
+                        <button style="background-color: rgb(246, 255, 208);" class="accordion-button d-flex justify-content-between" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSites" aria-expanded="true" aria-controls="collapseSites">
+                            Sites
+                        </button>
+                    </h4>
+                    <div id="collapseSites" class="accordion-collapse collapse" data-bs-parent="#sitesAccordion">
+                        <div class = "accordion-body text-center" style="background-color: rgb(246, 255, 208);">
+                            <a href="https://github.com/stars/MedicMedic/lists/websites">
+                                <img style="width:auto" src="https://opengraph.githubassets.com/a687952e75ea331fbb52c7bb0cd04c20ace95fcc713b1f2a48eeae6ef77bd5bd/stars/MedicMedic/lists/websites">
+                            </a>
+                            <br>
+                            <h3>Try out Task RNG!</h3>
+                            <embed src="https://medicmedic.github.io/TaskRNG/" style="width: 500px; height: 800px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class = "accordion" id="gamesAccordion">
+                <div class = "accordion-item" id="games">
+                    <h4 class = "accordion-header">
+                        <button style="background-color: rgb(215, 151, 255);" class="accordion-button d-flex justify-content-between" type="button" data-bs-toggle="collapse" data-bs-target="#collapseGames" aria-expanded="true" aria-controls="collapseGames">
+                            Games
+                        </button>
+                    </h4>
+                    <div id="collapseGames" class="accordion-collapse collapse" data-bs-parent="#gamesAccordion">
+                        <div class = "accordion-body text-center" style="background-color: rgb(215, 151, 255);">
+                            <a href="https://github.com/stars/MedicMedic/lists/games">
+                                <img style="width:auto" src="https://opengraph.githubassets.com/a687952e75ea331fbb52c7bb0cd04c20ace95fcc713b1f2a48eeae6ef77bd5bd/stars/MedicMedic/lists/games">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class = "accordion" id="appsAccordion">
+                <div class = "accordion-item" id="apps">
+                    <h4 class = "accordion-header">
+                        <button style="background-color: rgb(0, 105, 191);" class="accordion-button d-flex justify-content-between" type="button" data-bs-toggle="collapse" data-bs-target="#collapseApps" aria-expanded="true" aria-controls="collapseApps">
+                            Apps
+                        </button>
+                    </h4>
+                    <div id="collapseApps" class="accordion-collapse collapse" data-bs-parent="#appsAccordion">
+                        <div class = "accordion-body text-center" style="background-color: rgb(0, 105, 191);">
+                            <a href="https://github.com/stars/MedicMedic/lists/apps">
+                                <img style="width:auto" src="https://opengraph.githubassets.com/a687952e75ea331fbb52c7bb0cd04c20ace95fcc713b1f2a48eeae6ef77bd5bd/stars/MedicMedic/lists/apps">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+        </div>
+    </body>
+</html>
