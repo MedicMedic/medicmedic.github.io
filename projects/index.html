@@ -17,6 +17,23 @@
                 color: inherit; /* Inherit the text color from parent */
                 cursor: pointer; /* Change cursor on hover */
             }
+            h1
+            {
+                padding: top 500px;
+                padding: bottom 10px;
+                margin: 30px;
+                z-index: 2;
+
+                font-size: 3em;
+                animation: color-change 20s infinite;
+            }
+            @keyframes color-change 
+            {
+                0% { color: rgb(173, 173, 173); }
+                25% { color: rgb(246, 255, 208); }
+                50% { color: rgb(215, 151, 255); }
+                75% { color: rgb(0, 105, 191); }
+            }
         </style>
         <script>
             $(document).ready(function () {
@@ -49,6 +66,9 @@
         <br/>
         <br/>
         <br/>
+        <div class="container">
+            <h1 class="text-center">Welcome to The Medic Zone!</h1>
+        </div>
         <div class = "container-fluid">
             <div class = "accordion" id="codeAccordion">
                 <div class = "accordion-item" id="code">
