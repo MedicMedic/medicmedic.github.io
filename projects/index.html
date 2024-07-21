@@ -17,15 +17,16 @@
                 color: inherit; /* Inherit the text color from parent */
                 cursor: pointer; /* Change cursor on hover */
             }
-            .panel-heading.collapsed .bi-chevron-down 
+            .accordion-header .bi-chevron-down 
             {
-                transform:rotateX(0deg);
+                transition: transform 0.5s;
             }
-            .panel-heading .bi-chevron-down 
+
+            .accordion-header.collapsed .bi-chevron-down 
             {
-                transition:transform .5s;
-                transform:rotateX(180deg);
+                transform: rotate(180deg);
             }
+
         </style>
     </head>
 
