@@ -17,6 +17,15 @@
                 color: inherit; /* Inherit the text color from parent */
                 cursor: pointer; /* Change cursor on hover */
             }
+            .panel-heading.collapsed .bi-chevron-down 
+            {
+                transform:rotateX(0deg);
+            }
+            .panel-heading .bi-chevron-down 
+            {
+                transition:transform .5s;
+                transform:rotateX(180deg);
+            }
         </style>
     </head>
 
@@ -47,19 +56,20 @@
         <br/>
         <br/>
         <div class = "container-fluid">
-            <div class = "accordion" id = "codeaccordion" style="background-color: rgb(173, 173, 173);">
-                <div class = "accordion-item">
+            <div class = "accordion" id = "codeaccordion">
+                <div class = "accordion-item" style="background-color: rgb(173, 173, 173);">
                     <h4 class = "accordion-header">
                         <a class="d-flex justify-content-between" href = "#code" data-bs-toggle = "collapse" data-parent = "#codeaccordion">Code <i class="bi bi-chevron-down"></i></a>
                     </h4>
                 </div>
             </div>
             <div class = "collapse" id = "code">
-                <div class = "accordion-body" style="background-color: rgb(173, 173, 173);">
+                <div class = "accordion-body text-center" style="background-color: rgb(173, 173, 173);">
                     <a href="https://github.com/stars/MedicMedic/lists/code">
                         <img src="https://opengraph.githubassets.com/a687952e75ea331fbb52c7bb0cd04c20ace95fcc713b1f2a48eeae6ef77bd5bd/stars/MedicMedic/lists/code">
                     </a>
                 </div>
             </div>
+        </div>
     </body>
 </html>
