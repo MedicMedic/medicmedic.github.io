@@ -40,24 +40,58 @@
         <br/>
         <br/>
         <br/>
-        <div class="container">
-            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#myModal">Open Modal Box</button>
-            <div class="modal" id="myModal">
-               <div class="modal-dialog">
-                  <div class="modal-content">
-                     <div class="modal-header">
-                        <h4 class="modal-title">This is my modal header</h4>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                     </div>
-                     <div class="modal-body">
-                        <p>This is modal content</p>
-                     </div>
-                     <div class="modal-footer">
-                        <button type="button" class="btn btn-info" data-bs-dismiss="modal">Close</button>
-                     </div>
+        <div class = "container-fluid">
+            <div class = "card">
+               <div class = "accordion" id = "myaccordion">
+                  <div class = "accordion-item">
+                     <h4 class = "accordion-header  bg-danger">
+                        <a href = "#clapclap" data-bs-toggle = "collapse" data-parent = "#myaccordion">Collapsible Accordion</a>
+                     </h4>
                   </div>
                </div>
-            </div>
+               <div class = "collapse" id = "clapclap">
+                  <div class = "accordion-body">
+                     <img src="pic/medichumanpic.jpg"  width="200" height="200">              
+                  </div>
+               </div>
+               <div class = "accordion bg-warning" id = "myaccordion">
+                  <div class = "accordion-header">
+                     <h4>
+                        <a href = "#clapclapclap" data-bs-toggle = "collapse" data-parent = "#myaccordion">Collapsible Accordion</a>
+                     </h4>
+                  </div>
+               </div>
+               <div class = "collapse" id = "clapclapclap">
+                  <div class = "accordion-body">
+                     <img src="pic/medichumanpic.jpg"  width="200" height="200"/>
+                  </div>
+               </div>
+                        <div class = "accordion-group bg-info" id = "myaccordion">
+                  <div class = "accordion-header">
+                  <h4>
+                     <a href = "#clapclapclapclap" data-bs-toggle = "collapse" data-parent = "#myaccordion">Collapsible Accordion</a>
+                  </h4>
+                  </div>
+               </div>
+               <div class = "collapse" id = "clapclapclapclap">
+                  <div class = "accordion-body">
+                  <img src="pic/medichumanpic.jpg"  width="200" height="200"/>
+                  </div>
+               </div>
+                        <div class = "accordion bg-success" id = "myaccordion">
+                  <div class = "accordion-heading">
+                  <h4>
+                     <a href = "#clapclapclapclapclap" data-bs-toggle = "collapse" data-parent = "#myaccordion">Collapsible Accordion</a>
+                  </h4>
+                  </div>
+               </div>
+               <div class = "collapse" id = "clapclapclapclapclap">
+                  <div class = "accordion-body">
+                     <img src="pic/medichumanpic.jpg"  width="200" height="200"/>
+                  </div>
+               </div>
+            </div>        
          </div>
+   
     </body>
 </html>
