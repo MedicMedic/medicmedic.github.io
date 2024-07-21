@@ -17,20 +17,6 @@
                 color: inherit; /* Inherit the text color from parent */
                 cursor: pointer; /* Change cursor on hover */
             }
-            
-            /* Custom CSS */
-            .accordion-button::after 
-            {
-                content: "\f285"; /* Unicode for bi-chevron-down */
-                font-family: "Bootstrap Icons";
-                font-size: 0.8rem; /* Adjust as needed */
-                margin-left: 0.5rem; /* Add some spacing */
-            }
-
-            .accordion-button:not(.collapsed)::after 
-            {
-                content: "\f078"; /* Unicode for bi-chevron-up */
-            }
         </style>
         <script>
             $(document).ready(function () {
