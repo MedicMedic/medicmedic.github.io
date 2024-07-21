@@ -26,8 +26,19 @@
             {
                 transform: rotate(180deg);
             }
-
         </style>
+        <script>
+            const accordionHeaders = document.querySelectorAll('.accordion-header');
+            accordionHeaders.forEach((header) => {
+                header.addEventListener('click', () => {
+                    header.classList.toggle('collapsed');
+                });
+            });
+
+            $(document).ready(function () {
+               $('body').scrollspy({ target: '.navbar', offset: 50 });
+            });
+        </script>
     </head>
 
     <body data-bs-spy="scroll" data-bs-target=".navbar" style = "background: #fee1f4;">
