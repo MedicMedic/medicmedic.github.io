@@ -60,15 +60,14 @@
                 width: 300px; /* Adjust as needed */
                 height: 300px; /* Adjust as needed */
                 position: relative;
-                margin-top: 20%;
-                margin: 20%;
+                margin: 0 auto; /* Center horizontally */
             }
 
             .image-stack img 
             {
                 position: absolute;
-                top: 70%;
-                left: 0%;
+                top: 50%;
+                left: 50%;
                 transform: translate(-50%, -50%);
                 width: 100%;
                 height: 100%;
@@ -107,7 +106,7 @@
     </head>
 
     <body data-bs-spy="scroll" data-bs-target=".navbar" style = "background: #fee1f4;">
-        <div class="container">
+        <div class="container-fluid">
             <nav class="navbar navbar-expand-lg navbar-custom fixed-top d-flex justify-content-between">
                 <span class="font-weight-bold" style="font-size: x-large; color: rgb(255, 43, 139)";><img src="pics/marianne-gagnamagnid.png">     Medic's (Marianne Edic)</span>
                 <ul class = "text-light navbar-nav">
@@ -124,15 +123,13 @@
         <br/>
         <section id = "home">
             <div class="container">
-                <div style="background-color: #fcffad;" class="justify-content-between">
+                <div style="background-color: #fcffad;" class="container">
+                    <h2>Marianne Edic</h2>
+                    <h4>Singer, Songwriter, Writer, Drawer (Artist), Coder</h4>
                     <div class="image-stack">
                         <img style="width:300px; height:300px; background-color: #ffa0f9;" class="marianne1 rounded-circle" src="pics/serious.png">
                         <img style="width:300px; height: 300px; background-color: #ffa0f9;" class="marianne2 rounded-circle" src="pics/hats.png">
                         <img style="width:300px; height: 300px; background-color: #ffa0f9;"class="marianne3 rounded-circle" src="pics/thumbsup.png">
-                    </div>
-                    <div>
-                        <h2>Marianne Edic</h2>
-                        <h4>Singer, Songwriter, Writer, Drawer (Artist), Coder</h4>
                     </div>
                 </div>
             </div>
