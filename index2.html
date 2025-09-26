@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>The Medic Zone</title>
+    <link rel="icon" href="pics/marianne gagnamagnid.png">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Epunda+Slab:ital,wght@0,300..900;1,300..900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'medic-pink': '#FFB4D6',
+                        'medic-hot-pink': '#FF3F9F',
+                        'medic-light-pink': '#FF96CB',
+                        'medic-yellow': '#FFF898',
+                        'medic-dark-bg': 'rgb(27, 0, 12.24)',
+                        'medic-dark-nav': 'rgb(63, 0, 31.5)',
+                        'medic-dark-menu': 'rgb(150, 0, 75.7142857143)',
+                        'medic-dark-yellow': 'rgb(101, 94.1359223301, 0)',
+                        'medic-dark-img': 'rgb(255, 27, 130.36)'
+                    },
+                    fontFamily: {
+                        'epunda': ['Epunda Slab', 'serif'],
+                        'sharetechmono': ['Share Tech Mono', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Loading Screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #FFB4D6, #FF3F9F);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 1;
+            transition: opacity 0.8s ease;
+        }
+
+        .loading-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loading-logo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite alternate;
+        }
+
+        .loading-text {
+            color: white;
+            font-size: 1.5rem;
+            margin-top: 1rem;
+            animation: fade 1.5s ease-in-out infinite alternate;
+        }
+
+        .loading-bar {
+            width: 200px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 2px;
+            margin-top: 2rem;
+            overflow: hidden;
+        }
+
+        .loading-progress {
+            width: 0%;
+            height: 100%;
+            background: white;
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+
+        @keyframes pulse {
+            from { transform: scale(1); }
+            to { transform: scale(1.1); }
+        }
+
+        @keyframes fade {
+            from { opacity: 0.7; }
+            to { opacity: 1; }
+        }
+
+        /* Section Lock Indicator */
+        .section-lock {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 100;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .section-lock.active {
+            opacity: 1;
+        }
+
+        .section-lock-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 63, 159, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+            animation: lockPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes lockPulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 63, 159, 0.7); }
+            50% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(255, 63, 159, 0); }
+        }
+
+        /* Custom styles that can't be handled by Tailwind alone */
+        .carousel-img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 9999px;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .carousel-img.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .floating-musical {
+            position: fixed;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        #bgLayer {
+            transition: opacity 0.6s ease-in-out;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0;
+        }
+
+        .collage-masonry {
+            column-count: 4;
+            column-gap: 12px;
+            min-width: 200%;
+            height: 100%;
+        }
+
+        .collage-masonry img {
+            display: block;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .project-description {
+            font-size: 1.25rem;
+            color: #facc15;
+        }
+
+        .open-modal {
+            cursor: pointer;
+            text-decoration: underline;
+            color: #f472b6;
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+
+        .open-modal:hover {
+            color: #ec4899;
+            transform: scale(1.05);
+        }
+
+        .group:hover .project-description {
+            max-height: 200px;
+            opacity: 1;
+        }
+
+        /* Styling for matrix rain columns */
+        .code-rain {
+            position: absolute;
+            top: 0;
+            white-space: pre;
+            font-family: monospace;
+            font-size: 16px;
+            color: #00ff00;
+            line-height: 1.2;
+            pointer-events: none;
+            user-select: none;
+        }
+
+        /* Dark mode styles */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: rgb(27, 0, 12.24);
+                color: white;
+            }
+        }
+
+        /* Enhanced scrollbar styling */
+        html {
+            scrollbar-width: thin;
+            scrollbar-color: #FF3F9F #FFB4D6;
+        }
+
+        body::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        body::-webkit-scrollbar-track {
+            background: #FFB4D6;
+        }
+
+        body::-webkit-scrollbar-thumb {
+            background: #FF3F9F;
+            border-radius: 6px;
+            border: 2px solid #FFB4D6;
+        }
+
+        body::-webkit-scrollbar-thumb:hover {
+            background: #e6356d;
+        }
+
+        /* Only mobile flip */
+        @media (max-width: 768px) {
+            #about-title h1 {
+                transform: none !important;
+                transition: transform 0.6s;
+                transform-style: preserve-3d;
+                cursor: pointer;
+            }
+
+            #about-title.flipped h1 {
+                transform: rotateY(180deg);
+            }
+
+            #slideshowContainer {
+                overflow-y: hidden;
+                scroll-snap-type: y mandatory;
+                scrollbar-width: none;
+            }
+
+            .collage-masonry {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+                scroll-snap-align: start;
+            }
+        }
+
+        /* Preloader for fonts */
+        .font-preload {
+            font-family: 'Epunda Slab', serif;
+            font-family: 'Share Tech Mono', monospace;
+            position: absolute;
+            left: -9999px;
+            visibility: hidden;
+        }
+    </style>
+</head>
+
+<body class="bg-medic-pink font-epunda m-0 p-0 dark:bg-medic-dark-bg dark:text-white">
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="loading-screen">
+        <img src="pics/marianne gagnamagnid.png" alt="Loading..." class="loading-logo">
+        <div class="loading-text">Loading The Medic Zone...</div>
+        <div class="loading-bar">
+            <div id="loadingProgress" class="loading-progress"></div>
+        </div>
+    </div>
+
+    <!-- Font Preloader -->
+    <div class="font-preload">
+        <span style="font-family: 'Epunda Slab', serif;">Preload</span>
+        <span style="font-family: 'Share Tech Mono', monospace;">Preload</span>
+    </div>
+
+    <!-- Section Lock Indicator -->
+    <div id="sectionLock" class="section-lock">
+        <div class="section-lock-icon">
+            <i class="bi bi-lock"></i>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav
+        class="fixed top-0 left-0 right-0 z-50 bg-medic-hot-pink dark:bg-medic-dark-nav h-20 flex items-center justify-between px-6 shadow-md transition-transform duration-300 ease-in-out">
+        <div class="flex items-center space-x-3">
+            <img class="h-12 align-middle" src="pics/marianne gagnamagnid.png" alt="Logo">
+            <span class="text-xl font-semibold text-white">The Medic Zone</span>
+        </div>
+        <button id="menuToggle" class="sm:hidden focus:outline-none text-white">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </button>
+        <ul class="hidden sm:flex space-x-4">
+            <li><a href=""
+                    class="block w-full px-4 py-3 text-white font-medium transition-all duration-300 ease-in-out bg-medic-light-pink dark:bg-medic-hot-pink rounded">Home</a>
+            </li>
+            <li class="relative group">
+                <a href="./projects"
+                    class="flex items-center space-x-1 block w-full px-4 py-3 text-white font-medium transition-all duration-300 ease-in-out hover:bg-medic-light-pink dark:hover:bg-medic-hot-pink rounded">
+                    <span>Coding Projects</span>
+                    <svg class="w-4 h-4 transform transition-transform duration-300 origin-center group-hover:rotate-180"
+                        fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6" />
+                    </svg>
+                </a>
+                <ul
+                    class="absolute hidden group-hover:block bg-medic-light-pink dark:bg-medic-dark-menu shadow-md rounded-md w-48 z-20">
+                    <li><a href="/TaskRNG"
+                            class="block px-4 py-2 text-white hover:bg-medic-hot-pink dark:hover:bg-medic-hot-pink dark:hover:text-black transition-colors duration-300">Task
+                            RNG</a></li>
+                    <li><a href="/HTMLShooterGame"
+                            class="block px-4 py-2 text-white hover:bg-medic-hot-pink dark:hover:bg-medic-hot-pink dark:hover:text-black transition-colors duration-300">Stellar
+                            Shooter</a></li>
+                </ul>
+            </li>
+
+            <li class="relative group">
+                <a href="./creatives"
+                    class="flex items-center space-x-1 block w-full px-4 py-3 text-white font-medium transition-all duration-300 ease-in-out hover:bg-medic-light-pink dark:hover:bg-medic-hot-pink rounded">
+                    <span>The Creatives</span>
+                    <svg class="w-4 h-4 transform transition-transform duration-300 origin-center group-hover:rotate-180"
+                        fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6" />
+                    </svg>
+                </a>
+                <ul
+                    class="absolute hidden group-hover:block bg-medic-light-pink dark:bg-medic-dark-menu shadow-md rounded-md w-48 z-20">
+                    <li><a href=""
+                            class="block px-4 py-2 text-white hover:bg-medic-hot-pink dark:hover:bg-medic-hot-pink dark:hover:text-black transition-colors duration-300">SMS
+                            YouTube Channel</a></li>
+                    <li><a href=""
+                            class="block px-4 py-2 text-white hover:bg-medic-hot-pink dark:hover:bg-medic-hot-pink dark:hover:text-black transition-colors duration-300">Instagram</a>
+                    </li>
+                </ul>
+            </li>
+            <li><a href="./about_me"
+                    class="block w-full px-4 py-3 text-white font-medium transition-all duration-300 ease-in-out hover:bg-medic-light-pink dark:hover:bg-medic-hot-pink rounded">About
+                    Me</a></li>
+        </ul>
+    </nav>
+
+    <div id="backdrop"
+        class="fixed inset-0 z-30 bg-black bg-opacity-50 hidden transition-opacity duration-300 ease-in-out"></div>
+
+    <!-- Side Drawer -->
+    <div id="sideDrawer"
+        class="bg-medic-light-pink dark:bg-medic-dark-menu dark:text-white fixed top-20 right-0 h-[calc(100%-80px)] w-64 transform translate-x-full transition-transform duration-300 ease-in-out z-40">
+        <div class="p-6 space-y-4">
+            <a href=""
+                class="block w-full px-4 py-3 text-left font-medium transition-all duration-300 ease-in-out hover:bg-medic-hot-pink hover:text-white dark:hover:bg-medic-hot-pink rounded">Home</a>
+            <div class="accordion-item">
+                <button
+                    class="accordion-toggle flex justify-between items-center w-full px-4 py-3 text-left font-medium transition-all duration-300 ease-in-out hover:bg-medic-hot-pink hover:text-white dark:hover:bg-medic-hot-pink rounded"
+                    data-target="#projectsSubmenu">
+                    <span>Coding Projects</span>
+                    <svg class="caret w-4 h-4 transform transition-transform duration-300" fill="none"
+                        stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6" />
+                    </svg>
+                </button>
+                <div id="projectsSubmenu" class="accordion-content hidden pl-4 mt-2 space-y-2">
+                    <a href="./TaskRNG"
+                        class="block w-full px-4 py-3 text-left font-medium transition-all duration-300 ease-in-out hover:bg-medic-hot-pink hover:text-white dark:hover:bg-medic-hot-pink rounded">Task
+                        RNG</a>
+                    <a href="./HTMLShooterGame"
+                        class="block w-full px-4 py-3 text-left font-medium transition-all duration-300 ease-in-out hover:bg-medic-hot-pink hover:text-white dark:hover:bg-medic-hot-pink rounded">Stellar
+                        Shooter</a>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <button
+                    class="accordion-toggle flex justify-between items-center w-full px-4 py-3 text-left font-medium transition-all duration-300 ease-in-out hover:bg-medic-hot-pink hover:text-white dark:hover:bg-medic-hot-pink rounded"
+                    data-target="#creativesSubmenu">
+                    <span>The Creatives</span>
+                    <svg class="caret w-4 h-4 transform transition-transform duration-300" fill="none"
+                        stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6" />
+                    </svg>
+                </button>
+                <div id="creativesSubmenu" class="accordion-content hidden pl-4 mt-2 space-y-2">
+                    <a href="./creatives"
+                        class="block w-full px-4 py-3 text-left font-medium transition-all duration-300 ease-in-out hover:bg-medic-hot-pink hover:text-white dark:hover:bg-medic-hot-pink rounded">SMS
+                        YouTube Channel</a>
+                    <a href=""
+                        class="block w-full px-4 py-3 text-left font-medium transition-all duration-300 ease-in-out hover:bg-medic-hot-pink hover:text-white dark:hover:bg-medic-hot-pink rounded">Instagram</a>
+                </div>
+            </div>
+            <a href="./about_me"
+                class="block w-full px-4 py-3 text-left font-medium transition-all duration-300 ease-in-out hover:bg-medic-hot-pink hover:text-white dark:hover:bg-medic-hot-pink rounded">About
+                Me</a>
+        </div>
+    </div>
+
+    <!-- Hero -->
+    <section id="home"
+        class="welcome-banner relative h-screen w-full bg-cover bg-center grayscale hover:grayscale-0 transition-all duration-700"
+        style="background-image: url('pics/duck.png');">
+        <div class="absolute inset-0 flex flex-col items-center justify-center text-center text-gray-50 px-6">
+
+            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mt-4 
+           hover:text-pink-800 duration-300 hover:scale-110 transition-transform break-words whitespace-normal">
+                Welcome to The Medic Zone!
+            </h1>
+
+            <h3
+                class="text-lg sm:text-xl md:text-2xl mt-4 hover:text-pink-200 duration-300 break-words whitespace-normal">
+                The fabulous world of coding and creativity!
+            </h3>
+
+        </div>
+        <div id="scrollCue" class="absolute bottom-6 left-0 right-0 text-center opacity-0">
+            <svg class="mx-auto w-6 h-6 text-pink-500 animate-bounce" fill="none" stroke="currentColor" stroke-width="2"
+                viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
+        </div>
+    </section>
+
+    <!--Intro-->
+    <section id="introSection" data-section="intro"
+        class="bg-medic-yellow dark:bg-medic-dark-yellow dark:text-white relative px-6 py-16 flex flex-col md:flex-row items-center justify-center gap-10 my-5">
+        <div class="flex flex-col md:flex-row items-center md:items-center gap-6 md:gap-10 w-full max-w-6xl">
+
+            <!-- Image Carousel -->
+            <div
+                class="relative w-72 h-72 sm:w-80 sm:h-80 md:w-[24rem] md:h-[24rem] rounded-full overflow-hidden shrink-0 group">
+                <div class="absolute inset-0 shadow-lg bg-medic-pink dark:bg-medic-dark-img rounded-full" id="carousel">
+                    <img src="pics/serious.png" class="carousel-img" />
+                    <img src="pics/hats.png" class="carousel-img" />
+                    <img src="pics/thumbsup.png" class="carousel-img" />
+                </div>
+
+                <button id="prevBtn"
+                    class="absolute left-2 top-1/2 transform -translate-y-1/2 hidden group-hover:block z-10 text-white bg-black/50 px-2 py-1 rounded">‹</button>
+                <button id="nextBtn"
+                    class="absolute right-2 top-1/2 transform -translate-y-1/2 hidden group-hover:block z-10 text-white bg-black/50 px-2 py-1 rounded">›</button>
+            </div>
+
+            <!-- Text Content -->
+            <div class="text-center md:text-left flex flex-col justify-center">
+                <h2 class="text-6xl font-bold mb-3 dark:text-gray-300">My name is Marianne!</h2>
+                <p class="text-3xl text-gray-700 dark:text-gray-400">
+                    I'm a Computer Science graduate from New Era University. I have a very diverse skill set that allows
+                    me
+                    to be both a technical and creative person. Let me show you my work!
+                </p>
+            </div>
+        </div>
+
+        <div id="scrollCue" class="absolute bottom-6 left-0 right-0 text-center opacity-100">
+            <svg class="mx-auto w-6 h-6 text-yellow-500 animate-bounce" fill="none" stroke="currentColor"
+                stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
+        </div>
+    </section>
+
+    <!--About Me-->
+    <section id="aboutMeSection" data-section="about" class="relative min-h-screen px-4 py-12 md:px-12 md:py-12 overflow-hidden">
+        <div class="flex flex-col md:block">
+            <div id="bgLayer" class="absolute inset-0 z-0 bg-cover bg-center"></div>
+            <div id="slideshowContainer" class="absolute inset-0 z-0" style="opacity: 0;">
+                <div id="collageTrack" class="collage-masonry h-full"></div>
+            </div>
+
+            <!-- Title -->
+            <div id="about-title" class="text-center relative md:absolute md:top-32 md:left-auto flex justify-center">
+                <h1
+                    class="text-center text-6xl md:text-7xl font-bold md:-rotate-45 hover:text-pink-500 duration-300 hover:rotate-0 hover:scale-110">
+                    About Me</h1>
+            </div>
+
+            <!-- Age -->
+            <div id="ageFact"
+                class="text-center relative mt-6 md:absolute md:top-40 md:left-1/4 p-6 rounded-xl hover:border-2 hover:border-pink-500 hover:shadow-[0_0_40px_#ec4899] hover:bg-medic-light-pink hover:bg-opacity-40 duration-300">
+                <h3 class="text-3xl">I am
+                    <span id="currentAgeLatin" class="text-4xl text-pink-500"></span> years old
+                </h3>
+                <div id="ageContents" class="hidden">
+                    <p>Born: November 13, 2003</p>
+                    <p>Days until next birthday: <span id="birthdayCountdown"></span></p>
+                    <p><span class="hover:text-pink-500">Click this card </span>for my birthday wishlist</p>
+                </div>
+            </div>
+
+            <!-- Fullscreen overlay -->
+            <div id="wishlistModal"
+                class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 hidden">
+                <div
+                    class="relative h-3/4 w-3/4 p-6 border-4 border-pink-500 bg-medic-pink dark:bg-medic-dark-menu rounded-xl shadow-lg overflow-y-auto">
+                    <button id="wishlistModalClose"
+                        class="absolute top-4 right-4 text-pink-500 hover:text-pink-700 text-xl">
+                        ✕
+                    </button>
+                    <h2 class="text-4xl hover:[text-shadow:0_0_10px_#ec4899] duration-300">Days until next birthday:
+                        <span id="birthdayCountdownModal" class="text-5xl text-yellow-600 dark:text-yellow-400 "></span>
+                    </h2>
+                    <h3 class="py-6 text-2xl hover:[text-shadow:0_0_10px_#ec4899] duration-300">The Wishlist:</h3>
+                    <ul class="list-disc px-8">
+                        <li>Table</li>
+                        <li>Chair</li>
+                        <li>Studio Microphone</li>
+                        <li>MIDI Keyboard</li>
+                        <li>Duck Plush</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Location -->
+            <div id="locationFact"
+                class="text-center relative mt-6 md:absolute md:top-48 md:left-2/3 p-6 rounded-xl group hover:border-2 hover:border-yellow-500 hover:shadow-[0_0_40px_#FFEB3B] hover:bg-medic-yellow hover:bg-opacity-40 transition-all duration-300">
+                <h3 id="locationText" class="text-3xl transition-all duration-200">
+                    I am from the Philippines
+                </h3>
+            </div>
+
+            <!-- Glee Club Section -->
+            <div id="gleeFact"
+                class="text-center relative mt-6 md:absolute md:bottom-72 md:left-1/3 p-6 rounded-xl hover:border-2 hover:border-orange-500 hover:shadow-[0_0_40px_#ec4899] hover:bg-orange-500 hover:bg-opacity-40 duration-300">
+                <h3 class="text-3xl hover:[text-shadow:0_0_10px_#ec4899] duration-300">
+                    I was the president of New Era University Glee Club and sang in an
+                    <a id="oratorioLink" href="https://www.youtube.com/watch?v=xmtsnGuWDuQ" target="_blank"
+                        class="text-yellow-500 hover:text-4xl duration-300">oratorio</a>
+                </h3>
+            </div>
+
+            <!-- Skills Section -->
+            <div id="skillsFact"
+                class="text-center relative mt-6 md:px-2 md:absolute md:bottom-24 md:left-1/2 md:-translate-x-1/2 md:whitespace-nowrap">
+                <h3 class="text-4xl hover:[text-shadow:0_0_10px_#ec4899] duration-300 relative">
+                    I am a
+                    <span data-emojis="🎤,🎶,🎵" data-images="" data-card="singerCard"
+                        class="skill relative inline-block bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent hover:text-5xl relative z-20">
+                        singer
+                        <div id="singerCard"
+                            class="tooltip-card hidden absolute bottom-full left-1/2 -translate-x-1/2 mb-4 h-64 w-72 border-4 border-purple-500 rounded-xl overflow-hidden bg-gradient-to-r from-pink-500 to-purple-500 shadow-xl">
+                            <button
+                                class="close-btn absolute z-50 top-1 right-1 text-white bg-black bg-opacity-60 rounded-full w-6 h-6 flex items-center justify-center text-xs hover:bg-red-600">✕</button>
+                            <div
+                                class="carousel relative h-

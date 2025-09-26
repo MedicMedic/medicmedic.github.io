@@ -1,188 +1,2289 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>The Medic Zone</title>
-        <link rel="icon" href="pics/marianne gagnamagnid.png">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-        <!-- Google tag (gtag.js) -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-RTS1Z5XYJ4"></script>
-        <script>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-        
-          gtag('config', 'G-RTS1Z5XYJ4');
-        </script>
-        <script>
-            $(document).ready(function () {
-               $('body').scrollspy({ target: '.navbar', offset: 50 });
-            });
-         </script>
-         <style>
-            a 
-            {
-                text-decoration: none; /* Remove underlines */
-                color: inherit; /* Inherit the text color from parent */
-                cursor: pointer; /* Change cursor on hover */
-            }
-            .navbar-custom 
-            {
-                max-height: 50px;
-            }
-            .nav li 
-            {
-                display: table-cell !important;
-            }
-            h1
-            {
-                padding: top 500px;
-                padding: bottom 10px;
-                margin: 30px;
-                z-index: 2;
 
-                font-size: 3em;
-                animation: color-change 10s infinite;
+<head>
+    <title>The Medic Zone</title>
+    <link rel="icon" href="pics/marianne gagnamagnid.png">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Epunda+Slab:ital,wght@0,300..900;1,300..900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'medic-pink': '#FFB4D6',
+                        'medic-hot-pink': '#FF3F9F',
+                        'medic-light-pink': '#FF96CB',
+                        'medic-yellow': '#FFF898',
+                        'medic-dark-bg': 'rgb(27, 0, 12.24)',
+                        'medic-dark-nav': 'rgb(63, 0, 31.5)',
+                        'medic-dark-menu': 'rgb(150, 0, 75.7142857143)',
+                        'medic-dark-yellow': 'rgb(101, 94.1359223301, 0)',
+                        'medic-dark-img': 'rgb(255, 27, 130.36)'
+                    },
+                    fontFamily: {
+                        'epunda': ['Epunda Slab', 'serif'],
+                        'sharetechmono': ['Share Tech Mono', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom styles that can't be handled by Tailwind alone */
+        .lock-scroll {
+            overflow: hidden;
+            height: 100vh;
+            position: fixed;
+            width: 100%;
+        }
+
+        .carousel-img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 9999px;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .carousel-img.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .floating-musical {
+            position: fixed;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        #bgLayer {
+            transition: opacity 0.6s ease-in-out;
+            /* smooth fade */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0;
+            /* default hidden */
+        }
+
+        .collage-masonry {
+            column-count: 4;
+            /* adjust number of columns */
+            column-gap: 12px;
+            min-width: 200%;
+            /* duplicate set for scrolling */
+            height: 100%;
+            /* fit to section height */
+        }
+
+        .collage-masonry img {
+            display: block;
+            max-height: 100%;
+            /* never exceed section height */
+            width: auto;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .project-description {
+            font-size: 1.25rem;
+            /* text-2xl */
+            color: #facc15;
+            /* text-yellow-500 */
+        }
+
+        .open-modal {
+            cursor: pointer;
+            text-decoration: underline;
+            color: #f472b6;
+            /* Tailwind pink-400 */
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+
+        .open-modal:hover {
+            color: #ec4899;
+            /* Tailwind pink-500 */
+            transform: scale(1.05);
+        }
+
+
+        .group:hover .project-description {
+            max-height: 200px;
+            /* adjust depending on text length */
+            opacity: 1;
+        }
+
+        /* Styling for matrix rain columns */
+        .code-rain {
+            position: absolute;
+            top: 0;
+            white-space: pre;
+            font-family: monospace;
+            font-size: 16px;
+            color: #00ff00;
+            line-height: 1.2;
+            pointer-events: none;
+            user-select: none;
+        }
+
+        /* Dark mode styles */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: rgb(27, 0, 12.24);
+                color: white;
+            }
+        }
+
+        /* Only mobile flip */
+        @media (max-width: 768px) {
+            #about-title h1 {
+                transform: none !important;
+                transition: transform 0.6s;
+                transform-style: preserve-3d;
+                cursor: pointer;
             }
 
-            .marianne1
-            {
-                animation: photo-change1 30s infinite;
-                z-index: 2;
+            #about-title.flipped h1 {
+                transform: rotateY(180deg);
+            }
+        }
+
+        @media (max-width: 768px) {
+            #slideshowContainer {
+                overflow-y: hidden;
+                scroll-snap-type: y mandatory;
+                scrollbar-width: none;
             }
 
-            .marianne2
-            {
-                animation: photo-change2 30s infinite;
-                z-index: 1;
+            .collage-masonry {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+                scroll-snap-align: start;
             }
+        }
+    </style>
+</head>
 
-            .marianne3
-            {
-                animation: photo-change3 30s infinite;
-                z-index: 0;
-            }
-
-            .image-stack 
-            {
-                width: 300px; /* Adjust as needed */
-                height: 300px; /* Adjust as needed */
-                position: relative;
-                margin: 0 auto; /* Center horizontally */
-            }
-
-            .image-stack img 
-            {
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                width: 100%;
-                height: 100%;
-                object-fit: cover; /* Maintain aspect ratio */
-            }
-
-            @keyframes color-change 
-            {
-                0% { color: rgb(73, 0, 93); }
-                33.33% { color: rgb(242, 255, 0); }
-                66.67% { color: rgb(83, 0, 83); }
-            }
-
-            @keyframes photo-change1 
-            {
-                0%, 33.33% { opacity: 1; }
-                33.34%, 66.66% { opacity: 0; }
-                66.67%, 100% { opacity: 0; }
-            }
-
-            @keyframes photo-change2 
-            {
-                0%, 33.33% { opacity: 0; }
-                33.34%, 66.66% { opacity: 1; }
-                66.67%, 100% { opacity: 0; }
-            }
-
-            @keyframes photo-change3 
-            {
-                0%, 33.33% { opacity: 0; }
-                33.34%, 66.66% { opacity: 0; }
-                66.67%, 100% { opacity: 1; }
-            }
-
-            .pagenav {
-                opacity: 0.5;
-                transition: opacity 0.3s ease; /* Smooth transition effect */
-            }
-
-            .pagenav:hover {
-                opacity: 1;
-            }
-
-         </style>
-    </head>
-
-    <body data-bs-spy="scroll" data-bs-target=".navbar" style = "background: #fee1f4;">
-        <div class="container-fluid">
-            <nav class="navbar navbar-expand-lg navbar-custom fixed-top d-flex justify-content-between">
-                <span class="font-weight-bold" style="font-size: x-large; color: rgb(255, 43, 139)";><img src="pics/marianne gagnamagnid.png">     Medic's (Marianne Edic)</span>
-                <ul class = "text-light navbar-nav">
-                   <li class="nav-item"><a class = "nav-link" href = "#home">Home</a></li>
-                   <li class="nav-item"><a class = "nav-link" href = "#projects">Coding Projects</a></li>
-                   <li class="nav-item"><a class = "nav-link" href = "#creatives">The Creatives</a></li>
-                   <li class="nav-item"><a class = "nav-link" href = "#about_me">About Me</a></li>
-                </ul>
-             </nav>
+<body class="bg-medic-pink font-epunda m-0 p-0 dark:bg-medic-dark-bg dark:text-white lock-scroll">
+    <!-- Navigation -->
+    <nav
+        class="fixed top-0 left-0 right-0 z-50 bg-medic-hot-pink dark:bg-medic-dark-nav h-20 flex items-center justify-between px-6 shadow-md transition-transform duration-300 ease-in-out">
+        <div class="flex items-center space-x-3">
+            <img class="h-12 align-middle" src="pics/marianne gagnamagnid.png" alt="Logo">
+            <span class="text-xl font-semibold text-white">The Medic Zone</span>
         </div>
-         <section id = "home" alignment = "center">
-            <div class="container">
-                <h1 class="text-center">Welcome to The Medic Zone!</h1>
-                <div class="image-stack">
-                    <img style="width:300px; height:300px; background-color: #fff88f;" class="marianne1 text-center rounded-circle" src="pics/serious.png">
-                    <img style="width:300px; height: 300px; background-color: #fff88f;" class="marianne2 text-center rounded-circle" src="pics/hats.png">
-                    <img style="width:300px; height: 300px; background-color: #fff88f;"class="marianne3 text-center rounded-circle" src="pics/thumbsup.png">
-                </div>
-                <br/>
-                <div style="width:800px; background-color: #c366c3;" class="text-light container text-center">
-                    <h2 style="z-index: 2;">Marianne Edic</h2>
-                    <h4 style="z-index: 2;">Singer, Songwriter, Writer, Drawer (Artist), Coder</h4>
-                    <p class="container text-dark text-center" style="width:500px; background-color: #fff88f;">
-                        Come get to know all about my projects, artworks, songs, stories, and more! I promise—there's never a dull moment.
-                    </p>
-                    <img style="width:800px;" class="text-center" src="pics/duck.png">
+        <button id="menuToggle" class="sm:hidden focus:outline-none text-white">
+            <!-- Hamburger Icon -->
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </button>
+        <ul class="hidden sm:flex space-x-4">
+            <li><a href=""
+                    class="block w-full px-4 py-3 text-white font-medium transition-all duration-300 ease-in-out bg-medic-light-pink dark:bg-medic-hot-pink rounded">Home</a>
+            </li>
+            <li class="relative group">
+                <a href="./projects"
+                    class="flex items-center space-x-1 block w-full px-4 py-3 text-white font-medium transition-all duration-300 ease-in-out hover:bg-medic-light-pink dark:hover:bg-medic-hot-pink rounded">
+                    <span>Coding Projects</span>
+                    <svg class="w-4 h-4 transform transition-transform duration-300 origin-center group-hover:rotate-180"
+                        fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6" />
+                    </svg>
+                </a>
+                <ul
+                    class="absolute hidden group-hover:block bg-medic-light-pink dark:bg-medic-dark-menu shadow-md rounded-md w-48 z-20">
+                    <li><a href="/TaskRNG"
+                            class="block px-4 py-2 text-white hover:bg-medic-hot-pink dark:hover:bg-medic-hot-pink dark:hover:text-black transition-colors duration-300">Task
+                            RNG</a></li>
+                    <li><a href="/HTMLShooterGame"
+                            class="block px-4 py-2 text-white hover:bg-medic-hot-pink dark:hover:bg-medic-hot-pink dark:hover:text-black transition-colors duration-300">Stellar
+                            Shooter</a></li>
+                </ul>
+            </li>
+
+            <li class="relative group">
+                <a href="./creatives"
+                    class="flex items-center space-x-1 block w-full px-4 py-3 text-white font-medium transition-all duration-300 ease-in-out hover:bg-medic-light-pink dark:hover:bg-medic-hot-pink rounded">
+                    <span>The Creatives</span>
+                    <svg class="w-4 h-4 transform transition-transform duration-300 origin-center group-hover:rotate-180"
+                        fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6" />
+                    </svg>
+                </a>
+                <ul
+                    class="absolute hidden group-hover:block bg-medic-light-pink dark:bg-medic-dark-menu shadow-md rounded-md w-48 z-20">
+                    <li><a href=""
+                            class="block px-4 py-2 text-white hover:bg-medic-hot-pink dark:hover:bg-medic-hot-pink dark:hover:text-black transition-colors duration-300">SMS
+                            YouTube Channel</a></li>
+                    <li><a href=""
+                            class="block px-4 py-2 text-white hover:bg-medic-hot-pink dark:hover:bg-medic-hot-pink dark:hover:text-black transition-colors duration-300">Instagram</a>
+                    </li>
+                </ul>
+            </li>
+            <li><a href="./about_me"
+                    class="block w-full px-4 py-3 text-white font-medium transition-all duration-300 ease-in-out hover:bg-medic-light-pink dark:hover:bg-medic-hot-pink rounded">About
+                    Me</a></li>
+        </ul>
+    </nav>
+
+    <div id="backdrop"
+        class="fixed inset-0 z-30 bg-black bg-opacity-50 hidden transition-opacity duration-300 ease-in-out"></div>
+
+    <!-- Side Drawer -->
+    <div id="sideDrawer"
+        class="bg-medic-light-pink dark:bg-medic-dark-menu dark:text-white fixed top-20 right-0 h-[calc(100%-80px)] w-64 transform translate-x-full transition-transform duration-300 ease-in-out z-40">
+        <div class="p-6 space-y-4">
+            <a href=""
+                class="block w-full px-4 py-3 text-left font-medium transition-all duration-300 ease-in-out hover:bg-medic-hot-pink hover:text-white dark:hover:bg-medic-hot-pink rounded">Home</a>
+            <div class="accordion-item">
+                <button
+                    class="accordion-toggle flex justify-between items-center w-full px-4 py-3 text-left font-medium transition-all duration-300 ease-in-out hover:bg-medic-hot-pink hover:text-white dark:hover:bg-medic-hot-pink rounded"
+                    data-target="#projectsSubmenu">
+                    <span>Coding Projects</span>
+                    <svg class="caret w-4 h-4 transform transition-transform duration-300" fill="none"
+                        stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6" />
+                    </svg>
+                </button>
+                <div id="projectsSubmenu" class="accordion-content hidden pl-4 mt-2 space-y-2">
+                    <a href="./TaskRNG"
+                        class="block w-full px-4 py-3 text-left font-medium transition-all duration-300 ease-in-out hover:bg-medic-hot-pink hover:text-white dark:hover:bg-medic-hot-pink rounded">Task
+                        RNG</a>
+                    <a href="./HTMLShooterGame"
+                        class="block w-full px-4 py-3 text-left font-medium transition-all duration-300 ease-in-out hover:bg-medic-hot-pink hover:text-white dark:hover:bg-medic-hot-pink rounded">Stellar
+                        Shooter</a>
                 </div>
             </div>
-         </section>
-         <br/>
-         <a href="projects">
-            <section id="projects" style="height: 300px; background-image: url(pics/projects.png);" class="pagenav d-flex flex-column justify-content-center align-items-center">
-                <div class="container col-11 text-left">
-                    <h3 class="font-weight-bold">Coding Projects</h3>
-                    <p>My schoolworks, apps, webpages, and more!</p>
+            <div class="accordion-item">
+                <button
+                    class="accordion-toggle flex justify-between items-center w-full px-4 py-3 text-left font-medium transition-all duration-300 ease-in-out hover:bg-medic-hot-pink hover:text-white dark:hover:bg-medic-hot-pink rounded"
+                    data-target="#creativesSubmenu">
+                    <span>The Creatives</span>
+                    <svg class="caret w-4 h-4 transform transition-transform duration-300" fill="none"
+                        stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6" />
+                    </svg>
+                </button>
+                <div id="creativesSubmenu" class="accordion-content hidden pl-4 mt-2 space-y-2">
+                    <a href="./creatives"
+                        class="block w-full px-4 py-3 text-left font-medium transition-all duration-300 ease-in-out hover:bg-medic-hot-pink hover:text-white dark:hover:bg-medic-hot-pink rounded">SMS
+                        YouTube Channel</a>
+                    <a href=""
+                        class="block w-full px-4 py-3 text-left font-medium transition-all duration-300 ease-in-out hover:bg-medic-hot-pink hover:text-white dark:hover:bg-medic-hot-pink rounded">Instagram</a>
                 </div>
-                <i class="bi bi-chevron-right col-1" style="font-size: 30px; margin-left: auto;"></i>
-            </section>
-         </a>
-        <br/>
-        <a href="creatives">
-            <section id="creatives" style="height: 300px; background-image: url(pics/creatives.png);" class="pagenav d-flex flex-column justify-content-center align-items-center">
-                <div class="container col-11 text-left">
-                    <h3 class="font-weight-bold">The Creatives</h3>
-                    <p>My songs, covers, artworks, and written works. Join my creative journey.</p>
+            </div>
+            <a href="./about_me"
+                class="block w-full px-4 py-3 text-left font-medium transition-all duration-300 ease-in-out hover:bg-medic-hot-pink hover:text-white dark:hover:bg-medic-hot-pink rounded">About
+                Me</a>
+        </div>
+    </div>
+
+    <!-- Hero -->
+    <section id="home"
+        class="welcome-banner relative h-screen w-full bg-cover bg-center grayscale hover:grayscale-0 transition-all duration-700"
+        style="background-image: url('pics/duck.png');">
+        <div class="absolute inset-0 flex flex-col items-center justify-center text-center text-gray-50 px-6">
+
+            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mt-4 
+           hover:text-pink-800 duration-300 hover:scale-110 transition-transform break-words whitespace-normal">
+                Welcome to The Medic Zone!
+            </h1>
+
+            <h3
+                class="text-lg sm:text-xl md:text-2xl mt-4 hover:text-pink-200 duration-300 break-words whitespace-normal">
+                The fabulous world of coding and creativity!
+            </h3>
+
+        </div>
+        <div id="scrollCue" class="absolute bottom-6 left-0 right-0 text-center opacity-0">
+            <svg class="mx-auto w-6 h-6 text-pink-500 animate-bounce" fill="none" stroke="currentColor" stroke-width="2"
+                viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
+        </div>
+    </section>
+
+    <!--Intro-->
+    <section id="introSection"
+        class="bg-medic-yellow dark:bg-medic-dark-yellow dark:text-white relative px-6 py-16 flex flex-col md:flex-row items-center justify-center gap-10 my-5">
+        <!-- Image + Text Container -->
+        <div class="flex flex-col md:flex-row items-center md:items-center gap-6 md:gap-10 w-full max-w-6xl">
+
+            <!-- Image Carousel -->
+            <div
+                class="relative w-72 h-72 sm:w-80 sm:h-80 md:w-[24rem] md:h-[24rem] rounded-full overflow-hidden shrink-0 group">
+                <div class="absolute inset-0 shadow-lg bg-medic-pink dark:bg-medic-dark-img rounded-full" id="carousel">
+                    <img src="pics/serious.png" class="carousel-img" />
+                    <img src="pics/hats.png" class="carousel-img" />
+                    <img src="pics/thumbsup.png" class="carousel-img" />
                 </div>
-                <i class="bi bi-chevron-right col-1" style="font-size: 30px; margin-left: auto;"></i>
-            </section>
+
+                <!-- Controls (visible on hover) -->
+                <button id="prevBtn"
+                    class="absolute left-2 top-1/2 transform -translate-y-1/2 hidden group-hover:block z-10 text-white bg-black/50 px-2 py-1 rounded">‹</button>
+                <button id="nextBtn"
+                    class="absolute right-2 top-1/2 transform -translate-y-1/2 hidden group-hover:block z-10 text-white bg-black/50 px-2 py-1 rounded">›</button>
+            </div>
+
+
+            <!-- Text Content -->
+            <div class="text-center md:text-left flex flex-col justify-center">
+                <h2 class="text-6xl font-bold mb-3 dark:text-gray-300">My name is Marianne!</h2>
+                <p class="text-3xl text-gray-700 dark:text-gray-400">
+                    I'm a Computer Science graduate from New Era University. I have a very diverse skill set that allows
+                    me
+                    to be both a technical and creative person. Let me show you my work!
+                </p>
+            </div>
+        </div>
+
+        <!-- Scroll Cue -->
+        <div id="scrollCue" class="absolute bottom-6 left-0 right-0 text-center opacity-100">
+            <svg class="mx-auto w-6 h-6 text-yellow-500 animate-bounce" fill="none" stroke="currentColor"
+                stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
+        </div>
+    </section>
+
+    <!--About Me-->
+    <section id="aboutMeSection" class="relative min-h-screen px-4 py-12 md:px-12 md:py-12 overflow-hidden">
+        <div class="flex flex-col md:block">
+            <!-- Background layer for both image and slideshow -->
+            <div id="bgLayer" class="absolute inset-0 z-0 bg-cover bg-center"></div>
+
+            <!-- Slideshow container (hidden by default) -->
+            <div id="slideshowContainer" class="absolute inset-0 z-0" style="opacity: 0;">
+                <div id="collageTrack" class="collage-masonry h-full"></div>
+            </div>
+
+            <!-- Title -->
+            <div id="about-title" class="text-center relative md:absolute md:top-32 md:left-auto flex justify-center">
+                <h1
+                    class="text-center text-6xl md:text-7xl font-bold md:-rotate-45 hover:text-pink-500 duration-300 hover:rotate-0 hover:scale-110">
+                    About Me</h1>
+            </div>
+
+            <!-- Age -->
+            <div id="ageFact"
+                class="text-center relative mt-6 md:absolute md:top-40 md:left-1/4 p-6 rounded-xl hover:border-2 hover:border-pink-500 hover:shadow-[0_0_40px_#ec4899] hover:bg-medic-light-pink hover:bg-opacity-40 duration-300">
+                <h3 class="text-3xl">I am
+                    <span id="currentAgeLatin" class="text-4xl text-pink-500"></span> years old
+                </h3>
+                <div id="ageContents" class="hidden">
+                    <p>Born: November 13, 2003</p>
+                    <p>Days until next birthday: <span id="birthdayCountdown"></span></p>
+                    <p><span class="hover:text-pink-500">Click this card </span>for my birthday wishlist</p>
+                </div>
+            </div>
+            <!-- Fullscreen overlay -->
+            <div id="wishlistModal"
+                class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 hidden">
+
+                <!-- Modal box -->
+                <div
+                    class="relative h-3/4 w-3/4 p-6 border-4 border-pink-500 bg-medic-pink dark:bg-medic-dark-menu rounded-xl shadow-lg overflow-y-auto">
+                    <!-- Close button -->
+                    <button id="wishlistModalClose"
+                        class="absolute top-4 right-4 text-pink-500 hover:text-pink-700 text-xl">
+                        ✕
+                    </button>
+                    <h2 class="text-4xl hover:[text-shadow:0_0_10px_#ec4899] duration-300">Days until next birthday:
+                        <span id="birthdayCountdownModal" class="text-5xl text-yellow-600 dark:text-yellow-400 "></span>
+                    </h2>
+                    <h3 class="py-6 text-2xl hover:[text-shadow:0_0_10px_#ec4899] duration-300">The Wishlist:</h3>
+                    <ul class="list-disc px-8">
+                        <li>Table</li>
+                        <li>Chair</li>
+                        <li>Studio Microphone</li>
+                        <li>MIDI Keyboard</li>
+                        <li>Duck Plush</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Location -->
+            <div id="locationFact"
+                class="text-center relative mt-6 md:absolute md:top-48 md:left-2/3 p-6 rounded-xl group hover:border-2 hover:border-yellow-500 hover:shadow-[0_0_40px_#FFEB3B] hover:bg-medic-yellow hover:bg-opacity-40 transition-all duration-300">
+
+                <h3 id="locationText" class="text-3xl transition-all duration-200">
+                    I am from the Philippines
+                </h3>
+            </div>
+
+            <!-- Glee Club Section -->
+            <div id="gleeFact"
+                class="text-center relative mt-6 md:absolute md:bottom-72 md:left-1/3 p-6 rounded-xl hover:border-2 hover:border-orange-500 hover:shadow-[0_0_40px_#ec4899] hover:bg-orange-500 hover:bg-opacity-40 duration-300">
+                <h3 class="text-3xl hover:[text-shadow:0_0_10px_#ec4899] duration-300">
+                    I was the president of New Era University Glee Club and sang in an
+                    <a id="oratorioLink" href="https://www.youtube.com/watch?v=xmtsnGuWDuQ" target="_blank"
+                        class="text-yellow-500 hover:text-4xl duration-300">oratorio</a>
+                </h3>
+            </div>
+
+            <!-- Skills Section -->
+            <div id="skillsFact"
+                class="text-center relative mt-6 md:px-2 md:absolute md:bottom-24 md:left-1/2 md:-translate-x-1/2 md:whitespace-nowrap">
+                <h3 class="text-4xl hover:[text-shadow:0_0_10px_#ec4899] duration-300 relative">
+                    I am a
+                    <span data-emojis="🎤,🎶,🎵" data-images="" data-card="singerCard"
+                        class="skill relative inline-block bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent hover:text-5xl relative z-20">
+                        singer
+                        <div id="singerCard"
+                            class="tooltip-card hidden absolute bottom-full left-1/2 -translate-x-1/2 mb-4 h-64 w-72 border-4 border-purple-500 rounded-xl overflow-hidden bg-gradient-to-r from-pink-500 to-purple-500 shadow-xl">
+                            <!-- Close button -->
+                            <button
+                                class="close-btn absolute z-50 top-1 right-1 text-white bg-black bg-opacity-60 rounded-full w-6 h-6 flex items-center justify-center text-xs hover:bg-red-600">✕</button>
+
+                            <!-- Carousel wrapper -->
+                            <div
+                                class="carousel relative h-full w-full overflow-hidden flex items-center justify-center">
+                                <button
+                                    class="prev absolute left-1 top-1/2 -translate-y-1/2 z-10 bg-black bg-opacity-50 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center hover:bg-purple-700">‹</button>
+
+                                <div class="carousel-track flex transition-transform duration-500 ease-in-out">
+                                    <!-- Supports both images or embeds -->
+                                    <div class="carousel-item flex-shrink-0 w-64 mx-2">
+                                        <img src="pics/duck.png" class="w-full h-56 object-cover rounded-lg" />
+                                    </div>
+                                    <div class="carousel-item flex-shrink-0 w-64 mx-2">
+                                        <iframe width="100%" height="100%"
+                                            src="https://www.youtube.com/embed/xmtsnGuWDuQ" class="rounded-lg"></iframe>
+                                    </div>
+                                    <div class="carousel-item flex-shrink-0 w-64 mx-2">
+                                        <img src="pics/hats.png" class="w-full h-56 object-cover rounded-lg" />
+                                    </div>
+                                </div>
+
+                                <button
+                                    class="next absolute right-1 top-1/2 -translate-y-1/2 z-10 bg-black bg-opacity-50 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center hover:bg-purple-700">›</button>
+                            </div>
+                        </div>
+                    </span>,
+                    <span data-emojis="✍️,🎼,📝" data-images="" data-card="songwriterCard"
+                        class="skill relative inline-block bg-gradient-to-r from-yellow-400 to-red-500 bg-clip-text text-transparent hover:text-5xl relative z-20">
+                        songwriter
+                        <div id="songwriterCard"
+                            class="tooltip-card hidden absolute bottom-full left-1/2 -translate-x-1/2 mb-4 h-64 w-72 border-4 border-yellow-500 rounded-xl overflow-hidden bg-gradient-to-r from-yellow-400 to-red-500 shadow-xl">
+                            <!-- Close button -->
+                            <button
+                                class="close-btn absolute z-50 top-1 right-1 text-white bg-black bg-opacity-60 rounded-full w-6 h-6 flex items-center justify-center text-xs hover:bg-red-600">✕</button>
+
+                            <!-- Carousel wrapper -->
+                            <div
+                                class="carousel relative h-full w-full overflow-hidden flex items-center justify-center">
+                                <button
+                                    class="prev absolute left-1 top-1/2 -translate-y-1/2 z-10 bg-black bg-opacity-50 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center hover:bg-yellow-700">‹</button>
+
+                                <div class="carousel-track flex transition-transform duration-500 ease-in-out">
+                                    <!-- Supports both images or embeds -->
+                                    <div class="carousel-item flex-shrink-0 w-64 mx-2">
+                                        <img src="pics/duck.png" class="w-full h-56 object-cover rounded-lg" />
+                                    </div>
+                                    <div class="carousel-item flex-shrink-0 w-64 mx-2">
+                                        <iframe width="100%" height="100%"
+                                            src="https://www.youtube.com/embed/xmtsnGuWDuQ" class="rounded-lg"></iframe>
+                                    </div>
+                                    <div class="carousel-item flex-shrink-0 w-64 mx-2">
+                                        <img src="pics/hats.png" class="w-full h-56 object-cover rounded-lg" />
+                                    </div>
+                                </div>
+
+                                <button
+                                    class="next absolute right-1 top-1/2 -translate-y-1/2 z-10 bg-black bg-opacity-50 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center hover:bg-yellow-700">›</button>
+                            </div>
+                        </div>
+                    </span>,
+                    <span data-emojis="📖,🖊️,📚" data-images="" data-card="writerCard"
+                        class="skill relative inline-block bg-gradient-to-r from-green-400 to-teal-500 bg-clip-text text-transparent hover:text-5xl relative z-20">
+                        writer
+                        <div id="writerCard"
+                            class="tooltip-card hidden absolute bottom-full left-1/2 -translate-x-1/2 mb-4 h-64 w-72 border-4 border-green-500 rounded-xl overflow-hidden bg-gradient-to-r from-green-400 to-teal-500 shadow-xl">
+                            <!-- Close button -->
+                            <button
+                                class="close-btn absolute z-50 top-1 right-1 text-white bg-black bg-opacity-60 rounded-full w-6 h-6 flex items-center justify-center text-xs hover:bg-red-600">✕</button>
+
+                            <!-- Carousel wrapper -->
+                            <div
+                                class="carousel relative h-full w-full overflow-hidden flex items-center justify-center">
+                                <button
+                                    class="prev absolute left-1 top-1/2 -translate-y-1/2 z-10 bg-black bg-opacity-50 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center hover:bg-green-700">‹</button>
+
+                                <div class="carousel-track flex transition-transform duration-500 ease-in-out">
+                                    <!-- Supports both images or embeds -->
+                                    <div class="carousel-item flex-shrink-0 w-64 mx-2">
+                                        <img src="pics/duck.png" class="w-full h-56 object-cover rounded-lg" />
+                                    </div>
+                                    <div class="carousel-item flex-shrink-0 w-64 mx-2">
+                                        <iframe width="100%" height="100%"
+                                            src="https://www.youtube.com/embed/xmtsnGuWDuQ" class="rounded-lg"></iframe>
+                                    </div>
+                                    <div class="carousel-item flex-shrink-0 w-64 mx-2">
+                                        <img src="pics/hats.png" class="w-full h-56 object-cover rounded-lg" />
+                                    </div>
+                                </div>
+
+                                <button
+                                    class="next absolute right-1 top-1/2 -translate-y-1/2 z-10 bg-black bg-opacity-50 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center hover:bg-green-700">›</button>
+                            </div>
+                        </div>
+                    </span>,
+                    <span data-emojis="🎨,🖌️,🖼️" data-images="" data-card="drawerCard"
+                        class="skill relative inline-block bg-gradient-to-r from-indigo-400 to-sky-500 bg-clip-text text-transparent hover:text-5xl relative z-20">
+                        drawer (artist)
+                        <div id="drawerCard"
+                            class="tooltip-card hidden absolute bottom-full left-1/2 -translate-x-1/2 mb-4 h-64 w-72 border-4 border-indigo-500 rounded-xl overflow-hidden bg-gradient-to-r from-indigo-400 to-sky-500 shadow-xl">
+                            <!-- Close button -->
+                            <button
+                                class="close-btn absolute z-50 top-1 right-1 text-white bg-black bg-opacity-60 rounded-full w-6 h-6 flex items-center justify-center text-xs hover:bg-red-600">✕</button>
+
+                            <!-- Carousel wrapper -->
+                            <div
+                                class="carousel relative h-full w-full overflow-hidden flex items-center justify-center">
+                                <button
+                                    class="prev absolute left-1 top-1/2 -translate-y-1/2 z-10 bg-black bg-opacity-50 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center hover:bg-indigo-700">‹</button>
+
+                                <div class="carousel-track flex transition-transform duration-500 ease-in-out">
+                                    <!-- Supports both images or embeds -->
+                                    <div class="carousel-item flex-shrink-0 w-64 mx-2">
+                                        <img src="pics/duck.png" class="w-full h-56 object-cover rounded-lg" />
+                                    </div>
+                                    <div class="carousel-item flex-shrink-0 w-64 mx-2">
+                                        <iframe width="100%" height="100%"
+                                            src="https://www.youtube.com/embed/xmtsnGuWDuQ" class="rounded-lg"></iframe>
+                                    </div>
+                                    <div class="carousel-item flex-shrink-0 w-64 mx-2">
+                                        <img src="pics/hats.png" class="w-full h-56 object-cover rounded-lg" />
+                                    </div>
+                                </div>
+
+                                <button
+                                    class="next absolute right-1 top-1/2 -translate-y-1/2 z-10 bg-black bg-opacity-50 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center hover:bg-indigo-700">›</button>
+                            </div>
+                        </div>
+                    </span>,
+                    and
+                    <span data-emojis="💻,👨‍💻,⚙️" data-images="" data-card="coderCard"
+                        class="skill relative inline-block bg-gradient-to-r from-rose-500 to-orange-400 bg-clip-text text-transparent hover:text-5xl relative z-20">
+                        coder (programmer)
+                        <div id="coderCard"
+                            class="tooltip-card hidden absolute bottom-full left-1/2 -translate-x-1/2 mb-4 h-64 w-72 border-4 border-rose-500 rounded-xl overflow-hidden bg-gradient-to-r from-rose-500 to-orange-400 shadow-xl">
+                            <!-- Close button -->
+                            <button
+                                class="close-btn absolute z-50 top-1 right-1 text-white bg-black bg-opacity-60 rounded-full w-6 h-6 flex items-center justify-center text-xs hover:bg-red-600">✕</button>
+
+                            <!-- Carousel wrapper -->
+                            <div
+                                class="carousel relative h-full w-full overflow-hidden flex items-center justify-center">
+                                <button
+                                    class="prev absolute left-1 top-1/2 -translate-y-1/2 z-10 bg-black bg-opacity-50 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center hover:bg-rose-700">‹</button>
+
+                                <div class="carousel-track flex transition-transform duration-500 ease-in-out">
+                                    <!-- Supports both images or embeds -->
+                                    <div class="carousel-item flex-shrink-0 w-64 mx-2">
+                                        <img src="pics/duck.png" class="w-full h-56 object-cover rounded-lg" />
+                                    </div>
+                                    <div class="carousel-item flex-shrink-0 w-64 mx-2">
+                                        <iframe width="100%" height="100%"
+                                            src="https://www.youtube.com/embed/xmtsnGuWDuQ" class="rounded-lg"></iframe>
+                                    </div>
+                                    <div class="carousel-item flex-shrink-0 w-64 mx-2">
+                                        <img src="pics/hats.png" class="w-full h-56 object-cover rounded-lg" />
+                                    </div>
+                                </div>
+
+                                <button
+                                    class="next absolute right-1 top-1/2 -translate-y-1/2 z-10 bg-black bg-opacity-50 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center hover:bg-rose-700">›</button>
+                            </div>
+                        </div>
+                    </span>
+                </h3>
+            </div>
+        </div>
+    </section>
+
+    <!--Coding Projects-->
+    <section id="projectsSection"
+        class="relative min-h-screen px-12 py-12 bg-[#121C10] text-white font-sharetechmono text-center overflow-y-auto">
+        <div id="matrixRain" class="absolute inset-0 z-0 overflow-hidden pointer-events-none"></div>
+
+        <h2 id="projectsTitle" class="py-6 text-7xl text-green-500">Coding Projects</h2>
+
+        <div id="projects" class="flex flex-col gap-12 text-white">
+
+            <!-- Task RNG -->
+            <div class="project">
+                <a href="/TaskRNG" class="text-4xl hover:text-5xl hover:text-pink-500 duration-300">Task RNG</a>
+                <div id="taskRNGDiv" class="project-description text-2xl text-yellow-500">
+                    <p>Write down your tasks and let RNG pick what you should do</p>
+                    <p class="open-modal hover:scale-110" data-target="taskRNGModal">Click to play</p>
+                </div>
+                <div id="taskRNGModal"
+                    class="hidden fixed inset-0 bg-black/80 modal-backdrop z-50 flex items-center justify-center">
+                    <div class="bg-pink-500 dark:bg-pink-800 rounded-lg max-w-4xl w-full h-[80vh] mx-4 overflow-auto">
+                        <div class="p-6">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 id="modalTitle-taskRNG" class="text-2xl font-bold">Task RNG</h3>
+                                <button id="closeModal-taskRNG"
+                                    class="text-gray-500 hover:text-gray-700 text-2xl">×</button>
+                            </div>
+                            <div id="modalContent-taskRNG" class="mb-4 h-[50vh]">
+                                <iframe class="h-[50vh] w-full" src="https://medicmedic.github.io/TaskRNG"></iframe>
+                            </div>
+                            <div class="flex gap-4">
+                                <a href="https://medicmedic.github.io/TaskRNG" target="_blank"
+                                    class="bg-pink-600 text-white text-2xl px-6 py-2 rounded-lg hover:bg-gray-700 transition-colors duration-300">
+                                    Visit Site
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- The Super Stellar Compiler -->
+            <div class="project">
+                <a href="https://github.com/MedicMedic/The-Super-Stellar-Compiler"
+                    class="text-4xl hover:text-5xl hover:text-pink-500 duration-300">The Super Stellar Compiler</a>
+                <div id="compilerDiv" class="project-description text-2xl text-yellow-500">
+                    <p>Write Java variable initialization and check if it's valid</p>
+                    <p class="open-modal hover:scale-110" data-target="compilerModal">Click to download</p>
+                </div>
+                <div id="compilerModal"
+                    class="hidden fixed inset-0 bg-black/80 modal-backdrop z-50 flex items-center justify-center">
+                    <div class="bg-pink-500 dark:bg-pink-800 rounded-lg max-w-4xl w-full h-[80vh] mx-4 overflow-auto">
+                        <div class="p-6">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 id="modalTitle-compiler" class="text-2xl font-bold">The Super Stellar Compiler</h3>
+                                <button id="closeModal-compiler"
+                                    class="text-gray-500 hover:text-gray-700 text-2xl">×</button>
+                            </div>
+                            <div id="modalContent-compiler" class="mb-4 h-[50vh]">
+                                <iframe class="h-[50vh] w-full"
+                                    src="https://github.com/MedicMedic/The-Super-Stellar-Compiler"></iframe>
+                            </div>
+                            <div class="flex gap-4">
+                                <a href="https://github.com/MedicMedic/The-Super-Stellar-Compiler" target="_blank"
+                                    class="bg-pink-600 text-white text-2xl px-6 py-2 rounded-lg hover:bg-gray-700 transition-colors duration-300">
+                                    Visit Repo
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stellar Shooter -->
+            <div class="project">
+                <a href="/HTMLShooterGame" class="text-4xl hover:text-5xl hover:text-pink-500 duration-300">
+                    Stellar Shooter
+                </a>
+                <div id="shooterDiv" class="project-description text-2xl text-yellow-500">
+                    <p>Help Stellar shoot her insecurities</p>
+                    <p class="open-modal hover:scale-110" data-target="shooterModal">Click to play</p>
+                </div>
+                <div id="shooterModal"
+                    class="hidden fixed inset-0 bg-black/80 modal-backdrop z-50 flex items-center justify-center">
+                    <div class="bg-pink-500 dark:bg-pink-800 rounded-lg max-w-4xl w-full h-[80vh] mx-4 overflow-auto">
+                        <div class="p-6">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 id="modalTitle-shooter" class="text-2xl font-bold">Stellar Shooter</h3>
+                                <button id="closeModal-shooter"
+                                    class="text-gray-500 hover:text-gray-700 text-2xl">×</button>
+                            </div>
+                            <div id="modalContent-shooter" class="mb-4 h-[50vh]">
+                                <iframe class="h-[50vh] w-full"
+                                    src="https://medicmedic.github.io/HTMLShooterGame"></iframe>
+                            </div>
+                            <div class="flex gap-4">
+                                <a href="https://medicmedic.github.io/HTMLShooterGame" target="_blank"
+                                    class="bg-pink-600 text-white text-2xl px-6 py-2 rounded-lg hover:bg-gray-700 transition-colors duration-300">
+                                    Visit Site
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- GitHub Button -->
+        <a href="https://github.com/MedicMedic">
+            <button id="githubButton" class="mt-32 px-4 py-4 border-2 border-pink-500 bg-medic-dark-bg hover:scale-110">
+                GitHub Profile
+            </button>
         </a>
-        <br/>
-        <a href="about_me">
-            <section id="about_me" style="height: 300px; background-image: url(pics/themarianne.png);" class="pagenav d-flex flex-column justify-content-center align-items-center">
-                <div class="container col-11 text-left">
-                    <h3 class="font-weight-bold">About Me</h3>
-                    <p>Learn everything there is to know about me. Technically my résumé.</p>
+    </section>
+
+    <!-- The Creatives -->
+    <section id="creativesSection"
+        class="relative min-h-screen flex items-center justify-center overflow-hidden px-12 py-20 transition-all duration-300">
+        <!-- Title -->
+        <h2 id="creativesTitle"
+            class="z-10 text-center text-8xl font-bold bg-gradient-to-r from-orange-500 via-green-500 to-indigo-500 bg-clip-text text-transparent hover:scale-110 hover:text-9xl hover:from-red-500 hover:via-yellow-500 hover:to-blue-500 transition-all duration-300">
+            The Creatives
+        </h2>
+        <!-- Cards -->
+        <div id="creativesCards" class="absolute inset-0">
+            <!-- Novel -->
+            <a href=""
+                class="creative-card absolute top-1/3 left-1/3 -translate-x-full -translate-y-full rotate-12 hover:-rotate-12 hover:scale-110 hover:rounded-xl hover:bg-gradient-to-br from-rose-400 to-blue-700 hover:bg-opacity-20 transition-all duration-300">
+                <img src="pics/marianne gagnamagnid.png" alt="Novel" class="w-48 h-48" />
+            </a>
+            <!-- Blog -->
+            <a href=""
+                class="creative-card absolute top-1/2 right-1/4 translate-x-full -translate-y-full -rotate-6 hover:rotate-6 hover:scale-110 hover:rounded-xl hover:bg-gradient-to-br from-gray-900 to-green-800 hover:bg-opacity-20 transition-all duration-300">
+                <img src="pics/duck.png" alt="Blog" class="w-48 h-48" />
+            </a>
+            <!-- Artworks -->
+            <a href=""
+                class="creative-card absolute bottom-1/3 left-1/4 -translate-x-full translate-y-full -rotate-12 hover:rotate-12 hover:scale-110 hover:rounded-xl hover:bg-gradient-to-br from-orange-600 to-yellow-200 hover:bg-opacity-20 transition-all duration-300">
+                <img src="pics/marianne gagnamagnid.png" alt="Artworks" class="w-48 h-48" />
+            </a>
+            <!-- Songs -->
+            <a href=""
+                class="creative-card absolute bottom-1/3 right-1/3 translate-x-full translate-y-full rotate-12 hover:-rotate-12 hover:scale-110 hover:rounded-xl hover:bg-gradient-to-br from-purple-500 via-yellow-100 to-pink-600 hover:bg-opacity-20 transition-all duration-300">
+                <img src="pics/duck.png" alt="Songs" class="w-48 h-48" />
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-medic-hot-pink dark:bg-medic-dark-nav py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Navigation Links -->
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Navigation</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="hover:text-medic-pink transition-colors duration-300">Home</a></li>
+                        <li><a href="#about" class="hover:text-medic-pink transition-colors duration-300">About</a></li>
+                        <li><a href="#projects" class="hover:text-medic-pink transition-colors duration-300">Projects</a></li>
+                        <li><a href="#creatives" class="hover:text-medic-pink transition-colors duration-300">Creatives</a></li>
+                    </ul>
                 </div>
-                <i class="bi bi-chevron-right col-1" style="font-size: 30px; margin-left: auto;"></i>
-            </section>
-        </a>
-    </body>
+
+                <!-- Important Links -->
+                <div>
+                    <h3 class="text-lg font-bold mb-4">For Employers</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-medic-pink transition-colors duration-300">Resume</a></li>
+                        <li><a href="#" class="hover:text-medic-pink transition-colors duration-300">Portfolio</a></li>
+                        <li><a href="#" class="hover:text-medic-pink transition-colors duration-300">GitHub</a></li>
+                        <li><a href="#" class="hover:text-medic-pink transition-colors duration-300">LinkedIn</a></li>
+                    </ul>
+                </div>
+
+                <!-- Social Media -->
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Connect</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-2xl hover:text-medic-pink transition-colors duration-300"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="text-2xl hover:text-medic-pink transition-colors duration-300"><i class="bi bi-youtube"></i></a>
+                        <a href="#" class="text-2xl hover:text-medic-pink transition-colors duration-300"><i class="bi bi-github"></i></a>
+                    </div>
+                </div>
+
+                <!-- Credit -->
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Credits</h3>
+                    <p class="mt-2">© 2024 The Medic Zone</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!--Nav-->
+    <script>
+        const toggle = document.getElementById('menuToggle');
+        const drawer = document.getElementById('sideDrawer');
+        const backdrop = document.getElementById('backdrop');
+
+        toggle.addEventListener('click', () => {
+            drawer.classList.toggle('translate-x-full');
+            drawer.classList.toggle('translate-x-0');
+            backdrop.classList.toggle('hidden');
+        });
+
+        backdrop.addEventListener('click', () => {
+            drawer.classList.add('translate-x-full');
+            drawer.classList.remove('translate-x-0');
+            backdrop.classList.add('hidden');
+        });
+    </script>
+    <script>
+        document.querySelectorAll('.accordion-toggle').forEach(button => {
+            button.addEventListener('click', () => {
+                const target = document.querySelector(button.dataset.target);
+                const caret = button.querySelector('.caret');
+
+                target.classList.toggle('hidden');
+                caret.classList.toggle('rotate-180');
+            });
+        });
+    </script>
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        let lastScrollY = window.scrollY;
+        const navbar = document.querySelector('nav');
+
+        ScrollTrigger.create({
+            start: 20,
+            end: document.body.scrollHeight,
+            onUpdate: self => {
+                const currentScrollY = self.scroll();
+                if (currentScrollY > lastScrollY) {
+                    gsap.to(navbar, { y: -100, duration: 0.3 });
+                } else {
+                    gsap.to(navbar, { y: 0, duration: 0.3 });
+                }
+                lastScrollY = currentScrollY;
+            }
+        });
+    </script>
+    <!--Hero-->
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Lock scroll initially
+        document.body.classList.add('lock-scroll');
+
+        // Create timeline but don't play it yet
+        const tl = gsap.timeline({
+            paused: true,
+            onComplete: () => {
+                // Add a delay before unlocking scroll
+                setTimeout(() => {
+                    document.body.classList.remove('lock-scroll');
+                }, 1000); // 1 second delay after animation completes
+            }
+        });
+
+        tl.to("#scrollCue", {
+            opacity: 1,
+            duration: 0.5,
+            ease: "power2.out"
+        }, "-=0.3");
+
+        tl.to(".welcome-banner", {
+            filter: "grayscale(0%)",
+            duration: 0.1,
+            ease: "power2.out"
+        })
+            .to(".welcome-banner h1", {
+                scale: 1.5,
+                color: "#f472b6",
+                duration: 0.5,
+                ease: "power2.out"
+            }, "-=0.5")
+            .to(".welcome-banner h3", {
+                scale: 1.2,
+                color: "#fbcfe8",
+                duration: 0.5,
+                ease: "power2.out"
+            }, "-=0.6");
+
+        // Track scroll attempts with much lower threshold
+        let isAnimationTriggered = false;
+
+        function handleScroll(e) {
+            if (!isAnimationTriggered) {
+                e.preventDefault();
+                e.stopPropagation();
+
+                // Trigger immediately on any scroll attempt
+                isAnimationTriggered = true;
+                tl.play();
+            }
+        }
+
+        // Listen for scroll events
+        window.addEventListener('wheel', handleScroll, { passive: false });
+        window.addEventListener('DOMMouseScroll', handleScroll, { passive: false });
+
+        // Handle touch events for mobile
+        let touchStartY = 0;
+        let touchMoved = false;
+
+        window.addEventListener('touchstart', (e) => {
+            if (!isAnimationTriggered) {
+                touchStartY = e.touches[0].clientY;
+                touchMoved = false;
+            }
+        }, { passive: false });
+
+        window.addEventListener('touchmove', (e) => {
+            if (!isAnimationTriggered) {
+                e.preventDefault();
+                const touchY = e.touches[0].clientY;
+                const deltaY = Math.abs(touchStartY - touchY);
+
+                // Trigger after minimal touch movement
+                if (deltaY > 1 && !touchMoved) {
+                    touchMoved = true;
+                    isAnimationTriggered = true;
+                    tl.play();
+                }
+            }
+        }, { passive: false });
+    </script>
+    <!--Intro-->
+    <script>
+        const images = document.querySelectorAll('.carousel-img');
+        let current = 0;
+        let autoplay;
+        const duration = 1; // fade duration
+        const delay = 5; // seconds between transitions
+
+        function showImage(index) {
+            images.forEach((img, i) => {
+                if (i === index) {
+                    img.classList.add('active');
+                    gsap.to(img, { opacity: 1, duration });
+                } else {
+                    img.classList.remove('active');
+                    gsap.to(img, { opacity: 0, duration });
+                }
+            });
+        }
+
+        function nextImage() {
+            current = (current + 1) % images.length;
+            showImage(current);
+        }
+
+        function prevImage() {
+            current = (current - 1 + images.length) % images.length;
+            showImage(current);
+        }
+
+        function startAutoplay() {
+            autoplay = setInterval(nextImage, delay * 1000);
+        }
+
+        function stopAutoplay() {
+            clearInterval(autoplay);
+        }
+
+        // Initial display
+        showImage(current);
+        startAutoplay();
+
+        const carousel = document.getElementById('carousel');
+        carousel.addEventListener('mouseenter', stopAutoplay);
+        carousel.addEventListener('mouseleave', startAutoplay);
+
+        document.getElementById('nextBtn').addEventListener('click', () => {
+            stopAutoplay();
+            nextImage();
+        });
+
+        document.getElementById('prevBtn').addEventListener('click', () => {
+            stopAutoplay();
+            prevImage();
+        });
+    </script>
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        gsap.from("#introSection .carousel-img", {
+            scrollTrigger: {
+                trigger: "#introSection",
+                start: "top 80%",
+                toggleActions: "play none none reverse"
+            },
+            opacity: 0,         // fades in
+            scale: 0.5,         // starts smaller
+            rotation: 360,      // starts fully spun
+            duration: 1.5,      // a bit longer for smoothness
+            stagger: 0.3,
+            ease: "power3.out"  // smoother settle
+        });
+
+
+        gsap.from("#introSection h2", {
+            scrollTrigger: {
+                trigger: "#introSection",
+                start: "top 80%",
+            },
+            x: 100,
+            opacity: 0,
+            duration: 1,
+            ease: "power2.out"
+        });
+
+        gsap.from("#introSection p", {
+            scrollTrigger: {
+                trigger: "#introSection",
+                start: "top 80%",
+            },
+            x: 100,
+            opacity: 0,
+            duration: 1,
+            ease: "power2.out"
+        });
+
+        gsap.from("#scrollCue", {
+            scrollTrigger: {
+                trigger: "#introSection",
+                start: "top bottom",
+            },
+            y: 20,
+            opacity: 0,
+            duration: 1,
+            ease: "bounce.out"
+        });
+    </script>
+    <!--About Me-->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof gsap === 'undefined') {
+                console.warn('GSAP not found — include GSAP + ScrollTrigger before this script.');
+                return;
+            }
+            gsap.registerPlugin(ScrollTrigger);
+
+            const about = document.getElementById('aboutMeSection');
+            if (!about) {
+                console.warn('aboutMeSection not found.');
+                return;
+            }
+
+            let played = false;
+
+            function buildEntrance() {
+                if (played) return; // only once
+
+                // compute center of the section in viewport coordinates
+                const sectionRect = about.getBoundingClientRect();
+                const centerX = sectionRect.left + sectionRect.width / 2;
+                const centerY = sectionRect.top + sectionRect.height / 2;
+
+                // collect visible elements inside the section (filter out scripts/hidden)
+                const elements = Array.from(about.querySelectorAll('*')).filter(el => {
+                    if (el === about) return false;
+                    const tag = el.tagName.toLowerCase();
+                    if (tag === 'script' || tag === 'style') return false;
+                    const rect = el.getBoundingClientRect();
+                    if (rect.width === 0 || rect.height === 0) return false;
+                    const cs = getComputedStyle(el);
+                    if (cs.display === 'none' || cs.visibility === 'hidden' || cs.opacity === '0') return false;
+                    // optional: add data-no-animate attribute to exclude specific items
+                    if (el.hasAttribute('data-no-animate')) return false;
+                    return true;
+                });
+
+                // build timeline and animate each element from the center to its real position
+                const tl = gsap.timeline();
+
+                elements.forEach((el, i) => {
+                    const r = el.getBoundingClientRect();
+                    const elCx = r.left + r.width / 2;
+                    const elCy = r.top + r.height / 2;
+
+                    // dx/dy: how far to move the element so its center sits at the section center
+                    const dx = centerX - elCx;
+                    const dy = centerY - elCy;
+
+                    const staggerDelay = i * 0.035; // tweak for speed of the wave
+
+                    if (el.classList.contains('skill')) {
+                        // skill: pop effect — come from center (scale 0) → overshoot → settle to 1
+                        tl.fromTo(el,
+                            { x: dx, y: dy, opacity: 0, scale: 0 },
+                            { x: 0, y: 0, opacity: 1, scale: 1.18, duration: 0.9, ease: 'back.out(2)' },
+                            staggerDelay
+                        )
+                            .to(el, { scale: 1, duration: 0.25, ease: 'power2.inOut' }, '-=0.2');
+                    } else {
+                        // regular element: fly from center to its position
+                        tl.fromTo(el,
+                            { x: dx, y: dy, opacity: 0, scale: 1 },
+                            { x: 0, y: 0, opacity: 1, duration: 0.85, ease: 'back.out(1.7)' },
+                            staggerDelay
+                        );
+                    }
+                });
+
+                played = true;
+            }
+
+            // Trigger buildEntrance when aboutMeSection scrolls into view
+            ScrollTrigger.create({
+                trigger: about,
+                start: 'top 70%',
+                onEnter: buildEntrance,
+                once: true
+            });
+
+            // If layout changes before trigger, refresh ScrollTrigger so positions remain accurate
+            window.addEventListener('resize', () => ScrollTrigger.refresh());
+        });
+    </script>
+    <script>
+        const aboutTitle = document.getElementById("about-title");
+        const bgLayer = document.getElementById("bgLayer");
+        let locked = false;
+
+        aboutTitle.addEventListener("click", () => {
+            locked = !locked;
+            aboutTitle.classList.toggle("flipped", locked);
+            bgLayer.style.opacity = locked ? "1" : "0"; // lock/unlock background
+        });
+
+    </script>
+    <script>
+        // About Me background change functionality with synced title animation
+        // const aboutTitle = document.getElementById("about-title");
+        // const bgLayer = document.getElementById("bgLayer");
+        let hasLocked = false;
+
+        function showBackground() {
+            bgLayer.style.backgroundImage = "url('./pics/themarianne.png')";
+            gsap.to(bgLayer, { opacity: 1, duration: 0.3, ease: "power2.out" });
+            gsap.to("#about-title h1", { rotate: 0, scale: 1.1, duration: 0.3, ease: "power2.out" });
+        }
+
+        function hideBackground() {
+            gsap.to(bgLayer, {
+                opacity: 0,
+                duration: 0.3,
+                ease: "power2.out",
+                onComplete: () => { bgLayer.style.backgroundImage = ""; }
+            });
+            gsap.to("#about-title h1", { rotate: -45, scale: 1, duration: 0.3, ease: "power2.inOut" });
+        }
+
+        aboutTitle.addEventListener('mouseenter', () => {
+            if (!hasLocked) showBackground();
+        });
+
+        aboutTitle.addEventListener('mouseleave', () => {
+            if (!hasLocked) hideBackground();
+        });
+
+        aboutTitle.addEventListener('click', () => {
+            if (!hasLocked) {
+                showBackground();
+                hasLocked = true;
+            } else {
+                hideBackground();
+                hasLocked = false;
+            }
+        });
+    </script>
+    <script>
+        // Age calculation
+        function updateAge() {
+            const birthDate = new Date('2003-11-13');
+            const now = new Date();
+            let age = now.getFullYear() - birthDate.getFullYear();
+            const hasHadBirthdayThisYear = now.getMonth() > birthDate.getMonth() ||
+                (now.getMonth() === birthDate.getMonth() && now.getDate() >= birthDate.getDate());
+
+            if (!hasHadBirthdayThisYear) age--;
+
+            document.getElementById('currentAgeLatin').textContent = age;
+
+            // Calculate days until next birthday
+            const nextBirthday = new Date(now.getFullYear(), birthDate.getMonth(), birthDate.getDate());
+            if (nextBirthday < now) {
+                nextBirthday.setFullYear(now.getFullYear() + 1);
+            }
+
+            const daysUntil = Math.ceil((nextBirthday - now) / (1000 * 60 * 60 * 24));
+            document.getElementById('birthdayCountdown').textContent = daysUntil;
+            document.getElementById('birthdayCountdownModal').textContent = daysUntil;
+        }
+
+        updateAge();
+        setInterval(updateAge, 86400000); // Update daily
+    </script>
+    <script>
+        const ageFact = document.getElementById("ageFact");
+        const ageContents = document.getElementById("ageContents");
+        const wishlistModal = document.getElementById("wishlistModal");
+
+        let expanded = false;
+
+        ageFact.addEventListener("click", (e) => {
+            e.stopPropagation();
+            if (!expanded) {
+                ageContents.classList.remove("hidden");
+                expanded = true;
+            } else {
+                wishlistModal.classList.remove("hidden");
+            }
+        });
+
+        // Close when clicking outside
+        document.addEventListener("click", (e) => {
+            if (expanded && !ageFact.contains(e.target)) {
+                ageContents.classList.add("hidden");
+                expanded = false;
+            }
+        });
+    </script>
+    <script>
+        // Age fact interactions with animated modal and age contents
+        //const ageFact = document.getElementById("ageFact");
+        //const ageContents = document.getElementById("ageContents");
+        //const wishlistModal = document.getElementById("wishlistModal");
+        const wishlistModalClose = document.getElementById("wishlistModalClose");
+
+        ageFact.addEventListener('mouseenter', () => {
+            if (ageContents.classList.contains("hidden")) {
+                ageContents.classList.remove("hidden");
+                const lines = ageContents.querySelectorAll("p");
+                gsap.fromTo(ageContents, { height: 0, opacity: 0 }, { height: "auto", opacity: 1, duration: 0.4, ease: "power2.out" });
+                gsap.fromTo(lines,
+                    { y: -15, opacity: 0 },
+                    { y: 0, opacity: 1, duration: 0.4, ease: "power2.out", stagger: 0.1 }
+                );
+            }
+        });
+
+        ageFact.addEventListener('mouseleave', () => {
+            gsap.to(ageContents, {
+                height: 0,
+                opacity: 0,
+                duration: 0.3,
+                ease: "power2.in",
+                onComplete: () => ageContents.classList.add("hidden")
+            });
+        });
+
+        ageFact.addEventListener('click', () => {
+            if (wishlistModal.classList.contains("hidden")) {
+                wishlistModal.classList.remove("hidden");
+                gsap.fromTo(wishlistModal.querySelector(".relative"),
+                    { scale: 0.7, opacity: 0 },
+                    { scale: 1, opacity: 1, duration: 0.4, ease: "back.out(1.7)" }
+                );
+            } else {
+                gsap.to(wishlistModal.querySelector(".relative"), {
+                    scale: 0.7,
+                    opacity: 0,
+                    duration: 0.3,
+                    ease: "power2.in",
+                    onComplete: () => wishlistModal.classList.add("hidden")
+                });
+            }
+        });
+
+        wishlistModalClose.addEventListener('click', () => {
+            gsap.to(wishlistModal.querySelector(".relative"), {
+                scale: 0.7,
+                opacity: 0,
+                duration: 0.3,
+                ease: "power2.in",
+                onComplete: () => wishlistModal.classList.add("hidden")
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Make sure GSAP + TextPlugin are loaded
+            if (
+                typeof gsap === 'undefined' ||
+                !gsap.plugins ||
+                (!gsap.plugins.TextPlugin && typeof gsap.getProperty === 'undefined')
+            ) {
+                console.warn('GSAP or TextPlugin not loaded. Include TextPlugin before this script.');
+                return;
+            }
+
+            gsap.registerPlugin(TextPlugin); // safe even if already registered
+
+            const locationFact = document.getElementById('locationFact');
+            const latinText = "I am from the Philippines";
+            const baybayinText = "ᜀᜃᜓ ᜀᜌ᜔ ᜉᜒᜎᜒᜉᜒᜈᜓ";
+
+            // pick the h3 we will animate (use the visible one or whichever you prefer)
+            const visibleH3 =
+                locationFact.querySelector('h3:not(.hidden)') || locationFact.querySelector('h3');
+
+            // mixed pool: emojis (strings) + image paths
+            const philPool = [
+                "🇵🇭",
+                "🌴",
+                "☀️",
+                "🏝️",
+                "🥥",
+                "🍍",
+                "🐓",
+            ];
+
+            // Preload image items so first spawn doesn't flash
+            philPool.forEach(item => {
+                if (/\.(png|jpe?g|webp|svg)$/i.test(item) || item.includes('/')) {
+                    const img = new Image();
+                    img.src = item;
+                }
+            });
+
+            let spawnInterval = null;
+
+            function spawnSymbol() {
+                const choice = gsap.utils.random(philPool); // picks either emoji or image path
+                const isImage =
+                    typeof choice === 'string' &&
+                    (/\.(png|jpe?g|webp|svg)$/i.test(choice) || choice.indexOf('/') !== -1);
+
+                if (isImage) {
+                    const img = document.createElement('img');
+                    img.src = choice;
+                    img.className = 'phil-burst';
+                    Object.assign(img.style, {
+                        position: 'fixed',
+                        left: `${Math.random() * 100}%`,
+                        top: `${Math.random() * 100}%`,
+                        transform: 'translate(-50%,-50%)',
+                        width: '64px',
+                        height: '64px',
+                        opacity: '0.35',
+                        pointerEvents: 'none',
+                        zIndex: 400,
+                    });
+                    document.body.appendChild(img);
+
+                    gsap.to(img, {
+                        x: gsap.utils.random(-120, 120, true),
+                        y: gsap.utils.random(-120, 120, true),
+                        opacity: 0,
+                        duration: gsap.utils.random(2, 4, true),
+                        ease: 'power2.out',
+                        onComplete: () => img.remove(),
+                    });
+                } else {
+                    const d = document.createElement('div');
+                    d.textContent = choice;
+                    d.className = 'phil-burst';
+                    Object.assign(d.style, {
+                        position: 'fixed',
+                        left: `${Math.random() * 100}%`,
+                        top: `${Math.random() * 100}%`,
+                        transform: 'translate(-50%,-50%)',
+                        fontSize: '48px',
+                        lineHeight: '1',
+                        opacity: '0.35',
+                        pointerEvents: 'none',
+                        zIndex: 400,
+                    });
+                    document.body.appendChild(d);
+
+                    gsap.to(d, {
+                        x: gsap.utils.random(-120, 120, true),
+                        y: gsap.utils.random(-120, 120, true),
+                        opacity: 0,
+                        duration: gsap.utils.random(2, 4, true),
+                        ease: 'power2.out',
+                        onComplete: () => d.remove(),
+                    });
+                }
+            }
+
+            function startSpawning() {
+                if (spawnInterval) return;
+                spawnSymbol(); // spawn one immediately
+                spawnInterval = setInterval(spawnSymbol, 420);
+            }
+
+            function stopSpawning() {
+                if (spawnInterval) {
+                    clearInterval(spawnInterval);
+                    spawnInterval = null;
+                }
+            }
+
+            // hover handlers (kept your working morph logic)
+            locationFact.addEventListener('mouseenter', () => {
+                gsap.to(visibleH3, {
+                    duration: 0.75,
+                    text: baybayinText,
+                    ease: 'power2.out',
+                    onStart: () =>
+                        gsap.fromTo(
+                            visibleH3,
+                            { scale: 1.02 },
+                            { scale: 1, duration: 0.6 }
+                        ),
+                });
+                startSpawning();
+            });
+
+            locationFact.addEventListener('mouseleave', () => {
+                gsap.to(visibleH3, {
+                    duration: 0.6,
+                    text: latinText,
+                    ease: 'power2.in',
+                });
+                stopSpawning();
+            });
+        });
+    </script>
+    <script>
+        const hoverTarget = document.getElementById("gleeFact");
+        const notes = ['♪', '♫', '♬', '♩', '♭', '♯'];
+
+        let spawnInterval;
+        let isLocked = false;
+
+        // Create an audio object for the song
+        const gleeAudio = new Audio("audio/hearts full of glee midi.mid");
+        gleeAudio.loop = true; // keep looping while effect is locked
+
+        // Floating exit button
+        const exitBtn = document.createElement("button");
+        exitBtn.innerText = "✖";
+        exitBtn.className = "fixed top-1/2 right-4 z-[2000] bg-red-500 text-white rounded-full p-3 shadow-lg hidden hover:bg-red-600 transition";
+        document.body.appendChild(exitBtn);
+
+        function createNote() {
+            const note = document.createElement("div");
+            note.className = "fixed z-[1000] pointer-events-none text-4xl font-bold";
+            note.innerText = gsap.utils.random(notes);
+
+            // random viewport position
+            note.style.left = Math.random() * 100 + "%";
+            note.style.top = Math.random() * 100 + "%";
+
+            // random color
+            note.style.color = `hsl(${gsap.utils.random(0, 360)}, 100%, 70%)`;
+
+            document.body.appendChild(note);
+
+            gsap.to(note, {
+                y: -200,
+                opacity: 0,
+                duration: gsap.utils.random(1.5, 3),
+                ease: "power2.out",
+                onComplete: () => note.remove()
+            });
+        }
+
+        function startSpawning() {
+            if (spawnInterval) return;
+            spawnInterval = setInterval(() => createNote(), 300);
+        }
+
+        function stopSpawning() {
+            clearInterval(spawnInterval);
+            spawnInterval = null;
+        }
+
+        // Hover effects (only if not locked)
+        hoverTarget.addEventListener("mouseenter", () => {
+            if (!isLocked) startSpawning();
+        });
+
+        hoverTarget.addEventListener("mouseleave", () => {
+            if (!isLocked) stopSpawning();
+        });
+
+        // Lock effect on click
+        hoverTarget.addEventListener("click", () => {
+            if (!isLocked) {
+                isLocked = true;
+                startSpawning();
+                gleeAudio.play().catch(err => console.warn("Autoplay blocked:", err));
+                exitBtn.classList.remove("hidden");
+            }
+        });
+
+        // Exit button logic
+        exitBtn.addEventListener("click", () => {
+            isLocked = false;
+            stopSpawning();
+            gleeAudio.pause();
+            gleeAudio.currentTime = 0;
+            exitBtn.classList.add("hidden");
+        });
+    </script>
+    <script>
+        // Smooth, seamless slideshow for gleeFact hover
+        const gleeFact = document.getElementById("gleeFact");
+        const slideshowContainer = document.getElementById("slideshowContainer");
+        const track = document.getElementById("collageTrack");
+        let scrollTween;
+
+        // Your collage images
+        const imageSources = [
+            "pics/creatives.png",
+            "pics/duck.png",
+            "pics/hats.png",
+            "pics/themarianne.png",
+            "pics/marianne gagnamagnid.png",
+            "pics/serious.png",
+            "pics/thumbsup.png",
+            "pics/projects.png"
+        ];
+
+        // Create images and duplicate for seamless scroll
+        function createSlideshow() {
+            track.innerHTML = "";
+
+            [...imageSources, ...imageSources].forEach(src => {
+                const img = document.createElement("img");
+                img.src = src;
+                img.style.height = "auto";   // adjust as needed
+                img.style.width = "auto";
+                img.style.objectFit = "cover";
+                img.style.marginRight = "0px"; // spacing between images
+                img.style.flexShrink = "0";
+                track.appendChild(img);
+            });
+
+            const trackWidth = track.scrollWidth / 2;
+
+            // Kill old tween if exists
+            if (scrollTween) scrollTween.kill();
+
+            // Animate continuously in the opposite direction (to the right)
+            scrollTween = gsap.to(track, {
+                x: trackWidth,   // move right
+                duration: 20,    // slower = smoother
+                ease: "none",
+                repeat: -1,
+                modifiers: {
+                    x: gsap.utils.unitize(x => parseFloat(x) % trackWidth - trackWidth)
+                },
+                paused: true
+            });
+        }
+
+        // Initialize slideshow
+        createSlideshow();
+
+        // Hover controls with smooth fade
+        gleeFact.addEventListener("mouseenter", () => {
+            gsap.to(slideshowContainer, { opacity: 1, duration: 0.6, ease: "power2.out" });
+            scrollTween.play();
+        });
+
+        gleeFact.addEventListener("mouseleave", () => {
+            gsap.to(slideshowContainer, { opacity: 0, duration: 0.6, ease: "power2.in" });
+            scrollTween.pause();
+        });
+
+    </script>
+    <script>
+        const section = document.getElementById("skillsFact");
+        const skills = document.querySelectorAll(".skill");
+
+        function burstElement(el, centerX, centerY) {
+            section.appendChild(el);
+
+            el.style.left = `${centerX}px`;
+            el.style.top = `${centerY}px`;
+
+            gsap.fromTo(el,
+                { opacity: 0, scale: 0 },
+                {
+                    opacity: 1,
+                    scale: 1.2,
+                    x: (Math.random() - 0.5) * 120,
+                    y: (Math.random() - 0.5) * 120,
+                    duration: 1.2,
+                    ease: "back.out(2)",
+                    onComplete: () => {
+                        gsap.to(el, {
+                            opacity: 0,
+                            duration: 0.8,
+                            onComplete: () => el.remove()
+                        });
+                    }
+                }
+            );
+        }
+
+        skills.forEach(skill => {
+            skill.addEventListener("mouseenter", () => {
+                const skillBox = skill.getBoundingClientRect();
+                const sectionBox = section.getBoundingClientRect();
+                const centerX = skillBox.left + skillBox.width / 2 - sectionBox.left;
+                const centerY = skillBox.top + skillBox.height / 2 - sectionBox.top;
+
+                // Emojis
+                if (skill.dataset.emojis) {
+                    skill.dataset.emojis.split(",").forEach(emojiChar => {
+                        const emoji = document.createElement("div");
+                        emoji.textContent = emojiChar.trim();
+                        emoji.className = "absolute text-4xl pointer-events-none z-0";
+                        burstElement(emoji, centerX, centerY);
+                    });
+                }
+
+                // Images
+                if (skill.dataset.images) {
+                    skill.dataset.images.split(",").forEach(imgSrc => {
+                        const img = document.createElement("img");
+                        img.src = imgSrc.trim();
+                        img.className = "absolute w-10 h-10 pointer-events-none z-0";
+                        burstElement(img, centerX, centerY);
+                    });
+                }
+            });
+        });
+    </script>
+    <script>
+        // === KEEP ONE showCard / hideCard implementation ===
+        function showCard(card) {
+            if (!card) return;
+            card.classList.remove("hidden");
+
+            gsap.fromTo(card,
+                { opacity: 0, scale: 0.85, y: 30 },
+                { opacity: 1, scale: 1, y: 0, duration: 0.45, ease: "back.out(1.7)" }
+            );
+        }
+
+        function hideCard(card) {
+            if (!card) return;
+            gsap.to(card, {
+                opacity: 0,
+                scale: 0.85,
+                y: 30,
+                duration: 0.35,
+                ease: "back.in(1.7)",
+                onComplete: () => card.classList.add("hidden")
+            });
+        }
+
+
+        // === Toggle logic (replace your current skills click handler block) ===
+        skills.forEach(skill => {
+            skill.addEventListener("click", (e) => {
+                // If the click started inside the tooltip card or its controls, ignore it:
+                if (e.target.closest(".tooltip-card") || e.target.closest(".carousel") || e.target.closest(".prev") || e.target.closest(".next") || e.target.closest(".close-btn")) {
+                    return;
+                }
+
+                const thisCard = skill.querySelector(".tooltip-card");
+                const isOpen = !thisCard.classList.contains("hidden");
+
+                // Hide other open cards (but don't hide the one we're about to toggle yet)
+                document.querySelectorAll(".tooltip-card").forEach(card => {
+                    if (!card.classList.contains("hidden") && card !== thisCard) hideCard(card);
+                });
+
+                // Toggle this one (only open if it's currently closed)
+                if (!isOpen) {
+                    showCard(thisCard);
+                } else {
+                    // optional: uncomment to allow clicking the skill again to close it
+                    hideCard(thisCard);
+                }
+            });
+        });
+
+        // === Close button handlers (keep as-is, ensure they are added after DOM) ===
+        document.querySelectorAll(".tooltip-card .close-btn").forEach(btn => {
+            btn.addEventListener("click", (e) => {
+                e.stopPropagation(); // prevent bubbling to .skill
+                const card = btn.closest(".tooltip-card");
+                hideCard(card);
+            });
+        });
+
+        // === Ensure carousel nav buttons don't bubble up ===
+        // (Replace the prev/next handlers inside your carousel init block)
+        document.querySelectorAll(".carousel").forEach(carousel => {
+            const track = carousel.querySelector(".carousel-track");
+            const items = carousel.querySelectorAll(".carousel-item");
+            const prevBtn = carousel.querySelector(".prev");
+            const nextBtn = carousel.querySelector(".next");
+
+            let index = 0;
+
+            function updateCarousel() {
+                const offset = -index * carousel.offsetWidth;
+                track.style.transform = `translateX(${offset}px)`;
+            }
+
+            prevBtn.addEventListener("click", (e) => {
+                e.stopPropagation();                // <-- IMPORTANT
+                index = (index - 1 + items.length) % items.length;
+                updateCarousel();
+            });
+
+            nextBtn.addEventListener("click", (e) => {
+                e.stopPropagation();                // <-- IMPORTANT
+                index = (index + 1) % items.length;
+                updateCarousel();
+            });
+
+            // swipe support (optional): make sure these don't bubble either
+            let startX = 0;
+            track.addEventListener("touchstart", e => {
+                e.stopPropagation();
+                startX = e.touches[0].clientX;
+            });
+            track.addEventListener("touchend", e => {
+                e.stopPropagation();
+                const diff = e.changedTouches[0].clientX - startX;
+                if (diff > 50) prevBtn.click();
+                if (diff < -50) nextBtn.click();
+            });
+
+            updateCarousel();
+        });
+
+        // === Carousel logic for each skill card ===
+        document.querySelectorAll(".carousel").forEach(carousel => {
+            const track = carousel.querySelector(".carousel-track");
+            const items = carousel.querySelectorAll(".carousel-item");
+            const prevBtn = carousel.querySelector(".prev");
+            const nextBtn = carousel.querySelector(".next");
+
+            let index = 0;
+
+            function updateCarousel() {
+                const offset = -(index * itemWidth);
+                track.style.transform = `translateX(${offset}px)`;
+            }
+
+            prevBtn.addEventListener("click", () => {
+                index = (index + 1) % items.length; // wrap forward
+                updateCarousel();
+            });
+
+            nextBtn.addEventListener("click", () => {
+                index = (index - 1 + items.length) % items.length; // wrap backward
+                updateCarousel();
+            });
+
+            prevBtn.addEventListener("click", e => { e.stopPropagation(); goPrev(); });
+            nextBtn.addEventListener("click", e => { e.stopPropagation(); goNext(); });
+
+            // optional: swipe support
+            let startX = 0;
+            track.addEventListener("touchstart", e => { startX = e.touches[0].clientX; });
+            track.addEventListener("touchend", e => {
+                const diff = e.changedTouches[0].clientX - startX;
+                if (diff > 50) goPrev();
+                if (diff < -50) goNext();
+            });
+
+            updateCarousel();
+        });
+
+    </script>
+    <script>
+        document.querySelectorAll(".carousel").forEach((carousel) => {
+            const track = carousel.querySelector(".carousel-track");
+            let startX = 0;
+            let currentX = 0;
+
+            carousel.addEventListener("touchstart", (e) => {
+                startX = e.touches[0].clientX;
+            });
+
+            carousel.addEventListener("touchend", (e) => {
+                currentX = e.changedTouches[0].clientX;
+                if (currentX < startX - 50) {
+                    carousel.querySelector(".next").click(); // swipe left
+                } else if (currentX > startX + 50) {
+                    carousel.querySelector(".prev").click(); // swipe right
+                }
+            });
+        });
+
+    </script>
+    <!--Coding Projects-->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            gsap.registerPlugin(ScrollTrigger, TextPlugin);
+
+            // Animate the section title
+            const title = document.querySelector("#projectsTitle");
+            if (title) {
+                const titleText = title.textContent.trim();
+                title.textContent = "";
+                gsap.to(title, {
+                    scrollTrigger: {
+                        trigger: "#projectsSection",
+                        start: "top 80%",
+                        once: true
+                    },
+                    text: titleText,
+                    duration: 2,
+                    ease: "none"
+                });
+            }
+
+            // Animate each project link
+            gsap.utils.toArray("#projects .project > a").forEach((link, i) => {
+                const linkText = link.textContent.trim();
+                link.textContent = "";
+                gsap.to(link, {
+                    scrollTrigger: {
+                        trigger: link,
+                        start: "top 90%",
+                        once: true
+                    },
+                    text: linkText,
+                    duration: Math.min(Math.max(linkText.length * 0.06, 0.8), 2.5),
+                    delay: i * 0.2,
+                    ease: "none"
+                });
+            });
+
+            // Animate the GitHub button text
+            const githubBtn = document.querySelector("#githubButton");
+            if (githubBtn) {
+                const btnText = githubBtn.textContent.trim();
+                githubBtn.textContent = "";
+                gsap.to(githubBtn, {
+                    scrollTrigger: {
+                        trigger: "#githubButton",
+                        start: "top 95%",
+                        once: true
+                    },
+                    text: btnText,
+                    duration: 1.5,
+                    ease: "none"
+                });
+            }
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const projects = document.querySelectorAll(".project");
+
+            projects.forEach(project => {
+                const desc = project.querySelector(".project-description");
+                const lines = desc.querySelectorAll("p");
+
+                // Hide everything initially
+                gsap.set(desc, { display: "none" });
+                gsap.set(lines, { opacity: 0, y: -10 });
+
+                project.addEventListener("mouseenter", () => {
+                    gsap.killTweensOf([desc, lines]);
+
+                    // Show container immediately
+                    gsap.set(desc, { display: "block" });
+
+                    // Animate the <p> lines one by one
+                    gsap.to(lines, {
+                        opacity: 1,
+                        y: 0,
+                        duration: 0.4,
+                        stagger: 0.15,
+                        ease: "power2.out"
+                    });
+                });
+
+                project.addEventListener("mouseleave", () => {
+                    gsap.killTweensOf([desc, lines]);
+
+                    // Animate out (reverse stagger)
+                    gsap.to(lines, {
+                        opacity: 0,
+                        y: -10,
+                        duration: 0.3,
+                        stagger: 0.1,
+                        ease: "power2.in",
+                        onComplete: () => gsap.set(desc, { display: "none" })
+                    });
+                });
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Modal open
+            document.querySelectorAll(".open-modal").forEach(btn => {
+                btn.addEventListener("click", () => {
+                    const targetId = btn.getAttribute("data-target");
+                    const modal = document.getElementById(targetId);
+                    if (modal) {
+                        modal.classList.remove("hidden");
+                        gsap.fromTo(modal, { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" });
+                    }
+                });
+            });
+
+            // Modal close
+            document.querySelectorAll("[id^='closeModal-']").forEach(btn => {
+                btn.addEventListener("click", () => {
+                    const modal = btn.closest(".modal-backdrop");
+                    if (modal) {
+                        gsap.to(modal, {
+                            opacity: 0,
+                            duration: 0.2,
+                            ease: "power2.in",
+                            onComplete: () => modal.classList.add("hidden")
+                        });
+                    }
+                });
+            });
+
+            // Typewriter for project descriptions
+            document.querySelectorAll(".project").forEach(project => {
+                const desc = project.querySelector(".project-description");
+                const paragraphs = desc.querySelectorAll("p");
+
+                // store original text
+                paragraphs.forEach(p => p.dataset.text = p.textContent);
+
+                project.addEventListener("mouseenter", () => {
+                    // clear text first
+                    paragraphs.forEach(p => p.textContent = "");
+
+                    // animate each paragraph separately
+                    paragraphs.forEach((p, i) => {
+                        gsap.to(p, {
+                            text: p.dataset.text,
+                            duration: 1.2,
+                            delay: i * 0.4, // stagger paragraphs
+                            ease: "none"
+                        });
+                    });
+                });
+            });
+        });
+    </script>
+    <script>
+        function createMatrixRain(baseColors = ["#00ff00"]) {
+            const container = document.getElementById("matrixRain");
+            const characters =
+                "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*()_+-=[]{}|;:,.<>?";
+
+            function createRainColumn() {
+                const column = document.createElement("div");
+                column.className = "code-rain";
+                column.style.left = Math.random() * 100 + "%";
+                // pick a random color from the active palette
+                column.style.color =
+                    baseColors[Math.floor(Math.random() * baseColors.length)];
+
+                // random column text
+                let columnText = "";
+                for (let i = 0; i < 20; i++) {
+                    columnText +=
+                        characters.charAt(Math.floor(Math.random() * characters.length)) +
+                        "\n";
+                }
+                column.textContent = columnText;
+
+                container.appendChild(column);
+
+                gsap.fromTo(
+                    column,
+                    { y: -100, opacity: 0.5 },
+                    {
+                        y: window.innerHeight + 100,
+                        opacity: 0,
+                        duration: Math.random() * 3 + 2,
+                        ease: "none",
+                        onComplete: () => column.remove(),
+                    }
+                );
+            }
+
+            // initial batch
+            for (let i = 0; i < 10; i++) {
+                setTimeout(createRainColumn, i * 200);
+            }
+
+            // continuous stream
+            return setInterval(createRainColumn, 300);
+        }
+
+        let rainInterval;
+        let activeColors = ["#00ff00"]; // start with neon green
+
+        document.addEventListener("DOMContentLoaded", () => {
+            // start default rain
+            rainInterval = createMatrixRain(activeColors);
+
+            // hover logic
+            document.querySelectorAll(".project").forEach((project) => {
+                project.addEventListener("mouseenter", () => {
+                    clearInterval(rainInterval);
+                    activeColors = ["#ffff00", "#ff00aa"]; // yellow + pink palette
+                    rainInterval = createMatrixRain(activeColors);
+                });
+
+                project.addEventListener("mouseleave", () => {
+                    clearInterval(rainInterval);
+                    activeColors = ["#00ff00"]; // reset to neon green
+                    rainInterval = createMatrixRain(activeColors);
+                });
+            });
+        });
+    </script>
+    <!-- The Creatives -->
+    <script>
+        // Classic Cartoon Spin-Zoom Transition for Creative Cards
+        document.addEventListener('DOMContentLoaded', () => {
+            gsap.registerPlugin(ScrollTrigger);
+
+            const creativeCards = document.querySelectorAll('.creative-card');
+            const creativesTitle = document.getElementById('creativesTitle');
+
+            console.log('Found cards:', creativeCards.length);
+
+            if (creativeCards.length === 0) {
+                console.warn('No creative cards found!');
+                return;
+            }
+
+            // Set initial state - tiny and invisible like old cartoon transitions
+            gsap.set(creativeCards, {
+                opacity: 0,
+                scale: 0,
+                rotation: 0,
+                transformOrigin: "center center"
+            });
+
+            // CSS rotations for final positions
+            const cssRotations = [12, -6, -12, 12];
+
+            // Create the main timeline
+            const mainTimeline = gsap.timeline({
+                paused: true,
+                onComplete: () => {
+                    setupHoverEffects();
+                    startSubtleFloat();
+                }
+            });
+
+            // Title spins in first
+            mainTimeline.fromTo(creativesTitle,
+                {
+                    opacity: 0,
+                    scale: 0,
+                    rotation: -1080
+                },
+                {
+                    duration: 1.2,
+                    opacity: 1,
+                    scale: 1,
+                    rotation: 0,
+                    ease: "back.out(2)"
+                }
+            );
+
+            // Each card spins and zooms in with classic cartoon timing
+            creativeCards.forEach((card, index) => {
+                const startDelay = 0.2 + (index * 0.15); // Stagger the entrances
+
+                mainTimeline.fromTo(card,
+                    {
+                        opacity: 0,
+                        scale: 0,
+                        rotation: -720 - (index * 180), // Each card spins different amounts
+                    },
+                    {
+                        duration: 0.8,
+                        opacity: 1,
+                        scale: 1,
+                        rotation: cssRotations[index], // End at CSS rotation
+                        ease: "back.out(1.4)",
+                        // Add a little overshoot bounce at the end
+                        onComplete: () => {
+                            gsap.to(card, {
+                                duration: 0.3,
+                                scale: 1.1,
+                                yoyo: true,
+                                repeat: 1,
+                                ease: "power2.inOut"
+                            });
+                        }
+                    },
+                    startDelay
+                );
+            });
+
+            // Add some cartoon-style "poof" particles when cards appear
+            mainTimeline.call(() => {
+                createCartoonPoof();
+            }, [], "+=0.3");
+
+            // Scroll trigger
+            ScrollTrigger.create({
+                trigger: '#creativesSection',
+                start: 'top 75%',
+                onEnter: () => {
+                    console.log('Cartoon transition activated!');
+                    mainTimeline.play();
+                },
+                onLeave: () => {
+                    // Optional: reverse when leaving section
+                    // mainTimeline.reverse();
+                }
+            });
+
+            function setupHoverEffects() {
+                creativeCards.forEach((card, index) => {
+                    card.addEventListener('mouseenter', () => {
+                        gsap.killTweensOf(card);
+
+                        // Classic cartoon "pop" hover effect
+                        gsap.to(card, {
+                            duration: 0.2,
+                            scale: 1.2,
+                            rotation: cssRotations[index] + 10,
+                            ease: "back.out(3)"
+                        });
+                    });
+
+                    card.addEventListener('mouseleave', () => {
+                        gsap.to(card, {
+                            duration: 0.4,
+                            scale: 1,
+                            rotation: cssRotations[index],
+                            ease: "elastic.out(1, 0.5)"
+                        });
+                    });
+                });
+            }
+
+            function startSubtleFloat() {
+                // Gentle floating motion like classic animation
+                creativeCards.forEach((card, index) => {
+                    gsap.to(card, {
+                        duration: 3 + index * 0.5,
+                        rotation: cssRotations[index] + 3,
+                        repeat: -1,
+                        yoyo: true,
+                        ease: "sine.inOut",
+                        delay: index * 0.3
+                    });
+
+                    gsap.to(card, {
+                        duration: 4 + index * 0.3,
+                        scale: 1.02,
+                        repeat: -1,
+                        yoyo: true,
+                        ease: "sine.inOut",
+                        delay: index * 0.2
+                    });
+                });
+            }
+
+            function createCartoonPoof() {
+                const section = document.getElementById('creativesSection');
+
+                // Create classic cartoon "poof" clouds around each card
+                creativeCards.forEach((card, cardIndex) => {
+                    const cardRect = card.getBoundingClientRect();
+                    const sectionRect = section.getBoundingClientRect();
+
+                    // Create multiple poof particles around each card
+                    for (let i = 0; i < 6; i++) {
+                        const poof = document.createElement('div');
+                        poof.innerHTML = '💨'; // Cloud emoji for poof effect
+                        poof.style.cssText = `
+                    position: absolute;
+                    font-size: ${Math.random() * 20 + 15}px;
+                    pointer-events: none;
+                    z-index: 10;
+                    left: ${cardRect.left - sectionRect.left + Math.random() * 60 - 30}px;
+                    top: ${cardRect.top - sectionRect.top + Math.random() * 60 - 30}px;
+                `;
+
+                        section.appendChild(poof);
+
+                        // Animate the poof
+                        gsap.fromTo(poof,
+                            {
+                                opacity: 0,
+                                scale: 0.3,
+                                rotation: Math.random() * 360
+                            },
+                            {
+                                duration: 0.6,
+                                opacity: 1,
+                                scale: Math.random() * 1.5 + 0.5,
+                                x: Math.random() * 80 - 40,
+                                y: Math.random() * 80 - 40,
+                                rotation: Math.random() * 180,
+                                ease: "power2.out",
+                                delay: cardIndex * 0.1 + i * 0.05,
+                                onComplete: () => {
+                                    gsap.to(poof, {
+                                        duration: 0.8,
+                                        opacity: 0,
+                                        scale: 2,
+                                        ease: "power2.out",
+                                        onComplete: () => poof.remove()
+                                    });
+                                }
+                            }
+                        );
+                    }
+                });
+
+                // Add some star sparkles for extra cartoon flair
+                for (let i = 0; i < 8; i++) {
+                    const star = document.createElement('div');
+                    star.innerHTML = '✨';
+                    star.style.cssText = `
+                position: absolute;
+                font-size: ${Math.random() * 16 + 12}px;
+                pointer-events: none;
+                z-index: 8;
+                left: ${Math.random() * 100}%;
+                top: ${Math.random() * 100}%;
+            `;
+
+                    section.appendChild(star);
+
+                    gsap.fromTo(star,
+                        {
+                            opacity: 0,
+                            scale: 0,
+                            rotation: 0
+                        },
+                        {
+                            duration: 0.8,
+                            opacity: 1,
+                            scale: 1,
+                            rotation: 360,
+                            ease: "back.out(1.7)",
+                            delay: Math.random() * 0.5,
+                            onComplete: () => {
+                                gsap.to(star, {
+                                    duration: 1.2,
+                                    opacity: 0,
+                                    y: -50,
+                                    rotation: 720,
+                                    ease: "power2.out",
+                                    onComplete: () => star.remove()
+                                });
+                            }
+                        }
+                    );
+                }
+            }
+        });
+    </script>
+</body>
+
 </html>
