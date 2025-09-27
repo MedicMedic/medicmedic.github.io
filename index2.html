@@ -1,24 +1,26 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <title>The Medic Zone</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Medic Zone - Marianne's Portfolio</title>
     <link rel="icon" href="pics/marianne gagnamagnid.png">
+    
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
     <!-- GSAP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
+    
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Epunda+Slab:ital,wght@0,300..900;1,300..900&display=swap"
-        rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Epunda+Slab:ital,wght@0,300..900;1,300..900&family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
 
     <script>
         tailwind.config = {
@@ -36,8 +38,8 @@
                         'medic-dark-img': 'rgb(255, 27, 130.36)'
                     },
                     fontFamily: {
-                        'epunda': ['Epunda Slab', 'serif'],
-                        'sharetechmono': ['Share Tech Mono', 'monospace']
+                        'epunda': ['Epunda Slab', 'sans-serif'],
+                        'mono': ['JetBrains Mono', 'monospace']
                     }
                 }
             }
@@ -45,533 +47,983 @@
     </script>
 
     <style>
-        /* Loading Screen */
-        .loading-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, #FFB4D6, #FF3F9F);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            opacity: 1;
-            transition: opacity 0.8s ease;
-        }
-
-        .loading-screen.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .loading-logo {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            animation: pulse 2s ease-in-out infinite alternate;
-        }
-
-        .loading-text {
-            color: white;
-            font-size: 1.5rem;
-            margin-top: 1rem;
-            animation: fade 1.5s ease-in-out infinite alternate;
-        }
-
-        .loading-bar {
-            width: 200px;
-            height: 4px;
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 2px;
-            margin-top: 2rem;
+        /* Custom Styles */
+        .lock-scroll {
             overflow: hidden;
-        }
-
-        .loading-progress {
-            width: 0%;
-            height: 100%;
-            background: white;
-            border-radius: 2px;
-            transition: width 0.3s ease;
-        }
-
-        @keyframes pulse {
-            from { transform: scale(1); }
-            to { transform: scale(1.1); }
-        }
-
-        @keyframes fade {
-            from { opacity: 0.7; }
-            to { opacity: 1; }
-        }
-
-        /* Section Lock Indicator */
-        .section-lock {
+            height: 100vh;
             position: fixed;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 100;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-        }
-
-        .section-lock.active {
-            opacity: 1;
-        }
-
-        .section-lock-icon {
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 63, 159, 0.9);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 16px;
-            animation: lockPulse 2s ease-in-out infinite;
-        }
-
-        @keyframes lockPulse {
-            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 63, 159, 0.7); }
-            50% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(255, 63, 159, 0); }
-        }
-
-        /* Custom styles that can't be handled by Tailwind alone */
-        .carousel-img {
-            position: absolute;
             width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 9999px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(45deg, #FF3F9F, #FF96CB, #FFF898);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, #FF3F9F 0%, #FF96CB 50%, #FFF898 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .code-rain {
+            position: absolute;
+            font-family: 'JetBrains Mono', monospace;
+            color: #00ff00;
+            opacity: 0.3;
+            font-size: 14px;
+            white-space: pre;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .bg-layer {
+            position: absolute;
+            inset: 0;
+            background-image: url("pics/duck.png");
+            background-size: cover;
+            background-position: center;
             opacity: 0;
+            z-index: -1;
             pointer-events: none;
         }
 
-        .carousel-img.active {
-            opacity: 1;
-            pointer-events: auto;
+        .baybayin-mode {
+            font-family: 'Baybayin', sans-serif;
         }
 
         .floating-musical {
             position: fixed;
             pointer-events: none;
             z-index: 1000;
+            animation: float 3s ease-in-out infinite;
         }
 
-        #bgLayer {
-            transition: opacity 0.6s ease-in-out;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            opacity: 0;
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
         }
 
-        .collage-masonry {
-            column-count: 4;
-            column-gap: 12px;
-            min-width: 200%;
-            height: 100%;
+        .skill-card {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        .collage-masonry img {
-            display: block;
-            max-height: 100%;
-            width: auto;
-            height: auto;
-            object-fit: contain;
+        .modal-backdrop {
+            backdrop-filter: blur(8px);
         }
 
-        .project-description {
-            font-size: 1.25rem;
-            color: #facc15;
+        .typewriter {
+            overflow: hidden;
+            border-right: 2px solid;
+            white-space: nowrap;
+            animation: blink-caret 1s step-end infinite;
         }
 
-        .open-modal {
-            cursor: pointer;
-            text-decoration: underline;
-            color: #f472b6;
-            transition: color 0.2s ease, transform 0.2s ease;
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: #00ff00; }
         }
 
-        .open-modal:hover {
-            color: #ec4899;
-            transform: scale(1.05);
-        }
-
-        .group:hover .project-description {
-            max-height: 200px;
-            opacity: 1;
-        }
-
-        /* Styling for matrix rain columns */
-        .code-rain {
-            position: absolute;
-            top: 0;
-            white-space: pre;
-            font-family: monospace;
-            font-size: 16px;
-            color: #00ff00;
-            line-height: 1.2;
-            pointer-events: none;
-            user-select: none;
-        }
-
-        /* Dark mode styles */
-        @media (prefers-color-scheme: dark) {
-            body {
-                background-color: rgb(27, 0, 12.24);
-                color: white;
-            }
-        }
-
-        /* Enhanced scrollbar styling */
-        html {
-            scrollbar-width: thin;
-            scrollbar-color: #FF3F9F #FFB4D6;
-        }
-
-        body::-webkit-scrollbar {
-            width: 12px;
-        }
-
-        body::-webkit-scrollbar-track {
-            background: #FFB4D6;
-        }
-
-        body::-webkit-scrollbar-thumb {
-            background: #FF3F9F;
-            border-radius: 6px;
-            border: 2px solid #FFB4D6;
-        }
-
-        body::-webkit-scrollbar-thumb:hover {
-            background: #e6356d;
-        }
-
-        /* Only mobile flip */
+        /* Responsive adjustments */
         @media (max-width: 768px) {
-            #about-title h1 {
-                transform: none !important;
-                transition: transform 0.6s;
-                transform-style: preserve-3d;
-                cursor: pointer;
+            .code-rain {
+                font-size: 10px;
             }
-
-            #about-title.flipped h1 {
-                transform: rotateY(180deg);
+            .floating-musical {
+                font-size: 20px;
             }
-
-            #slideshowContainer {
-                overflow-y: hidden;
-                scroll-snap-type: y mandatory;
-                scrollbar-width: none;
-            }
-
-            .collage-masonry {
-                display: flex;
-                flex-direction: column;
-                gap: 1rem;
-                scroll-snap-align: start;
-            }
-        }
-
-        /* Preloader for fonts */
-        .font-preload {
-            font-family: 'Epunda Slab', serif;
-            font-family: 'Share Tech Mono', monospace;
-            position: absolute;
-            left: -9999px;
-            visibility: hidden;
         }
     </style>
 </head>
 
 <body class="bg-medic-pink font-epunda m-0 p-0 dark:bg-medic-dark-bg dark:text-white">
-    <!-- Loading Screen -->
-    <div id="loadingScreen" class="loading-screen">
-        <img src="pics/marianne gagnamagnid.png" alt="Loading..." class="loading-logo">
-        <div class="loading-text">Loading The Medic Zone...</div>
-        <div class="loading-bar">
-            <div id="loadingProgress" class="loading-progress"></div>
-        </div>
-    </div>
-
-    <!-- Font Preloader -->
-    <div class="font-preload">
-        <span style="font-family: 'Epunda Slab', serif;">Preload</span>
-        <span style="font-family: 'Share Tech Mono', monospace;">Preload</span>
-    </div>
-
-    <!-- Section Lock Indicator -->
-    <div id="sectionLock" class="section-lock">
-        <div class="section-lock-icon">
-            <i class="bi bi-lock"></i>
-        </div>
-    </div>
-
     <!-- Navigation -->
-    <nav
-        class="fixed top-0 left-0 right-0 z-50 bg-medic-hot-pink dark:bg-medic-dark-nav h-20 flex items-center justify-between px-6 shadow-md transition-transform duration-300 ease-in-out">
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-medic-hot-pink/90 dark:bg-medic-dark-nav/90 backdrop-blur-md h-20 flex items-center justify-between px-6 shadow-lg transition-transform duration-300 ease-in-out">
         <div class="flex items-center space-x-3">
-            <img class="h-12 align-middle" src="pics/marianne gagnamagnid.png" alt="Logo">
+            <img class="h-12 align-middle rounded-full" src="pics/duck.png" alt="Logo">
             <span class="text-xl font-semibold text-white">The Medic Zone</span>
         </div>
+        
+        <!-- Dark Mode Toggle -->
+        <button id="darkModeToggle" class="p-2 rounded-full bg-white/20 text-white hover:bg-white/30 transition-all duration-300">
+            <i class="bi bi-moon-fill"></i>
+        </button>
+        
         <button id="menuToggle" class="sm:hidden focus:outline-none text-white">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
         </button>
+        
         <ul class="hidden sm:flex space-x-4">
-            <li><a href=""
-                    class="block w-full px-4 py-3 text-white font-medium transition-all duration-300 ease-in-out bg-medic-light-pink dark:bg-medic-hot-pink rounded">Home</a>
-            </li>
-            <li class="relative group">
-                <a href="./projects"
-                    class="flex items-center space-x-1 block w-full px-4 py-3 text-white font-medium transition-all duration-300 ease-in-out hover:bg-medic-light-pink dark:hover:bg-medic-hot-pink rounded">
-                    <span>Coding Projects</span>
-                    <svg class="w-4 h-4 transform transition-transform duration-300 origin-center group-hover:rotate-180"
-                        fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6" />
-                    </svg>
-                </a>
-                <ul
-                    class="absolute hidden group-hover:block bg-medic-light-pink dark:bg-medic-dark-menu shadow-md rounded-md w-48 z-20">
-                    <li><a href="/TaskRNG"
-                            class="block px-4 py-2 text-white hover:bg-medic-hot-pink dark:hover:bg-medic-hot-pink dark:hover:text-black transition-colors duration-300">Task
-                            RNG</a></li>
-                    <li><a href="/HTMLShooterGame"
-                            class="block px-4 py-2 text-white hover:bg-medic-hot-pink dark:hover:bg-medic-hot-pink dark:hover:text-black transition-colors duration-300">Stellar
-                            Shooter</a></li>
-                </ul>
-            </li>
-
-            <li class="relative group">
-                <a href="./creatives"
-                    class="flex items-center space-x-1 block w-full px-4 py-3 text-white font-medium transition-all duration-300 ease-in-out hover:bg-medic-light-pink dark:hover:bg-medic-hot-pink rounded">
-                    <span>The Creatives</span>
-                    <svg class="w-4 h-4 transform transition-transform duration-300 origin-center group-hover:rotate-180"
-                        fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6" />
-                    </svg>
-                </a>
-                <ul
-                    class="absolute hidden group-hover:block bg-medic-light-pink dark:bg-medic-dark-menu shadow-md rounded-md w-48 z-20">
-                    <li><a href=""
-                            class="block px-4 py-2 text-white hover:bg-medic-hot-pink dark:hover:bg-medic-hot-pink dark:hover:text-black transition-colors duration-300">SMS
-                            YouTube Channel</a></li>
-                    <li><a href=""
-                            class="block px-4 py-2 text-white hover:bg-medic-hot-pink dark:hover:bg-medic-hot-pink dark:hover:text-black transition-colors duration-300">Instagram</a>
-                    </li>
-                </ul>
-            </li>
-            <li><a href="./about_me"
-                    class="block w-full px-4 py-3 text-white font-medium transition-all duration-300 ease-in-out hover:bg-medic-light-pink dark:hover:bg-medic-hot-pink rounded">About
-                    Me</a></li>
+            <li><a href="#home" class="nav-link block px-4 py-3 text-white font-medium hover:text-medic-yellow transition-colors duration-300">Home</a></li>
+            <li><a href="#about" class="nav-link block px-4 py-3 text-white font-medium hover:text-medic-yellow transition-colors duration-300">About</a></li>
+            <li><a href="#projects" class="nav-link block px-4 py-3 text-white font-medium hover:text-medic-yellow transition-colors duration-300">Projects</a></li>
+            <li><a href="#creatives" class="nav-link block px-4 py-3 text-white font-medium hover:text-medic-yellow transition-colors duration-300">Creatives</a></li>
         </ul>
     </nav>
 
-    <div id="backdrop"
-        class="fixed inset-0 z-30 bg-black bg-opacity-50 hidden transition-opacity duration-300 ease-in-out"></div>
+    <!-- Exit Button (initially hidden) -->
+    <button id="exitButton" class="fixed top-1/2 right-8 z-[9999] bg-red-500 hover:bg-red-600 text-white p-3 rounded-full shadow-lg transform -translate-y-1/2 opacity-0 pointer-events-none transition-all duration-300">
+        <i class="bi bi-x-lg"></i>
+    </button>
 
-    <!-- Side Drawer -->
-    <div id="sideDrawer"
-        class="bg-medic-light-pink dark:bg-medic-dark-menu dark:text-white fixed top-20 right-0 h-[calc(100%-80px)] w-64 transform translate-x-full transition-transform duration-300 ease-in-out z-40">
-        <div class="p-6 space-y-4">
-            <a href=""
-                class="block w-full px-4 py-3 text-left font-medium transition-all duration-300 ease-in-out hover:bg-medic-hot-pink hover:text-white dark:hover:bg-medic-hot-pink rounded">Home</a>
-            <div class="accordion-item">
-                <button
-                    class="accordion-toggle flex justify-between items-center w-full px-4 py-3 text-left font-medium transition-all duration-300 ease-in-out hover:bg-medic-hot-pink hover:text-white dark:hover:bg-medic-hot-pink rounded"
-                    data-target="#projectsSubmenu">
-                    <span>Coding Projects</span>
-                    <svg class="caret w-4 h-4 transform transition-transform duration-300" fill="none"
-                        stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6" />
-                    </svg>
-                </button>
-                <div id="projectsSubmenu" class="accordion-content hidden pl-4 mt-2 space-y-2">
-                    <a href="./TaskRNG"
-                        class="block w-full px-4 py-3 text-left font-medium transition-all duration-300 ease-in-out hover:bg-medic-hot-pink hover:text-white dark:hover:bg-medic-hot-pink rounded">Task
-                        RNG</a>
-                    <a href="./HTMLShooterGame"
-                        class="block w-full px-4 py-3 text-left font-medium transition-all duration-300 ease-in-out hover:bg-medic-hot-pink hover:text-white dark:hover:bg-medic-hot-pink rounded">Stellar
-                        Shooter</a>
-                </div>
-            </div>
-            <div class="accordion-item">
-                <button
-                    class="accordion-toggle flex justify-between items-center w-full px-4 py-3 text-left font-medium transition-all duration-300 ease-in-out hover:bg-medic-hot-pink hover:text-white dark:hover:bg-medic-hot-pink rounded"
-                    data-target="#creativesSubmenu">
-                    <span>The Creatives</span>
-                    <svg class="caret w-4 h-4 transform transition-transform duration-300" fill="none"
-                        stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6" />
-                    </svg>
-                </button>
-                <div id="creativesSubmenu" class="accordion-content hidden pl-4 mt-2 space-y-2">
-                    <a href="./creatives"
-                        class="block w-full px-4 py-3 text-left font-medium transition-all duration-300 ease-in-out hover:bg-medic-hot-pink hover:text-white dark:hover:bg-medic-hot-pink rounded">SMS
-                        YouTube Channel</a>
-                    <a href=""
-                        class="block w-full px-4 py-3 text-left font-medium transition-all duration-300 ease-in-out hover:bg-medic-hot-pink hover:text-white dark:hover:bg-medic-hot-pink rounded">Instagram</a>
-                </div>
-            </div>
-            <a href="./about_me"
-                class="block w-full px-4 py-3 text-left font-medium transition-all duration-300 ease-in-out hover:bg-medic-hot-pink hover:text-white dark:hover:bg-medic-hot-pink rounded">About
-                Me</a>
-        </div>
-    </div>
-
-    <!-- Hero -->
-    <section id="home"
-        class="welcome-banner relative h-screen w-full bg-cover bg-center grayscale hover:grayscale-0 transition-all duration-700"
-        style="background-image: url('pics/duck.png');">
-        <div class="absolute inset-0 flex flex-col items-center justify-center text-center text-gray-50 px-6">
-
-            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mt-4 
-           hover:text-pink-800 duration-300 hover:scale-110 transition-transform break-words whitespace-normal">
+    <!-- Hero Section -->
+    <section id="home" class="hero-section relative h-screen w-full bg-cover bg-center grayscale transition-all duration-1000" style="background-image: url('pics/duck.png');">
+        <div class="absolute inset-0 bg-black/40"></div>
+        <div class="absolute inset-0 flex flex-col items-center justify-center text-center text-white px-4 z-10">
+            <h1 id="heroTitle" class="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 transform scale-100 transition-all duration-1000">
                 Welcome to The Medic Zone!
             </h1>
-
-            <h3
-                class="text-lg sm:text-xl md:text-2xl mt-4 hover:text-pink-200 duration-300 break-words whitespace-normal">
-                The fabulous world of coding and creativity!
+            <h3 id="heroSubtitle" class="text-xl md:text-3xl mb-8 transform scale-100 transition-all duration-1000">
+                Where Technical Meets Creative
             </h3>
-
-        </div>
-        <div id="scrollCue" class="absolute bottom-6 left-0 right-0 text-center opacity-0">
-            <svg class="mx-auto w-6 h-6 text-pink-500 animate-bounce" fill="none" stroke="currentColor" stroke-width="2"
-                viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-            </svg>
+            <div id="scrollIndicator" class="animate-bounce opacity-60">
+                <p class="text-sm mb-2">Scroll to explore</p>
+                <svg class="mx-auto w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+            </div>
         </div>
     </section>
 
-    <!--Intro-->
-    <section id="introSection" data-section="intro"
-        class="bg-medic-yellow dark:bg-medic-dark-yellow dark:text-white relative px-6 py-16 flex flex-col md:flex-row items-center justify-center gap-10 my-5">
-        <div class="flex flex-col md:flex-row items-center md:items-center gap-6 md:gap-10 w-full max-w-6xl">
-
+    <!-- Title Card Section -->
+    <section id="titleCard" class="relative h-screen flex items-center justify-center px-6" style="background: linear-gradient(135deg, #FFB4D6 0%, #FFF898 100%);">
+        <div class="container mx-auto max-w-6xl flex flex-col md:flex-row items-center gap-12">
             <!-- Image Carousel -->
-            <div
-                class="relative w-72 h-72 sm:w-80 sm:h-80 md:w-[24rem] md:h-[24rem] rounded-full overflow-hidden shrink-0 group">
-                <div class="absolute inset-0 shadow-lg bg-medic-pink dark:bg-medic-dark-img rounded-full" id="carousel">
-                    <img src="pics/serious.png" class="carousel-img" />
-                    <img src="pics/hats.png" class="carousel-img" />
-                    <img src="pics/thumbsup.png" class="carousel-img" />
+            <div class="image-container relative w-80 h-80 md:w-96 md:h-96">
+                <div class="carousel-wrapper w-full h-full rounded-full overflow-hidden shadow-2xl transform rotate-0 scale-75 opacity-0 transition-all duration-1000">
+                    <img id="carousel-img-1" src="pics/duck.png" class="carousel-image absolute inset-0 w-full h-full object-cover opacity-100 transition-opacity duration-500" alt="Serious Marianne">
+                    <img id="carousel-img-2" src="pics/duck.png" class="carousel-image absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-500" alt="Marianne with hats">
+                    <img id="carousel-img-3" src="pics/duck.png" class="carousel-image absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-500" alt="Silly Marianne">
                 </div>
-
-                <button id="prevBtn"
-                    class="absolute left-2 top-1/2 transform -translate-y-1/2 hidden group-hover:block z-10 text-white bg-black/50 px-2 py-1 rounded">‹</button>
-                <button id="nextBtn"
-                    class="absolute right-2 top-1/2 transform -translate-y-1/2 hidden group-hover:block z-10 text-white bg-black/50 px-2 py-1 rounded">›</button>
             </div>
 
             <!-- Text Content -->
-            <div class="text-center md:text-left flex flex-col justify-center">
-                <h2 class="text-6xl font-bold mb-3 dark:text-gray-300">My name is Marianne!</h2>
-                <p class="text-3xl text-gray-700 dark:text-gray-400">
-                    I'm a Computer Science graduate from New Era University. I have a very diverse skill set that allows
-                    me
-                    to be both a technical and creative person. Let me show you my work!
+            <div class="text-content text-center md:text-left transform translate-x-full opacity-0 transition-all duration-1000">
+                <h2 class="text-4xl md:text-6xl font-bold mb-6">
+                    <span class="gradient-text">Hi, I'm Marianne!</span>
+                </h2>
+                <p class="text-xl md:text-2xl text-gray-800 dark:text-gray-200 mb-8 leading-relaxed">
+                    A <span class="text-medic-hot-pink font-bold">Computer Science graduate</span> who bridges the gap between 
+                    <span class="text-purple-600 font-bold">technical innovation</span> and 
+                    <span class="text-yellow-600 font-bold">creative expression</span>. 
+                    From coding elegant solutions to composing beautiful melodies, I bring passion to everything I create.
+                </p>
+                <p class="text-lg md:text-xl text-gray-700 dark:text-gray-300">
+                    Ready to explore my world? Let's dive in! 🚀
                 </p>
             </div>
         </div>
+    </section>
 
-        <div id="scrollCue" class="absolute bottom-6 left-0 right-0 text-center opacity-100">
-            <svg class="mx-auto w-6 h-6 text-yellow-500 animate-bounce" fill="none" stroke="currentColor"
-                stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-            </svg>
+    <!-- About Me Section -->
+    <section id="about" class="about-section relative h-screen overflow-hidden bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 dark:from-medic-dark-bg dark:via-purple-900 dark:to-indigo-900">
+        <div class="bg-layer"></div>
+        
+        <!-- About Me Title -->
+        <div class="about-title absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20 cursor-pointer group">
+            <h1 class="text-6xl md:text-8xl font-bold text-white transform -rotate-12 transition-all duration-500 hover:rotate-0 hover:scale-110 hover:text-medic-pink">
+                About Me
+            </h1>
+        </div>
+
+        <!-- Fact 1: Age -->
+        <div class="fact-item age-fact absolute top-1/4 left-1/4 transform -translate-x-1/2 -translate-y-1/2 opacity-0 scale-50 transition-all duration-500 cursor-pointer p-6 rounded-lg hover:bg-white/10">
+            <h3 class="text-2xl md:text-3xl text-white font-bold">I am <span id="currentAge" class="text-medic-yellow">21</span> years old</h3>
+            <div class="age-details hidden mt-4 p-4 bg-black/70 rounded-lg text-white">
+                <p>Born: November 13, 2003</p>
+                <p id="birthdayCountdown">Days until birthday: <span class="text-medic-yellow">0</span></p>
+            </div>
+        </div>
+
+        <!-- Fact 2: Location -->
+        <div class="fact-item location-fact absolute top-1/4 right-1/4 transform translate-x-1/2 -translate-y-1/2 opacity-0 scale-50 transition-all duration-500 cursor-pointer p-6 rounded-lg hover:bg-white/10">
+            <h3 class="text-2xl md:text-3xl text-white font-bold">From the Philippines 🇵🇭</h3>
+            <div class="location-details hidden mt-4 p-4 bg-black/70 rounded-lg text-white">
+                <p class="text-yellow-400">Republic of the Philippines</p>
+                <p>7,641 beautiful islands</p>
+                <p>Languages: Filipino, English</p>
+            </div>
+        </div>
+
+        <!-- Fact 3: Glee Club -->
+        <div class="fact-item glee-fact absolute bottom-1/4 left-1/4 transform -translate-x-1/2 translate-y-1/2 opacity-0 scale-50 transition-all duration-500 cursor-pointer p-6 rounded-lg hover:bg-white/10">
+            <h3 class="text-2xl md:text-3xl text-white font-bold">Glee Club President 🎵</h3>
+            <div class="glee-details hidden mt-4 p-4 bg-black/70 rounded-lg text-white">
+                <p class="text-medic-light-pink">New Era University Glee Club</p>
+                <p>Led choir performances</p>
+                <p>Sang in professional oratorios</p>
+            </div>
+        </div>
+
+        <!-- Fact 4: Skills -->
+        <div class="fact-item skills-fact absolute bottom-1/4 right-1/4 transform translate-x-1/2 translate-y-1/2 opacity-0 scale-50 transition-all duration-500 cursor-pointer p-6 rounded-lg hover:bg-white/10">
+            <h3 class="text-xl md:text-2xl text-white font-bold text-center">I am a</h3>
+            <div class="skills-list mt-4 space-y-2">
+                <span class="skill-item block text-lg gradient-text cursor-pointer hover:scale-110 transition-transform duration-300" data-skill="singer">🎤 Singer</span>
+                <span class="skill-item block text-lg gradient-text cursor-pointer hover:scale-110 transition-transform duration-300" data-skill="songwriter">🎼 Songwriter</span>
+                <span class="skill-item block text-lg gradient-text cursor-pointer hover:scale-110 transition-transform duration-300" data-skill="writer">✍️ Writer</span>
+                <span class="skill-item block text-lg gradient-text cursor-pointer hover:scale-110 transition-transform duration-300" data-skill="artist">🎨 Artist</span>
+                <span class="skill-item block text-lg gradient-text cursor-pointer hover:scale-110 transition-transform duration-300" data-skill="coder">💻 Programmer</span>
+            </div>
         </div>
     </section>
 
-    <!--About Me-->
-    <section id="aboutMeSection" data-section="about" class="relative min-h-screen px-4 py-12 md:px-12 md:py-12 overflow-hidden">
-        <div class="flex flex-col md:block">
-            <div id="bgLayer" class="absolute inset-0 z-0 bg-cover bg-center"></div>
-            <div id="slideshowContainer" class="absolute inset-0 z-0" style="opacity: 0;">
-                <div id="collageTrack" class="collage-masonry h-full"></div>
-            </div>
+    <!-- Coding Projects Section -->
+    <section id="projects" class="projects-section relative h-screen bg-black text-green-400 flex flex-col items-center justify-center px-6">
+        <!-- Matrix Rain Background -->
+        <div id="matrixRain" class="absolute inset-0 overflow-hidden"></div>
+        
+        <div class="relative z-10 text-center max-w-4xl">
+            <h2 id="projectsTitle" class="text-5xl md:text-7xl font-mono font-bold mb-12 typewriter">CODING PROJECTS</h2>
+            
+            <div class="projects-grid grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Task RNG -->
+                <div class="project-item p-6 border border-green-400/30 rounded-lg hover:border-yellow-400 hover:shadow-lg hover:shadow-yellow-400/20 transition-all duration-300 cursor-pointer group" data-project="taskrng">
+                    <h3 class="text-2xl font-bold mb-4 group-hover:text-yellow-400 transition-colors duration-300">Task RNG</h3>
+                    <p class="text-green-300 group-hover:text-pink-300 transition-colors duration-300">Random task generator for productivity</p>
+                </div>
 
-            <!-- Title -->
-            <div id="about-title" class="text-center relative md:absolute md:top-32 md:left-auto flex justify-center">
-                <h1
-                    class="text-center text-6xl md:text-7xl font-bold md:-rotate-45 hover:text-pink-500 duration-300 hover:rotate-0 hover:scale-110">
-                    About Me</h1>
-            </div>
+                <!-- Super Stellar Compiler -->
+                <div class="project-item p-6 border border-green-400/30 rounded-lg hover:border-yellow-400 hover:shadow-lg hover:shadow-yellow-400/20 transition-all duration-300 cursor-pointer group" data-project="compiler">
+                    <h3 class="text-2xl font-bold mb-4 group-hover:text-yellow-400 transition-colors duration-300">Super Stellar Compiler</h3>
+                    <p class="text-green-300 group-hover:text-pink-300 transition-colors duration-300">Custom programming language compiler</p>
+                </div>
 
-            <!-- Age -->
-            <div id="ageFact"
-                class="text-center relative mt-6 md:absolute md:top-40 md:left-1/4 p-6 rounded-xl hover:border-2 hover:border-pink-500 hover:shadow-[0_0_40px_#ec4899] hover:bg-medic-light-pink hover:bg-opacity-40 duration-300">
-                <h3 class="text-3xl">I am
-                    <span id="currentAgeLatin" class="text-4xl text-pink-500"></span> years old
-                </h3>
-                <div id="ageContents" class="hidden">
-                    <p>Born: November 13, 2003</p>
-                    <p>Days until next birthday: <span id="birthdayCountdown"></span></p>
-                    <p><span class="hover:text-pink-500">Click this card </span>for my birthday wishlist</p>
+                <!-- Stellar Shooter -->
+                <div class="project-item p-6 border border-green-400/30 rounded-lg hover:border-yellow-400 hover:shadow-lg hover:shadow-yellow-400/20 transition-all duration-300 cursor-pointer group" data-project="shooter">
+                    <h3 class="text-2xl font-bold mb-4 group-hover:text-yellow-400 transition-colors duration-300">Stellar Shooter</h3>
+                    <p class="text-green-300 group-hover:text-pink-300 transition-colors duration-300">Space-themed arcade game</p>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <!-- Fullscreen overlay -->
-            <div id="wishlistModal"
-                class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 hidden">
-                <div
-                    class="relative h-3/4 w-3/4 p-6 border-4 border-pink-500 bg-medic-pink dark:bg-medic-dark-menu rounded-xl shadow-lg overflow-y-auto">
-                    <button id="wishlistModalClose"
-                        class="absolute top-4 right-4 text-pink-500 hover:text-pink-700 text-xl">
-                        ✕
-                    </button>
-                    <h2 class="text-4xl hover:[text-shadow:0_0_10px_#ec4899] duration-300">Days until next birthday:
-                        <span id="birthdayCountdownModal" class="text-5xl text-yellow-600 dark:text-yellow-400 "></span>
-                    </h2>
-                    <h3 class="py-6 text-2xl hover:[text-shadow:0_0_10px_#ec4899] duration-300">The Wishlist:</h3>
-                    <ul class="list-disc px-8">
-                        <li>Table</li>
-                        <li>Chair</li>
-                        <li>Studio Microphone</li>
-                        <li>MIDI Keyboard</li>
-                        <li>Duck Plush</li>
+    <!-- Creatives Section -->
+    <section id="creatives" class="creatives-section relative h-screen bg-gradient-to-br from-pink-500 via-purple-500 to-indigo-500 flex items-center justify-center overflow-hidden">
+        <h2 class="absolute z-10 text-6xl md:text-8xl font-bold text-white text-center">THE CREATIVES</h2>
+        
+        <!-- Creative Item 1: Novel -->
+        <div class="creative-item absolute w-48 h-48 bg-yellow-400 rounded-lg shadow-2xl cursor-pointer transform rotate-12 hover:rotate-0 hover:scale-110 transition-all duration-500 flex items-center justify-center group" 
+             style="top: 20%; left: 15%;" data-creative="novel">
+            <img src="pics/duck.png" class="w-full h-full object-cover rounded-lg opacity-80 group-hover:opacity-100" alt="Novel">
+            <div class="absolute inset-0 bg-black/50 group-hover:bg-black/30 rounded-lg flex items-center justify-center">
+                <span class="text-white font-bold text-xl">NOVEL</span>
+            </div>
+        </div>
+
+        <!-- Creative Item 2: Blog -->
+        <div class="creative-item absolute w-48 h-48 bg-green-400 rounded-lg shadow-2xl cursor-pointer transform -rotate-6 hover:rotate-0 hover:scale-110 transition-all duration-500 flex items-center justify-center group"
+             style="top: 15%; right: 20%;" data-creative="blog">
+            <img src="pics/duck.png" class="w-full h-full object-cover rounded-lg opacity-80 group-hover:opacity-100" alt="Blog">
+            <div class="absolute inset-0 bg-black/50 group-hover:bg-black/30 rounded-lg flex items-center justify-center">
+                <span class="text-white font-bold text-xl">BLOG</span>
+            </div>
+        </div>
+
+        <!-- Creative Item 3: Artworks -->
+        <div class="creative-item absolute w-48 h-48 bg-red-400 rounded-lg shadow-2xl cursor-pointer transform rotate-45 hover:rotate-0 hover:scale-110 transition-all duration-500 flex items-center justify-center group"
+             style="bottom: 25%; left: 20%;" data-creative="artworks">
+            <img src="pics/duck.png" class="w-full h-full object-cover rounded-lg opacity-80 group-hover:opacity-100" alt="Artworks">
+            <div class="absolute inset-0 bg-black/50 group-hover:bg-black/30 rounded-lg flex items-center justify-center">
+                <span class="text-white font-bold text-xl">ARTWORKS</span>
+            </div>
+        </div>
+
+        <!-- Creative Item 4: Songs -->
+        <div class="creative-item absolute w-48 h-48 bg-blue-400 rounded-lg shadow-2xl cursor-pointer transform -rotate-12 hover:rotate-0 hover:scale-110 transition-all duration-500 flex items-center justify-center group"
+             style="bottom: 20%; right: 15%;" data-creative="songs">
+            <img src="pics/duck.png" class="w-full h-full object-cover rounded-lg opacity-80 group-hover:opacity-100" alt="Songs">
+            <div class="absolute inset-0 bg-black/50 group-hover:bg-black/30 rounded-lg flex items-center justify-center">
+                <span class="text-white font-bold text-xl">SONGS</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Navigation Links -->
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Navigation</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="hover:text-medic-pink transition-colors duration-300">Home</a></li>
+                        <li><a href="#about" class="hover:text-medic-pink transition-colors duration-300">About</a></li>
+                        <li><a href="#projects" class="hover:text-medic-pink transition-colors duration-300">Projects</a></li>
+                        <li><a href="#creatives" class="hover:text-medic-pink transition-colors duration-300">Creatives</a></li>
                     </ul>
                 </div>
-            </div>
 
-            <!-- Location -->
-            <div id="locationFact"
-                class="text-center relative mt-6 md:absolute md:top-48 md:left-2/3 p-6 rounded-xl group hover:border-2 hover:border-yellow-500 hover:shadow-[0_0_40px_#FFEB3B] hover:bg-medic-yellow hover:bg-opacity-40 transition-all duration-300">
-                <h3 id="locationText" class="text-3xl transition-all duration-200">
-                    I am from the Philippines
-                </h3>
-            </div>
+                <!-- Important Links -->
+                <div>
+                    <h3 class="text-lg font-bold mb-4">For Employers</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-medic-pink transition-colors duration-300">Resume</a></li>
+                        <li><a href="#" class="hover:text-medic-pink transition-colors duration-300">Portfolio</a></li>
+                        <li><a href="#" class="hover:text-medic-pink transition-colors duration-300">GitHub</a></li>
+                        <li><a href="#" class="hover:text-medic-pink transition-colors duration-300">LinkedIn</a></li>
+                    </ul>
+                </div>
 
-            <!-- Glee Club Section -->
-            <div id="gleeFact"
-                class="text-center relative mt-6 md:absolute md:bottom-72 md:left-1/3 p-6 rounded-xl hover:border-2 hover:border-orange-500 hover:shadow-[0_0_40px_#ec4899] hover:bg-orange-500 hover:bg-opacity-40 duration-300">
-                <h3 class="text-3xl hover:[text-shadow:0_0_10px_#ec4899] duration-300">
-                    I was the president of New Era University Glee Club and sang in an
-                    <a id="oratorioLink" href="https://www.youtube.com/watch?v=xmtsnGuWDuQ" target="_blank"
-                        class="text-yellow-500 hover:text-4xl duration-300">oratorio</a>
-                </h3>
-            </div>
+                <!-- Social Media -->
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Connect</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-2xl hover:text-medic-pink transition-colors duration-300"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="text-2xl hover:text-medic-pink transition-colors duration-300"><i class="bi bi-youtube"></i></a>
+                        <a href="#" class="text-2xl hover:text-medic-pink transition-colors duration-300"><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="text-2xl hover:text-medic-pink transition-colors duration-300"><i class="bi bi-github"></i></a>
+                    </div>
+                </div>
 
-            <!-- Skills Section -->
-            <div id="skillsFact"
-                class="text-center relative mt-6 md:px-2 md:absolute md:bottom-24 md:left-1/2 md:-translate-x-1/2 md:whitespace-nowrap">
-                <h3 class="text-4xl hover:[text-shadow:0_0_10px_#ec4899] duration-300 relative">
-                    I am a
-                    <span data-emojis="🎤,🎶,🎵" data-images="" data-card="singerCard"
-                        class="skill relative inline-block bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent hover:text-5xl relative z-20">
-                        singer
-                        <div id="singerCard"
-                            class="tooltip-card hidden absolute bottom-full left-1/2 -translate-x-1/2 mb-4 h-64 w-72 border-4 border-purple-500 rounded-xl overflow-hidden bg-gradient-to-r from-pink-500 to-purple-500 shadow-xl">
-                            <button
-                                class="close-btn absolute z-50 top-1 right-1 text-white bg-black bg-opacity-60 rounded-full w-6 h-6 flex items-center justify-center text-xs hover:bg-red-600">✕</button>
-                            <div
-                                class="carousel relative h-
+                <!-- Credit -->
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Credits</h3>
+                    <p class="text-gray-400">Website designed and developed by Marianne with love ❤️</p>
+                    <p class="text-gray-400 mt-2">© 2024 The Medic Zone</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Project Modals -->
+    <div id="projectModal" class="fixed inset-0 bg-black/80 modal-backdrop z-50 flex items-center justify-center opacity-0 pointer-events-none transition-all duration-300">
+        <div class="bg-white dark:bg-gray-800 rounded-lg max-w-4xl w-full mx-4 max-h-[80vh] overflow-auto">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 id="modalTitle" class="text-2xl font-bold"></h3>
+                    <button id="closeModal" class="text-gray-500 hover:text-gray-700 text-2xl">×</button>
+                </div>
+                <div id="modalContent" class="mb-4">
+                    <!-- Project content will be inserted here -->
+                </div>
+                <div class="flex gap-4">
+                    <button id="playProject" class="bg-medic-hot-pink text-white px-6 py-2 rounded-lg hover:bg-medic-light-pink transition-colors duration-300">Play</button>
+                    <button id="visitProject" class="bg-gray-600 text-white px-6 py-2 rounded-lg hover:bg-gray-700 transition-colors duration-300">Visit Site</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Audio Element -->
+    <audio id="gleeAudio" loop>
+        <source src="hearts full of glee.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Scripts -->
+    <script>
+        // Initialize GSAP
+        gsap.registerPlugin(ScrollTrigger, TextPlugin);
+
+        // Global state
+        let baybayin = false;
+        let musicPlaying = false;
+        let currentImageIndex = 0;
+        const images = ['pics/duck.png', 'pics/duck.png', 'pics/duck.png'];
+
+        // Dark mode functionality
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+
+        darkModeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark');
+            const icon = darkModeToggle.querySelector('i');
+            if (body.classList.contains('dark')) {
+                icon.classList.replace('bi-moon-fill', 'bi-sun-fill');
+            } else {
+                icon.classList.replace('bi-sun-fill', 'bi-moon-fill');
+            }
+        });
+
+        // Age calculation
+        function updateAge() {
+            const birthDate = new Date('2003-11-13');
+            const now = new Date();
+            let age = now.getFullYear() - birthDate.getFullYear();
+            const hasHadBirthdayThisYear = now.getMonth() > birthDate.getMonth() || 
+                (now.getMonth() === birthDate.getMonth() && now.getDate() >= birthDate.getDate());
+            
+            if (!hasHadBirthdayThisYear) age--;
+            
+            document.getElementById('currentAge').textContent = age;
+            
+            // Calculate days until next birthday
+            const nextBirthday = new Date(now.getFullYear(), birthDate.getMonth(), birthDate.getDate());
+            if (nextBirthday < now) {
+                nextBirthday.setFullYear(now.getFullYear() + 1);
+            }
+            const daysUntil = Math.ceil((nextBirthday - now) / (1000 * 60 * 60 * 24));
+            
+            const countdownElement = document.querySelector('#birthdayCountdown span');
+            if (countdownElement) {
+                countdownElement.textContent = daysUntil;
+            }
+        }
+
+        updateAge();
+        setInterval(updateAge, 86400000); // Update daily
+
+        // Hero section scroll animation
+        function initHeroAnimation() {
+            let scrolled = false;
+            const heroSection = document.querySelector('.hero-section');
+            const heroTitle = document.getElementById('heroTitle');
+            const heroSubtitle = document.getElementById('heroSubtitle');
+
+            function handleScroll() {
+                if (!scrolled && window.scrollY > 50) {
+                    scrolled = true;
+                    
+                    // Remove grayscale and add color burst
+                    heroSection.classList.remove('grayscale');
+                    
+                    // Animate text with gradient and scale
+                    gsap.to(heroTitle, {
+                        scale: 1.2,
+                        duration: 1,
+                        className: "+=hero-gradient",
+                        ease: "power2.out"
+                    });
+                    
+                    gsap.to(heroSubtitle, {
+                        scale: 1.1,
+                        duration: 1,
+                        delay: 0.3,
+                        className: "+=hero-gradient",
+                        ease: "power2.out"
+                    });
+                    
+                    // Hide scroll indicator
+                    gsap.to('#scrollIndicator', {
+                        opacity: 0,
+                        duration: 0.5,
+                        delay: 1
+                    });
+                    
+                    // Auto scroll to next section after animation
+                    setTimeout(() => {
+                        gsap.to(window, {
+                            scrollTo: "#titleCard",
+                            duration: 1.5,
+                            ease: "power2.inOut"
+                        });
+                    }, 2000);
+                }
+            }
+            
+            window.addEventListener('scroll', handleScroll);
+            window.addEventListener('wheel', handleScroll);
+            window.addEventListener('touchmove', handleScroll);
+        }
+
+        // Title card animations
+        function initTitleCardAnimations() {
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: "#titleCard",
+                    start: "top 80%",
+                    toggleActions: "play none none reverse"
+                }
+            });
+
+            // Animate image container
+            tl.to(".carousel-wrapper", {
+                scale: 1,
+                rotate: 360,
+                opacity: 1,
+                duration: 1.5,
+                ease: "power2.out"
+            })
+            .to(".text-content", {
+                x: 0,
+                opacity: 1,
+                duration: 1,
+                ease: "power2.out"
+            }, "-=0.8");
+
+            // Image carousel functionality
+            function rotateImages() {
+                const currentImg = document.getElementById(`carousel-img-${currentImageIndex + 1}`);
+                currentImg.style.opacity = '0';
+                
+                currentImageIndex = (currentImageIndex + 1) % 3;
+                
+                const nextImg = document.getElementById(`carousel-img-${currentImageIndex + 1}`);
+                nextImg.style.opacity = '1';
+            }
+
+            setInterval(rotateImages, 3000);
+        }
+
+        // About section animations
+        function initAboutAnimations() {
+            ScrollTrigger.create({
+                trigger: "#about",
+                start: "top 50%",
+                onEnter: () => {
+                    // Animate facts dispersing from center
+                    gsap.fromTo(".fact-item", {
+                        x: 0,
+                        y: 0,
+                        opacity: 0,
+                        scale: 0.5
+                    }, {
+                        x: 0,
+                        y: 0,
+                        opacity: 1,
+                        scale: 1,
+                        duration: 1,
+                        stagger: 0.2,
+                        ease: "back.out(1.7)"
+                    });
+                }
+            });
+
+            // About title interactions
+            const aboutTitle = document.querySelector('.about-title');
+            const bgLayer = document.querySelector('.bg-layer');
+            let titleLocked = false;
+
+            aboutTitle.addEventListener('mouseenter', () => {
+                if (!titleLocked) {
+                    gsap.to(bgLayer, { opacity: 0.7, duration: 0.5 });
+                    gsap.to(aboutTitle.querySelector('h1'), { 
+                        scale: 1.2, 
+                        color: '#FF3F9F',
+                        rotate: 0,
+                        duration: 0.5 
+                    });
+                }
+            });
+
+            aboutTitle.addEventListener('mouseleave', () => {
+                if (!titleLocked) {
+                    gsap.to(bgLayer, { opacity: 0, duration: 0.5 });
+                    gsap.to(aboutTitle.querySelector('h1'), { 
+                        scale: 1, 
+                        color: '#ffffff',
+                        rotate: -12,
+                        duration: 0.5 
+                    });
+                }
+            });
+
+            aboutTitle.addEventListener('click', () => {
+                titleLocked = !titleLocked;
+                if (titleLocked) {
+                    gsap.to(bgLayer, { opacity: 0.7, duration: 0.5 });
+                    gsap.to(aboutTitle.querySelector('h1'), { 
+                        scale: 1.2, 
+                        color: '#FF3F9F',
+                        rotate: 0,
+                        duration: 0.5 
+                    });
+                }
+            });
+
+            // Fact interactions
+            document.querySelectorAll('.fact-item').forEach(item => {
+                let locked = false;
+                
+                item.addEventListener('mouseenter', () => {
+                    if (!locked) {
+                        const details = item.querySelector('div');
+                        if (details) details.classList.remove('hidden');
+                        
+                        // Special effects for each fact
+                        if (item.classList.contains('location-fact')) {
+                            // Add Philippine elements
+                            document.body.style.background = 'linear-gradient(45deg, #FFD700, #FF6B6B, #4ECDC4)';
+                        } else if (item.classList.contains('glee-fact')) {
+                            // Add musical elements
+                            createFloatingMusicalNotes();
+                        }
+                    }
+                });
+
+                item.addEventListener('mouseleave', () => {
+                    if (!locked) {
+                        const details = item.querySelector('div');
+                        if (details) details.classList.add('hidden');
+                    }
+                });
+
+                item.addEventListener('click', () => {
+                    locked = !locked;
+                    const details = item.querySelector('div');
+                    
+                    if (locked && details) {
+                        details.classList.remove('hidden');
+                        
+                        if (item.classList.contains('age-fact')) {
+                            showBirthdayWishlist();
+                        } else if (item.classList.contains('location-fact')) {
+                            enableBaybayinMode();
+                        } else if (item.classList.contains('glee-fact')) {
+                            playGleeMusic();
+                        } else if (item.classList.contains('skills-fact')) {
+                            showSkillProofs();
+                        }
+                    }
+                });
+            });
+
+            // Skill hover effects
+            document.querySelectorAll('.skill-item').forEach(skill => {
+                skill.addEventListener('mouseenter', () => {
+                    createSkillImages(skill.dataset.skill);
+                });
+            });
+        }
+
+        // Matrix rain for coding projects
+        function createMatrixRain() {
+            const container = document.getElementById('matrixRain');
+            const characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*()_+-=[]{}|;:,.<>?';
+            
+            function createRainColumn() {
+                const column = document.createElement('div');
+                column.className = 'code-rain';
+                column.style.left = Math.random() * 100 + '%';
+                column.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                
+                let columnText = '';
+                for (let i = 0; i < 20; i++) {
+                    columnText += characters.charAt(Math.random() * characters.length) + '\n';
+                }
+                column.textContent = columnText;
+                
+                container.appendChild(column);
+                
+                gsap.fromTo(column, 
+                    { y: -100, opacity: 1 },
+                    { 
+                        y: window.innerHeight + 100, 
+                        opacity: 0,
+                        duration: Math.random() * 3 + 2,
+                        ease: 'none',
+                        onComplete: () => column.remove()
+                    }
+                );
+            }
+            
+            // Create initial rain
+            for (let i = 0; i < 15; i++) {
+                setTimeout(createRainColumn, i * 200);
+            }
+            
+            // Continue creating rain
+            setInterval(createRainColumn, 300);
+        }
+
+        // Projects section animations
+        function initProjectsAnimations() {
+            ScrollTrigger.create({
+                trigger: "#projects",
+                start: "top 50%",
+                onEnter: () => {
+                    // Type out title
+                    gsap.to("#projectsTitle", {
+                        text: "CODING PROJECTS",
+                        duration: 2,
+                        ease: "none"
+                    });
+                    
+                    // Animate project items
+                    gsap.fromTo(".project-item", {
+                        y: 50,
+                        opacity: 0
+                    }, {
+                        y: 0,
+                        opacity: 1,
+                        duration: 0.8,
+                        stagger: 0.3,
+                        delay: 1,
+                        ease: "power2.out"
+                    });
+                    
+                    // Start matrix rain
+                    createMatrixRain();
+                }
+            });
+
+            // Project hover effects
+            document.querySelectorAll('.project-item').forEach(item => {
+                item.addEventListener('mouseenter', () => {
+                    // Change rain color to yellow/pink
+                    document.querySelectorAll('.code-rain').forEach(rain => {
+                        rain.style.color = '#ffff00';
+                    });
+                });
+
+                item.addEventListener('mouseleave', () => {
+                    // Reset rain color
+                    document.querySelectorAll('.code-rain').forEach(rain => {
+                        rain.style.color = '#00ff00';
+                    });
+                });
+
+                item.addEventListener('click', () => {
+                    showProjectModal(item.dataset.project);
+                });
+            });
+
+            // Title hover effect
+            document.getElementById('projectsTitle').addEventListener('mouseenter', () => {
+                document.querySelectorAll('.code-rain').forEach(rain => {
+                    rain.style.color = '#00ff88';
+                    rain.style.opacity = '0.8';
+                });
+            });
+        }
+
+        // Creative items animations
+        function initCreativesAnimations() {
+            ScrollTrigger.create({
+                trigger: "#creatives",
+                start: "top 50%",
+                onEnter: () => {
+                    gsap.fromTo(".creative-item", {
+                        scale: 0,
+                        rotation: 0
+                    }, {
+                        scale: 1,
+                        rotation: (i) => [12, -6, 45, -12][i],
+                        duration: 1,
+                        stagger: 0.2,
+                        ease: "back.out(1.7)"
+                    });
+                }
+            });
+
+            // Creative item interactions
+            document.querySelectorAll('.creative-item').forEach(item => {
+                item.addEventListener('mouseenter', () => {
+                    // Show tooltip and change background
+                    showCreativeTooltip(item.dataset.creative, item);
+                });
+
+                item.addEventListener('click', () => {
+                    // Navigate to creative page
+                    window.location.href = `/${item.dataset.creative}`;
+                });
+            });
+        }
+
+        // Helper functions
+        function createFloatingMusicalNotes() {
+            const notes = ['♪', '♫', '♬', '♩', '♭', '♯'];
+            
+            for (let i = 0; i < 10; i++) {
+                setTimeout(() => {
+                    const note = document.createElement('div');
+                    note.className = 'floating-musical';
+                    note.textContent = notes[Math.floor(Math.random() * notes.length)];
+                    note.style.left = Math.random() * 100 + '%';
+                    note.style.top = Math.random() * 100 + '%';
+                    note.style.fontSize = (Math.random() * 20 + 20) + 'px';
+                    note.style.color = `hsl(${Math.random() * 360}, 70%, 60%)`;
+                    
+                    document.body.appendChild(note);
+                    
+                    gsap.to(note, {
+                        y: -200,
+                        opacity: 0,
+                        duration: 3,
+                        ease: "power2.out",
+                        onComplete: () => note.remove()
+                    });
+                }, i * 200);
+            }
+        }
+
+        function enableBaybayinMode() {
+            baybayin = true;
+            document.body.classList.add('baybayin-mode');
+            document.getElementById('exitButton').classList.remove('opacity-0', 'pointer-events-none');
+            
+            // Convert text to Baybayin (simplified representation)
+            document.querySelectorAll('h1, h2, h3, p').forEach(el => {
+                if (!el.dataset.original) {
+                    el.dataset.original = el.textContent;
+                    el.textContent = convertToBaybayin(el.textContent);
+                }
+            });
+        }
+
+        function convertToBaybayin(text) {
+            // Simplified Baybayin conversion (placeholder)
+            return text.replace(/[a-zA-Z]/g, '᜔');
+        }
+
+        function playGleeMusic() {
+            const audio = document.getElementById('gleeAudio');
+            audio.play();
+            musicPlaying = true;
+            
+            // Add persistent musical background
+            createFloatingMusicalNotes();
+            setInterval(() => {
+                if (musicPlaying) createFloatingMusicalNotes();
+            }, 2000);
+        }
+
+        function showProjectModal(project) {
+            const modal = document.getElementById('projectModal');
+            const title = document.getElementById('modalTitle');
+            const content = document.getElementById('modalContent');
+            
+            const projectData = {
+                taskrng: {
+                    title: 'Task RNG',
+                    content: '<iframe src="/TaskRNG" width="100%" height="400px" frameborder="0"></iframe>',
+                    url: '/TaskRNG'
+                },
+                compiler: {
+                    title: 'Super Stellar Compiler',
+                    content: '<p>Custom programming language with unique syntax and features.</p>',
+                    url: '#'
+                },
+                shooter: {
+                    title: 'Stellar Shooter',
+                    content: `
+                        <div class="flex">
+                            <iframe src="/HTMLShooterGame" width="70%" height="400px" frameborder="0"></iframe>
+                            <div class="w-30% pl-4 grid grid-cols-3 gap-2">
+                                ${Array(9).fill('<img src="pics/duck.png" class="w-full h-16 object-cover rounded">').join('')}
+                            </div>
+                        </div>
+                    `,
+                    url: '/HTMLShooterGame'
+                }
+            };
+            
+            const data = projectData[project];
+            title.textContent = data.title;
+            content.innerHTML = data.content;
+            
+            document.getElementById('visitProject').onclick = () => window.open(data.url, '_blank');
+            
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+        }
+
+        function showCreativeTooltip(creative, element) {
+            // Implementation for creative tooltips
+            const tooltips = {
+                novel: 'Explore my written stories and novels',
+                blog: 'Read my thoughts and experiences',
+                artworks: 'View my digital and traditional art',
+                songs: 'Listen to my original compositions'
+            };
+            
+            // Create and show tooltip (simplified)
+            console.log(`Showing tooltip for ${creative}: ${tooltips[creative]}`);
+        }
+
+        function showBirthdayWishlist() {
+            // Implementation for birthday wishlist modal
+            console.log('Showing birthday wishlist');
+        }
+
+        function showSkillProofs() {
+            // Implementation for skill proof carousel
+            console.log('Showing skill proofs');
+        }
+
+        function createSkillImages(skill) {
+            // Create floating images based on skill type
+            const skillEmojis = {
+                singer: ['🎤', '🎵', '🎶'],
+                songwriter: ['🎼', '✍️', '📝'],
+                writer: ['📚', '📖', '✒️'],
+                artist: ['🎨', '🖌️', '🖼️'],
+                coder: ['💻', '⌨️', '🖥️']
+            };
+            
+            const emojis = skillEmojis[skill] || [];
+            emojis.forEach((emoji, i) => {
+                setTimeout(() => {
+                    const el = document.createElement('div');
+                    el.textContent = emoji;
+                    el.style.position = 'absolute';
+                    el.style.fontSize = '2rem';
+                    el.style.left = Math.random() * 100 + '%';
+                    el.style.top = Math.random() * 100 + '%';
+                    el.style.pointerEvents = 'none';
+                    el.style.zIndex = '1000';
+                    
+                    document.body.appendChild(el);
+                    
+                    gsap.to(el, {
+                        y: -100,
+                        opacity: 0,
+                        duration: 2,
+                        ease: "power2.out",
+                        onComplete: () => el.remove()
+                    });
+                }, i * 200);
+            });
+        }
+
+        // Exit button functionality
+        document.getElementById('exitButton').addEventListener('click', () => {
+            if (baybayin) {
+                baybayin = false;
+                document.body.classList.remove('baybayin-mode');
+                
+                // Restore original text
+                document.querySelectorAll('[data-original]').forEach(el => {
+                    el.textContent = el.dataset.original;
+                    delete el.dataset.original;
+                });
+            }
+            
+            if (musicPlaying) {
+                musicPlaying = false;
+                document.getElementById('gleeAudio').pause();
+                
+                // Remove floating notes
+                document.querySelectorAll('.floating-musical').forEach(note => note.remove());
+            }
+            
+            document.getElementById('exitButton').classList.add('opacity-0', 'pointer-events-none');
+        });
+
+        // Modal close functionality
+        document.getElementById('closeModal').addEventListener('click', () => {
+            document.getElementById('projectModal').classList.add('opacity-0', 'pointer-events-none');
+        });
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.querySelector(link.getAttribute('href'));
+                if (target) {
+                    gsap.to(window, {
+                        scrollTo: target,
+                        duration: 1,
+                        ease: "power2.inOut"
+                    });
+                }
+            });
+        });
+
+        // Initialize all animations
+        document.addEventListener('DOMContentLoaded', () => {
+            initHeroAnimation();
+            initTitleCardAnimations();
+            initAboutAnimations();
+            initProjectsAnimations();
+            initCreativesAnimations();
+        });
+    </script>
+</body>
+</html>

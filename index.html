@@ -464,15 +464,17 @@
                                 <div class="carousel-track flex transition-transform duration-500 ease-in-out">
                                     <!-- Supports both images or embeds -->
                                     <div class="carousel-item flex-shrink-0 w-64 mx-2">
-                                        <img src="pics/duck.png" class="w-full h-56 object-cover rounded-lg" />
+                                        <img src="pics/hats.png" class="w-full h-56 object-cover rounded-lg" />
+                                    </div>
+                                    <div class="carousel-item flex-shrink-0 w-64 mx-2">
+                                        <img src="pics/medic_singer_carousel.webp"
+                                            class="w-full h-56 object-cover rounded-lg" />
                                     </div>
                                     <div class="carousel-item flex-shrink-0 w-64 mx-2">
                                         <iframe width="100%" height="100%"
                                             src="https://www.youtube.com/embed/xmtsnGuWDuQ" class="rounded-lg"></iframe>
                                     </div>
-                                    <div class="carousel-item flex-shrink-0 w-64 mx-2">
-                                        <img src="pics/hats.png" class="w-full h-56 object-cover rounded-lg" />
-                                    </div>
+
                                 </div>
 
                                 <button
@@ -779,8 +781,10 @@
                     <ul class="space-y-2">
                         <li><a href="#home" class="hover:text-medic-pink transition-colors duration-300">Home</a></li>
                         <li><a href="#about" class="hover:text-medic-pink transition-colors duration-300">About</a></li>
-                        <li><a href="#projects" class="hover:text-medic-pink transition-colors duration-300">Projects</a></li>
-                        <li><a href="#creatives" class="hover:text-medic-pink transition-colors duration-300">Creatives</a></li>
+                        <li><a href="#projects"
+                                class="hover:text-medic-pink transition-colors duration-300">Projects</a></li>
+                        <li><a href="#creatives"
+                                class="hover:text-medic-pink transition-colors duration-300">Creatives</a></li>
                     </ul>
                 </div>
 
@@ -799,16 +803,19 @@
                 <div>
                     <h3 class="text-lg font-bold mb-4">Connect</h3>
                     <div class="flex space-x-4">
-                        <a href="#" class="text-2xl hover:text-medic-pink transition-colors duration-300"><i class="bi bi-instagram"></i></a>
-                        <a href="#" class="text-2xl hover:text-medic-pink transition-colors duration-300"><i class="bi bi-youtube"></i></a>
-                        <a href="#" class="text-2xl hover:text-medic-pink transition-colors duration-300"><i class="bi bi-github"></i></a>
+                        <a href="#" class="text-2xl hover:text-medic-pink transition-colors duration-300"><i
+                                class="bi bi-instagram"></i></a>
+                        <a href="#" class="text-2xl hover:text-medic-pink transition-colors duration-300"><i
+                                class="bi bi-youtube"></i></a>
+                        <a href="#" class="text-2xl hover:text-medic-pink transition-colors duration-300"><i
+                                class="bi bi-github"></i></a>
                     </div>
                 </div>
 
                 <!-- Credit -->
                 <div>
                     <h3 class="text-lg font-bold mb-4">Credits</h3>
-                    <p class="mt-2">© 2024 The Medic Zone</p>
+                    <p class="mt-2">© <span id="copyrightYear"></span> The Medic Zone</p>
                 </div>
             </div>
         </div>
@@ -980,16 +987,17 @@
         }
 
         function startAutoplay() {
-            autoplay = setInterval(nextImage, delay * 1000);
+            if (!autoplay) autoplay = setInterval(nextImage, delay * 1000);
         }
 
         function stopAutoplay() {
             clearInterval(autoplay);
+            autoplay = null;
         }
 
-        // Initial display
-        showImage(current);
-        startAutoplay();
+        // Initialize only the first image visible
+        gsap.set(images, { opacity: 0 });
+        gsap.set(images[0], { opacity: 1 });
 
         const carousel = document.getElementById('carousel');
         carousel.addEventListener('mouseenter', stopAutoplay);
@@ -1008,20 +1016,28 @@
     <script>
         gsap.registerPlugin(ScrollTrigger);
 
+        // Spin-in effect for all images EXCEPT the first
         gsap.from("#introSection .carousel-img", {
             scrollTrigger: {
                 trigger: "#introSection",
                 start: "top 80%",
                 toggleActions: "play none none reverse"
             },
-            opacity: 0,         // fades in
-            scale: 0.5,         // starts smaller
-            rotation: 360,      // starts fully spun
-            duration: 1.5,      // a bit longer for smoothness
+            opacity: 0,
+            scale: 0.5,
+            rotation: 360,
+            duration: 1.5,
             stagger: 0.3,
-            ease: "power3.out"  // smoother settle
+            ease: "power3.out"
         });
 
+        // Start autoplay when the section comes into view
+        ScrollTrigger.create({
+            trigger: "#introSection",
+            start: "top 80%",
+            onEnter: () => startAutoplay(),
+            onLeaveBack: () => stopAutoplay() // optional: pause if scrolled back up
+        });
 
         gsap.from("#introSection h2", {
             scrollTrigger: {
@@ -1531,14 +1547,17 @@
 
         // Your collage images
         const imageSources = [
-            "pics/creatives.png",
-            "pics/duck.png",
-            "pics/hats.png",
-            "pics/themarianne.png",
-            "pics/marianne gagnamagnid.png",
-            "pics/serious.png",
-            "pics/thumbsup.png",
-            "pics/projects.png"
+            "pics/medic_slideshow (1).jpeg",
+            "pics/medic_slideshow (1).jpg",
+            "pics/medic_slideshow (1).png",
+            "pics/medic_slideshow (2).jpeg",
+            "pics/medic_slideshow (2).jpg",
+            "pics/medic_slideshow (3).jpg",
+            "pics/medic_slideshow (4).jpg",
+            "pics/medic_slideshow (5).jpg",
+            "pics/medic_slideshow (6).jpg",
+            "pics/medic_slideshow (7).jpg",
+            "pics/medic_slideshow (8).jpg"
         ];
 
         // Create images and duplicate for seamless scroll
@@ -1579,7 +1598,7 @@
 
         // Hover controls with smooth fade
         gleeFact.addEventListener("mouseenter", () => {
-            gsap.to(slideshowContainer, { opacity: 1, duration: 0.6, ease: "power2.out" });
+            gsap.to(slideshowContainer, { opacity: 0.5, duration: 0.6, ease: "power2.out" });
             scrollTween.play();
         });
 
@@ -2081,7 +2100,7 @@
                     rotation: -1080
                 },
                 {
-                    duration: 1.2,
+                    duration: 0.5,
                     opacity: 1,
                     scale: 1,
                     rotation: 0,
@@ -2091,7 +2110,7 @@
 
             // Each card spins and zooms in with classic cartoon timing
             creativeCards.forEach((card, index) => {
-                const startDelay = 0.2 + (index * 0.15); // Stagger the entrances
+                const startDelay = 0.1 + (index * 0.075); // Stagger the entrances
 
                 mainTimeline.fromTo(card,
                     {
@@ -2100,7 +2119,7 @@
                         rotation: -720 - (index * 180), // Each card spins different amounts
                     },
                     {
-                        duration: 0.8,
+                        duration: 0.2,
                         opacity: 1,
                         scale: 1,
                         rotation: cssRotations[index], // End at CSS rotation
@@ -2108,7 +2127,7 @@
                         // Add a little overshoot bounce at the end
                         onComplete: () => {
                             gsap.to(card, {
-                                duration: 0.3,
+                                duration: 0.2,
                                 scale: 1.1,
                                 yoyo: true,
                                 repeat: 1,
@@ -2132,10 +2151,6 @@
                 onEnter: () => {
                     console.log('Cartoon transition activated!');
                     mainTimeline.play();
-                },
-                onLeave: () => {
-                    // Optional: reverse when leaving section
-                    // mainTimeline.reverse();
                 }
             });
 
@@ -2198,7 +2213,7 @@
                     // Create multiple poof particles around each card
                     for (let i = 0; i < 6; i++) {
                         const poof = document.createElement('div');
-                        poof.innerHTML = '💨'; // Cloud emoji for poof effect
+                        poof.innerHTML = '🎶'; // Cloud emoji for poof effect
                         poof.style.cssText = `
                     position: absolute;
                     font-size: ${Math.random() * 20 + 15}px;
@@ -2243,7 +2258,7 @@
                 // Add some star sparkles for extra cartoon flair
                 for (let i = 0; i < 8; i++) {
                     const star = document.createElement('div');
-                    star.innerHTML = '✨';
+                    star.innerHTML = '🎨';
                     star.style.cssText = `
                 position: absolute;
                 font-size: ${Math.random() * 16 + 12}px;
@@ -2283,6 +2298,16 @@
                 }
             }
         });
+    </script>
+    <!-- Footer -->
+    <script>
+        function updateYear() {
+            const now = new Date();
+            document.getElementById('copyrightYear').textContent = now.getFullYear();
+        }
+
+        updateYear();
+        setInterval(updateYear, 86400000);
     </script>
 </body>
 
