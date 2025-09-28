@@ -479,6 +479,7 @@
                         singer
                         <div id="singerCard"
                             class="tooltip-card hidden absolute bottom-full left-1/2 -translate-x-1/2 mb-4 h-64 w-72 border-4 border-purple-500 rounded-xl overflow-hidden bg-gradient-to-r from-pink-500 to-purple-500 shadow-xl">
+
                             <!-- Close button -->
                             <button
                                 class="close-btn absolute z-50 top-1 right-1 text-white bg-black bg-opacity-60 rounded-full w-6 h-6 flex items-center justify-center text-xs hover:bg-red-600">✕</button>
@@ -486,35 +487,41 @@
                             <!-- Carousel wrapper -->
                             <div
                                 class="carousel relative h-full w-full overflow-hidden flex items-center justify-center">
+                                <!-- Prev -->
                                 <button
                                     class="prev absolute left-1 top-1/2 -translate-y-1/2 z-10 bg-black bg-opacity-50 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center hover:bg-purple-700">‹</button>
 
-                                <div class="carousel-track flex transition-transform duration-500 ease-in-out">
-                                    <!-- Supports both images or embeds -->
-                                    <div class="carousel-item flex-shrink-0 w-64 mx-2">
-                                        <img src="pics/hats.png" class="w-full h-56 object-cover rounded-lg" />
+                                <!-- Track -->
+                                <div
+                                    class="carousel-track flex transition-transform duration-500 ease-in-out h-56 w-full">
+                                    <!-- Image item -->
+                                    <div class="carousel-item flex-shrink-0 w-72 h-56 flex items-center justify-center">
+                                        <img src="pics/hats.png" class="w-full h-full object-cover rounded-lg" />
                                     </div>
-                                    <div class="carousel-item flex-shrink-0 w-64 mx-2">
+                                    <div class="carousel-item flex-shrink-0 w-72 h-56 flex items-center justify-center">
                                         <img src="pics/medic_singer_carousel.webp"
-                                            class="w-full h-56 object-cover rounded-lg" />
+                                            class="w-full h-full object-cover rounded-lg" />
                                     </div>
-                                    <div class="carousel-item flex-shrink-0 w-64 mx-2">
-                                        <iframe width="100%" height="100%"
-                                            src="https://www.youtube.com/embed/xmtsnGuWDuQ" class="rounded-lg"></iframe>
+                                    <!-- Video item -->
+                                    <div class="carousel-item flex-shrink-0 w-72 h-56 flex items-center justify-center">
+                                        <iframe src="https://www.youtube.com/embed/xmtsnGuWDuQ"
+                                            class="w-full h-full rounded-lg" allowfullscreen></iframe>
                                     </div>
-
                                 </div>
 
+                                <!-- Next -->
                                 <button
                                     class="next absolute right-1 top-1/2 -translate-y-1/2 z-10 bg-black bg-opacity-50 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center hover:bg-purple-700">›</button>
                             </div>
                         </div>
+
                     </span>,
                     <span data-emojis="✍️,🎼,📝" data-images="" data-card="songwriterCard"
                         class="skill relative inline-block bg-gradient-to-r from-yellow-400 to-red-500 bg-clip-text text-transparent hover:text-5xl relative z-20">
                         songwriter
                         <div id="songwriterCard"
-                            class="tooltip-card hidden absolute bottom-full left-1/2 -translate-x-1/2 mb-4 h-64 w-72 border-4 border-yellow-500 rounded-xl overflow-hidden bg-gradient-to-r from-yellow-400 to-red-500 shadow-xl">
+                            class="tooltip-card hidden absolute bottom-full left-1/2 -translate-x-1/2 mb-4 h-64 w-72 border-4 border-red-500 rounded-xl overflow-hidden bg-gradient-to-r from-yellow-400 to-red-500 shadow-xl">
+
                             <!-- Close button -->
                             <button
                                 class="close-btn absolute z-50 top-1 right-1 text-white bg-black bg-opacity-60 rounded-full w-6 h-6 flex items-center justify-center text-xs hover:bg-red-600">✕</button>
@@ -522,25 +529,31 @@
                             <!-- Carousel wrapper -->
                             <div
                                 class="carousel relative h-full w-full overflow-hidden flex items-center justify-center">
+                                <!-- Prev -->
                                 <button
-                                    class="prev absolute left-1 top-1/2 -translate-y-1/2 z-10 bg-black bg-opacity-50 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center hover:bg-yellow-700">‹</button>
+                                    class="prev absolute left-1 top-1/2 -translate-y-1/2 z-10 bg-black bg-opacity-50 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center hover:bg-purple-700">‹</button>
 
-                                <div class="carousel-track flex transition-transform duration-500 ease-in-out">
-                                    <!-- Supports both images or embeds -->
-                                    <div class="carousel-item flex-shrink-0 w-64 mx-2">
-                                        <img src="pics/duck.png" class="w-full h-56 object-cover rounded-lg" />
+                                <!-- Track -->
+                                <div
+                                    class="carousel-track flex transition-transform duration-500 ease-in-out h-56 w-full">
+                                    <!-- Image item -->
+                                    <div class="carousel-item flex-shrink-0 w-72 h-56 flex items-center justify-center">
+                                        <img src="pics/hats.png" class="w-full h-full object-cover rounded-lg" />
                                     </div>
-                                    <div class="carousel-item flex-shrink-0 w-64 mx-2">
-                                        <iframe width="100%" height="100%"
-                                            src="https://www.youtube.com/embed/xmtsnGuWDuQ" class="rounded-lg"></iframe>
+                                    <div class="carousel-item flex-shrink-0 w-72 h-56 flex items-center justify-center">
+                                        <img src="pics/medic_singer_carousel.webp"
+                                            class="w-full h-full object-cover rounded-lg" />
                                     </div>
-                                    <div class="carousel-item flex-shrink-0 w-64 mx-2">
-                                        <img src="pics/hats.png" class="w-full h-56 object-cover rounded-lg" />
+                                    <!-- Video item -->
+                                    <div class="carousel-item flex-shrink-0 w-72 h-56 flex items-center justify-center">
+                                        <iframe src="https://www.youtube.com/embed/xmtsnGuWDuQ"
+                                            class="w-full h-full rounded-lg" allowfullscreen></iframe>
                                     </div>
                                 </div>
 
+                                <!-- Next -->
                                 <button
-                                    class="next absolute right-1 top-1/2 -translate-y-1/2 z-10 bg-black bg-opacity-50 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center hover:bg-yellow-700">›</button>
+                                    class="next absolute right-1 top-1/2 -translate-y-1/2 z-10 bg-black bg-opacity-50 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center hover:bg-purple-700">›</button>
                             </div>
                         </div>
                     </span>,
@@ -548,7 +561,8 @@
                         class="skill relative inline-block bg-gradient-to-r from-green-400 to-teal-500 bg-clip-text text-transparent hover:text-5xl relative z-20">
                         writer
                         <div id="writerCard"
-                            class="tooltip-card hidden absolute bottom-full left-1/2 -translate-x-1/2 mb-4 h-64 w-72 border-4 border-green-500 rounded-xl overflow-hidden bg-gradient-to-r from-green-400 to-teal-500 shadow-xl">
+                            class="tooltip-card hidden absolute bottom-full left-1/2 -translate-x-1/2 mb-4 h-64 w-72 border-4 border-teal-500 rounded-xl overflow-hidden bg-gradient-to-r from-green-400 to-teal-500 shadow-xl">
+
                             <!-- Close button -->
                             <button
                                 class="close-btn absolute z-50 top-1 right-1 text-white bg-black bg-opacity-60 rounded-full w-6 h-6 flex items-center justify-center text-xs hover:bg-red-600">✕</button>
@@ -556,25 +570,31 @@
                             <!-- Carousel wrapper -->
                             <div
                                 class="carousel relative h-full w-full overflow-hidden flex items-center justify-center">
+                                <!-- Prev -->
                                 <button
-                                    class="prev absolute left-1 top-1/2 -translate-y-1/2 z-10 bg-black bg-opacity-50 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center hover:bg-green-700">‹</button>
+                                    class="prev absolute left-1 top-1/2 -translate-y-1/2 z-10 bg-black bg-opacity-50 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center hover:bg-purple-700">‹</button>
 
-                                <div class="carousel-track flex transition-transform duration-500 ease-in-out">
-                                    <!-- Supports both images or embeds -->
-                                    <div class="carousel-item flex-shrink-0 w-64 mx-2">
-                                        <img src="pics/duck.png" class="w-full h-56 object-cover rounded-lg" />
+                                <!-- Track -->
+                                <div
+                                    class="carousel-track flex transition-transform duration-500 ease-in-out h-56 w-full">
+                                    <!-- Image item -->
+                                    <div class="carousel-item flex-shrink-0 w-72 h-56 flex items-center justify-center">
+                                        <img src="pics/hats.png" class="w-full h-full object-cover rounded-lg" />
                                     </div>
-                                    <div class="carousel-item flex-shrink-0 w-64 mx-2">
-                                        <iframe width="100%" height="100%"
-                                            src="https://www.youtube.com/embed/xmtsnGuWDuQ" class="rounded-lg"></iframe>
+                                    <div class="carousel-item flex-shrink-0 w-72 h-56 flex items-center justify-center">
+                                        <img src="pics/medic_singer_carousel.webp"
+                                            class="w-full h-full object-cover rounded-lg" />
                                     </div>
-                                    <div class="carousel-item flex-shrink-0 w-64 mx-2">
-                                        <img src="pics/hats.png" class="w-full h-56 object-cover rounded-lg" />
+                                    <!-- Video item -->
+                                    <div class="carousel-item flex-shrink-0 w-72 h-56 flex items-center justify-center">
+                                        <iframe src="https://www.youtube.com/embed/xmtsnGuWDuQ"
+                                            class="w-full h-full rounded-lg" allowfullscreen></iframe>
                                     </div>
                                 </div>
 
+                                <!-- Next -->
                                 <button
-                                    class="next absolute right-1 top-1/2 -translate-y-1/2 z-10 bg-black bg-opacity-50 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center hover:bg-green-700">›</button>
+                                    class="next absolute right-1 top-1/2 -translate-y-1/2 z-10 bg-black bg-opacity-50 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center hover:bg-purple-700">›</button>
                             </div>
                         </div>
                     </span>,
@@ -582,7 +602,8 @@
                         class="skill relative inline-block bg-gradient-to-r from-indigo-400 to-sky-500 bg-clip-text text-transparent hover:text-5xl relative z-20">
                         drawer (artist)
                         <div id="drawerCard"
-                            class="tooltip-card hidden absolute bottom-full left-1/2 -translate-x-1/2 mb-4 h-64 w-72 border-4 border-indigo-500 rounded-xl overflow-hidden bg-gradient-to-r from-indigo-400 to-sky-500 shadow-xl">
+                            class="tooltip-card hidden absolute bottom-full left-1/2 -translate-x-1/2 mb-4 h-64 w-72 border-4 border-sky-500 rounded-xl overflow-hidden bg-gradient-to-r from-indigo-400 to-sky-500 shadow-xl">
+
                             <!-- Close button -->
                             <button
                                 class="close-btn absolute z-50 top-1 right-1 text-white bg-black bg-opacity-60 rounded-full w-6 h-6 flex items-center justify-center text-xs hover:bg-red-600">✕</button>
@@ -590,25 +611,31 @@
                             <!-- Carousel wrapper -->
                             <div
                                 class="carousel relative h-full w-full overflow-hidden flex items-center justify-center">
+                                <!-- Prev -->
                                 <button
-                                    class="prev absolute left-1 top-1/2 -translate-y-1/2 z-10 bg-black bg-opacity-50 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center hover:bg-indigo-700">‹</button>
+                                    class="prev absolute left-1 top-1/2 -translate-y-1/2 z-10 bg-black bg-opacity-50 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center hover:bg-purple-700">‹</button>
 
-                                <div class="carousel-track flex transition-transform duration-500 ease-in-out">
-                                    <!-- Supports both images or embeds -->
-                                    <div class="carousel-item flex-shrink-0 w-64 mx-2">
-                                        <img src="pics/duck.png" class="w-full h-56 object-cover rounded-lg" />
+                                <!-- Track -->
+                                <div
+                                    class="carousel-track flex transition-transform duration-500 ease-in-out h-56 w-full">
+                                    <!-- Image item -->
+                                    <div class="carousel-item flex-shrink-0 w-72 h-56 flex items-center justify-center">
+                                        <img src="pics/hats.png" class="w-full h-full object-cover rounded-lg" />
                                     </div>
-                                    <div class="carousel-item flex-shrink-0 w-64 mx-2">
-                                        <iframe width="100%" height="100%"
-                                            src="https://www.youtube.com/embed/xmtsnGuWDuQ" class="rounded-lg"></iframe>
+                                    <div class="carousel-item flex-shrink-0 w-72 h-56 flex items-center justify-center">
+                                        <img src="pics/medic_singer_carousel.webp"
+                                            class="w-full h-full object-cover rounded-lg" />
                                     </div>
-                                    <div class="carousel-item flex-shrink-0 w-64 mx-2">
-                                        <img src="pics/hats.png" class="w-full h-56 object-cover rounded-lg" />
+                                    <!-- Video item -->
+                                    <div class="carousel-item flex-shrink-0 w-72 h-56 flex items-center justify-center">
+                                        <iframe src="https://www.youtube.com/embed/xmtsnGuWDuQ"
+                                            class="w-full h-full rounded-lg" allowfullscreen></iframe>
                                     </div>
                                 </div>
 
+                                <!-- Next -->
                                 <button
-                                    class="next absolute right-1 top-1/2 -translate-y-1/2 z-10 bg-black bg-opacity-50 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center hover:bg-indigo-700">›</button>
+                                    class="next absolute right-1 top-1/2 -translate-y-1/2 z-10 bg-black bg-opacity-50 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center hover:bg-purple-700">›</button>
                             </div>
                         </div>
                     </span>,
@@ -618,6 +645,7 @@
                         coder (programmer)
                         <div id="coderCard"
                             class="tooltip-card hidden absolute bottom-full left-1/2 -translate-x-1/2 mb-4 h-64 w-72 border-4 border-rose-500 rounded-xl overflow-hidden bg-gradient-to-r from-rose-500 to-orange-400 shadow-xl">
+
                             <!-- Close button -->
                             <button
                                 class="close-btn absolute z-50 top-1 right-1 text-white bg-black bg-opacity-60 rounded-full w-6 h-6 flex items-center justify-center text-xs hover:bg-red-600">✕</button>
@@ -625,25 +653,31 @@
                             <!-- Carousel wrapper -->
                             <div
                                 class="carousel relative h-full w-full overflow-hidden flex items-center justify-center">
+                                <!-- Prev -->
                                 <button
-                                    class="prev absolute left-1 top-1/2 -translate-y-1/2 z-10 bg-black bg-opacity-50 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center hover:bg-rose-700">‹</button>
+                                    class="prev absolute left-1 top-1/2 -translate-y-1/2 z-10 bg-black bg-opacity-50 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center hover:bg-purple-700">‹</button>
 
-                                <div class="carousel-track flex transition-transform duration-500 ease-in-out">
-                                    <!-- Supports both images or embeds -->
-                                    <div class="carousel-item flex-shrink-0 w-64 mx-2">
-                                        <img src="pics/duck.png" class="w-full h-56 object-cover rounded-lg" />
+                                <!-- Track -->
+                                <div
+                                    class="carousel-track flex transition-transform duration-500 ease-in-out h-56 w-full">
+                                    <!-- Image item -->
+                                    <div class="carousel-item flex-shrink-0 w-72 h-56 flex items-center justify-center">
+                                        <img src="pics/hats.png" class="w-full h-full object-cover rounded-lg" />
                                     </div>
-                                    <div class="carousel-item flex-shrink-0 w-64 mx-2">
-                                        <iframe width="100%" height="100%"
-                                            src="https://www.youtube.com/embed/xmtsnGuWDuQ" class="rounded-lg"></iframe>
+                                    <div class="carousel-item flex-shrink-0 w-72 h-56 flex items-center justify-center">
+                                        <img src="pics/medic_singer_carousel.webp"
+                                            class="w-full h-full object-cover rounded-lg" />
                                     </div>
-                                    <div class="carousel-item flex-shrink-0 w-64 mx-2">
-                                        <img src="pics/hats.png" class="w-full h-56 object-cover rounded-lg" />
+                                    <!-- Video item -->
+                                    <div class="carousel-item flex-shrink-0 w-72 h-56 flex items-center justify-center">
+                                        <iframe src="https://www.youtube.com/embed/xmtsnGuWDuQ"
+                                            class="w-full h-full rounded-lg" allowfullscreen></iframe>
                                     </div>
                                 </div>
 
+                                <!-- Next -->
                                 <button
-                                    class="next absolute right-1 top-1/2 -translate-y-1/2 z-10 bg-black bg-opacity-50 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center hover:bg-rose-700">›</button>
+                                    class="next absolute right-1 top-1/2 -translate-y-1/2 z-10 bg-black bg-opacity-50 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center hover:bg-purple-700">›</button>
                             </div>
                         </div>
                     </span>
@@ -1781,87 +1815,94 @@
             });
         });
 
-        // === Ensure carousel nav buttons don't bubble up ===
-        // (Replace the prev/next handlers inside your carousel init block)
-        document.querySelectorAll(".carousel").forEach(carousel => {
-            const track = carousel.querySelector(".carousel-track");
-            const items = carousel.querySelectorAll(".carousel-item");
-            const prevBtn = carousel.querySelector(".prev");
-            const nextBtn = carousel.querySelector(".next");
-
-            let index = 0;
-
-            function updateCarousel() {
-                const offset = -index * carousel.offsetWidth;
-                track.style.transform = `translateX(${offset}px)`;
-            }
-
-            prevBtn.addEventListener("click", (e) => {
-                e.stopPropagation();                // <-- IMPORTANT
-                index = (index - 1 + items.length) % items.length;
-                updateCarousel();
-            });
-
-            nextBtn.addEventListener("click", (e) => {
-                e.stopPropagation();                // <-- IMPORTANT
-                index = (index + 1) % items.length;
-                updateCarousel();
-            });
-
-            // swipe support (optional): make sure these don't bubble either
-            let startX = 0;
-            track.addEventListener("touchstart", e => {
-                e.stopPropagation();
-                startX = e.touches[0].clientX;
-            });
-            track.addEventListener("touchend", e => {
-                e.stopPropagation();
-                const diff = e.changedTouches[0].clientX - startX;
-                if (diff > 50) prevBtn.click();
-                if (diff < -50) nextBtn.click();
-            });
-
-            updateCarousel();
-        });
-
         // === Carousel logic for each skill card ===
         document.querySelectorAll(".carousel").forEach(carousel => {
             const track = carousel.querySelector(".carousel-track");
             const items = carousel.querySelectorAll(".carousel-item");
             const prevBtn = carousel.querySelector(".prev");
             const nextBtn = carousel.querySelector(".next");
+            if (!items.length) return;
 
             let index = 0;
+            let itemStep = 0;
+
+            // --- Reliable measurement function ---
+            function computeItemStep() {
+                const base = items[0];
+                if (!base) return 0;
+
+                // clone offscreen to measure, works even if hidden
+                const clone = base.cloneNode(true);
+                clone.style.position = "absolute";
+                clone.style.visibility = "hidden";
+                clone.style.display = "block";
+                clone.style.left = "-9999px";
+                clone.style.top = "-9999px";
+                document.body.appendChild(clone);
+
+                const rect = clone.getBoundingClientRect();
+                const cs = getComputedStyle(clone);
+                const margin = (parseFloat(cs.marginLeft) || 0) + (parseFloat(cs.marginRight) || 0);
+
+                document.body.removeChild(clone);
+                return rect.width + margin;
+            }
+
+            function ensureStep() {
+                if (!itemStep || itemStep === 0) {
+                    itemStep = computeItemStep();
+                }
+            }
 
             function updateCarousel() {
-                const offset = -(index * itemWidth);
+                ensureStep();
+                const offset = -(index * itemStep);
                 track.style.transform = `translateX(${offset}px)`;
             }
 
-            prevBtn.addEventListener("click", () => {
-                index = (index + 1) % items.length; // wrap forward
+            function goPrev() {
+                index = (index - 1 + items.length) % items.length;
                 updateCarousel();
-            });
+            }
 
-            nextBtn.addEventListener("click", () => {
-                index = (index - 1 + items.length) % items.length; // wrap backward
+            function goNext() {
+                index = (index + 1) % items.length;
                 updateCarousel();
-            });
+            }
 
+            // --- Hook up buttons ---
             prevBtn.addEventListener("click", e => { e.stopPropagation(); goPrev(); });
             nextBtn.addEventListener("click", e => { e.stopPropagation(); goNext(); });
 
-            // optional: swipe support
+            // --- Swipe support ---
             let startX = 0;
-            track.addEventListener("touchstart", e => { startX = e.touches[0].clientX; });
+            track.addEventListener("touchstart", e => { startX = e.touches[0].clientX; }, { passive: true });
             track.addEventListener("touchend", e => {
                 const diff = e.changedTouches[0].clientX - startX;
                 if (diff > 50) goPrev();
                 if (diff < -50) goNext();
-            });
+            }, { passive: true });
 
+            // --- Initialize ---
+            track.style.transition = "transform 0.4s ease";
             updateCarousel();
+
+            // --- Recalculate on resize ---
+            window.addEventListener("resize", () => { itemStep = 0; updateCarousel(); });
+
+            // --- Watch for card visibility (if hidden at start) ---
+            const card = carousel.closest(".tooltip-card");
+            if (card && window.MutationObserver) {
+                const mo = new MutationObserver(() => {
+                    if (!card.classList.contains("hidden")) {
+                        itemStep = 0;
+                        requestAnimationFrame(updateCarousel);
+                    }
+                });
+                mo.observe(card, { attributes: true, attributeFilter: ["class"] });
+            }
         });
+
 
     </script>
     <script>
