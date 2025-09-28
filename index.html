@@ -86,21 +86,45 @@
 
         .collage-masonry {
             column-count: 4;
-            /* adjust number of columns */
             column-gap: 12px;
             min-width: 200%;
-            /* duplicate set for scrolling */
             height: 100%;
-            /* fit to section height */
         }
 
         .collage-masonry img {
             display: block;
             max-height: 100%;
-            /* never exceed section height */
             width: auto;
             height: auto;
             object-fit: contain;
+        }
+
+        #slideshowContainer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        #collageTrack {
+            display: flex;
+            height: 100%;
+            white-space: nowrap;
+            will-change: transform;
+        }
+
+        #collageTrack img {
+            height: auto;
+            max-height: 100%;
+            width: auto;
+            object-fit: contain;
+            margin-right: 10px;
+            flex-shrink: 0;
         }
 
         .project-description {
@@ -439,6 +463,10 @@
                     <a id="oratorioLink" href="https://www.youtube.com/watch?v=xmtsnGuWDuQ" target="_blank"
                         class="text-yellow-500 hover:text-4xl duration-300">oratorio</a>
                 </h3>
+
+                <div id="slideshowContainer">
+                    <div id="collageTrack"></div>
+                </div>
             </div>
 
             <!-- Skills Section -->
@@ -1547,9 +1575,10 @@
 
         // Your collage images
         const imageSources = [
+            "pics/medic_slideshow.jpg",
+            "pics/medic_slideshow (1).png",
             "pics/medic_slideshow (1).jpeg",
             "pics/medic_slideshow (1).jpg",
-            "pics/medic_slideshow (1).png",
             "pics/medic_slideshow (2).jpeg",
             "pics/medic_slideshow (2).jpg",
             "pics/medic_slideshow (3).jpg",
@@ -1557,38 +1586,59 @@
             "pics/medic_slideshow (5).jpg",
             "pics/medic_slideshow (6).jpg",
             "pics/medic_slideshow (7).jpg",
-            "pics/medic_slideshow (8).jpg"
+            "pics/medic_slideshow (8).jpg",
+            "pics/medic_slideshow (9).jpg",
+            "pics/medic_slideshow (10).jpg",
+            "pics/medic_slideshow (11).jpg",
+            "pics/medic_slideshow (12).jpg",
+            "pics/medic_slideshow (13).jpg",
+            "pics/medic_slideshow (14).jpg",
+            "pics/medic_slideshow (15).jpg",
         ];
 
         // Create images and duplicate for seamless scroll
         function createSlideshow() {
             track.innerHTML = "";
 
-            [...imageSources, ...imageSources].forEach(src => {
+            // Create three sets for smooth infinite scroll
+            [...imageSources, ...imageSources, ...imageSources].forEach(src => {
                 const img = document.createElement("img");
-                img.src = src;
-                img.style.height = "auto";   // adjust as needed
+                img.src = src; // Using your original image paths
+                img.style.height = "auto";
+                img.style.maxHeight = "100%";
                 img.style.width = "auto";
-                img.style.objectFit = "cover";
-                img.style.marginRight = "0px"; // spacing between images
+                img.style.objectFit = "contain";
+                img.style.marginRight = "10px";
                 img.style.flexShrink = "0";
+                img.style.minWidth = "120px"; // Ensure minimum width
                 track.appendChild(img);
             });
 
-            const trackWidth = track.scrollWidth / 2;
+            // Setup animation with a slight delay to allow images to start loading
+            setTimeout(setupAnimation, 200);
+        }
 
-            // Kill old tween if exists
+        function setupAnimation() {
+            const trackWidth = track.scrollWidth;
+            const containerWidth = slideshowContainer.offsetWidth;
+            const singleSetWidth = trackWidth / 3;
+
+            console.log(`Track: ${trackWidth}px, Container: ${containerWidth}px, Set: ${singleSetWidth}px`);
+
+            if (singleSetWidth <= containerWidth) {
+                console.warn("Not enough content to scroll");
+                return;
+            }
+
+            gsap.set(track, { x: -singleSetWidth });
+
             if (scrollTween) scrollTween.kill();
 
-            // Animate continuously in the opposite direction (to the right)
             scrollTween = gsap.to(track, {
-                x: trackWidth,   // move right
-                duration: 20,    // slower = smoother
+                x: -singleSetWidth, // Change this - moves from -singleSetWidth to 0 (left to right)
+                duration: 60,
                 ease: "none",
                 repeat: -1,
-                modifiers: {
-                    x: gsap.utils.unitize(x => parseFloat(x) % trackWidth - trackWidth)
-                },
                 paused: true
             });
         }
@@ -1604,9 +1654,13 @@
 
         gleeFact.addEventListener("mouseleave", () => {
             gsap.to(slideshowContainer, { opacity: 0, duration: 0.6, ease: "power2.in" });
-            scrollTween.pause();
+            scrollTween.pause(); // Pauses, doesn't reset
         });
 
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            setupAnimation();
+        });
     </script>
     <script>
         const section = document.getElementById("skillsFact");

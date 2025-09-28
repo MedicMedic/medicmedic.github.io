@@ -1,49 +1,174 @@
-<title>The Medic Zone</title>
-<link rel="icon" href="pics/marianne gagnamagnid.png">
-<!-- Tailwind CSS -->
-<script src="https://cdn.tailwindcss.com"></script>
-<!-- GSAP -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
-<!-- Bootstrap Icons -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-<!-- Google Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Epunda+Slab:ital,wght@0,300..900;1,300..900&display=swap"
-  rel="stylesheet">
-<link
-  href="https://fonts.googleapis.com/css2?family=Epunda+Slab:ital,wght@0,300..900;1,300..900&family=Share+Tech+Mono&display=swap"
-  rel="stylesheet">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fixed Slideshow</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <style>
+        .collage-masonry {
+            column-count: 4;
+            column-gap: 12px;
+            min-width: 200%;
+            height: 100%;
+        }
 
-<div class="flex flex-col items-center space-y-6 md:relative md:flex-none">
-    <!-- About Me title -->
-    <div id="about-title">
-        <h1 class="text-center text-6xl md:text-7xl font-bold md:-rotate-45 hover:text-pink-500 duration-300 hover:rotate-0 hover:scale-110">
-            About Me
-        </h1>
-    </div>
+        .collage-masonry img {
+            display: block;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+        }
 
-    <!-- Age card -->
-    <div id="ageFact" class="p-6 rounded-xl hover:border-2 hover:border-pink-500 hover:shadow-[0_0_40px_#ec4899] hover:bg-medic-light-pink hover:bg-opacity-40 duration-300">
-        ...
-    </div>
+        #slideshowContainer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 10;
+        }
 
-    <!-- Location card -->
-    <div id="locationFact" class="p-6 rounded-xl group hover:border-2 hover:border-yellow-500 hover:shadow-[0_0_40px_#FFEB3B] hover:bg-medic-yellow hover:bg-opacity-40 transition-all duration-300">
-        ...
-    </div>
+        #collageTrack {
+            display: flex;
+            height: 100%;
+            white-space: nowrap;
+            will-change: transform;
+        }
 
-    <!-- Glee club card -->
-    <div id="gleeFact" class="p-6 rounded-xl hover:border-2 hover:border-orange-500 hover:shadow-[0_0_40px_#ec4899] hover:bg-orange-500 hover:bg-opacity-40 duration-300">
-        ...
-    </div>
+        #collageTrack img {
+            height: auto;
+            max-height: 100%;
+            width: auto;
+            object-fit: contain;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
 
-    <!-- Skills line -->
-    <div id="skillsFact" class="text-center whitespace-nowrap">
-        <h3 class="text-4xl hover:[text-shadow:0_0_10px_#ec4899] duration-300 flex flex-col md:flex-row gap-2 md:gap-1 justify-center items-center">
-            ...
+        #gleeFact {
+            position: relative;
+            background: rgba(0, 0, 0, 0.1);
+            min-height: 200px;
+        }
+
+        /* Demo styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #1a1a1a;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- Glee Club Section -->
+    <div id="gleeFact"
+        class="text-center relative mt-6 md:absolute md:bottom-72 md:left-1/3 p-6 rounded-xl hover:border-2 hover:border-orange-500 hover:shadow-[0_0_40px_#ec4899] hover:bg-orange-500 hover:bg-opacity-40 duration-300">
+        <h3 class="text-3xl hover:[text-shadow:0_0_10px_#ec4899] duration-300">
+            I was the president of New Era University Glee Club and sang in an
+            <a id="oratorioLink" href="https://www.youtube.com/watch?v=xmtsnGuWDuQ" target="_blank"
+                class="text-yellow-500 hover:text-4xl duration-300">oratorio</a>
         </h3>
+        
+        <!-- Slideshow Container -->
+        <div id="slideshowContainer">
+            <div id="collageTrack"></div>
+        </div>
     </div>
-</div>
+
+    <script>
+        // Smooth, seamless slideshow for gleeFact hover
+        const gleeFact = document.getElementById("gleeFact");
+        const slideshowContainer = document.getElementById("slideshowContainer");
+        const track = document.getElementById("collageTrack");
+        let scrollTween;
+
+        // Your collage images
+        const imageSources = [
+            "pics/medic_slideshow (1).jpeg",
+            "pics/medic_slideshow (1).jpg", 
+            "pics/medic_slideshow (1).png",
+            "pics/medic_slideshow (2).jpeg",
+            "pics/medic_slideshow (2).jpg",
+            "pics/medic_slideshow (3).jpg",
+            "pics/medic_slideshow (4).jpg",
+            "pics/medic_slideshow (5).jpg",
+            "pics/medic_slideshow (6).jpg",
+            "pics/medic_slideshow (7).jpg",
+            "pics/medic_slideshow (8).jpg",
+            "pics/medic_slideshow (9).jpg",
+            "pics/medic_slideshow (10).jpg",
+            "pics/medic_slideshow (11).jpg",
+            "pics/medic_slideshow (12).jpg",
+            "pics/medic_slideshow (13).jpg",
+            "pics/medic_slideshow (1).heic",
+        ];
+
+        // Create images and duplicate for seamless scroll
+        function createSlideshow() {
+            track.innerHTML = "";
+
+            // Create three sets for smooth infinite scroll
+            [...imageSources, ...imageSources, ...imageSources].forEach(src => {
+                const img = document.createElement("img");
+                img.src = src; // Using your original image paths
+                img.style.height = "auto";
+                img.style.maxHeight = "100%";
+                img.style.width = "auto";
+                img.style.objectFit = "contain";
+                img.style.marginRight = "10px";
+                img.style.flexShrink = "0";
+                img.style.minWidth = "120px"; // Ensure minimum width
+                track.appendChild(img);
+            });
+
+            // Setup animation with a slight delay to allow images to start loading
+            setTimeout(setupAnimation, 200);
+        }
+
+        function setupAnimation() {
+            const containerWidth = slideshowContainer.offsetWidth;
+            const singleSetWidth = track.scrollWidth / 3; // Since we have 3 sets
+            
+            // Start from completely off-screen left
+            gsap.set(track, { x: -singleSetWidth });
+
+            // Kill old tween if exists
+            if (scrollTween) scrollTween.kill();
+
+            // Left to right animation (positive x values)
+            scrollTween = gsap.to(track, {
+                x: 0, // Move to show the middle set
+                duration: 30, // Adjust speed as needed
+                ease: "none",
+                repeat: -1,
+                paused: true
+            });
+        }
+
+        // Initialize slideshow
+        createSlideshow();
+
+        // Hover controls with smooth fade
+        gleeFact.addEventListener("mouseenter", () => {
+            gsap.to(slideshowContainer, { opacity: 0.5, duration: 0.6, ease: "power2.out" });
+            scrollTween.play();
+        });
+
+        gleeFact.addEventListener("mouseleave", () => {
+            gsap.to(slideshowContainer, { opacity: 0, duration: 0.6, ease: "power2.in" });
+            scrollTween.pause(); // Pauses, doesn't reset
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            setupAnimation();
+        });
+    </script>
+</body>
+</html>
