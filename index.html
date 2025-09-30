@@ -155,6 +155,13 @@
             opacity: 1;
         }
 
+        .creative-card img {
+            image-rendering: pixelated;
+            /* fallback for some browsers */
+            image-rendering: crisp-edges;
+        }
+
+
         /* Styling for matrix rain columns */
         .code-rain {
             position: absolute;
@@ -496,7 +503,8 @@
                                     class="carousel-track flex transition-transform duration-500 ease-in-out h-56 w-full">
                                     <!-- Image item -->
                                     <div class="carousel-item flex-shrink-0 w-72 h-56 flex items-center justify-center">
-                                        <img src="pics/medic_singer_carousel.jpg" class="w-full h-full object-cover rounded-lg" />
+                                        <img src="pics/medic_singer_carousel.jpg"
+                                            class="w-full h-full object-cover rounded-lg" />
                                     </div>
                                     <div class="carousel-item flex-shrink-0 w-72 h-56 flex items-center justify-center">
                                         <img src="pics/medic_singer_carousel.webp"
@@ -538,7 +546,8 @@
                                     class="carousel-track flex transition-transform duration-500 ease-in-out h-56 w-full">
                                     <!-- Image item -->
                                     <div class="carousel-item flex-shrink-0 w-72 h-56 flex items-center justify-center">
-                                        <img src="pics/medic_songwriter_carousel.png" class="w-full h-full object-cover rounded-lg" />
+                                        <img src="pics/medic_songwriter_carousel.png"
+                                            class="w-full h-full object-cover rounded-lg" />
                                     </div>
                                     <div class="carousel-item flex-shrink-0 w-72 h-56 flex items-center justify-center">
                                         <img src="pics/medic_songwriter_carousel.jpg"
@@ -583,7 +592,8 @@
                                     class="carousel-track flex transition-transform duration-500 ease-in-out h-56 w-full">
                                     <!-- Image item -->
                                     <div class="carousel-item flex-shrink-0 w-72 h-56 flex items-center justify-center">
-                                        <img src="pics/medic_writer_carousel (1).jpg" class="w-full h-full object-cover rounded-lg" />
+                                        <img src="pics/medic_writer_carousel (1).jpg"
+                                            class="w-full h-full object-cover rounded-lg" />
                                     </div>
                                     <div class="carousel-item flex-shrink-0 w-72 h-56 flex items-center justify-center">
                                         <img src="pics/medic_writer_carousel (2).jpg"
@@ -631,8 +641,7 @@
                                     </div>
                                     <!-- Video item -->
                                     <div class="carousel-item flex-shrink-0 w-72 h-56 flex items-center justify-center">
-                                        <img src="pics/duck (2).png"
-                                            class="w-full h-full object-cover rounded-lg" />
+                                        <img src="pics/duck (2).png" class="w-full h-full object-cover rounded-lg" />
                                     </div>
                                 </div>
 
@@ -665,7 +674,8 @@
                                     class="carousel-track flex transition-transform duration-500 ease-in-out h-56 w-full">
                                     <!-- Image item -->
                                     <div class="carousel-item flex-shrink-0 w-72 h-56 flex items-center justify-center">
-                                        <img src="pics/medic_coder_carousel.png" class="w-full h-full object-cover rounded-lg" />
+                                        <img src="pics/medic_coder_carousel.png"
+                                            class="w-full h-full object-cover rounded-lg" />
                                     </div>
                                     <div class="carousel-item flex-shrink-0 w-72 h-56 flex items-center justify-center">
                                         <img src="pics/medic_coder_carousel.jpg"
@@ -804,7 +814,7 @@
 
     <!-- The Creatives -->
     <section id="creativesSection"
-        class="relative min-h-screen flex items-center justify-center overflow-hidden px-12 py-20 transition-all duration-300">
+        class="relative min-h-screen flex items-center justify-center overflow-hidden px-12 py-30 transition-all duration-300">
         <!-- Title -->
         <h2 id="creativesTitle"
             class="z-10 text-center text-8xl font-bold bg-gradient-to-r from-orange-500 via-green-500 to-indigo-500 bg-clip-text text-transparent hover:scale-110 hover:text-9xl hover:from-red-500 hover:via-yellow-500 hover:to-blue-500 transition-all duration-300">
@@ -814,23 +824,23 @@
         <div id="creativesCards" class="absolute inset-0">
             <!-- Novel -->
             <a href=""
-                class="creative-card absolute top-1/3 left-1/3 -translate-x-full -translate-y-full rotate-12 hover:-rotate-12 hover:scale-110 hover:rounded-xl hover:bg-gradient-to-br from-rose-400 to-blue-700 hover:bg-opacity-20 transition-all duration-300">
-                <img src="pics/marianne gagnamagnid.png" alt="Novel" class="w-48 h-48" />
+                class="creative-card absolute top-1/3 left-1/3 -translate-x-full -translate-y-full px-2 py-2 rotate-12 hover:-rotate-12 hover:scale-110 hover:rounded-xl hover:bg-gradient-to-br from-rose-400 to-blue-700 hover:bg-opacity-20 transition-all duration-300">
+                <img src="pics/bullet3.png" alt="Novel" class="w-48 h-48" />
             </a>
             <!-- Blog -->
             <a href=""
-                class="creative-card absolute top-1/2 right-1/4 translate-x-full -translate-y-full -rotate-6 hover:rotate-6 hover:scale-110 hover:rounded-xl hover:bg-gradient-to-br from-gray-900 to-green-800 hover:bg-opacity-20 transition-all duration-300">
-                <img src="pics/duck.png" alt="Blog" class="w-48 h-48" />
+                class="creative-card absolute top-1/2 right-1/4 translate-x-full -translate-y-full px-2 py-2 -rotate-6 hover:rotate-6 hover:scale-110 hover:rounded-xl hover:bg-gradient-to-br from-gray-900 to-green-800 hover:bg-opacity-20 transition-all duration-300">
+                <img src="pics/bullet1.png" alt="Blog" class="w-48 h-48" />
             </a>
             <!-- Artworks -->
             <a href=""
-                class="creative-card absolute bottom-1/3 left-1/4 -translate-x-full translate-y-full -rotate-12 hover:rotate-12 hover:scale-110 hover:rounded-xl hover:bg-gradient-to-br from-orange-600 to-yellow-200 hover:bg-opacity-20 transition-all duration-300">
-                <img src="pics/marianne gagnamagnid.png" alt="Artworks" class="w-48 h-48" />
+                class="creative-card absolute bottom-1/3 left-1/4 -translate-x-full translate-y-full px-2 py-2 -rotate-12 hover:rotate-12 hover:scale-110 hover:rounded-xl hover:bg-gradient-to-br from-orange-600 to-yellow-200 hover:bg-opacity-20 transition-all duration-300">
+                <img src="pics/bullet4.png" alt="Artworks" class="w-48 h-48" />
             </a>
             <!-- Songs -->
             <a href=""
-                class="creative-card absolute bottom-1/3 right-1/3 translate-x-full translate-y-full rotate-12 hover:-rotate-12 hover:scale-110 hover:rounded-xl hover:bg-gradient-to-br from-purple-500 via-yellow-100 to-pink-600 hover:bg-opacity-20 transition-all duration-300">
-                <img src="pics/duck.png" alt="Songs" class="w-48 h-48" />
+                class="creative-card absolute bottom-1/3 right-1/3 translate-x-full translate-y-full px-2 py-2 rotate-12 hover:-rotate-12 hover:scale-110 hover:rounded-xl hover:bg-gradient-to-br from-purple-500 via-yellow-100 to-pink-600 hover:bg-opacity-20 transition-all duration-300">
+                <img src="pics/bullet8.png" alt="Songs" class="w-48 h-48" />
             </a>
         </div>
     </section>
@@ -1532,7 +1542,7 @@
         let isLocked = false;
 
         // Create an audio object for the song
-        const gleeAudio = new Audio("audio/hearts full of glee midi.mid");
+        const gleeAudio = new Audio("audio/hearts full of glee vocal guides.mp3");
         gleeAudio.loop = true; // keep looping while effect is locked
 
         // Floating exit button
