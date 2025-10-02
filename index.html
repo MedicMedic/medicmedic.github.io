@@ -454,13 +454,12 @@
       <div
         class="absolute inset-0 flex flex-col items-center justify-center text-center text-gray-50 px-6"
       >
-        <div class="max-w-xs sm:max-w-md mx-auto">
-          <h1
-            class="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-center leading-tight"
-          >
+        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mt-4
+           text-center leading-tight px-4 
+           hover:text-pink-800 transition-colors duration-300">
             Welcome to The Medic Zone!
-          </h1>
-        </div>
+        </h1>
+
 
         <h3
           class="text-lg sm:text-xl md:text-2xl mt-4 hover:text-pink-200 duration-300 break-words whitespace-normal"
@@ -1497,7 +1496,7 @@
         .to(
           ".welcome-banner h1",
           {
-            scale: 1.5,
+            scale: window.innerWidth < 768 ? 1.1 : 1.5, // smaller scale on mobile
             color: "#f472b6",
             duration: 0.5,
             ease: "power2.out",
