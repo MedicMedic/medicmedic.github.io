@@ -448,13 +448,14 @@
     <!-- Hero -->
     <section
       id="home"
-      class="welcome-banner relative h-screen w-full bg-cover bg-center grayscale hover:grayscale-0 transition-all duration-700"
-      style="background-image: url('pics/duck.png')"
+      class="welcome-banner relative h-screen w-full bg-cover bg-center grayscale transition-all duration-700"
+      style="background-image: url('pics/stellar_banner non-pixelated.png')"
     >
+      
       <div
         class="absolute inset-0 flex flex-col items-center justify-center text-center text-gray-50 px-6"
       >
-        <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mt-4
+        <h1 class="z-50 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mt-4
            text-center leading-tight px-4 
            hover:text-pink-800 transition-colors duration-300">
             Welcome to The Medic Zone!
@@ -462,10 +463,14 @@
 
 
         <h3
-            class="text-base sm:text-lg md:text-2xl mt-4 text-center leading-snug px-4
-                hover:text-pink-200 transition-colors duration-300">
+            class="z-50 text-base sm:text-lg md:text-2xl mt-4 text-center leading-snug px-4
+                hover:text-pink-500 transition-colors duration-300">
             The fabulous world of coding and creativity!
         </h3>
+        <div
+        id="backdrop"
+        class="fixed inset-0 z-30 bg-black bg-opacity-0 dark:bg-opacity-50  transition-opacity duration-300 ease-in-out"
+        ></div>
 
       </div>
       <div
@@ -1508,7 +1513,7 @@
           ".welcome-banner h3",
           {
             scale: window.innerWidth < 768 ? 1.05 : 1.2,
-            color: "#fbcfe8",
+            color: "#C11C84",
             duration: 0.5,
             ease: "power2.out",
           },
@@ -1775,7 +1780,7 @@
                   x: 0,
                   y: 0,
                   opacity: 1,
-                  duration: 0.85,
+                  duration: 0.3,
                   ease: "back.out(1.7)",
                 },
                 staggerDelay
@@ -1789,7 +1794,7 @@
         // Trigger buildEntrance when aboutMeSection scrolls into view
         ScrollTrigger.create({
           trigger: about,
-          start: "top 70%",
+          start: "top bottom",
           onEnter: buildEntrance,
           once: true,
         });
