@@ -1507,7 +1507,7 @@
         .to(
           ".welcome-banner h3",
           {
-            scale: 1.2,
+            scale: window.innerWidth < 768 ? 1.05 : 1.2,
             color: "#fbcfe8",
             duration: 0.5,
             ease: "power2.out",
