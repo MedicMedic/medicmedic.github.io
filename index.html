@@ -2,6 +2,8 @@
 <html>
 
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Medic Zone</title>
     <link rel="icon" href="pics/marianne gagnamagnid.png">
     <!-- Tailwind CSS -->
@@ -15,10 +17,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Epunda+Slab:ital,wght@0,300..900;1,300..900&display=swap"
-        rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Epunda+Slab:ital,wght@0,300..900;1,300..900&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&amp;display=swap" rel="stylesheet">
 
     <script>
         tailwind.config = {
@@ -156,9 +157,9 @@
         }
 
         .creative-card img {
+            image-rendering: -webkit-optimize-contrast;
             image-rendering: pixelated;
             /* fallback for some browsers */
-            image-rendering: crisp-edges;
         }
 
 
@@ -172,6 +173,7 @@
             color: #00ff00;
             line-height: 1.2;
             pointer-events: none;
+            -webkit-user-select: none;
             user-select: none;
         }
 
@@ -364,9 +366,9 @@
             <div
                 class="relative w-72 h-72 sm:w-80 sm:h-80 md:w-[24rem] md:h-[24rem] rounded-full overflow-hidden shrink-0 group">
                 <div class="absolute inset-0 shadow-lg bg-medic-pink dark:bg-medic-dark-img rounded-full" id="carousel">
-                    <img src="pics/serious.png" class="carousel-img" />
-                    <img src="pics/hats.png" class="carousel-img" />
-                    <img src="pics/thumbsup.png" class="carousel-img" />
+                    <img alt="Marianne in a normal pose, wearing a blue blouse" src="pics/serious.png" class="carousel-img" />
+                    <img alt="Marianne with a big grin while wearing multiple hats and a pink blouse" src="pics/hats.png" class="carousel-img" />
+                    <img alt="Marianne in a black jacket with white fur giving a thumbs up" src="pics/thumbsup.png" class="carousel-img" />
                 </div>
 
                 <!-- Controls (visible on hover) -->
