@@ -451,27 +451,24 @@
       class="welcome-banner relative h-screen w-full bg-cover bg-center grayscale transition-all duration-700"
       style="background-image: url('pics/stellar_banner.png')"
     >
-      
       <div
         class="absolute inset-0 flex flex-col items-center justify-center text-center text-gray-50 px-6"
       >
-        <h1 class="z-50 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mt-4
-           text-center leading-tight px-4 
-           hover:text-pink-800 transition-colors duration-300">
-            Welcome to The Medic Zone!
+        <h1
+          class="z-50 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mt-4 text-center leading-tight px-4 hover:text-pink-800 transition-colors duration-300"
+        >
+          Welcome to The Medic Zone!
         </h1>
 
-
         <h3
-            class="z-50 text-base sm:text-lg md:text-2xl mt-4 text-center leading-snug px-4
-                hover:text-pink-500 transition-colors duration-300">
-            The fabulous world of coding and creativity!
+          class="z-50 text-base sm:text-lg md:text-2xl mt-4 text-center leading-snug px-4 hover:text-pink-500 transition-colors duration-300"
+        >
+          The fabulous world of coding and creativity!
         </h3>
         <div
-        id="backdrop"
-        class="fixed inset-0 z-30 bg-black bg-opacity-0 dark:bg-opacity-20  transition-opacity duration-300 ease-in-out"
+          id="backdrop"
+          class="fixed inset-0 z-30 bg-black bg-opacity-0 dark:bg-opacity-20 transition-opacity duration-300 ease-in-out"
         ></div>
-
       </div>
       <div
         id="scrollCue"
@@ -1274,40 +1271,62 @@
       id="creativesSection"
       class="relative min-h-screen flex items-center justify-center overflow-hidden px-12 py-30 transition-all duration-300"
     >
-      <!-- Title -->
+      <!-- Background (z-[0]) -->
+      <div
+        id="creativesBackground"
+        class="absolute inset-0 bg-cover bg-center z-[0]"
+        style="
+          background-image: url('pics/the_creatives banner.png');
+          image-rendering: pixelated;
+        "
+      ></div>
+
+      <!-- Dark mode overlay (z-[1], non-interactive) -->
+      <div
+        class="absolute inset-0 bg-black/0 dark:bg-black/40 transition-all duration-300 z-[1] pointer-events-none"
+      ></div>
+
+      <!-- Title (z-[3]) -->
       <h2
         id="creativesTitle"
-        class="z-10 text-center text-8xl font-bold bg-gradient-to-r from-orange-500 via-green-500 to-indigo-500 bg-clip-text text-transparent hover:scale-110 hover:text-9xl hover:from-red-500 hover:via-yellow-500 hover:to-blue-500 transition-all duration-300"
+        class="relative z-[3] text-center text-8xl font-bold bg-gradient-to-r from-orange-500 via-green-500 to-indigo-500 bg-clip-text text-transparent hover:scale-110 hover:text-9xl hover:from-red-500 hover:via-yellow-500 hover:to-blue-500 transition-all duration-300"
       >
         The Creatives
       </h2>
+
       <!-- Cards -->
-      <div id="creativesCards" class="absolute inset-0">
+      <div
+        id="creativesCards"
+        class="absolute inset-0 z-[2] pointer-events-none"
+      >
         <!-- Novel -->
         <a
           href=""
-          class="creative-card absolute top-1/3 left-1/3 -translate-x-full -translate-y-full px-2 py-2 rotate-12 hover:-rotate-12 hover:scale-110 hover:rounded-xl hover:bg-gradient-to-br from-rose-400 to-blue-700 hover:bg-opacity-20 transition-all duration-300"
+          class="creative-card absolute top-1/3 left-1/3 -translate-x-full -translate-y-full px-2 py-2 rotate-12 hover:-rotate-12 hover:scale-110 hover:rounded-xl hover:bg-gradient-to-br from-rose-400 to-blue-700 hover:bg-opacity-20 transition-all duration-300 pointer-events-auto"
         >
           <img src="pics/bullet3.png" alt="Novel" class="w-48 h-48" />
         </a>
+
         <!-- Blog -->
         <a
           href=""
-          class="creative-card absolute top-1/2 right-1/4 translate-x-full -translate-y-full px-2 py-2 -rotate-6 hover:rotate-6 hover:scale-110 hover:rounded-xl hover:bg-gradient-to-br from-gray-900 to-green-800 hover:bg-opacity-20 transition-all duration-300"
+          class="creative-card absolute top-1/2 right-1/4 translate-x-full -translate-y-full px-2 py-2 -rotate-6 hover:rotate-6 hover:scale-110 hover:rounded-xl hover:bg-gradient-to-br from-gray-900 to-green-800 hover:bg-opacity-20 transition-all duration-300 pointer-events-auto"
         >
           <img src="pics/bullet1.png" alt="Blog" class="w-48 h-48" />
         </a>
+
         <!-- Artworks -->
         <a
           href=""
-          class="creative-card absolute bottom-1/3 left-1/4 -translate-x-full translate-y-full px-2 py-2 -rotate-12 hover:rotate-12 hover:scale-110 hover:rounded-xl hover:bg-gradient-to-br from-orange-600 to-yellow-200 hover:bg-opacity-20 transition-all duration-300"
+          class="creative-card absolute bottom-1/3 left-1/4 -translate-x-full translate-y-full px-2 py-2 -rotate-12 hover:rotate-12 hover:scale-110 hover:rounded-xl hover:bg-gradient-to-br from-orange-600 to-yellow-200 hover:bg-opacity-20 transition-all duration-300 pointer-events-auto"
         >
           <img src="pics/bullet4.png" alt="Artworks" class="w-48 h-48" />
         </a>
+
         <!-- Songs -->
         <a
           href=""
-          class="creative-card absolute bottom-1/3 right-1/3 translate-x-full translate-y-full px-2 py-2 rotate-12 hover:-rotate-12 hover:scale-110 hover:rounded-xl hover:bg-gradient-to-br from-purple-500 via-yellow-100 to-pink-600 hover:bg-opacity-20 transition-all duration-300"
+          class="creative-card absolute bottom-1/3 right-1/3 translate-x-full translate-y-full px-2 py-2 rotate-12 hover:-rotate-12 hover:scale-110 hover:rounded-xl hover:bg-gradient-to-br from-purple-500 via-yellow-100 to-pink-600 hover:bg-opacity-20 transition-all duration-300 pointer-events-auto"
         >
           <img src="pics/bullet8.png" alt="Songs" class="w-48 h-48" />
         </a>
