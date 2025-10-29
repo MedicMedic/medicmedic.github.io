@@ -1,398 +1,655 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Medic Zone - Blog</title>
-  <link rel="icon" href="pics/marianne gagnamagnid.png" />
-  
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/11.1.1/marked.min.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Epunda+Slab:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet" />
-  
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            "medic-pink": "#FFB4D6",
-            "medic-hot-pink": "#FF3F9F",
-            "medic-light-pink": "#FF96CB",
-            "medic-yellow": "#FFF898",
-            "medic-dark-bg": "rgb(27, 0, 12.24)",
-            "medic-dark-nav": "rgb(63, 0, 31.5)",
-            "medic-dark-menu": "rgb(150, 0, 75.7142857143)",
-          },
-          fontFamily: {
-            epunda: ["Epunda Slab", "serif"],
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Medic Zone - Blog</title>
+    <link rel="icon" href="pics/marianne gagnamagnid.png" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/11.1.1/marked.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Epunda+Slab:ital,wght@0,300..900;1,300..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              "medic-pink": "#FFB4D6",
+              "medic-hot-pink": "#FF3F9F",
+              "medic-light-pink": "#FF96CB",
+              "medic-yellow": "#FFF898",
+              "medic-dark-bg": "rgb(27, 0, 12.24)",
+              "medic-dark-nav": "rgb(63, 0, 31.5)",
+              "medic-dark-menu": "rgb(150, 0, 75.7142857143)",
+            },
+            fontFamily: {
+              epunda: ["Epunda Slab", "serif"],
+            },
           },
         },
-      },
-    };
-  </script>
-  
-  <style>
-    body {
-      overflow-x: hidden;
-    }
-    
-    .blog-content {
-      line-height: 1.8;
-    }
-    
-    .blog-content h1 {
-      font-size: 2.5rem;
-      font-weight: bold;
-      margin: 1.5rem 0;
-      color: #FF3F9F;
-    }
-    
-    .blog-content h2 {
-      font-size: 2rem;
-      font-weight: bold;
-      margin: 1.25rem 0;
-      color: #FF96CB;
-    }
-    
-    .blog-content h3 {
-      font-size: 1.5rem;
-      font-weight: bold;
-      margin: 1rem 0;
-      color: #FFB4D6;
-    }
-    
-    .blog-content p {
-      margin: 1rem 0;
-    }
-    
-    .blog-content ul, .blog-content ol {
-      margin: 1rem 0;
-      padding-left: 2rem;
-    }
-    
-    .blog-content li {
-      margin: 0.5rem 0;
-    }
-    
-    .blog-content code {
-      background: rgba(255, 180, 214, 0.2);
-      padding: 0.2rem 0.4rem;
-      border-radius: 0.25rem;
-      font-family: monospace;
-    }
-    
-    .blog-content pre {
-      background: rgba(0, 0, 0, 0.8);
-      padding: 1rem;
-      border-radius: 0.5rem;
-      overflow-x: auto;
-      margin: 1rem 0;
-    }
-    
-    .blog-content pre code {
-      background: none;
-      padding: 0;
-    }
-    
-    .blog-content a {
-      color: #FF3F9F;
-      text-decoration: underline;
-      transition: color 0.2s;
-    }
-    
-    .blog-content a:hover {
-      color: #FF96CB;
-    }
-    
-    .blog-content blockquote {
-      border-left: 4px solid #FF96CB;
-      padding-left: 1rem;
-      margin: 1rem 0;
-      font-style: italic;
-      color: #666;
-    }
-    
-    .blog-content img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 0.5rem;
-      margin: 1rem 0;
-    }
-    
-    .blog-card {
-      transition: all 0.3s ease;
-      cursor: pointer;
-    }
-    
-    .blog-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 30px rgba(255, 63, 159, 0.3);
-    }
-    
-    @media (prefers-color-scheme: dark) {
+      };
+    </script>
+
+    <style>
       body {
-        background-color: rgb(27, 0, 12.24);
-        color: white;
+        overflow-x: hidden;
       }
-      
+
+      .blog-content {
+        line-height: 1.8;
+      }
+
+      .blog-content h1 {
+        font-size: 2.5rem;
+        font-weight: bold;
+        margin: 1.5rem 0;
+        color: #ff3f9f;
+      }
+
+      .blog-content h2 {
+        font-size: 2rem;
+        font-weight: bold;
+        margin: 1.25rem 0;
+        color: #ff96cb;
+      }
+
+      .blog-content h3 {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin: 1rem 0;
+        color: #ffb4d6;
+      }
+
+      .blog-content p {
+        margin: 1rem 0;
+      }
+
+      .blog-content ul,
+      .blog-content ol {
+        margin: 1rem 0;
+        padding-left: 2rem;
+      }
+
+      .blog-content li {
+        margin: 0.5rem 0;
+      }
+
+      .blog-content code {
+        background: rgba(255, 180, 214, 0.2);
+        padding: 0.2rem 0.4rem;
+        border-radius: 0.25rem;
+        font-family: monospace;
+      }
+
+      .blog-content pre {
+        background: rgba(0, 0, 0, 0.8);
+        padding: 1rem;
+        border-radius: 0.5rem;
+        overflow-x: auto;
+        margin: 1rem 0;
+      }
+
+      .blog-content pre code {
+        background: none;
+        padding: 0;
+      }
+
+      .blog-content a {
+        color: #ff3f9f;
+        text-decoration: underline;
+        transition: color 0.2s;
+      }
+
+      .blog-content a:hover {
+        color: #ff96cb;
+      }
+
       .blog-content blockquote {
-        color: #ccc;
+        border-left: 4px solid #ff96cb;
+        padding-left: 1rem;
+        margin: 1rem 0;
+        font-style: italic;
+        color: #666;
       }
-    }
-  </style>
-</head>
 
-<body class="bg-medic-pink font-epunda m-0 p-0 dark:bg-medic-dark-bg dark:text-white">
-  
-  <nav class="fixed top-0 left-0 right-0 z-50 bg-medic-hot-pink dark:bg-medic-dark-nav h-20 flex items-center justify-between px-6 shadow-md transition-transform duration-300 ease-in-out">
-    <div class="flex items-center space-x-3">
-      <img class="h-12 align-middle" src="pics/marianne gagnamagnid.png" alt="Logo" />
-      <span class="text-xl font-semibold text-white">The Medic Zone</span>
-    </div>
-    <button id="menuToggle" class="sm:hidden focus:outline-none text-white">
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-      </svg>
-    </button>
-    <ul class="hidden sm:flex space-x-4">
-      <li><a href="./" class="block w-full px-4 py-3 text-white font-medium transition-all duration-300 ease-in-out hover:bg-medic-light-pink dark:hover:bg-medic-hot-pink rounded">Home</a></li>
-      <li class="relative group">
-        <a href="./projects" class="flex items-center space-x-1 block w-full px-4 py-3 text-white font-medium transition-all duration-300 ease-in-out hover:bg-medic-light-pink dark:hover:bg-medic-hot-pink rounded">
-          <span>Coding Projects</span>
-          <svg class="w-4 h-4 transform transition-transform duration-300 origin-center group-hover:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6" />
-          </svg>
-        </a>
-        <ul class="absolute hidden group-hover:block bg-medic-light-pink dark:bg-medic-dark-menu shadow-md rounded-md w-48 z-20">
-          <li><a href="/TaskRNG" class="block px-4 py-2 text-white hover:bg-medic-hot-pink transition-colors duration-300">Task RNG</a></li>
-          <li><a href="/HTMLShooterGame" class="block px-4 py-2 text-white hover:bg-medic-hot-pink transition-colors duration-300">Stellar Shooter</a></li>
-        </ul>
-      </li>
-      <li class="relative group">
-        <a href="./creatives" class="flex items-center space-x-1 block w-full px-4 py-3 text-white font-medium transition-all duration-300 ease-in-out hover:bg-medic-light-pink dark:hover:bg-medic-hot-pink rounded">
-          <span>The Creatives</span>
-          <svg class="w-4 h-4 transform transition-transform duration-300 origin-center group-hover:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6" />
-          </svg>
-        </a>
-        <ul class="absolute hidden group-hover:block bg-medic-light-pink dark:bg-medic-dark-menu shadow-md rounded-md w-48 z-20">
-          <li><a href="/music" class="block px-4 py-2 text-white hover:bg-medic-hot-pink transition-colors duration-300">Music</a></li>
-          <li><a href="/artwork" class="block px-4 py-2 text-white hover:bg-medic-hot-pink transition-colors duration-300">Artworks</a></li>
-        </ul>
-      </li>
-      <li><a href="./about_me" class="block w-full px-4 py-3 text-white font-medium transition-all duration-300 ease-in-out hover:bg-medic-light-pink dark:hover:bg-medic-hot-pink rounded">About Me</a></li>
-    </ul>
-  </nav>
-
-  <div id="backdrop" class="fixed inset-0 z-30 bg-black bg-opacity-50 hidden transition-opacity duration-300 ease-in-out"></div>
-
-  <div id="sideDrawer" class="bg-medic-light-pink dark:bg-medic-dark-menu dark:text-white fixed top-20 right-0 h-[calc(100%-80px)] w-64 transform translate-x-full transition-transform duration-300 ease-in-out z-40">
-    <div class="p-6 space-y-4">
-      <a href="./" class="block w-full px-4 py-3 text-left font-medium transition-all duration-300 ease-in-out hover:bg-medic-hot-pink hover:text-white rounded">Home</a>
-      <div class="accordion-item">
-        <button class="accordion-toggle flex justify-between items-center w-full px-4 py-3 text-left font-medium transition-all duration-300 ease-in-out hover:bg-medic-hot-pink hover:text-white rounded" data-target="#projectsSubmenu">
-          <span>Coding Projects</span>
-          <svg class="caret w-4 h-4 transform transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6" />
-          </svg>
-        </button>
-        <div id="projectsSubmenu" class="accordion-content hidden pl-4 mt-2 space-y-2">
-          <a href="./TaskRNG" class="block w-full px-4 py-3 text-left font-medium transition-all duration-300 ease-in-out hover:bg-medic-hot-pink hover:text-white rounded">Task RNG</a>
-          <a href="./HTMLShooterGame" class="block w-full px-4 py-3 text-left font-medium transition-all duration-300 ease-in-out hover:bg-medic-hot-pink hover:text-white rounded">Stellar Shooter</a>
-        </div>
-      </div>
-      <div class="accordion-item">
-        <button class="accordion-toggle flex justify-between items-center w-full px-4 py-3 text-left font-medium transition-all duration-300 ease-in-out hover:bg-medic-hot-pink hover:text-white rounded" data-target="#creativesSubmenu">
-          <span>The Creatives</span>
-          <svg class="caret w-4 h-4 transform transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6" />
-          </svg>
-        </button>
-        <div id="creativesSubmenu" class="accordion-content hidden pl-4 mt-2 space-y-2">
-          <a href="./creatives" class="block w-full px-4 py-3 text-left font-medium transition-all duration-300 ease-in-out hover:bg-medic-hot-pink hover:text-white rounded">SMS YouTube Channel</a>
-          <a href="#" class="block w-full px-4 py-3 text-left font-medium transition-all duration-300 ease-in-out hover:bg-medic-hot-pink hover:text-white rounded">Instagram</a>
-        </div>
-      </div>
-      <a href="./about_me" class="block w-full px-4 py-3 text-left font-medium transition-all duration-300 ease-in-out hover:bg-medic-hot-pink hover:text-white rounded">About Me</a>
-    </div>
-  </div>
-
-  <main class="pt-24 px-6 pb-12 min-h-screen">
-    
-    <div id="blogList" class="w-full max-w-[80%] mx-auto">
-      <h1 class="text-5xl md:text-6xl font-bold text-center mb-12 text-medic-hot-pink dark:text-medic-light-pink">
-        Blog Posts
-      </h1>
-      
-      <div id="postsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- Blog cards will be inserted here -->
-      </div>
-      
-      <div id="loadingMessage" class="text-center py-12">
-        <div class="inline-block animate-spin rounded-full h-12 w-12 border-4 border-medic-hot-pink border-t-transparent"></div>
-        <p class="mt-4 text-xl">Loading blog posts...</p>
-      </div>
-      
-      <div id="noPosts" class="hidden text-center py-12">
-        <p class="text-2xl text-gray-600 dark:text-gray-400">No blog posts yet. Check the console for errors or add your .md files to the list!</p>
-      </div>
-    </div>
-    
-    <div id="blogPost" class="hidden w-full max-w-[80%] mx-auto">
-      <button id="backButton" class="mb-6 px-6 py-3 bg-medic-hot-pink hover:bg-medic-light-pink text-white rounded-lg transition-colors duration-300 flex items-center gap-2">
-        <i class="bi bi-arrow-left"></i> Back to Posts
-      </button>
-      
-      <article class="bg-white dark:bg-medic-dark-nav rounded-2xl shadow-2xl p-8 md:p-12">
-        <div id="postContent" class="blog-content">
-          <!-- Markdown content will be rendered here -->
-        </div>
-      </article>
-    </div>
-    
-  </main>
-
-  <footer class="bg-medic-hot-pink dark:bg-medic-dark-nav py-8">
-    <div class="container mx-auto px-6 text-center text-white">
-      <p>© <span id="copyrightYear"></span> The Medic Zone</p>
-      <div class="flex justify-center space-x-4 mt-4">
-        <a href="https://linkedin.com/in/marianne-edic" class="text-2xl hover:text-medic-pink transition-colors duration-300">
-          <i class="bi bi-linkedin"></i>
-        </a>
-        <a href="https://youtube.com/@StellarSong" class="text-2xl hover:text-medic-pink transition-colors duration-300">
-          <i class="bi bi-youtube"></i>
-        </a>
-        <a href="https://github.com/MedicMedic" class="text-2xl hover:text-medic-pink transition-colors duration-300">
-          <i class="bi bi-github"></i>
-        </a>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    // Menu toggle
-    const toggle = document.getElementById('menuToggle');
-    const drawer = document.getElementById('sideDrawer');
-    const backdrop = document.getElementById('backdrop');
-
-    toggle.addEventListener('click', () => {
-      drawer.classList.toggle('translate-x-full');
-      drawer.classList.toggle('translate-x-0');
-      backdrop.classList.toggle('hidden');
-    });
-
-    backdrop.addEventListener('click', () => {
-      drawer.classList.add('translate-x-full');
-      drawer.classList.remove('translate-x-0');
-      backdrop.classList.add('hidden');
-    });
-
-    // Accordion
-    document.querySelectorAll('.accordion-toggle').forEach(button => {
-      button.addEventListener('click', () => {
-        const target = document.querySelector(button.dataset.target);
-        const caret = button.querySelector('.caret');
-        target.classList.toggle('hidden');
-        caret.classList.toggle('rotate-180');
-      });
-    });
-    
-    // Configure marked.js
-    marked.setOptions({
-      breaks: true,
-      gfm: true
-    });
-    
-    // Update copyright year
-    document.getElementById('copyrightYear').textContent = new Date().getFullYear();
-    
-    // LIST YOUR .MD FILES HERE - Just add the filename!
-    const blogFiles = [
-      'October.md',
-      // Add more files here like:
-      // 'November.md',
-      // 'my-first-post.md',
-    ];
-    
-    const postsContainer = document.getElementById('postsContainer');
-    const loadingMessage = document.getElementById('loadingMessage');
-    const noPosts = document.getElementById('noPosts');
-    const blogList = document.getElementById('blogList');
-    const blogPost = document.getElementById('blogPost');
-    const postContent = document.getElementById('postContent');
-    const backButton = document.getElementById('backButton');
-    
-    // Function to extract metadata from markdown
-    function extractMetadata(markdown) {
-      const lines = markdown.split('\n');
-      let title = 'Untitled Post';
-      let date = new Date().toISOString().split('T')[0];
-      let excerpt = '';
-      
-      // Try to find first heading as title
-      const titleMatch = markdown.match(/^#\s+(.+)$/m);
-      if (titleMatch) {
-        title = titleMatch[1];
+      .blog-content img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 0.5rem;
+        margin: 1rem 0;
       }
-      
-      // Try to find date in format YYYY-MM-DD
-      const dateMatch = markdown.match(/\b(\d{4}-\d{2}-\d{2})\b/);
-      if (dateMatch) {
-        date = dateMatch[1];
+
+      .blog-card {
+        transition: all 0.3s ease;
+        cursor: pointer;
       }
-      
-      // Get first paragraph as excerpt
-      const paragraphs = markdown.split('\n\n').filter(p => p.trim() && !p.startsWith('#'));
-      if (paragraphs.length > 0) {
-        excerpt = paragraphs[0].substring(0, 150) + (paragraphs[0].length > 150 ? '...' : '');
+
+      .blog-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(255, 63, 159, 0.3);
       }
-      
-      return { title, date, excerpt };
-    }
-    
-    // Function to load all blog posts
-    async function loadAllPosts() {
-      const posts = [];
-      
-      for (const filename of blogFiles) {
-        try {
-          const response = await fetch(`blog-posts/${filename}`);
-          if (!response.ok) {
-            console.warn(`Failed to load ${filename}`);
-            continue;
-          }
-          
-          const markdown = await response.text();
-          const metadata = extractMetadata(markdown);
-          
-          posts.push({
-            file: `blog-posts/${filename}`,
-            filename: filename,
-            title: metadata.title,
-            date: metadata.date,
-            excerpt: metadata.excerpt
-          });
-        } catch (error) {
-          console.error(`Error loading ${filename}:`, error);
+
+      @media (prefers-color-scheme: dark) {
+        body {
+          background-color: rgb(27, 0, 12.24);
+          color: white;
+        }
+
+        .blog-content blockquote {
+          color: #ccc;
         }
       }
-      
-      // Sort by date (newest first)
-      posts.sort((a, b) => new Date(b.date) - new Date(a.date));
-      
-      return posts;
-    }
-    
-    // Function to create blog card
-    function createBlogCard(post, index) {
-      const card = document.createElement('div');
-      card.className = 'blog-card bg-white dark:bg-medic-dark-nav rounded-xl p-6 shadow-lg';
-      card.innerHTML = `
+    </style>
+  </head>
+
+  <body
+    class="bg-medic-pink font-epunda m-0 p-0 dark:bg-medic-dark-bg dark:text-white"
+  >
+    <nav
+      class="fixed top-0 left-0 right-0 z-50 bg-medic-hot-pink dark:bg-medic-dark-nav h-20 flex items-center justify-between px-6 shadow-md transition-transform duration-300 ease-in-out"
+    >
+      <div class="flex items-center space-x-3">
+        <img
+          class="h-12 align-middle"
+          src="pics/marianne gagnamagnid.png"
+          alt="Logo"
+        />
+        <span class="text-xl font-semibold text-white">The Medic Zone</span>
+      </div>
+      <button id="menuToggle" class="sm:hidden focus:outline-none text-white">
+        <svg
+          class="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M4 6h16M4 12h16M4 18h16"
+          />
+        </svg>
+      </button>
+      <ul class="hidden sm:flex space-x-4">
+        <li>
+          <a
+            href="./"
+            class="block w-full px-4 py-3 text-white font-medium transition-all duration-300 ease-in-out hover:bg-medic-light-pink dark:hover:bg-medic-hot-pink rounded"
+            >Home</a
+          >
+        </li>
+        <li class="relative group">
+          <a
+            href="./projects"
+            class="flex items-center space-x-1 block w-full px-4 py-3 text-white font-medium transition-all duration-300 ease-in-out hover:bg-medic-light-pink dark:hover:bg-medic-hot-pink rounded"
+          >
+            <span>Coding Projects</span>
+            <svg
+              class="w-4 h-4 transform transition-transform duration-300 origin-center group-hover:rotate-180"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M6 9l6 6 6-6"
+              />
+            </svg>
+          </a>
+          <ul
+            class="absolute hidden group-hover:block bg-medic-light-pink dark:bg-medic-dark-menu shadow-md rounded-md w-48 z-20"
+          >
+            <li>
+              <a
+                href="/TaskRNG"
+                class="block px-4 py-2 text-white hover:bg-medic-hot-pink transition-colors duration-300"
+                >Task RNG</a
+              >
+            </li>
+            <li>
+              <a
+                href="/HTMLShooterGame"
+                class="block px-4 py-2 text-white hover:bg-medic-hot-pink transition-colors duration-300"
+                >Stellar Shooter</a
+              >
+            </li>
+          </ul>
+        </li>
+        <li class="relative group">
+          <a
+            href="./creatives"
+            class="flex items-center space-x-1 block w-full px-4 py-3 text-white font-medium transition-all duration-300 ease-in-out hover:bg-medic-light-pink dark:hover:bg-medic-hot-pink rounded"
+          >
+            <span>The Creatives</span>
+            <svg
+              class="w-4 h-4 transform transition-transform duration-300 origin-center group-hover:rotate-180"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M6 9l6 6 6-6"
+              />
+            </svg>
+          </a>
+          <ul
+            class="absolute hidden group-hover:block bg-medic-light-pink dark:bg-medic-dark-menu shadow-md rounded-md w-48 z-20"
+          >
+            <li>
+              <a
+                href="/music"
+                class="block px-4 py-2 text-white hover:bg-medic-hot-pink transition-colors duration-300"
+                >Music</a
+              >
+            </li>
+            <li>
+              <a
+                href="/artwork"
+                class="block px-4 py-2 text-white hover:bg-medic-hot-pink transition-colors duration-300"
+                >Artworks</a
+              >
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a
+            href="./about_me"
+            class="block w-full px-4 py-3 text-white font-medium transition-all duration-300 ease-in-out hover:bg-medic-light-pink dark:hover:bg-medic-hot-pink rounded"
+            >About Me</a
+          >
+        </li>
+      </ul>
+    </nav>
+
+    <div
+      id="backdrop"
+      class="fixed inset-0 z-30 bg-black bg-opacity-50 hidden transition-opacity duration-300 ease-in-out"
+    ></div>
+
+    <div
+      id="sideDrawer"
+      class="bg-medic-light-pink dark:bg-medic-dark-menu dark:text-white fixed top-20 right-0 h-[calc(100%-80px)] w-64 transform translate-x-full transition-transform duration-300 ease-in-out z-40"
+    >
+      <div class="p-6 space-y-4">
+        <a
+          href="./"
+          class="block w-full px-4 py-3 text-left font-medium transition-all duration-300 ease-in-out hover:bg-medic-hot-pink hover:text-white rounded"
+          >Home</a
+        >
+        <div class="accordion-item">
+          <button
+            class="accordion-toggle flex justify-between items-center w-full px-4 py-3 text-left font-medium transition-all duration-300 ease-in-out hover:bg-medic-hot-pink hover:text-white rounded"
+            data-target="#projectsSubmenu"
+          >
+            <span>Coding Projects</span>
+            <svg
+              class="caret w-4 h-4 transform transition-transform duration-300"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M6 9l6 6 6-6"
+              />
+            </svg>
+          </button>
+          <div
+            id="projectsSubmenu"
+            class="accordion-content hidden pl-4 mt-2 space-y-2"
+          >
+            <a
+              href="./TaskRNG"
+              class="block w-full px-4 py-3 text-left font-medium transition-all duration-300 ease-in-out hover:bg-medic-hot-pink hover:text-white rounded"
+              >Task RNG</a
+            >
+            <a
+              href="./HTMLShooterGame"
+              class="block w-full px-4 py-3 text-left font-medium transition-all duration-300 ease-in-out hover:bg-medic-hot-pink hover:text-white rounded"
+              >Stellar Shooter</a
+            >
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button
+            class="accordion-toggle flex justify-between items-center w-full px-4 py-3 text-left font-medium transition-all duration-300 ease-in-out hover:bg-medic-hot-pink hover:text-white rounded"
+            data-target="#creativesSubmenu"
+          >
+            <span>The Creatives</span>
+            <svg
+              class="caret w-4 h-4 transform transition-transform duration-300"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M6 9l6 6 6-6"
+              />
+            </svg>
+          </button>
+          <div
+            id="creativesSubmenu"
+            class="accordion-content hidden pl-4 mt-2 space-y-2"
+          >
+            <a
+              href="./creatives"
+              class="block w-full px-4 py-3 text-left font-medium transition-all duration-300 ease-in-out hover:bg-medic-hot-pink hover:text-white rounded"
+              >SMS YouTube Channel</a
+            >
+            <a
+              href="#"
+              class="block w-full px-4 py-3 text-left font-medium transition-all duration-300 ease-in-out hover:bg-medic-hot-pink hover:text-white rounded"
+              >Instagram</a
+            >
+          </div>
+        </div>
+        <a
+          href="./about_me"
+          class="block w-full px-4 py-3 text-left font-medium transition-all duration-300 ease-in-out hover:bg-medic-hot-pink hover:text-white rounded"
+          >About Me</a
+        >
+      </div>
+    </div>
+
+    <main class="pt-24 px-6 pb-12 min-h-screen">
+      <div id="blogList" class="w-full max-w-[80%] mx-auto">
+        <h1
+          class="text-5xl md:text-6xl font-bold text-center mb-12 text-medic-hot-pink dark:text-medic-light-pink"
+        >
+          Blog Posts
+        </h1>
+
+        <div id="postsContainer" class="grid grid-cols-1 gap-6">
+          <!-- Blog cards will be inserted here -->
+        </div>
+
+        <div id="loadingMessage" class="text-center py-12">
+          <div
+            class="inline-block animate-spin rounded-full h-12 w-12 border-4 border-medic-hot-pink border-t-transparent"
+          ></div>
+          <p class="mt-4 text-xl">Loading blog posts...</p>
+        </div>
+
+        <div id="noPosts" class="hidden text-center py-12">
+          <p class="text-2xl text-gray-600 dark:text-gray-400">
+            No blog posts yet. Check the console for errors or add your .md
+            files to the list!
+          </p>
+        </div>
+      </div>
+
+      <div id="blogPost" class="hidden w-full max-w-[80%] mx-auto">
+        <button
+          id="backButton"
+          class="mb-6 px-6 py-3 bg-medic-hot-pink hover:bg-medic-light-pink text-white rounded-lg transition-colors duration-300 flex items-center gap-2"
+        >
+          <i class="bi bi-arrow-left"></i> Back to Posts
+        </button>
+
+        <article
+          class="bg-white dark:bg-medic-dark-nav rounded-2xl shadow-2xl p-8 md:p-12"
+        >
+          <div id="postContent" class="blog-content">
+            <!-- Markdown content will be rendered here -->
+          </div>
+        </article>
+      </div>
+    </main>
+
+    <footer class="bg-medic-hot-pink dark:bg-medic-dark-nav py-12">
+      <div class="container mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <!-- Navigation Links -->
+          <div>
+            <h3 class="text-lg font-bold mb-4">The Medic Zone</h3>
+            <ul class="space-y-2">
+              <li>
+                <a
+                  href="./"
+                  class="hover:text-medic-pink transition-colors duration-300"
+                  >Home</a
+                >
+              </li>
+              <li>
+                <a
+                  href="about_me/"
+                  class="hover:text-medic-pink transition-colors duration-300"
+                  >About Me</a
+                >
+              </li>
+              <li>
+                <a
+                  href="projects/"
+                  class="hover:text-medic-pink transition-colors duration-300"
+                  >Projects</a
+                >
+              </li>
+              <li>
+                <a
+                  href="creatives/"
+                  class="hover:text-medic-pink transition-colors duration-300"
+                  >Creatives</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Important Links -->
+          <div>
+            <h3 class="text-lg font-bold mb-4">Important Stuff</h3>
+            <ul class="space-y-2">
+              <li>
+                <a
+                  href="/HTMLShooterGame"
+                  class="hover:text-medic-pink transition-colors duration-300"
+                  >Stellar Shooter</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="hover:text-medic-pink transition-colors duration-300"
+                  >My Thesis</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="hover:text-medic-pink transition-colors duration-300"
+                  >Final School Portfolio</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="hover:text-medic-pink transition-colors duration-300"
+                  >Resume</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Social Media -->
+          <div>
+            <h3 class="text-lg font-bold mb-4">Connect</h3>
+            <div class="flex space-x-4">
+              <a
+                href="https://linkedin.com/in/marianne-edic"
+                class="text-2xl hover:text-medic-pink transition-colors duration-300"
+                ><i class="bi bi-linkedin"></i
+              ></a>
+              <a
+                href="https://youtube.com/@StellarSong"
+                class="text-2xl hover:text-medic-pink transition-colors duration-300"
+                ><i class="bi bi-youtube"></i
+              ></a>
+              <a
+                href="https://github.com/MedicMedic"
+                class="text-2xl hover:text-medic-pink transition-colors duration-300"
+                ><i class="bi bi-github"></i
+              ></a>
+            </div>
+          </div>
+
+          <!-- Credit -->
+          <div>
+            <h3 class="text-lg font-bold mb-4">Credits</h3>
+            <p class="mt-2">
+              © <span id="copyrightYear"></span> The Medic Zone
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Menu toggle
+      const toggle = document.getElementById("menuToggle");
+      const drawer = document.getElementById("sideDrawer");
+      const backdrop = document.getElementById("backdrop");
+
+      toggle.addEventListener("click", () => {
+        drawer.classList.toggle("translate-x-full");
+        drawer.classList.toggle("translate-x-0");
+        backdrop.classList.toggle("hidden");
+      });
+
+      backdrop.addEventListener("click", () => {
+        drawer.classList.add("translate-x-full");
+        drawer.classList.remove("translate-x-0");
+        backdrop.classList.add("hidden");
+      });
+
+      // Accordion
+      document.querySelectorAll(".accordion-toggle").forEach((button) => {
+        button.addEventListener("click", () => {
+          const target = document.querySelector(button.dataset.target);
+          const caret = button.querySelector(".caret");
+          target.classList.toggle("hidden");
+          caret.classList.toggle("rotate-180");
+        });
+      });
+
+      // Configure marked.js
+      marked.setOptions({
+        breaks: true,
+        gfm: true,
+      });
+
+      // Update copyright year
+      document.getElementById("copyrightYear").textContent =
+        new Date().getFullYear();
+
+      // LIST YOUR .MD FILES HERE - Just add the filename!
+      const blogFiles = [
+        "October.md",
+        // Add more files here like:
+        // 'November.md',
+        // 'my-first-post.md',
+      ];
+
+      const postsContainer = document.getElementById("postsContainer");
+      const loadingMessage = document.getElementById("loadingMessage");
+      const noPosts = document.getElementById("noPosts");
+      const blogList = document.getElementById("blogList");
+      const blogPost = document.getElementById("blogPost");
+      const postContent = document.getElementById("postContent");
+      const backButton = document.getElementById("backButton");
+
+      // Function to extract metadata from markdown
+      function extractMetadata(markdown) {
+        const lines = markdown.split("\n");
+        let title = "Untitled Post";
+        let date = new Date().toISOString().split("T")[0];
+        let excerpt = "";
+
+        // Try to find first heading as title
+        const titleMatch = markdown.match(/^#\s+(.+)$/m);
+        if (titleMatch) {
+          title = titleMatch[1];
+        }
+
+        // Try to find date in format YYYY-MM-DD
+        const dateMatch = markdown.match(/\b(\d{4}-\d{2}-\d{2})\b/);
+        if (dateMatch) {
+          date = dateMatch[1];
+        }
+
+        // Get first paragraph as excerpt
+        const paragraphs = markdown
+          .split("\n\n")
+          .filter((p) => p.trim() && !p.startsWith("#"));
+        if (paragraphs.length > 0) {
+          excerpt =
+            paragraphs[0].substring(0, 150) +
+            (paragraphs[0].length > 150 ? "..." : "");
+        }
+
+        return { title, date, excerpt };
+      }
+
+      // Function to load all blog posts
+      async function loadAllPosts() {
+        const posts = [];
+
+        for (const filename of blogFiles) {
+          try {
+            const response = await fetch(`blog-posts/${filename}`);
+            if (!response.ok) {
+              console.warn(`Failed to load ${filename}`);
+              continue;
+            }
+
+            const markdown = await response.text();
+            const metadata = extractMetadata(markdown);
+
+            posts.push({
+              file: `blog-posts/${filename}`,
+              filename: filename,
+              title: metadata.title,
+              date: metadata.date,
+              excerpt: metadata.excerpt,
+            });
+          } catch (error) {
+            console.error(`Error loading ${filename}:`, error);
+          }
+        }
+
+        // Sort by date (newest first)
+        posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+        return posts;
+      }
+
+      // Function to create blog card
+      function createBlogCard(post, index) {
+        const card = document.createElement("div");
+        card.className =
+          "blog-card bg-white dark:bg-medic-dark-nav rounded-xl p-6 shadow-lg";
+        card.innerHTML = `
         <div class="text-sm text-medic-hot-pink dark:text-medic-light-pink mb-2">${post.date}</div>
         <h2 class="text-2xl font-bold mb-3 text-gray-800 dark:text-white">${post.title}</h2>
         <p class="text-gray-600 dark:text-gray-300 mb-4">${post.excerpt}</p>
@@ -400,86 +657,88 @@
           Read More <i class="bi bi-arrow-right"></i>
         </div>
       `;
-      
-      card.addEventListener('click', () => loadBlogPost(post));
-      
-      // Animate card entrance
-      gsap.from(card, {
-        opacity: 0,
-        y: 50,
-        duration: 0.5,
-        delay: index * 0.1,
-        ease: 'back.out(1.7)'
-      });
-      
-      return card;
-    }
-    
-    // Function to load blog post
-    async function loadBlogPost(post) {
-      try {
-        const response = await fetch(post.file);
-        if (!response.ok) throw new Error('Post not found');
-        
-        const markdown = await response.text();
-        const html = marked.parse(markdown);
-        
-        // Show blog post without fade animation on list
-        blogList.classList.add('hidden');
-        blogPost.classList.remove('hidden');
-        postContent.innerHTML = html;
-        
-        gsap.from(blogPost, {
+
+        card.addEventListener("click", () => loadBlogPost(post));
+
+        // Animate card entrance
+        gsap.from(card, {
           opacity: 0,
-          y: 30,
+          y: 50,
           duration: 0.5,
-          ease: 'power2.out'
+          delay: index * 0.1,
+          ease: "back.out(1.7)",
         });
-        
+
+        return card;
+      }
+
+      // Function to load blog post
+      async function loadBlogPost(post) {
+        try {
+          const response = await fetch(post.file);
+          if (!response.ok) throw new Error("Post not found");
+
+          const markdown = await response.text();
+          const html = marked.parse(markdown);
+
+          // Show blog post without fade animation on list
+          blogList.classList.add("hidden");
+          blogPost.classList.remove("hidden");
+          postContent.innerHTML = html;
+
+          gsap.from(blogPost, {
+            opacity: 0,
+            y: 30,
+            duration: 0.5,
+            ease: "power2.out",
+          });
+
+          window.scrollTo(0, 0);
+        } catch (error) {
+          console.error("Error loading blog post:", error);
+          alert(
+            "Failed to load blog post. Make sure the .md file exists in the blog-posts folder."
+          );
+        }
+      }
+
+      // Function to show blog list
+      function showBlogList() {
+        blogPost.classList.add("hidden");
+        blogList.classList.remove("hidden");
+
+        gsap.from(blogList, {
+          opacity: 0,
+          duration: 0.5,
+          ease: "power2.out",
+        });
+
         window.scrollTo(0, 0);
-      } catch (error) {
-        console.error('Error loading blog post:', error);
-        alert('Failed to load blog post. Make sure the .md file exists in the blog-posts folder.');
       }
-    }
-    
-    // Function to show blog list
-    function showBlogList() {
-      blogPost.classList.add('hidden');
-      blogList.classList.remove('hidden');
-      
-      gsap.from(blogList, {
-        opacity: 0,
-        duration: 0.5,
-        ease: 'power2.out'
-      });
-      
-      window.scrollTo(0, 0);
-    }
-    
-    // Initialize blog
-    async function initBlog() {
-      const posts = await loadAllPosts();
-      
-      loadingMessage.classList.add('hidden');
-      
-      if (posts.length === 0) {
-        noPosts.classList.remove('hidden');
-        return;
+
+      // Initialize blog
+      async function initBlog() {
+        const posts = await loadAllPosts();
+
+        loadingMessage.classList.add("hidden");
+
+        if (posts.length === 0) {
+          noPosts.classList.remove("hidden");
+          return;
+        }
+
+        posts.forEach((post, index) => {
+          const card = createBlogCard(post, index);
+          postsContainer.appendChild(card);
+        });
       }
-      
-      posts.forEach((post, index) => {
-        const card = createBlogCard(post, index);
-        postsContainer.appendChild(card);
-      });
-    }
-    
-    // Event listeners
-    backButton.addEventListener('click', showBlogList);
-    
-    // Initialize
-    gsap.registerPlugin(ScrollTrigger);
-    initBlog();
-  </script>
-</body>
+
+      // Event listeners
+      backButton.addEventListener("click", showBlogList);
+
+      // Initialize
+      gsap.registerPlugin(ScrollTrigger);
+      initBlog();
+    </script>
+  </body>
 </html>
