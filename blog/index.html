@@ -243,7 +243,7 @@
       </div>
     </div>
     
-    <div id="blogPost" class="hidden max-w-4xl mx-auto">
+    <div id="blogPost" class="hidden w-full max-w-[80%] mx-auto">
       <button id="backButton" class="mb-6 px-6 py-3 bg-medic-hot-pink hover:bg-medic-light-pink text-white rounded-lg transition-colors duration-300 flex items-center gap-2">
         <i class="bi bi-arrow-left"></i> Back to Posts
       </button>
@@ -424,25 +424,19 @@
         const markdown = await response.text();
         const html = marked.parse(markdown);
         
-        // Animate transition
-        gsap.to(blogList, {
+        // Show blog post without fade animation on list
+        blogList.classList.add('hidden');
+        blogPost.classList.remove('hidden');
+        postContent.innerHTML = html;
+        
+        gsap.from(blogPost, {
           opacity: 0,
-          duration: 0.3,
-          onComplete: () => {
-            blogList.classList.add('hidden');
-            blogPost.classList.remove('hidden');
-            postContent.innerHTML = html;
-            
-            gsap.from(blogPost, {
-              opacity: 0,
-              y: 30,
-              duration: 0.5,
-              ease: 'power2.out'
-            });
-            
-            window.scrollTo(0, 0);
-          }
+          y: 30,
+          duration: 0.5,
+          ease: 'power2.out'
         });
+        
+        window.scrollTo(0, 0);
       } catch (error) {
         console.error('Error loading blog post:', error);
         alert('Failed to load blog post. Make sure the .md file exists in the blog-posts folder.');
@@ -451,22 +445,16 @@
     
     // Function to show blog list
     function showBlogList() {
-      gsap.to(blogPost, {
+      blogPost.classList.add('hidden');
+      blogList.classList.remove('hidden');
+      
+      gsap.from(blogList, {
         opacity: 0,
-        duration: 0.3,
-        onComplete: () => {
-          blogPost.classList.add('hidden');
-          blogList.classList.remove('hidden');
-          
-          gsap.from(blogList, {
-            opacity: 0,
-            duration: 0.5,
-            ease: 'power2.out'
-          });
-          
-          window.scrollTo(0, 0);
-        }
+        duration: 0.5,
+        ease: 'power2.out'
       });
+      
+      window.scrollTo(0, 0);
     }
     
     // Initialize blog
