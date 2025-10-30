@@ -1,0 +1,46 @@
+name: Generate Blog Index
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'blog/blog-posts/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  generate-index:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Generate blog posts index
+        run: |
+          cd blog/blog-posts
+          # Create JSON array of all .md files
+          echo "[" > index.json
+          first=true
+          for file in *.md; do
+            if [ -f "$file" ]; then
+              if [ "$first" = true ]; then
+                echo "  \"$file\"" >> index.json
+                first=false
+              else
+                echo "  ,\"$file\"" >> index.json
+              fi
+            fi
+          done
+          echo "]" >> index.json
+          cat index.json
+
+      - name: Commit and push if changed
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add blog/blog-posts/index.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-generate blog posts index" && git push)

@@ -563,14 +563,6 @@
       document.getElementById("copyrightYear").textContent =
         new Date().getFullYear();
 
-      // LIST YOUR .MD FILES HERE - Just add the filename!
-      const blogFiles = [
-        "October.md",
-        // Add more files here like:
-        // 'November.md',
-        // 'my-first-post.md',
-      ];
-
       const postsContainer = document.getElementById("postsContainer");
       const loadingMessage = document.getElementById("loadingMessage");
       const noPosts = document.getElementById("noPosts");
@@ -578,6 +570,23 @@
       const blogPost = document.getElementById("blogPost");
       const postContent = document.getElementById("postContent");
       const backButton = document.getElementById("backButton");
+
+      // Function to load blog file list from index.json
+      async function loadBlogFileList() {
+        try {
+          const response = await fetch("blog-posts/index.json");
+          if (!response.ok) {
+            console.error("Failed to load blog index. Using fallback.");
+            // Fallback to manual list if index.json doesn't exist yet
+            return ["October-2025.md"];
+          }
+          return await response.json();
+        } catch (error) {
+          console.error("Error loading blog index:", error);
+          // Fallback to manual list
+          return ["October-2025.md"];
+        }
+      }
 
       // Function to extract metadata from markdown
       function extractMetadata(markdown) {
@@ -614,6 +623,7 @@
       // Function to load all blog posts
       async function loadAllPosts() {
         const posts = [];
+        const blogFiles = await loadBlogFileList();
 
         for (const filename of blogFiles) {
           try {
