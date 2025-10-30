@@ -1,5 +1,6 @@
 # October 2025
 2025-10-31
+
 The Scariest Month of My Life and The Importance of Security.
 
 I've been planning to write a blog for a while. Actually, I attempted to write a progress documentation back in 2023, but that just turned into a confession to one of my classmates everyone could see.
