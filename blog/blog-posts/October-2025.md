@@ -67,7 +67,7 @@ What's the latest update with them, you ask? They broke up.
 
 They've blocked each other on TikTok, she removed his pictures from her account, and he has his Instagram deactivated. Yet, somehow, the impersonation account is still up. Hating me glued them for long enough to create the account. Wouldn't it be decent to delete it? I feel like a child of divorce, and the impersonating account is just left in the abyss.
 
-I would share the [link to the account](tiktok.com/@marianneedic_) and ask you to report it, but as I'm writing this blog, there were some updates to the account.
+I would share the [link to the account](https://www.tiktok.com/@marianneedic_) and ask you to report it, but as I'm writing this blog, there were some updates to the account.
 
 The profile picture changed; it's now a tan-skinned man who's putting his middle finger up to the camera. The follower and the likes all turned to 0, meaning she deleted the posts permanently. It still uses my name, though! In the reposts are a lot of sad breakup posts. This is leaving me perplexed. Is she trying to make sure her sad posts are visible to the guy she *just* broke up with using the proof of her psychosis? Is she posting as *ME* or as *HERSELF*??? Is she saying that *I'M* the one who needs to let him go, or is that *HER* thoughts? My mom read it as her impersonating me, but I don't want him, take him, please! Don't put your thoughts in my mouth!
 
