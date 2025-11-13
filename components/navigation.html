@@ -1,0 +1,164 @@
+<!-- Unified Navigation Component -->
+<nav
+  id="main-nav"
+  class="fixed top-0 left-0 right-0 z-50 bg-medic-hot-pink dark:bg-medic-dark-nav h-20 flex items-center justify-between px-6 shadow-md transition-transform duration-300 ease-in-out"
+>
+  <div class="flex items-center space-x-3">
+    <img
+      id="nav-logo"
+      class="h-12 align-middle"
+      src=""
+      alt="Logo"
+    />
+    <span class="text-xl font-semibold text-white">The Medic Zone</span>
+  </div>
+  <button id="menuToggle" class="sm:hidden focus:outline-none text-white">
+    <!-- Hamburger Icon -->
+    <svg
+      class="w-6 h-6"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      viewBox="0 0 24 24"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M4 6h16M4 12h16M4 18h16"
+      />
+    </svg>
+  </button>
+  <ul id="navMenu" class="hidden sm:flex space-x-4">
+    <li>
+      <a
+        href=""
+        id="nav-home"
+        class="block w-full px-4 py-3 text-white font-medium transition-all duration-300 ease-in-out hover:bg-medic-light-pink dark:hover:bg-medic-hot-pink rounded"
+        >Home</a
+      >
+    </li>
+    <li>
+      <a
+        href=""
+        id="nav-about"
+        class="block w-full px-4 py-3 text-white font-medium transition-all duration-300 ease-in-out hover:bg-medic-light-pink dark:hover:bg-medic-hot-pink rounded"
+        >About Me</a
+      >
+    </li>
+    <li class="relative group">
+      <a
+        href=""
+        id="nav-projects"
+        class="flex items-center space-x-1 block w-full px-4 py-3 text-white font-medium transition-all duration-300 ease-in-out hover:bg-medic-light-pink dark:hover:bg-medic-hot-pink rounded"
+      >
+        <span>Coding Projects</span>
+        <svg
+          class="w-4 h-4 transform transition-transform duration-300 origin-center group-hover:rotate-180"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M6 9l6 6 6-6"
+          />
+        </svg>
+      </a>
+      <ul
+        class="absolute hidden group-hover:block bg-medic-light-pink dark:bg-medic-dark-menu shadow-md rounded-md w-48 z-20"
+      >
+        <li>
+          <a
+            href="/TaskRNG"
+            class="block px-4 py-2 text-white hover:bg-medic-hot-pink dark:hover:bg-medic-hot-pink dark:hover:text-black transition-colors duration-300"
+            >Task RNG</a
+          >
+        </li>
+        <li>
+          <a
+            href="/HTMLShooterGame"
+            class="block px-4 py-2 text-white hover:bg-medic-hot-pink dark:hover:bg-medic-hot-pink dark:hover:text-black transition-colors duration-300"
+            >Stellar Shooter</a
+          >
+        </li>
+        <li>
+          <a
+            href="/themonkeyisgone"
+            class="block px-4 py-2 text-white hover:bg-medic-hot-pink dark:hover:bg-medic-hot-pink dark:hover:text-black transition-colors duration-300"
+            >The Monkey Is Gone</a
+          >
+        </li>
+        <li>
+          <a
+            href="/tetris-ish"
+            class="block px-4 py-2 text-white hover:bg-medic-hot-pink dark:hover:bg-medic-hot-pink dark:hover:text-black transition-colors duration-300"
+            >Tetris-ish</a
+          >
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a
+        href=""
+        id="nav-creatives"
+        class="block w-full px-4 py-3 text-white font-medium transition-all duration-300 ease-in-out hover:bg-medic-light-pink dark:hover:bg-medic-hot-pink rounded"
+        >Creatives</a
+      >
+    </li>
+    <li>
+      <a
+        href=""
+        id="nav-blog"
+        class="block w-full px-4 py-3 text-white font-medium transition-all duration-300 ease-in-out hover:bg-medic-light-pink dark:hover:bg-medic-hot-pink rounded"
+        >Blog</a
+      >
+    </li>
+  </ul>
+</nav>
+
+<!-- Mobile Menu (shown when hamburger is clicked) -->
+<div
+  id="mobileMenu"
+  class="fixed inset-0 bg-medic-hot-pink dark:bg-medic-dark-menu z-40 transform translate-x-full transition-transform duration-300"
+>
+  <div class="flex flex-col items-center justify-center h-full space-y-6">
+    <button
+      id="closeMobileMenu"
+      class="absolute top-6 right-6 text-white text-3xl"
+    >
+      &times;
+    </button>
+    <a
+      href=""
+      id="mobile-nav-home"
+      class="text-white text-2xl font-bold hover:text-medic-pink transition-colors"
+      >Home</a
+    >
+    <a
+      href=""
+      id="mobile-nav-about"
+      class="text-white text-2xl font-bold hover:text-medic-pink transition-colors"
+      >About Me</a
+    >
+    <a
+      href=""
+      id="mobile-nav-projects"
+      class="text-white text-2xl font-bold hover:text-medic-pink transition-colors"
+      >Coding Projects</a
+    >
+    <a
+      href=""
+      id="mobile-nav-creatives"
+      class="text-white text-2xl font-bold hover:text-medic-pink transition-colors"
+      >Creatives</a
+    >
+    <a
+      href=""
+      id="mobile-nav-blog"
+      class="text-white text-2xl font-bold hover:text-medic-pink transition-colors"
+      >Blog</a
+    >
+  </div>
+</div>

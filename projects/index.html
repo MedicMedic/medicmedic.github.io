@@ -1,161 +1,278 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>The Medic Zone: Coding Projects</title>
-        <link rel="icon" href="pics/marianne_gagnamagnid.png">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-        <!-- Google tag (gtag.js) -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-RTS1Z5XYJ4"></script>
-        <script>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-        
-          gtag('config', 'G-RTS1Z5XYJ4');
-        </script>
-        <style>
-            div
-            {
-                padding: top 500px;
-            }
-            a 
-            {
-                text-decoration: none; /* Remove underlines */
-                color: inherit; /* Inherit the text color from parent */
-                cursor: pointer; /* Change cursor on hover */
-            }
-            h1
-            {
-                padding: top 500px;
-                padding: bottom 10px;
-                margin: 30px;
-                z-index: 2;
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Medic Zone: Coding Projects</title>
+    <link rel="icon" href="pics/marianne_gagnamagnid.png" />
 
-                font-size: 3em;
-                animation: color-change 20s infinite;
-            }
-            @keyframes color-change 
-            {
-                0% { color: rgb(173, 173, 173); }
-                25% { color: rgb(246, 255, 208); }
-                50% { color: rgb(215, 151, 255); }
-                75% { color: rgb(0, 105, 191); }
-            }
-        </style>
-        <script>
-            $(document).ready(function () {
-               $('body').scrollspy({ target: '.coding-projects', offset: 50 });
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Shared Configuration -->
+    <script src="../components/config.js"></script>
+
+    <!-- Unified CSS -->
+    <link rel="stylesheet" href="../components/css/unified.css" />
+
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+    />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Epunda+Slab:ital,wght@0,300..900;1,300..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RTS1Z5XYJ4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-RTS1Z5XYJ4');
+    </script>
+
+    <style>
+      /* Additional page-specific styles */
+      @keyframes color-change-projects {
+        0% { color: rgb(173, 173, 173); }
+        25% { color: rgb(246, 255, 208); }
+        50% { color: rgb(215, 151, 255); }
+        75% { color: rgb(0, 105, 191); }
+      }
+
+      h1.projects-animate {
+        animation: color-change-projects 20s infinite;
+      }
+
+      /* Bottom Navigation */
+      .bottom-nav {
+        background: #ffef95;
+      }
+
+      /* Smooth scrolling with offset for fixed navs */
+      html {
+        scroll-padding-top: 120px;
+      }
+    </style>
+  </head>
+
+  <body class="bg-medic-pink dark:bg-medic-dark-bg font-epunda">
+    <!-- Navigation Placeholder -->
+    <div id="nav-placeholder"></div>
+
+    <!-- Bottom Navigation -->
+    <nav class="fixed bottom-0 left-0 right-0 bottom-nav z-40 shadow-lg">
+      <div class="container mx-auto px-4">
+        <div class="flex justify-between items-center py-3">
+          <span class="font-bold text-lg md:text-xl text-gray-800">Coding Projects</span>
+          <ul class="flex space-x-2 md:space-x-6">
+            <li>
+              <a href="#codeAccordion" class="text-gray-700 hover:text-gray-900 transition-colors text-sm md:text-base">Code</a>
+            </li>
+            <li>
+              <a href="#sitesAccordion" class="text-gray-700 hover:text-gray-900 transition-colors text-sm md:text-base">Sites</a>
+            </li>
+            <li>
+              <a href="#gamesAccordion" class="text-gray-700 hover:text-gray-900 transition-colors text-sm md:text-base">Games</a>
+            </li>
+            <li>
+              <a href="#appsAccordion" class="text-gray-700 hover:text-gray-900 transition-colors text-sm md:text-base">Apps</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8 mt-12 mb-20">
+      <!-- Hero Section -->
+      <div class="text-center mb-8">
+        <h1 class="text-4xl md:text-5xl font-bold mb-6 projects-animate">
+          Medic's Coding Projects
+        </h1>
+        <p class="text-gray-700 dark:text-gray-300 mb-2 text-base md:text-lg">
+          I'm a Computer Science student, and these are my homework, mostly. But I have passion projects, too.
+        </p>
+        <p class="text-gray-700 dark:text-gray-300 text-base md:text-lg">
+          The images link to my Github lists so you can check out my work easily.
+        </p>
+      </div>
+
+      <!-- Accordion Sections -->
+      <div class="space-y-4">
+        <!-- Code Section -->
+        <div class="rounded-lg overflow-hidden shadow-lg" id="codeAccordion">
+          <button
+            onclick="toggleAccordion('collapseCode')"
+            class="w-full px-6 py-4 text-left font-bold text-lg md:text-xl flex justify-between items-center transition-all duration-300 hover:opacity-90"
+            style="background-color: rgb(173, 173, 173);"
+          >
+            <span>Code</span>
+            <i class="bi bi-chevron-down transition-transform duration-300" id="icon-collapseCode"></i>
+          </button>
+          <div
+            id="collapseCode"
+            class="hidden overflow-hidden transition-all duration-300"
+            style="background-color: rgb(173, 173, 173);"
+          >
+            <div class="p-6 text-center">
+              <a href="https://github.com/stars/MedicMedic/lists/code" target="_blank" class="inline-block hover:opacity-80 transition-opacity">
+                <img
+                  class="w-full max-w-3xl mx-auto rounded-lg shadow-md"
+                  src="https://opengraph.githubassets.com/a687952e75ea331fbb52c7bb0cd04c20ace95fcc713b1f2a48eeae6ef77bd5bd/stars/MedicMedic/lists/code"
+                  alt="Code Projects"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sites Section -->
+        <div class="rounded-lg overflow-hidden shadow-lg" id="sitesAccordion">
+          <button
+            onclick="toggleAccordion('collapseSites')"
+            class="w-full px-6 py-4 text-left font-bold text-lg md:text-xl flex justify-between items-center transition-all duration-300 hover:opacity-90"
+            style="background-color: rgb(246, 255, 208);"
+          >
+            <span>Sites</span>
+            <i class="bi bi-chevron-down transition-transform duration-300" id="icon-collapseSites"></i>
+          </button>
+          <div
+            id="collapseSites"
+            class="hidden overflow-hidden transition-all duration-300"
+            style="background-color: rgb(246, 255, 208);"
+          >
+            <div class="p-6 text-center">
+              <a href="https://github.com/stars/MedicMedic/lists/websites" target="_blank" class="inline-block hover:opacity-80 transition-opacity">
+                <img
+                  class="w-full max-w-3xl mx-auto rounded-lg shadow-md mb-6"
+                  src="https://opengraph.githubassets.com/a687952e75ea331fbb52c7bb0cd04c20ace95fcc713b1f2a48eeae6ef77bd5bd/stars/MedicMedic/lists/websites"
+                  alt="Website Projects"
+                />
+              </a>
+              <h3 class="text-2xl font-bold mb-4">Try out Task RNG!</h3>
+              <div class="flex justify-center">
+                <iframe
+                  src="https://medicmedic.github.io/TaskRNG/"
+                  class="w-full max-w-lg rounded-lg shadow-lg border-2 border-gray-300"
+                  style="height: 800px;"
+                  title="Task RNG"
+                ></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Games Section -->
+        <div class="rounded-lg overflow-hidden shadow-lg" id="gamesAccordion">
+          <button
+            onclick="toggleAccordion('collapseGames')"
+            class="w-full px-6 py-4 text-left font-bold text-lg md:text-xl flex justify-between items-center transition-all duration-300 hover:opacity-90"
+            style="background-color: rgb(215, 151, 255);"
+          >
+            <span>Games</span>
+            <i class="bi bi-chevron-down transition-transform duration-300" id="icon-collapseGames"></i>
+          </button>
+          <div
+            id="collapseGames"
+            class="hidden overflow-hidden transition-all duration-300"
+            style="background-color: rgb(215, 151, 255);"
+          >
+            <div class="p-6 text-center">
+              <a href="https://github.com/stars/MedicMedic/lists/games" target="_blank" class="inline-block hover:opacity-80 transition-opacity">
+                <img
+                  class="w-full max-w-3xl mx-auto rounded-lg shadow-md"
+                  src="https://opengraph.githubassets.com/a687952e75ea331fbb52c7bb0cd04c20ace95fcc713b1f2a48eeae6ef77bd5bd/stars/MedicMedic/lists/games"
+                  alt="Game Projects"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Apps Section -->
+        <div class="rounded-lg overflow-hidden shadow-lg" id="appsAccordion">
+          <button
+            onclick="toggleAccordion('collapseApps')"
+            class="w-full px-6 py-4 text-left font-bold text-lg md:text-xl flex justify-between items-center transition-all duration-300 hover:opacity-90"
+            style="background-color: rgb(0, 105, 191); color: white;"
+          >
+            <span>Apps</span>
+            <i class="bi bi-chevron-down transition-transform duration-300" id="icon-collapseApps"></i>
+          </button>
+          <div
+            id="collapseApps"
+            class="hidden overflow-hidden transition-all duration-300"
+            style="background-color: rgb(0, 105, 191);"
+          >
+            <div class="p-6 text-center">
+              <a href="https://github.com/stars/MedicMedic/lists/apps" target="_blank" class="inline-block hover:opacity-80 transition-opacity">
+                <img
+                  class="w-full max-w-3xl mx-auto rounded-lg shadow-md"
+                  src="https://opengraph.githubassets.com/a687952e75ea331fbb52c7bb0cd04c20ace95fcc713b1f2a48eeae6ef77bd5bd/stars/MedicMedic/lists/apps"
+                  alt="App Projects"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer Placeholder -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Component Loader -->
+    <script src="../components/js/loader.js"></script>
+
+    <!-- Accordion Toggle Script -->
+    <script>
+      function toggleAccordion(id) {
+        const element = document.getElementById(id);
+        const icon = document.getElementById('icon-' + id);
+
+        if (element.classList.contains('hidden')) {
+          element.classList.remove('hidden');
+          icon.style.transform = 'rotate(180deg)';
+        } else {
+          element.classList.add('hidden');
+          icon.style.transform = 'rotate(0deg)';
+        }
+      }
+
+      // Handle anchor links with smooth scroll
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href').substring(1);
+          const target = document.getElementById(targetId);
+
+          if (target) {
+            // Scroll to the element
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
             });
-        </script>
-    </head>
 
-    <body data-bs-spy="scroll" data-bs-target=".navbar" style = "background: #fee1f4;">
-        <nav class="navbar navbar-expand-lg fixed-top d-flex justify-content-between">
-            <span class="font-weight-bold" style="font-size: x-large; color: rgb(255, 43, 139);">
-                <img src="pics/marianne_gagnamagnid.png"> Medic's (Marianne Edic)
-            </span>
-            <ul class="text-light navbar-nav">
-                <li class="nav-item"><a class="nav-link" href="../">Home</a></li>
-                <li class="nav-item"><a class="nav-link active">      Coding Projects</a></li>
-                <li class="nav-item"><a class="nav-link" href="../creatives">The Creatives</a></li>
-                <li class="nav-item"><a class="nav-link" href="../about_me">About Me</a></li>
-            </ul>
-        </nav>
-        <nav class="navbar navbar-expand-lg fixed-bottom d-flex justify-content-between coding-projects" style="background: #ffef95;">
-            <span class="font-weight-bold" style="font-size: x-large;">Coding Projects</span>
-            <ul class="text-light navbar-nav">
-                <li class="nav-item"><a class="nav-link" href="#codeAccordion">Code</a></li>
-                <li class="nav-item"><a class="nav-link" href="#sitesAccordion">Sites</a></li>
-                <li class="nav-item"><a class="nav-link" href="#gamesAccordion">Games</a></li>
-                <li class="nav-item"><a class="nav-link" href="#appsAccordion">Apps</a></li>
-            </ul>
-        </nav>
-        <br/>
-        <br/>
-        <br/>
-        <div class="container text-center">
-            <h1>Medic's Coding Projects</h1>
-            <p>
-                I'm a Computer Science student, and these are my homework, mostly. But I have passion projects, too.
-            </p>
-            <p>
-                The images link to my Github lists so you can check out my work easily.
-            </p>
-        </div>
-        <div class = "container-fluid">
-            <div class = "accordion" id="codeAccordion">
-                <div class = "accordion-item" id="code">
-                    <h4 class = "accordion-header">
-                        <button style="background-color: rgb(173, 173, 173);" class="accordion-button d-flex justify-content-between" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCode" aria-expanded="true" aria-controls="collapseCode">
-                            Code
-                        </button>
-                    </h4>
-                    <div id="collapseCode" class="accordion-collapse collapse" data-bs-parent="#codeAccordion">
-                        <div class = "accordion-body text-center" style="background-color: rgb(173, 173, 173);">
-                            <a href="https://github.com/stars/MedicMedic/lists/code">
-                                <img style="width:auto" src="https://opengraph.githubassets.com/a687952e75ea331fbb52c7bb0cd04c20ace95fcc713b1f2a48eeae6ef77bd5bd/stars/MedicMedic/lists/code">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class = "accordion" id="sitesAccordion">
-                <div class = "accordion-item" id="sites">
-                    <h4 class = "accordion-header">
-                        <button style="background-color: rgb(246, 255, 208);" class="accordion-button d-flex justify-content-between" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSites" aria-expanded="true" aria-controls="collapseSites">
-                            Sites
-                        </button>
-                    </h4>
-                    <div id="collapseSites" class="accordion-collapse collapse" data-bs-parent="#sitesAccordion">
-                        <div class = "accordion-body text-center" style="background-color: rgb(246, 255, 208);">
-                            <a href="https://github.com/stars/MedicMedic/lists/websites">
-                                <img style="width:auto" src="https://opengraph.githubassets.com/a687952e75ea331fbb52c7bb0cd04c20ace95fcc713b1f2a48eeae6ef77bd5bd/stars/MedicMedic/lists/websites">
-                            </a>
-                            <br>
-                            <h3>Try out Task RNG!</h3>
-                            <embed src="https://medicmedic.github.io/TaskRNG/" style="width: 500px; height: 800px;">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class = "accordion" id="gamesAccordion">
-                <div class = "accordion-item" id="games">
-                    <h4 class = "accordion-header">
-                        <button style="background-color: rgb(215, 151, 255);" class="accordion-button d-flex justify-content-between" type="button" data-bs-toggle="collapse" data-bs-target="#collapseGames" aria-expanded="true" aria-controls="collapseGames">
-                            Games
-                        </button>
-                    </h4>
-                    <div id="collapseGames" class="accordion-collapse collapse" data-bs-parent="#gamesAccordion">
-                        <div class = "accordion-body text-center" style="background-color: rgb(215, 151, 255);">
-                            <a href="https://github.com/stars/MedicMedic/lists/games">
-                                <img style="width:auto" src="https://opengraph.githubassets.com/a687952e75ea331fbb52c7bb0cd04c20ace95fcc713b1f2a48eeae6ef77bd5bd/stars/MedicMedic/lists/games">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class = "accordion" id="appsAccordion">
-                <div class = "accordion-item" id="apps">
-                    <h4 class = "accordion-header">
-                        <button style="background-color: rgb(0, 105, 191);" class="accordion-button d-flex justify-content-between" type="button" data-bs-toggle="collapse" data-bs-target="#collapseApps" aria-expanded="true" aria-controls="collapseApps">
-                            Apps
-                        </button>
-                    </h4>
-                    <div id="collapseApps" class="accordion-collapse collapse" data-bs-parent="#appsAccordion">
-                        <div class = "accordion-body text-center" style="background-color: rgb(0, 105, 191);">
-                            <a href="https://github.com/stars/MedicMedic/lists/apps">
-                                <img style="width:auto" src="https://opengraph.githubassets.com/a687952e75ea331fbb52c7bb0cd04c20ace95fcc713b1f2a48eeae6ef77bd5bd/stars/MedicMedic/lists/apps">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-        </div>
-    </body>
+            // Open the accordion if it's closed
+            const collapseId = 'collapse' + targetId.replace('Accordion', '').charAt(0).toUpperCase() + targetId.replace('Accordion', '').slice(1);
+            const collapseElement = document.getElementById(collapseId);
+            const icon = document.getElementById('icon-' + collapseId);
+
+            if (collapseElement && collapseElement.classList.contains('hidden')) {
+              collapseElement.classList.remove('hidden');
+              if (icon) icon.style.transform = 'rotate(180deg)';
+            }
+          }
+        });
+      });
+    </script>
+  </body>
 </html>

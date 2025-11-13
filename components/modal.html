@@ -1,0 +1,134 @@
+<!-- Reusable Modal Component -->
+<div id="modal-overlay" class="modal-overlay fixed inset-0 bg-black/80 z-50 flex items-center justify-center opacity-0 pointer-events-none transition-all duration-300">
+  <div class="modal-content bg-white dark:bg-gray-800 rounded-lg max-w-2xl w-full mx-4 transform scale-95 transition-all duration-300">
+    <div class="p-6">
+      <!-- Modal Header -->
+      <div class="flex justify-between items-start mb-4">
+        <h3 id="modal-title" class="text-2xl font-bold text-gray-900 dark:text-white"></h3>
+        <button id="modal-close" class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 text-2xl leading-none">
+          &times;
+        </button>
+      </div>
+
+      <!-- Modal Body -->
+      <div id="modal-body" class="mb-6 text-gray-700 dark:text-gray-300">
+        <!-- Content will be injected here -->
+      </div>
+
+      <!-- Modal Footer (optional) -->
+      <div id="modal-footer" class="flex gap-4 justify-end">
+        <!-- Buttons will be injected here -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Modal Component JavaScript
+window.MedicModal = {
+  overlay: null,
+  content: null,
+  title: null,
+  body: null,
+  footer: null,
+  closeBtn: null,
+
+  init: function() {
+    this.overlay = document.getElementById('modal-overlay');
+    this.content = this.overlay?.querySelector('.modal-content');
+    this.title = document.getElementById('modal-title');
+    this.body = document.getElementById('modal-body');
+    this.footer = document.getElementById('modal-footer');
+    this.closeBtn = document.getElementById('modal-close');
+
+    // Setup event listeners
+    if (this.closeBtn) {
+      this.closeBtn.addEventListener('click', () => this.close());
+    }
+
+    if (this.overlay) {
+      this.overlay.addEventListener('click', (e) => {
+        if (e.target === this.overlay) {
+          this.close();
+        }
+      });
+    }
+
+    // ESC key to close
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && this.isOpen()) {
+        this.close();
+      }
+    });
+  },
+
+  open: function(options = {}) {
+    if (!this.overlay) return;
+
+    // Set title
+    if (this.title && options.title) {
+      this.title.textContent = options.title;
+    }
+
+    // Set body content
+    if (this.body && options.body) {
+      if (typeof options.body === 'string') {
+        this.body.innerHTML = options.body;
+      } else if (options.body instanceof HTMLElement) {
+        this.body.innerHTML = '';
+        this.body.appendChild(options.body);
+      }
+    }
+
+    // Set footer buttons
+    if (this.footer) {
+      this.footer.innerHTML = '';
+      if (options.buttons && Array.isArray(options.buttons)) {
+        options.buttons.forEach(btn => {
+          const button = document.createElement('button');
+          button.textContent = btn.text;
+          button.className = btn.className || 'px-4 py-2 bg-medic-hot-pink text-white rounded hover:bg-medic-light-pink transition-colors duration-300';
+          if (btn.onClick) {
+            button.addEventListener('click', btn.onClick);
+          }
+          this.footer.appendChild(button);
+        });
+      }
+    }
+
+    // Show modal
+    this.overlay.classList.remove('opacity-0', 'pointer-events-none');
+    if (this.content) {
+      this.content.classList.remove('scale-95');
+      this.content.classList.add('scale-100');
+    }
+
+    // Prevent body scroll
+    document.body.style.overflow = 'hidden';
+  },
+
+  close: function() {
+    if (!this.overlay) return;
+
+    this.overlay.classList.add('opacity-0', 'pointer-events-none');
+    if (this.content) {
+      this.content.classList.remove('scale-100');
+      this.content.classList.add('scale-95');
+    }
+
+    // Re-enable body scroll
+    document.body.style.overflow = '';
+  },
+
+  isOpen: function() {
+    return this.overlay && !this.overlay.classList.contains('pointer-events-none');
+  }
+};
+
+// Initialize modal on load
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => window.MedicModal.init());
+} else {
+  window.MedicModal.init();
+}
+</script>

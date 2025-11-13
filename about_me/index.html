@@ -1,293 +1,289 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>The Medic Zone</title>
-        <link rel="icon" href="pics/marianne-gagnamagnid.png">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-        <!-- Google tag (gtag.js) -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-RTS1Z5XYJ4"></script>
-        <script>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-        
-          gtag('config', 'G-RTS1Z5XYJ4');
-        </script>
-        <script>
-            $(document).ready(function () {
-               $('body').scrollspy({ target: '.navbar', offset: 50 });
-            });
-         </script>
-         <style>
-            a 
-            {
-                text-decoration: none; /* Remove underlines */
-                color: inherit; /* Inherit the text color from parent */
-                cursor: pointer; /* Change cursor on hover */
-            }
-            .navbar-custom 
-            {
-                max-height: 50px;
-            }
-            .nav li 
-            {
-                display: table-cell !important;
-            }
-            h1
-            {
-                animation: color-change 10s infinite;
-            }
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Me - The Medic Zone</title>
+    <link rel="icon" href="../pics/marianne gagnamagnid.png" />
 
-            .marianne1
-            {
-                animation: photo-change1 30s infinite;
-                z-index: 2;
-            }
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
 
-            .marianne2
-            {
-                animation: photo-change2 30s infinite;
-                z-index: 1;
-            }
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+    />
 
-            .marianne3
-            {
-                animation: photo-change3 30s infinite;
-                z-index: 0;
-            }
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Epunda+Slab:ital,wght@0,300..900;1,300..900&display=swap"
+      rel="stylesheet"
+    />
 
-            .image-stack 
-            {
-                width: 300px; /* Adjust as needed */
-                height: 300px; /* Adjust as needed */
-                position: relative;
-                margin: 0 auto; /* Center horizontally */
-            }
+    <!-- Shared Configuration -->
+    <script src="../components/config.js"></script>
 
-            .image-stack img 
-            {
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                width: 100%;
-                height: 100%;
-                object-fit: cover; /* Maintain aspect ratio */
-            }
+    <!-- Unified CSS -->
+    <link rel="stylesheet" href="../components/css/unified.css" />
 
-            @keyframes color-change 
-            {
-                0% { color: rgb(255, 81, 0); }
-                33.33% { color: rgb(144, 0, 255); }
-                66.67% { color: rgb(255, 0, 153); }
-                100% { color: rgb(255, 81, 0); }
-            }
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RTS1Z5XYJ4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-RTS1Z5XYJ4');
+    </script>
+  </head>
 
-            @keyframes photo-change1 
-            {
-                0%, 33.33% { opacity: 1; }
-                33.34%, 66.66% { opacity: 0; }
-                66.67%, 100% { opacity: 0; }
-            }
+  <body class="bg-medic-pink dark:bg-medic-dark-bg font-epunda">
+    <!-- Navigation Placeholder -->
+    <div id="nav-placeholder"></div>
 
-            @keyframes photo-change2 
-            {
-                0%, 33.33% { opacity: 0; }
-                33.34%, 66.66% { opacity: 1; }
-                66.67%, 100% { opacity: 0; }
-            }
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8 mt-20">
+      <!-- Hero Section -->
+      <section class="bg-medic-yellow dark:bg-medic-dark-yellow rounded-lg p-8 mb-8">
+        <h1 class="text-center text-4xl md:text-5xl font-bold mb-6 color-animate">
+          Marianne Edic
+        </h1>
 
-            @keyframes photo-change3 
-            {
-                0%, 33.33% { opacity: 0; }
-                33.34%, 66.66% { opacity: 0; }
-                66.67%, 100% { opacity: 1; }
-            }
-
-         </style>
-    </head>
-
-    <body data-bs-spy="scroll" data-bs-target=".navbar" style = "background: #fee1f4;">
-        <div class="container-fluid">
-            <nav class="navbar navbar-expand-lg navbar-custom fixed-top d-flex justify-content-between">
-                <span class="font-weight-bold" style="font-size: x-large; color: rgb(255, 43, 139)";><img src="pics/marianne-gagnamagnid.png">Medic's (Marianne Edic)</span>
-                <ul class = "text-light navbar-nav">
-                   <li class="nav-item"><a class = "nav-link" href = "../">Home</a></li>
-                   <li class="nav-item"><a class = "nav-link" href = "../projects">Coding Projects</a></li>
-                   <li class="nav-item"><a class = "nav-link" href = "../creatives">The Creatives</a></li>
-                   <li class="nav-item"><a class = "nav-link active">About Me</a></li>
-                </ul>
-             </nav>
+        <div class="image-stack mx-auto bg-medic-light-pink dark:bg-medic-dark-img rounded-full p-4 mb-6">
+          <img class="marianne1 rounded-full" src="pics/serious.png" alt="Marianne - Serious" />
+          <img class="marianne2 rounded-full" src="pics/hats.png" alt="Marianne - With Hats" />
+          <img class="marianne3 rounded-full" src="pics/thumbsup.png" alt="Marianne - Thumbs Up" />
         </div>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <section id = "home">
-            <div class="container">
-                <div style="background-color: #fcffad;" class="container-fluid">
-                    <h1 class="text-center">Marianne Edic</h1>
-                    <div class="image-stack" style="background-color: #f6ff00;">
-                        <img style="width:300px; height:300px; background-color: #ffa0f9;" class="marianne1 rounded-circle" src="pics/serious.png">
-                        <img style="width:300px; height: 300px; background-color: #ffa0f9;" class="marianne2 rounded-circle" src="pics/hats.png">
-                        <img style="width:300px; height: 300px; background-color: #ffa0f9;"class="marianne3 rounded-circle" src="pics/thumbsup.png">
-                    </div>
-                    <h4 class="text-center">Singer, Songwriter, Writer, Drawer (Artist), Coder</h4>
-                    <div>
-                        <h6 class="d-flex justify-content-between">
-                            <i class="bi bi-house-fill"> Palmera Homes, Brgy. Sto. Cristo, San Jose del Monte City, Bulacan, Philippines</i>
-                            <i class="bi bi-phone-fill"> +63 997 971 1076</i>
-                            <i class="bi bi-envelope-at-fill"> marianneedic.13@gmail.com</i>
-                        </h6>
-                    </div>
-                </div>
-                <div class="card text-bg-info">
-                    <h3 class="card-header">About Me</h3>
-                    <p class="card-body">A versatile worker that gets any job done with consistent quality. With four years experience as a freelancer especializing in various creative fields, including music, literature, audio, and art and 
-                        received dozens of positive reviews. Majoring in Computer Science, with specialty in data analytics, web and application development, and machine learning. The job will always be finished well, no matter what.</p>
-                </div>
-                <div class="col card text-bg-warning">
-                    <h3 class="card-header">Educational Background</h3>
-                    <div class="card-body">
-                        <div class="row justify-content-between">
-                            <div class="col-auto">
-                                <p class="fs-5 fw-bold">New Era University Integrated School</p>
-                                <p>General Academic Strand</p>
-                                <p>Academic Honors Awardee</p>
-                            </div>
-                            <div class="col-auto">
-                                <p class="text-end fs-6">2019-2021</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="row justify-content-between">
-                            <div class="col-auto">
-                                <p class="fs-5 fw-bold">New Era University College of Informatics and Computing Studies</p>
-                                <p>Bachelor of Science in Computer Science</p>
-                                <p>President's List (2023)</p>
-                            </div>
-                            <div class="col-auto">
-                                <p class="text-end fs-6">2021-</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>                
-                <div class="col card text-bg-danger">
-                    <h3 class="card-header">Work Experience</h3>
-                    <div class="card-body">
-                        <div class="row justify-content-between">
-                            <div class="col-auto">
-                                <p class="fs-5 fw-bold">Fiverr Freelancer</p>
-                                <p>Level 2 Seller</p>
-                                <p>Specialization in Songwriting, Music Composition, Creative Writing, Voice Acting, Illustration, and Animation.</p>
-                                <!-- Put this code anywhere in the body of your page where you want the badge to show up. -->
 
-                                <div itemscope itemtype='http://schema.org/Person' class='fiverr-seller-widget' style='display: inline-block;'>
-                                    <a itemprop='url' href=https://www.fiverr.com/stellarsong rel="nofollow" target="_blank" style='display: inline-block;'>
-                                    <div class='fiverr-seller-content' id='fiverr-seller-widget-content-656fb16b-60b9-4fec-a190-b35a2374bd69' itemprop='contentURL' style='display: none;'></div>
-                                    <div id='fiverr-widget-seller-data' style='display: none;'>
-                                        <div itemprop='name' >stellarsong</div>
-                                        <div itemscope itemtype='http://schema.org/Organization'><span itemprop='name'>Fiverr</span></div>
-                                        <div itemprop='jobtitle'>StellarSong</div>
-                                        <div itemprop='description'>I am Stellar, a writer, singer, composer, producer, and occasionally an artist. I have written short stories, poems, and speeches for various people. If you want to request my services, feel free and I'll do it immediately and to the best of my ability. </div>
-                                    </div>
-                                </a>
-                                </div>
+        <h4 class="text-center text-xl md:text-2xl font-semibold mb-6 text-gray-800 dark:text-white">
+          Singer, Songwriter, Writer, Artist, Coder
+        </h4>
 
-                                <script id='fiverr-seller-widget-script-656fb16b-60b9-4fec-a190-b35a2374bd69' src='https://widgets.fiverr.com/api/v1/seller/stellarsong?widget_id=656fb16b-60b9-4fec-a190-b35a2374bd69' data-config='{"category_name":"Writing \u0026 Translation"}' async='true' defer='true'></script>
+        <div class="flex flex-col md:flex-row gap-4 justify-center items-center text-sm md:text-base text-gray-700 dark:text-gray-200">
+          <div class="flex items-center gap-2">
+            <i class="bi bi-house-fill"></i>
+            <span>San Jose del Monte City, Bulacan, Philippines</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <i class="bi bi-phone-fill"></i>
+            <span>+63 997 971 1076</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <i class="bi bi-envelope-at-fill"></i>
+            <span>marianneedic.13@gmail.com</span>
+          </div>
+        </div>
+      </section>
 
-                            </div>
-                            <div class="col-auto">
-                                <p class="text-end fs-6">2020-</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col card text-bg-success">
-                    <h3 class="card-header">Skills</h3>
-                    <div class="card-body">
-                        <div class="row justify-content-between">
-                            <div class="col-auto">
-                                <p>Programming (Java, Python, PHP, C++, JavaScript)</p>
-                            </div>
-                            <div class="col-auto">
-                                <div class="progress" role="progressbar" style="width:500px" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
-                                    <div class="progress-bar" style="width: 60%">60%</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row justify-content-between">
-                            <div class="col-auto">
-                                <p>Web Development (HTML, CSS, JavaScript, PHP, Bootstrap)</p>
-                            </div>
-                            <div class="col-auto">
-                                <div class="progress" role="progressbar" style="width:500px" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
-                                    <div class="progress-bar" style="width: 70%">70%</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row justify-content-between">
-                            <div class="col-auto">
-                                <p>Data Analytics (SQL, Tableau, Pentaho BI, Power BI)</p>
-                            </div>
-                            <div class="col-auto">
-                                <div class="progress" role="progressbar" style="width:500px" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
-                                    <div class="progress-bar" style="width: 60%">60%</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row justify-content-between">
-                            <div class="col-auto">
-                                <p>Writing (Songs, Novels, Poems, Short Stories, Letters)</p>
-                            </div>
-                            <div class="col-auto">
-                                <div class="progress" role="progressbar" style="width:500px" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100">
-                                    <div class="progress-bar bg-warning" style="width: 95%">95%</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row justify-content-between">
-                            <div class="col-auto">
-                                <p>Music (Composing, Transcribing, Producing, Singing, Arranging)</p>
-                            </div>
-                            <div class="col-auto">
-                                <div class="progress" role="progressbar" style="width:500px" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
-                                    <div class="progress-bar bg-warning" style="width: 75%">75%</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row justify-content-between">
-                            <div class="col-auto">
-                                <p>Text Editing (Document Editing, Proofreading, Translating, Transcribing, Beta Reading)</p>
-                            </div>
-                            <div class="col-auto">
-                                <div class="progress" role="progressbar" style="width:500px" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
-                                    <div class="progress-bar bg-warning" style="width: 70%">70%</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row justify-content-between">
-                            <div class="col-auto">
-                                <p>Audio-Visual (Video Editing, Sound Engineering, Voice Acting, Animation, Jingle Production)</p>
-                            </div>
-                            <div class="col-auto">
-                                <div class="progress" role="progressbar" style="width:500px" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
-                                    <div class="progress-bar bg-warning" style="width: 60%">60%</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col card text-bg-primary">
-                    <h3 class="card-header">Why Medic?</h3>
-                    <div class="card-body">
-                        I am a hardworker and problem solver. I can find the most efficient way to complete a task while still making sure that the product is functional and high-quality. 
-                    </div>
-                </div>
+      <!-- About Me Card -->
+      <section class="bg-white dark:bg-gray-800 border-2 border-medic-hot-pink dark:border-medic-dark-img rounded-lg p-6 mb-8 shadow-lg">
+        <h3 class="text-2xl font-bold mb-4 text-medic-hot-pink dark:text-medic-light-pink">
+          About Me
+        </h3>
+        <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+          A versatile worker that gets any job done with consistent quality. With four years experience
+          as a freelancer specializing in various creative fields, including music, literature, audio, and art
+          and received dozens of positive reviews. Majoring in Computer Science, with specialty in data analytics,
+          web and application development, and machine learning. The job will always be finished well, no matter what.
+        </p>
+      </section>
+
+      <!-- Educational Background -->
+      <section class="bg-white dark:bg-gray-800 border-2 border-medic-yellow dark:border-medic-dark-yellow rounded-lg p-6 mb-8 shadow-lg">
+        <h3 class="text-2xl font-bold mb-6 text-medic-hot-pink dark:text-medic-light-pink">
+          Educational Background
+        </h3>
+
+        <div class="space-y-6">
+          <!-- Education Item 1 -->
+          <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 pb-6 border-b border-gray-200 dark:border-gray-700">
+            <div>
+              <p class="text-lg font-bold text-gray-900 dark:text-white">
+                New Era University Integrated School
+              </p>
+              <p class="text-gray-700 dark:text-gray-300">General Academic Strand</p>
+              <p class="text-gray-600 dark:text-gray-400">Academic Honors Awardee</p>
             </div>
-         </section>
-    </body>
+            <div class="text-gray-600 dark:text-gray-400">
+              <p class="text-lg font-semibold">2019-2021</p>
+            </div>
+          </div>
+
+          <!-- Education Item 2 -->
+          <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+            <div>
+              <p class="text-lg font-bold text-gray-900 dark:text-white">
+                New Era University College of Informatics and Computing Studies
+              </p>
+              <p class="text-gray-700 dark:text-gray-300">Bachelor of Science in Computer Science</p>
+              <p class="text-gray-600 dark:text-gray-400">President's List (2023)</p>
+            </div>
+            <div class="text-gray-600 dark:text-gray-400">
+              <p class="text-lg font-semibold">2021-Present</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Work Experience -->
+      <section class="bg-white dark:bg-gray-800 border-2 border-red-400 dark:border-red-600 rounded-lg p-6 mb-8 shadow-lg">
+        <h3 class="text-2xl font-bold mb-6 text-medic-hot-pink dark:text-medic-light-pink">
+          Work Experience
+        </h3>
+
+        <div class="flex flex-col md:flex-row justify-between items-start gap-4">
+          <div class="flex-1">
+            <p class="text-lg font-bold text-gray-900 dark:text-white mb-2">
+              Fiverr Freelancer
+            </p>
+            <p class="text-gray-700 dark:text-gray-300 mb-2">Level 2 Seller</p>
+            <p class="text-gray-600 dark:text-gray-400 mb-4">
+              Specialization in Songwriting, Music Composition, Creative Writing, Voice Acting,
+              Illustration, and Animation.
+            </p>
+
+            <!-- Fiverr Widget -->
+            <div itemscope itemtype='http://schema.org/Person' class='fiverr-seller-widget'>
+              <a itemprop='url' href='https://www.fiverr.com/stellarsong' rel="nofollow" target="_blank">
+                <div class='fiverr-seller-content' id='fiverr-seller-widget-content-656fb16b-60b9-4fec-a190-b35a2374bd69' itemprop='contentURL'></div>
+                <div id='fiverr-widget-seller-data' style='display: none;'>
+                  <div itemprop='name'>stellarsong</div>
+                  <div itemscope itemtype='http://schema.org/Organization'><span itemprop='name'>Fiverr</span></div>
+                  <div itemprop='jobtitle'>StellarSong</div>
+                  <div itemprop='description'>I am Stellar, a writer, singer, composer, producer, and occasionally an artist.</div>
+                </div>
+              </a>
+            </div>
+            <script id='fiverr-seller-widget-script-656fb16b-60b9-4fec-a190-b35a2374bd69'
+                    src='https://widgets.fiverr.com/api/v1/seller/stellarsong?widget_id=656fb16b-60b9-4fec-a190-b35a2374bd69'
+                    data-config='{"category_name":"Writing & Translation"}'
+                    async='true'
+                    defer='true'></script>
+          </div>
+          <div class="text-gray-600 dark:text-gray-400">
+            <p class="text-lg font-semibold">2020-Present</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Skills -->
+      <section class="bg-white dark:bg-gray-800 border-2 border-green-400 dark:border-green-600 rounded-lg p-6 mb-8 shadow-lg">
+        <h3 class="text-2xl font-bold mb-6 text-medic-hot-pink dark:text-medic-light-pink">
+          Skills
+        </h3>
+
+        <div class="space-y-6">
+          <!-- Skill Item 1 -->
+          <div>
+            <div class="flex justify-between mb-2">
+              <span class="text-gray-900 dark:text-white font-medium">
+                Programming (Java, Python, PHP, C++, JavaScript)
+              </span>
+              <span class="text-gray-600 dark:text-gray-400">60%</span>
+            </div>
+            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-4">
+              <div class="bg-medic-hot-pink dark:bg-medic-light-pink h-4 rounded-full transition-all duration-500" style="width: 60%"></div>
+            </div>
+          </div>
+
+          <!-- Skill Item 2 -->
+          <div>
+            <div class="flex justify-between mb-2">
+              <span class="text-gray-900 dark:text-white font-medium">
+                Web Development (HTML, CSS, JavaScript, PHP, Tailwind)
+              </span>
+              <span class="text-gray-600 dark:text-gray-400">70%</span>
+            </div>
+            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-4">
+              <div class="bg-medic-hot-pink dark:bg-medic-light-pink h-4 rounded-full transition-all duration-500" style="width: 70%"></div>
+            </div>
+          </div>
+
+          <!-- Skill Item 3 -->
+          <div>
+            <div class="flex justify-between mb-2">
+              <span class="text-gray-900 dark:text-white font-medium">
+                Data Analytics (SQL, Tableau, Pentaho BI, Power BI)
+              </span>
+              <span class="text-gray-600 dark:text-gray-400">60%</span>
+            </div>
+            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-4">
+              <div class="bg-medic-hot-pink dark:bg-medic-light-pink h-4 rounded-full transition-all duration-500" style="width: 60%"></div>
+            </div>
+          </div>
+
+          <!-- Skill Item 4 -->
+          <div>
+            <div class="flex justify-between mb-2">
+              <span class="text-gray-900 dark:text-white font-medium">
+                Writing (Songs, Novels, Poems, Short Stories, Letters)
+              </span>
+              <span class="text-gray-600 dark:text-gray-400">95%</span>
+            </div>
+            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-4">
+              <div class="bg-medic-yellow dark:bg-medic-dark-yellow h-4 rounded-full transition-all duration-500" style="width: 95%"></div>
+            </div>
+          </div>
+
+          <!-- Skill Item 5 -->
+          <div>
+            <div class="flex justify-between mb-2">
+              <span class="text-gray-900 dark:text-white font-medium">
+                Music (Composing, Transcribing, Producing, Singing, Arranging)
+              </span>
+              <span class="text-gray-600 dark:text-gray-400">75%</span>
+            </div>
+            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-4">
+              <div class="bg-medic-yellow dark:bg-medic-dark-yellow h-4 rounded-full transition-all duration-500" style="width: 75%"></div>
+            </div>
+          </div>
+
+          <!-- Skill Item 6 -->
+          <div>
+            <div class="flex justify-between mb-2">
+              <span class="text-gray-900 dark:text-white font-medium">
+                Text Editing (Document Editing, Proofreading, Translating, Transcribing, Beta Reading)
+              </span>
+              <span class="text-gray-600 dark:text-gray-400">70%</span>
+            </div>
+            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-4">
+              <div class="bg-medic-yellow dark:bg-medic-dark-yellow h-4 rounded-full transition-all duration-500" style="width: 70%"></div>
+            </div>
+          </div>
+
+          <!-- Skill Item 7 -->
+          <div>
+            <div class="flex justify-between mb-2">
+              <span class="text-gray-900 dark:text-white font-medium">
+                Audio-Visual (Video Editing, Sound Engineering, Voice Acting, Animation, Jingle Production)
+              </span>
+              <span class="text-gray-600 dark:text-gray-400">60%</span>
+            </div>
+            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-4">
+              <div class="bg-medic-yellow dark:bg-medic-dark-yellow h-4 rounded-full transition-all duration-500" style="width: 60%"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Why Medic -->
+      <section class="bg-white dark:bg-gray-800 border-2 border-blue-400 dark:border-blue-600 rounded-lg p-6 mb-8 shadow-lg">
+        <h3 class="text-2xl font-bold mb-4 text-medic-hot-pink dark:text-medic-light-pink">
+          Why Medic?
+        </h3>
+        <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+          I am a hardworker and problem solver. I can find the most efficient way to complete a task
+          while still making sure that the product is functional and high-quality.
+        </p>
+      </section>
+    </main>
+
+    <!-- Footer Placeholder -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Component Loader -->
+    <script src="../components/js/loader.js"></script>
+  </body>
 </html>
