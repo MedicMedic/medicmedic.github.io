@@ -21,25 +21,19 @@
       rel="stylesheet"
     />
 
+    <!-- Shared Configuration -->
+    <script src="../components/config.js"></script>
+
+    <!-- Unified CSS -->
+    <link rel="stylesheet" href="../components/css/unified.css" />
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RTS1Z5XYJ4"></script>
     <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              "medic-pink": "#FFB4D6",
-              "medic-hot-pink": "#FF3F9F",
-              "medic-light-pink": "#FF96CB",
-              "medic-yellow": "#FFF898",
-              "medic-dark-bg": "rgb(27, 0, 12.24)",
-              "medic-dark-nav": "rgb(63, 0, 31.5)",
-              "medic-dark-menu": "rgb(150, 0, 75.7142857143)",
-            },
-            fontFamily: {
-              epunda: ["Epunda Slab", "serif"],
-            },
-          },
-        },
-      };
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-RTS1Z5XYJ4');
     </script>
 
     <style>
@@ -157,222 +151,8 @@
   <body
     class="bg-medic-pink font-epunda m-0 p-0 dark:bg-medic-dark-bg dark:text-white"
   >
-    <nav
-      class="fixed top-0 left-0 right-0 z-50 bg-medic-hot-pink dark:bg-medic-dark-nav h-20 flex items-center justify-between px-6 shadow-md transition-transform duration-300 ease-in-out"
-    >
-      <div class="flex items-center space-x-3">
-        <img
-          class="h-12 align-middle"
-          src="pics/marianne gagnamagnid.png"
-          alt="Logo"
-        />
-        <span class="text-xl font-semibold text-white">The Medic Zone</span>
-      </div>
-      <button id="menuToggle" class="sm:hidden focus:outline-none text-white">
-        <svg
-          class="w-6 h-6"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M4 6h16M4 12h16M4 18h16"
-          />
-        </svg>
-      </button>
-      <ul class="hidden sm:flex space-x-4">
-        <li>
-          <a
-            href="../"
-            class="block w-full px-4 py-3 text-white font-medium transition-all duration-300 ease-in-out hover:bg-medic-light-pink dark:hover:bg-medic-hot-pink rounded"
-            >Home</a
-          >
-        </li>
-        <li class="relative group">
-          <a
-            href="../projects"
-            class="flex items-center space-x-1 block w-full px-4 py-3 text-white font-medium transition-all duration-300 ease-in-out hover:bg-medic-light-pink dark:hover:bg-medic-hot-pink rounded"
-          >
-            <span>Coding Projects</span>
-            <svg
-              class="w-4 h-4 transform transition-transform duration-300 origin-center group-hover:rotate-180"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M6 9l6 6 6-6"
-              />
-            </svg>
-          </a>
-          <ul
-            class="absolute hidden group-hover:block bg-medic-light-pink dark:bg-medic-dark-menu shadow-md rounded-md w-48 z-20"
-          >
-            <li>
-              <a
-                href="../TaskRNG"
-                class="block px-4 py-2 text-white hover:bg-medic-hot-pink transition-colors duration-300"
-                >Task RNG</a
-              >
-            </li>
-            <li>
-              <a
-                href="../HTMLShooterGame"
-                class="block px-4 py-2 text-white hover:bg-medic-hot-pink transition-colors duration-300"
-                >Stellar Shooter</a
-              >
-            </li>
-          </ul>
-        </li>
-        <li class="relative group">
-          <a
-            href="../creatives"
-            class="flex items-center space-x-1 block w-full px-4 py-3 text-white font-medium transition-all duration-300 ease-in-out hover:bg-medic-light-pink dark:hover:bg-medic-hot-pink rounded"
-          >
-            <span>The Creatives</span>
-            <svg
-              class="w-4 h-4 transform transition-transform duration-300 origin-center group-hover:rotate-180"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M6 9l6 6 6-6"
-              />
-            </svg>
-          </a>
-          <ul
-            class="absolute hidden group-hover:block bg-medic-light-pink dark:bg-medic-dark-menu shadow-md rounded-md w-48 z-20"
-          >
-            <li>
-              <a
-                href="../music"
-                class="block px-4 py-2 text-white hover:bg-medic-hot-pink transition-colors duration-300"
-                >Music</a
-              >
-            </li>
-            <li>
-              <a
-                href="../artwork"
-                class="block px-4 py-2 text-white hover:bg-medic-hot-pink transition-colors duration-300"
-                >Artworks</a
-              >
-            </li>
-          </ul>
-        </li>
-        <li>
-          <a
-            href="../about_me"
-            class="block w-full px-4 py-3 text-white font-medium transition-all duration-300 ease-in-out hover:bg-medic-light-pink dark:hover:bg-medic-hot-pink rounded"
-            >About Me</a
-          >
-        </li>
-      </ul>
-    </nav>
-
-    <div
-      id="backdrop"
-      class="fixed inset-0 z-30 bg-black bg-opacity-50 hidden transition-opacity duration-300 ease-in-out"
-    ></div>
-
-    <div
-      id="sideDrawer"
-      class="bg-medic-light-pink dark:bg-medic-dark-menu dark:text-white fixed top-20 right-0 h-[calc(100%-80px)] w-64 transform translate-x-full transition-transform duration-300 ease-in-out z-40"
-    >
-      <div class="p-6 space-y-4">
-        <a
-          href="../"
-          class="block w-full px-4 py-3 text-left font-medium transition-all duration-300 ease-in-out hover:bg-medic-hot-pink hover:text-white rounded"
-          >Home</a
-        >
-        <div class="accordion-item">
-          <button
-            class="accordion-toggle flex justify-between items-center w-full px-4 py-3 text-left font-medium transition-all duration-300 ease-in-out hover:bg-medic-hot-pink hover:text-white rounded"
-            data-target="#projectsSubmenu"
-          >
-            <span>Coding Projects</span>
-            <svg
-              class="caret w-4 h-4 transform transition-transform duration-300"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M6 9l6 6 6-6"
-              />
-            </svg>
-          </button>
-          <div
-            id="projectsSubmenu"
-            class="accordion-content hidden pl-4 mt-2 space-y-2"
-          >
-            <a
-              href="../TaskRNG"
-              class="block w-full px-4 py-3 text-left font-medium transition-all duration-300 ease-in-out hover:bg-medic-hot-pink hover:text-white rounded"
-              >Task RNG</a
-            >
-            <a
-              href="../HTMLShooterGame"
-              class="block w-full px-4 py-3 text-left font-medium transition-all duration-300 ease-in-out hover:bg-medic-hot-pink hover:text-white rounded"
-              >Stellar Shooter</a
-            >
-          </div>
-        </div>
-        <div class="accordion-item">
-          <button
-            class="accordion-toggle flex justify-between items-center w-full px-4 py-3 text-left font-medium transition-all duration-300 ease-in-out hover:bg-medic-hot-pink hover:text-white rounded"
-            data-target="#creativesSubmenu"
-          >
-            <span>The Creatives</span>
-            <svg
-              class="caret w-4 h-4 transform transition-transform duration-300"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M6 9l6 6 6-6"
-              />
-            </svg>
-          </button>
-          <div
-            id="creativesSubmenu"
-            class="accordion-content hidden pl-4 mt-2 space-y-2"
-          >
-            <a
-              href="../creatives"
-              class="block w-full px-4 py-3 text-left font-medium transition-all duration-300 ease-in-out hover:bg-medic-hot-pink hover:text-white rounded"
-              >SMS YouTube Channel</a
-            >
-            <a
-              href="#"
-              class="block w-full px-4 py-3 text-left font-medium transition-all duration-300 ease-in-out hover:bg-medic-hot-pink hover:text-white rounded"
-              >Instagram</a
-            >
-          </div>
-        </div>
-        <a
-          href="../about_me"
-          class="block w-full px-4 py-3 text-left font-medium transition-all duration-300 ease-in-out hover:bg-medic-hot-pink hover:text-white rounded"
-          >About Me</a
-        >
-      </div>
-    </div>
+    <!-- Navigation Placeholder -->
+    <div id="nav-placeholder"></div>
 
     <main class="pt-24 px-6 pb-12 min-h-screen">
       <div id="blogList" class="w-full max-w-[80%] mx-auto">
@@ -419,149 +199,18 @@
       </div>
     </main>
 
-    <footer class="bg-medic-hot-pink dark:bg-medic-dark-nav py-12">
-      <div class="container mx-auto px-6">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <!-- Navigation Links -->
-          <div>
-            <h3 class="text-lg font-bold mb-4">The Medic Zone</h3>
-            <ul class="space-y-2">
-              <li>
-                <a
-                  href="../"
-                  class="hover:text-medic-pink transition-colors duration-300"
-                  >Home</a
-                >
-              </li>
-              <li>
-                <a
-                  href="../about_me/"
-                  class="hover:text-medic-pink transition-colors duration-300"
-                  >About Me</a
-                >
-              </li>
-              <li>
-                <a
-                  href="../projects/"
-                  class="hover:text-medic-pink transition-colors duration-300"
-                  >Projects</a
-                >
-              </li>
-              <li>
-                <a
-                  href="../creatives/"
-                  class="hover:text-medic-pink transition-colors duration-300"
-                  >Creatives</a
-                >
-              </li>
-            </ul>
-          </div>
+    <!-- Footer Placeholder -->
+    <div id="footer-placeholder"></div>
 
-          <!-- Important Links -->
-          <div>
-            <h3 class="text-lg font-bold mb-4">Important Stuff</h3>
-            <ul class="space-y-2">
-              <li>
-                <a
-                  href="../HTMLShooterGame"
-                  class="hover:text-medic-pink transition-colors duration-300"
-                  >Stellar Shooter</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="hover:text-medic-pink transition-colors duration-300"
-                  >My Thesis</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="hover:text-medic-pink transition-colors duration-300"
-                  >Final School Portfolio</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="hover:text-medic-pink transition-colors duration-300"
-                  >Resume</a
-                >
-              </li>
-            </ul>
-          </div>
-
-          <!-- Social Media -->
-          <div>
-            <h3 class="text-lg font-bold mb-4">Connect</h3>
-            <div class="flex space-x-4">
-              <a
-                href="https://linkedin.com/in/marianne-edic"
-                class="text-2xl hover:text-medic-pink transition-colors duration-300"
-                ><i class="bi bi-linkedin"></i
-              ></a>
-              <a
-                href="https://youtube.com/@StellarSong"
-                class="text-2xl hover:text-medic-pink transition-colors duration-300"
-                ><i class="bi bi-youtube"></i
-              ></a>
-              <a
-                href="https://github.com/MedicMedic"
-                class="text-2xl hover:text-medic-pink transition-colors duration-300"
-                ><i class="bi bi-github"></i
-              ></a>
-            </div>
-          </div>
-
-          <!-- Credit -->
-          <div>
-            <h3 class="text-lg font-bold mb-4">Credits</h3>
-            <p class="mt-2">
-              © <span id="copyrightYear"></span> The Medic Zone
-            </p>
-          </div>
-        </div>
-      </div>
-    </footer>
+    <!-- Component Loader -->
+    <script src="../components/js/loader.js"></script>
 
     <script>
-      // Menu toggle
-      const toggle = document.getElementById("menuToggle");
-      const drawer = document.getElementById("sideDrawer");
-      const backdrop = document.getElementById("backdrop");
-
-      toggle.addEventListener("click", () => {
-        drawer.classList.toggle("translate-x-full");
-        drawer.classList.toggle("translate-x-0");
-        backdrop.classList.toggle("hidden");
-      });
-
-      backdrop.addEventListener("click", () => {
-        drawer.classList.add("translate-x-full");
-        drawer.classList.remove("translate-x-0");
-        backdrop.classList.add("hidden");
-      });
-
-      // Accordion
-      document.querySelectorAll(".accordion-toggle").forEach((button) => {
-        button.addEventListener("click", () => {
-          const target = document.querySelector(button.dataset.target);
-          const caret = button.querySelector(".caret");
-          target.classList.toggle("hidden");
-          caret.classList.toggle("rotate-180");
-        });
-      });
-
       // Configure marked.js
       marked.setOptions({
         breaks: true,
         gfm: true,
       });
-
-      // Update copyright year
-      document.getElementById("copyrightYear").textContent =
-        new Date().getFullYear();
 
       const postsContainer = document.getElementById("postsContainer");
       const loadingMessage = document.getElementById("loadingMessage");
