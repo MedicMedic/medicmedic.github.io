@@ -397,21 +397,23 @@
 
       // Initialize when everything is ready
       function init() {
+        // Verify libraries are loaded
         if (typeof marked === "undefined" || typeof gsap === "undefined") {
-          // Libraries not loaded yet, wait a bit
-          setTimeout(init, 100);
+          console.error("Required libraries not loaded:", {
+            marked: typeof marked !== "undefined",
+            gsap: typeof gsap !== "undefined"
+          });
+          loadingMessage.innerHTML = '<p class="text-red-600 text-xl">Error loading blog libraries. Please refresh the page.</p>';
           return;
         }
+
         gsap.registerPlugin(ScrollTrigger);
         initBlog();
       }
 
-      // Start initialization when DOM is ready
-      if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", init);
-      } else {
-        init();
-      }
+      // Wait for window.onload to ensure all external scripts are loaded
+      // This is more reliable than DOMContentLoaded for CDN scripts
+      window.addEventListener("load", init);
     </script>
   </body>
 </html>
