@@ -1,182 +1,378 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>The Medic Zone: The Creatives</title>
-        <link rel="icon" href="pics/mariannegagnamagnid.png">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-        <!-- Google tag (gtag.js) -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-RTS1Z5XYJ4"></script>
-        <script>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-        
-          gtag('config', 'G-RTS1Z5XYJ4');
-        </script>
-        <style>
-            div
-            {
-                padding: top 500px;
-            }
-            a 
-            {
-                text-decoration: none; /* Remove underlines */
-                color: inherit; /* Inherit the text color from parent */
-                cursor: pointer; /* Change cursor on hover */
-            }
-            h1
-            {
-                padding: top 500px;
-                padding: bottom 10px;
-                margin: 30px;
-                z-index: 2;
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Medic Zone: The Creatives</title>
+    <link rel="icon" href="pics/mariannegagnamagnid.png" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Epunda+Slab:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RTS1Z5XYJ4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-RTS1Z5XYJ4');
+    </script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              "medic-pink": "#FFB4D6",
+              "medic-hot-pink": "#FF3F9F",
+              "medic-light-pink": "#FF96CB",
+              "medic-yellow": "#FFF898",
+              "medic-dark-bg": "rgb(27, 0, 12)",
+              "medic-dark-nav": "rgb(63, 0, 32)",
+              "medic-dark-menu": "rgb(150, 0, 76)",
+            },
+            fontFamily: {
+              epunda: ["Epunda Slab", "serif"],
+              sharetechmono: ["Share Tech Mono", "monospace"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      html, body { overflow-x: hidden; }
 
-                font-size: 3em;
-                animation: color-change 20s infinite;
-            }
-            @keyframes color-change 
-            {
-                0% { color: rgb(255, 130, 130)}
-                25% { color: #e14d90; }
-                50% { color: rgb(255, 170, 0); }
-                75% { color: #7a58c1; }
-            }
-        </style>
-        <script>
-            $(document).ready(function () {
-               $('body').scrollspy({ target: '.coding-projects', offset: 50 });
+      .section-reveal { opacity: 0; transform: translateY(50px); }
+
+      .section-nav-link {
+        padding: 0.5rem 1.25rem;
+        border-radius: 9999px;
+        font-weight: 600;
+        transition: background 0.2s, color 0.2s;
+        white-space: nowrap;
+        color: white;
+      }
+      .section-nav-link:hover { background: rgba(255,255,255,0.2); }
+      .section-nav-link.active-section { background: white; color: #FF3F9F; }
+
+      .hero-banner { background-image: url('../pics/the_creatives banner.png'); background-size: cover; background-position: center; filter: brightness(0.45); }
+      .hero-gradient-text { background: linear-gradient(135deg, #FF3F9F, #FFB4D6, #FFF898, #FF96CB); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+      .art-section-bg { background: linear-gradient(135deg, #FF6B6B 0%, #FF3F9F 100%); }
+      .writing-section-bg { background: linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%); }
+    </style>
+  </head>
+
+  <body class="bg-medic-pink font-epunda m-0 p-0 dark:bg-medic-dark-bg dark:text-white">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-medic-hot-pink dark:bg-medic-dark-nav h-20 flex items-center justify-between px-6 shadow-md transition-transform duration-300 ease-in-out">
+      <div class="flex items-center space-x-3">
+        <img class="h-12 align-middle" src="pics/mariannegagnamagnid.png" alt="Logo" />
+        <span class="text-xl font-semibold text-white">The Medic Zone</span>
+      </div>
+      <button id="menuToggle" type="button" aria-label="Open menu" class="sm:hidden focus:outline-none text-white">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+      <ul class="hidden sm:flex space-x-4">
+        <li><a href="../" class="block px-4 py-3 text-white font-medium hover:bg-medic-light-pink dark:hover:bg-medic-hot-pink rounded transition-all duration-300">Home</a></li>
+        <li class="relative group">
+          <a href="../projects" class="flex items-center space-x-1 px-4 py-3 text-white font-medium hover:bg-medic-light-pink dark:hover:bg-medic-hot-pink rounded transition-all duration-300">
+            <span>Coding Projects</span>
+            <svg class="w-4 h-4 transform transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6" /></svg>
+          </a>
+          <ul class="absolute hidden group-hover:block bg-medic-light-pink dark:bg-medic-dark-menu shadow-md rounded-md w-48 z-20">
+            <li><a href="/TaskRNG" class="block px-4 py-2 text-white hover:bg-medic-hot-pink transition-colors duration-300">Task RNG</a></li>
+            <li><a href="/HTMLShooterGame" class="block px-4 py-2 text-white hover:bg-medic-hot-pink transition-colors duration-300">Stellar Shooter</a></li>
+          </ul>
+        </li>
+        <li class="relative group">
+          <a href="../creatives" class="flex items-center space-x-1 px-4 py-3 text-white font-medium bg-medic-light-pink dark:bg-medic-hot-pink rounded transition-all duration-300">
+            <span>The Creatives</span>
+            <svg class="w-4 h-4 transform transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6" /></svg>
+          </a>
+          <ul class="absolute hidden group-hover:block bg-medic-light-pink dark:bg-medic-dark-menu shadow-md rounded-md w-48 z-20">
+            <li><a href="../music" class="block px-4 py-2 text-white hover:bg-medic-hot-pink transition-colors duration-300">Music</a></li>
+            <li><a href="https://instagram.com/stellarsong_official" target="_blank" rel="noopener noreferrer" class="block px-4 py-2 text-white hover:bg-medic-hot-pink transition-colors duration-300">Artworks</a></li>
+          </ul>
+        </li>
+        <li><a href="../about_me" class="block px-4 py-3 text-white font-medium hover:bg-medic-light-pink dark:hover:bg-medic-hot-pink rounded transition-all duration-300">About Me</a></li>
+      </ul>
+    </nav>
+
+    <!-- Backdrop -->
+    <div id="backdrop" class="fixed inset-0 z-30 bg-black bg-opacity-50 hidden transition-opacity duration-300 ease-in-out"></div>
+
+    <!-- Side Drawer -->
+    <div id="sideDrawer" class="bg-medic-light-pink dark:bg-medic-dark-menu dark:text-white fixed top-20 right-0 h-[calc(100%-80px)] w-64 transform translate-x-full transition-transform duration-300 ease-in-out z-40">
+      <div class="p-6 space-y-4">
+        <a href="../" class="block px-4 py-3 font-medium hover:bg-medic-hot-pink hover:text-white rounded transition-all duration-300">Home</a>
+        <a href="../projects" class="block px-4 py-3 font-medium hover:bg-medic-hot-pink hover:text-white rounded transition-all duration-300">Coding Projects</a>
+        <a href="../creatives" class="block px-4 py-3 font-medium bg-medic-hot-pink text-white rounded">The Creatives</a>
+        <a href="../about_me" class="block px-4 py-3 font-medium hover:bg-medic-hot-pink hover:text-white rounded transition-all duration-300">About Me</a>
+      </div>
+    </div>
+
+    <!-- Hero -->
+    <section class="pt-20 min-h-screen relative overflow-hidden flex items-center justify-center">
+      <div class="absolute inset-0 hero-banner"></div>
+      <div class="relative z-10 text-center px-6 py-20">
+        <h1 class="text-6xl md:text-9xl font-bold mb-6 leading-tight hero-gradient-text" id="heroTitle">
+          The Creatives
+        </h1>
+        <p class="text-xl md:text-2xl text-white mb-4 opacity-90" id="heroSub">Deep down, I'm an artist.</p>
+        <p class="text-lg text-medic-pink mb-10 opacity-80" id="heroSub2">I create music, art, and literature. Check out my work — made with passion and love.</p>
+        <div class="flex flex-wrap justify-center gap-4" id="heroLinks">
+          <a href="#art" class="px-6 py-3 bg-medic-hot-pink text-white rounded-full font-semibold hover:bg-medic-light-pink transition-colors duration-300"><i class="bi bi-palette-fill mr-2"></i>Art</a>
+          <a href="#music" class="px-6 py-3 bg-medic-yellow text-gray-800 rounded-full font-semibold hover:bg-white transition-colors duration-300"><i class="bi bi-music-note-beamed mr-2"></i>Music</a>
+          <a href="#writing" class="px-6 py-3 bg-purple-500 text-white rounded-full font-semibold hover:bg-purple-400 transition-colors duration-300"><i class="bi bi-book-fill mr-2"></i>Writing</a>
+        </div>
+      </div>
+      <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+        <i class="bi bi-chevron-down text-3xl text-white opacity-60"></i>
+      </div>
+    </section>
+
+    <!-- Sticky Section Nav -->
+    <nav class="sticky top-20 z-40 bg-medic-hot-pink/95 backdrop-blur-sm py-3 px-6 flex gap-2 overflow-x-auto shadow-md" id="sectionNav">
+      <a href="#art" class="section-nav-link" data-section="art"><i class="bi bi-palette-fill mr-1"></i>Art</a>
+      <a href="#music" class="section-nav-link" data-section="music"><i class="bi bi-music-note-beamed mr-1"></i>Music</a>
+      <a href="#writing" class="section-nav-link" data-section="writing"><i class="bi bi-book-fill mr-1"></i>Writing</a>
+    </nav>
+
+    <!-- ==================== ART SECTION ==================== -->
+    <section id="art" class="py-20 relative overflow-hidden section-reveal art-section-bg">
+      <div class="container mx-auto px-6 max-w-5xl">
+
+        <div class="text-center mb-10">
+          <p class="font-sharetechmono text-white/60 text-sm tracking-widest uppercase mb-3">✎ The Creatives — Side B ✎</p>
+          <h2 class="text-5xl md:text-6xl font-bold text-white mb-4">Artworks</h2>
+          <p class="text-white/80 text-lg">Doodles, character art, album covers, and the occasional very serious duck.</p>
+        </div>
+
+        <!-- Preview grid -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-10">
+          <div class="aspect-square rounded-2xl overflow-hidden shadow-lg hover:-rotate-2 hover:scale-105 transition-transform duration-300">
+            <img src="../artwork/pics/bim bam toi thumbnail.png" alt="Bim Bam Toi cover art" class="w-full h-full object-cover" />
+          </div>
+          <div class="aspect-square rounded-2xl overflow-hidden shadow-lg hover:rotate-2 hover:scale-105 transition-transform duration-300">
+            <img src="../artwork/pics/rose.png" alt="Rose study" class="w-full h-full object-cover" />
+          </div>
+          <div class="aspect-square rounded-2xl overflow-hidden shadow-lg bg-medic-pink hover:-rotate-1 hover:scale-105 transition-transform duration-300">
+            <img src="../artwork/pics/duck (2).png" alt="The Duck" class="w-full h-full object-cover" />
+          </div>
+          <div class="aspect-square rounded-2xl overflow-hidden shadow-lg hover:rotate-1 hover:scale-105 transition-transform duration-300">
+            <img src="../artwork/pics/themarianne.png" alt="The Marianne banner" class="w-full h-full object-cover" />
+          </div>
+        </div>
+
+        <div class="text-center">
+          <a href="../artwork"
+            class="inline-flex items-center gap-3 px-8 py-4 bg-white text-pink-600 rounded-full font-bold text-lg hover:bg-medic-yellow hover:scale-105 transition-all duration-300 shadow-lg">
+            <i class="bi bi-palette-fill"></i> View the full gallery →
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== MUSIC SECTION ==================== -->
+    <section id="music" class="py-20 relative overflow-hidden section-reveal bg-medic-yellow dark:bg-[rgb(80,74,0)]">
+      <div class="container mx-auto px-6 max-w-5xl">
+
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+
+          <!-- Cover image -->
+          <div class="flex justify-center">
+            <div class="relative">
+              <div class="w-72 h-72 rounded-2xl overflow-hidden shadow-2xl rotate-2 hover:rotate-0 transition-transform duration-500">
+                <img src="../music/pics/medic_songwriter_carousel.png" alt="StellarSong music" class="w-full h-full object-cover" />
+              </div>
+              <!-- Vinyl accent -->
+              <div class="absolute -bottom-4 -right-4 w-24 h-24 rounded-full bg-medic-dark-bg border-4 border-medic-hot-pink shadow-lg flex items-center justify-center">
+                <span class="text-3xl">♪</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Text -->
+          <div>
+            <p class="font-sharetechmono text-medic-hot-pink text-sm tracking-widest uppercase mb-3">♪ The Creatives — Side A ♪</p>
+            <h2 class="text-5xl md:text-6xl font-bold text-gray-800 dark:text-medic-yellow mb-4">Music</h2>
+            <p class="text-gray-700 dark:text-gray-300 text-lg leading-relaxed mb-4">
+              Songs, demos &amp; vocal scribbles from a glee-club kid who never stopped humming.
+            </p>
+            <div class="flex flex-wrap gap-2 mb-8">
+              <span class="px-3 py-1 bg-medic-hot-pink/20 text-medic-hot-pink rounded-full text-sm font-semibold">12 songs</span>
+              <span class="px-3 py-1 bg-medic-hot-pink/20 text-medic-hot-pink rounded-full text-sm font-semibold">Originals &amp; Covers</span>
+              <span class="px-3 py-1 bg-medic-hot-pink/20 text-medic-hot-pink rounded-full text-sm font-semibold">NEU Glee Club</span>
+            </div>
+            <a href="../music"
+              class="inline-flex items-center gap-3 px-8 py-4 bg-medic-hot-pink text-white rounded-full font-bold text-lg hover:bg-medic-light-pink hover:scale-105 transition-all duration-300 shadow-lg">
+              <i class="bi bi-music-note-beamed"></i> Listen now →
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== WRITING SECTION ==================== -->
+    <section id="writing" class="py-20 relative overflow-hidden section-reveal writing-section-bg">
+      <div class="container mx-auto px-6">
+
+        <div class="text-center mb-12">
+          <h2 class="text-5xl md:text-6xl font-bold text-white mb-4">Literature</h2>
+          <p class="text-purple-200 text-lg">Stories, poems, and more by StellarSong</p>
+        </div>
+
+        <div class="text-center mb-10">
+          <p class="text-white/80 text-lg mb-6">I'm a professional writer — but these are my personal creations, made with heart.</p>
+          <a href="https://www.wattpad.com/user/StellarSong_official" target="_blank" rel="noopener noreferrer"
+            class="inline-flex items-center gap-3 px-8 py-4 bg-orange-500 text-white rounded-full font-bold text-lg hover:bg-orange-600 transition-colors duration-300 shadow-lg">
+            <i class="bi bi-file-word-fill text-2xl"></i>
+            StellarSong on Wattpad
+          </a>
+        </div>
+
+        <div class="max-w-2xl mx-auto">
+          <div class="bg-white/10 backdrop-blur-sm rounded-3xl p-8 shadow-xl">
+            <h3 class="text-xl font-bold text-white mb-2">
+              <i class="bi bi-book-half text-purple-300 mr-2"></i>Featured Story
+            </h3>
+            <p class="text-purple-200 mb-6 text-sm">One of my favorites from Wattpad</p>
+            <div class="rounded-2xl overflow-hidden shadow-lg">
+              <iframe
+                title="Featured Wattpad Story by StellarSong"
+                width="100%" height="350"
+                frameborder="0"
+                allowfullscreen
+                src="https://embed.wattpad.com/story/208141727">
+              </iframe>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-medic-hot-pink dark:bg-medic-dark-nav py-12">
+      <div class="container mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div>
+            <h3 class="text-lg font-bold mb-4">The Medic Zone</h3>
+            <ul class="space-y-2">
+              <li><a href="../" class="hover:text-medic-pink transition-colors duration-300">Home</a></li>
+              <li><a href="../about_me" class="hover:text-medic-pink transition-colors duration-300">About Me</a></li>
+              <li><a href="../projects" class="hover:text-medic-pink transition-colors duration-300">Projects</a></li>
+              <li><a href="../creatives" class="hover:text-medic-pink transition-colors duration-300">Creatives</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold mb-4">Important Stuff</h3>
+            <ul class="space-y-2">
+              <li><a href="/HTMLShooterGame" class="hover:text-medic-pink transition-colors duration-300">Stellar Shooter</a></li>
+              <li><a href="#" class="hover:text-medic-pink transition-colors duration-300">My Thesis</a></li>
+              <li><a href="#" class="hover:text-medic-pink transition-colors duration-300">Final School Portfolio</a></li>
+              <li><a href="#" class="hover:text-medic-pink transition-colors duration-300">Resume</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold mb-4">Connect</h3>
+            <div class="flex space-x-4">
+              <a href="https://linkedin.com/in/marianne-edic" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="text-2xl hover:text-medic-pink transition-colors duration-300"><i class="bi bi-linkedin"></i></a>
+              <a href="https://youtube.com/@StellarSong" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="text-2xl hover:text-medic-pink transition-colors duration-300"><i class="bi bi-youtube"></i></a>
+              <a href="https://github.com/MedicMedic" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="text-2xl hover:text-medic-pink transition-colors duration-300"><i class="bi bi-github"></i></a>
+            </div>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold mb-4">Credits</h3>
+            <p class="mt-2">© <span id="copyrightYear"></span> The Medic Zone</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      gsap.registerPlugin(ScrollTrigger);
+
+      document.getElementById('copyrightYear').textContent = new Date().getFullYear();
+
+      // Navbar scroll hide
+      let lastScrollY = window.scrollY;
+      const navbar = document.getElementById('navbar');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > lastScrollY && window.scrollY > 80) {
+          navbar.style.transform = 'translateY(-100%)';
+        } else {
+          navbar.style.transform = 'translateY(0)';
+        }
+        lastScrollY = window.scrollY;
+      }, { passive: true });
+
+      // Mobile menu
+      const menuToggle = document.getElementById('menuToggle');
+      const sideDrawer = document.getElementById('sideDrawer');
+      const backdrop = document.getElementById('backdrop');
+      menuToggle.addEventListener('click', () => {
+        sideDrawer.classList.toggle('translate-x-full');
+        backdrop.classList.toggle('hidden');
+      });
+      backdrop.addEventListener('click', () => {
+        sideDrawer.classList.add('translate-x-full');
+        backdrop.classList.add('hidden');
+      });
+
+      // Hero entrance
+      gsap.from('#heroTitle', { duration: 1, y: 60, opacity: 0, ease: 'power2.out', delay: 0.3 });
+      gsap.from('#heroSub', { duration: 0.8, y: 30, opacity: 0, ease: 'power2.out', delay: 0.7 });
+      gsap.from('#heroSub2', { duration: 0.8, y: 30, opacity: 0, ease: 'power2.out', delay: 0.9 });
+      gsap.from('#heroLinks', { duration: 0.8, y: 20, opacity: 0, ease: 'power2.out', delay: 1.1 });
+
+      // Section scroll reveals
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.querySelectorAll('.section-reveal').forEach((s) => { s.style.opacity = 1; s.style.transform = 'none'; });
+      } else {
+        document.querySelectorAll('.section-reveal').forEach((section) => {
+          gsap.to(section, {
+            scrollTrigger: { trigger: section, start: 'top 85%', toggleActions: 'play none none none' },
+            opacity: 1, y: 0, duration: 0.7, ease: 'power2.out',
+          });
+        });
+      }
+
+      // Section nav active state
+      const sections = ['art', 'music', 'writing'];
+      const navLinks = document.querySelectorAll('.section-nav-link');
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            navLinks.forEach(link => {
+              link.classList.toggle('active-section', link.dataset.section === entry.target.id);
             });
-        </script>
-    </head>
+          }
+        });
+      }, { threshold: 0.4 });
 
-    <body data-bs-spy="scroll" data-bs-target=".navbar" style = "background: #fee1f4;">
-        <nav class="navbar navbar-expand-lg fixed-top d-flex justify-content-between">
-            <span class="font-weight-bold" style="font-size: x-large; color: rgb(255, 43, 139);">
-                <img src="pics/mariannegagnamagnid.png"> Medic's (Marianne Edic)
-            </span>
-            <ul class="text-light navbar-nav">
-                <li class="nav-item"><a class="nav-link" href="../">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="../projects">Coding Projects</a></li>
-                <li class="nav-item"><a class="nav-link active">The Creatives</a></li>
-                <li class="nav-item"><a class="nav-link" href="../about_me">About Me</a></li>
-            </ul>
-        </nav>
-        <nav class="navbar navbar-expand-lg fixed-bottom d-flex justify-content-between coding-projects" style="background: #a878af;">
-            <span class="font-weight-bold" style="font-size: x-large;">The Creatives</span>
-            <ul class="text-light navbar-nav">
-                <li class="nav-item"><a class="nav-link" href="#songsAccordion">Songs</a></li>
-                <li class="nav-item"><a class="nav-link" href="#artAccordion">Art</a></li>
-                <li class="nav-item"><a class="nav-link" href="#literatureAccordion">Literature</a></li>
-                <li class="nav-item"><a class="nav-link" href="#coversAccordion">Covers</a></li>
-            </ul>
-        </nav>
-        <br/>
-        <br/>
-        <br/>
-        <div class="container text-center">
-            <h1>The Creatives</h1>
-            <p>
-                Deep down, I'm an artist. I create music, art, and literature.
-            </p>
-            <p>
-                Check out my work! They're made with passion and love.
-            </p>
-        </div>
-        <div class = "container-fluid">
-            <div class = "accordion" id="songsAccordion">
-                <div class = "accordion-item" id="songs">
-                    <h4 class = "accordion-header">
-                        <button style="background-color: rgb(255, 130, 130);" class="accordion-button d-flex justify-content-between" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSongs" aria-expanded="true" aria-controls="collapseSongs">
-                            Original Songs by StellarSong
-                        </button>
-                    </h4>
-                    <div id="collapseSongs" class="accordion-collapse collapse" data-bs-parent="#songsAccordion">
-                        <div class = "accordion-body text-center" style="background-color: rgb(255, 130, 130)">
-                            <div>
-                                <p>For all my auditory art, you can check out my YouTube channel</p>
-                                <a href="https://www.youtube.com/@StellarSong">
-                                    <button width="200" height="200" class="button" style="background-color: rgb(207, 0, 0)"><i class="bi bi-youtube"></i></button>
-                                </a>
-                            </div>
-                            <div>
-                                <p>In the meantime, check out this playlist of my original songs!</p>
-                                <iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?si=_id4rhcC5GPJlcCO&amp;list=PL7ZM_qDvqDGotECfzn7SjeST52dGEtYKI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class = "accordion" id="artAccordion">
-                <div class = "accordion-item" id="art">
-                    <h4 class = "accordion-header">
-                        <button style="background-color: #e14d90;" class="accordion-button d-flex justify-content-between" type="button" data-bs-toggle="collapse" data-bs-target="#collapseArt" aria-expanded="true" aria-controls="collapseArt">
-                            Artworks by StellarSong
-                        </button>
-                    </h4>
-                    <div id="collapseArt" class="accordion-collapse collapse" data-bs-parent="#artAccordion">
-                        <div class = "accordion-body text-center" style="background-color: #e14d90;">
-                            <p>Check out my artworks, both digital and traditional!</p>
-                            <p>They are all contained inside my Instagram profile</p>
-                            <a href="https://www.instagram.com/stellarsong_official/">
-                                <button width="200" height="200" class="button" style="background-color: #515bd4"><i class="bi bi-instagram"></i></button>
-                            </a>
-                            <p>This is one of the best artworks I've created.</p>
-                            <center>
-                                <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/CZWZcfAPykv/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"><div style="padding:16px;"> <a href="https://www.instagram.com/p/CZWZcfAPykv/?utm_source=ig_embed&amp;utm_campaign=loading" style=" background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;" target="_blank"> <div style=" display: flex; flex-direction: row; align-items: center;"> <div style="background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 40px; margin-right: 14px; width: 40px;"></div> <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center;"> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 100px;"></div> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 60px;"></div></div></div><div style="padding: 19% 0;"></div> <div style="display:block; height:50px; margin:0 auto 12px; width:50px;"><svg width="50px" height="50px" viewBox="0 0 60 60" version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g transform="translate(-511.000000, -20.000000)" fill="#000000"><g></g></g></g></svg></div><div style="padding-top: 8px;"> <div style=" color:#3897f0; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:550; line-height:18px;">View this post on Instagram</div></div><div style="padding: 12.5% 0;"></div> <div style="display: flex; flex-direction: row; margin-bottom: 14px; align-items: center;"><div> <div style="background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(0px) translateY(7px);"></div> <div style="background-color: #F4F4F4; height: 12.5px; transform: rotate(-45deg) translateX(3px) translateY(1px); width: 12.5px; flex-grow: 0; margin-right: 14px; margin-left: 2px;"></div> <div style="background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(9px) translateY(-18px);"></div></div><div style="margin-left: 8px;"> <div style=" background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 20px; width: 20px;"></div> <div style=" width: 0; height: 0; border-top: 2px solid transparent; border-left: 6px solid #f4f4f4; border-bottom: 2px solid transparent; transform: translateX(16px) translateY(-4px) rotate(30deg)"></div></div><div style="margin-left: auto;"> <div style=" width: 0px; border-top: 8px solid #F4F4F4; border-right: 8px solid transparent; transform: translateY(16px);"></div> <div style=" background-color: #F4F4F4; flex-grow: 0; height: 12px; width: 16px; transform: translateY(-4px);"></div> <div style=" width: 0; height: 0; border-top: 8px solid #F4F4F4; border-left: 8px solid transparent; transform: translateY(-4px) translateX(8px);"></div></div></div> <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center; margin-bottom: 24px;"> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 224px;"></div> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 144px;"></div></div></a><p style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;"><a href="https://www.instagram.com/p/CZWZcfAPykv/?utm_source=ig_embed&amp;utm_campaign=loading" style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none;" target="_blank">A post shared by Stellar Melody Song (@stellarsong_official)</a></p></div></blockquote> <script async src="//www.instagram.com/embed.js"></script>
-                            </center>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class = "accordion" id="literatureAccordion">
-                <div class = "accordion-item" id="literature">
-                    <h4 class = "accordion-header">
-                        <button style="background-color: rgb(255, 170, 0);" class="accordion-button d-flex justify-content-between" type="button" data-bs-toggle="collapse" data-bs-target="#collapseLiterature" aria-expanded="true" aria-controls="collapseLiterature">
-                            Stellar Stellar Literature Compilation!
-                        </button>
-                    </h4>
-                    <div id="collapseLiterature" class="accordion-collapse collapse" data-bs-parent="#literatureAccordion">
-                        <div class = "accordion-body text-center" style="background-color: rgb(255, 170, 0);">
-                            <p>I'm a professional writer, but these are my personal creations.</p>
-                            <p>Who even uses Wattpad anymore?</p>
-                            <a href="https://www.wattpad.com/user/StellarSong_official">
-                                <button width="200" height="200" class="button" style="background-color: #ff500a"><i class="bi bi-file-word"></i></button>
-                            </a>
-                            <p>Here's one of my favorite stories.</p>
-                            <iframe width="500" height="280" frameborder="0" allowfullscreen="" src="https://embed.wattpad.com/story/208141727" ></iframe>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class = "accordion" id="coversAccordion">
-                <div class = "accordion-item" id="covers">
-                    <h4 class = "accordion-header">
-                        <button style="background-color: #7a58c1;" class="accordion-button d-flex justify-content-between" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCovers" aria-expanded="true" aria-controls="collapseCovers">
-                            Song Covers by StellarSong
-                        </button>
-                    </h4>
-                    <div id="collapseCovers" class="accordion-collapse collapse" data-bs-parent="#coversAccordion">
-                        <div class = "accordion-body text-center" style="background-color: #7a58c1;">
-                            <div>
-                                <p>For all my auditory art, you can check out my YouTube channel</p>
-                                <a href="https://www.youtube.com/@StellarSong">
-                                    <button width="200" height="200" class="button" style="background-color: rgb(207, 0, 0)"><i class="bi bi-youtube"></i></button>
-                                </a>
-                            </div>
-                            <div>
-                                <p>In the meantime, check out this playlist of my covers in different languages and genres!</p>
-                                <iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?si=NJ9_iKL-WQd453Jq&amp;list=PL7ZM_qDvqDGoMEzUBCs4MtSswWS1ft111" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-        </div>
-    </body>
+      sections.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) observer.observe(el);
+      });
+
+      // Smooth scroll for section nav links
+      document.querySelectorAll('a[href^="#"]').forEach(link => {
+        link.addEventListener('click', (e) => {
+          const target = document.querySelector(link.getAttribute('href'));
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      });
+    </script>
+  </body>
 </html>

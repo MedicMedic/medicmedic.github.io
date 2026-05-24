@@ -1,161 +1,743 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>The Medic Zone: Coding Projects</title>
-        <link rel="icon" href="pics/marianne_gagnamagnid.png">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-        <!-- Google tag (gtag.js) -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-RTS1Z5XYJ4"></script>
-        <script>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-        
-          gtag('config', 'G-RTS1Z5XYJ4');
-        </script>
-        <style>
-            div
-            {
-                padding: top 500px;
-            }
-            a 
-            {
-                text-decoration: none; /* Remove underlines */
-                color: inherit; /* Inherit the text color from parent */
-                cursor: pointer; /* Change cursor on hover */
-            }
-            h1
-            {
-                padding: top 500px;
-                padding: bottom 10px;
-                margin: 30px;
-                z-index: 2;
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Coding Projects — The Medic Zone</title>
+    <link rel="icon" href="pics/marianne gagnamagnid.png" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+    <link href="https://fonts.googleapis.com/css2?family=Epunda+Slab:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet" />
 
-                font-size: 3em;
-                animation: color-change 20s infinite;
-            }
-            @keyframes color-change 
-            {
-                0% { color: rgb(173, 173, 173); }
-                25% { color: rgb(246, 255, 208); }
-                50% { color: rgb(215, 151, 255); }
-                75% { color: rgb(0, 105, 191); }
-            }
-        </style>
-        <script>
-            $(document).ready(function () {
-               $('body').scrollspy({ target: '.coding-projects', offset: 50 });
-            });
-        </script>
-    </head>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              "medic-pink": "#FFB4D6",
+              "medic-hot-pink": "#FF3F9F",
+              "medic-light-pink": "#FF96CB",
+              "medic-yellow": "#FFF898",
+              "medic-dark-bg": "rgb(27, 0, 12.24)",
+              "medic-dark-nav": "rgb(63, 0, 31.5)",
+              "medic-dark-menu": "rgb(150, 0, 75.7142857143)",
+              "matrix-bg": "#121C10",
+              "matrix-green": "#00ff66",
+              "matrix-dim": "#0fa845",
+            },
+            fontFamily: {
+              epunda: ["Epunda Slab", "serif"],
+              sharetechmono: ["Share Tech Mono", "monospace"],
+            },
+          },
+        },
+      };
+    </script>
 
-    <body data-bs-spy="scroll" data-bs-target=".navbar" style = "background: #fee1f4;">
-        <nav class="navbar navbar-expand-lg fixed-top d-flex justify-content-between">
-            <span class="font-weight-bold" style="font-size: x-large; color: rgb(255, 43, 139);">
-                <img src="pics/marianne_gagnamagnid.png"> Medic's (Marianne Edic)
-            </span>
-            <ul class="text-light navbar-nav">
-                <li class="nav-item"><a class="nav-link" href="../">Home</a></li>
-                <li class="nav-item"><a class="nav-link active">      Coding Projects</a></li>
-                <li class="nav-item"><a class="nav-link" href="../creatives">The Creatives</a></li>
-                <li class="nav-item"><a class="nav-link" href="../about_me">About Me</a></li>
-            </ul>
-        </nav>
-        <nav class="navbar navbar-expand-lg fixed-bottom d-flex justify-content-between coding-projects" style="background: #ffef95;">
-            <span class="font-weight-bold" style="font-size: x-large;">Coding Projects</span>
-            <ul class="text-light navbar-nav">
-                <li class="nav-item"><a class="nav-link" href="#codeAccordion">Code</a></li>
-                <li class="nav-item"><a class="nav-link" href="#sitesAccordion">Sites</a></li>
-                <li class="nav-item"><a class="nav-link" href="#gamesAccordion">Games</a></li>
-                <li class="nav-item"><a class="nav-link" href="#appsAccordion">Apps</a></li>
-            </ul>
-        </nav>
-        <br/>
-        <br/>
-        <br/>
-        <div class="container text-center">
-            <h1>Medic's Coding Projects</h1>
-            <p>
-                I'm a Computer Science student, and these are my homework, mostly. But I have passion projects, too.
-            </p>
-            <p>
-                The images link to my Github lists so you can check out my work easily.
-            </p>
+    <style>
+      html, body { overflow-x: hidden; }
+      body {
+        background-color: #121C10;
+        color: #d6ffd6;
+      }
+
+      /* Matrix rain */
+      .code-rain {
+        position: absolute;
+        top: 0;
+        white-space: pre;
+        font-family: 'Share Tech Mono', monospace;
+        font-size: 16px;
+        color: #00ff66;
+        line-height: 1.2;
+        pointer-events: none;
+        user-select: none;
+        text-shadow: 0 0 6px rgba(0,255,102,0.6);
+      }
+
+      /* CRT scanlines */
+      .crt::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background-image: linear-gradient(transparent 0%, rgba(0,255,102,0.04) 50%, transparent 100%);
+        background-size: 100% 4px;
+        mix-blend-mode: screen;
+        z-index: 2;
+      }
+
+      /* Blinking cursor */
+      .cursor {
+        display: inline-block;
+        width: 0.6ch;
+        height: 1em;
+        background: #00ff66;
+        vertical-align: -0.15em;
+        animation: blink 1s step-end infinite;
+      }
+      @keyframes blink {
+        50% { opacity: 0; }
+      }
+
+      /* Glow */
+      .glow-green {
+        text-shadow: 0 0 8px rgba(0,255,102,0.7), 0 0 24px rgba(0,255,102,0.4);
+      }
+      .glow-pink {
+        text-shadow: 0 0 8px rgba(255,63,159,0.8), 0 0 24px rgba(255,63,159,0.4);
+      }
+
+      /* Terminal window */
+      .terminal {
+        background: rgba(8,16,8,0.85);
+        border: 1px solid rgba(0,255,102,0.4);
+        border-radius: 12px;
+        backdrop-filter: blur(6px);
+        position: relative;
+        overflow: hidden;
+      }
+      .terminal-header {
+        background: rgba(0,255,102,0.12);
+        border-bottom: 1px solid rgba(0,255,102,0.3);
+        padding: 0.6rem 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-family: 'Share Tech Mono', monospace;
+        font-size: 0.85rem;
+        color: #00ff66;
+      }
+      .terminal-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+      }
+
+      /* Project card */
+      .project-card {
+        transition: all 0.4s cubic-bezier(0.2, 0.7, 0.2, 1.2);
+        position: relative;
+        overflow: hidden;
+      }
+      .project-card:hover {
+        transform: translateY(-6px);
+        border-color: #FF3F9F !important;
+        box-shadow: 0 20px 60px -10px rgba(255,63,159,0.55), 0 0 40px rgba(0,255,102,0.25);
+      }
+      .project-card:hover .card-title {
+        color: #FF96CB;
+      }
+      .project-card .stripe {
+        position: absolute;
+        top: 0;
+        right: -50%;
+        width: 200%;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #00ff66, transparent);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+      .project-card:hover .stripe {
+        opacity: 1;
+        animation: scan-line 2s linear infinite;
+      }
+      @keyframes scan-line {
+        from { transform: translateX(-100%); }
+        to { transform: translateX(100%); }
+      }
+
+      /* Tag chip */
+      .tag {
+        display: inline-block;
+        font-family: 'Share Tech Mono', monospace;
+        font-size: 0.7rem;
+        padding: 0.15rem 0.55rem;
+        border: 1px solid rgba(0,255,102,0.5);
+        border-radius: 4px;
+        color: #00ff66;
+        margin-right: 0.35rem;
+        margin-bottom: 0.35rem;
+        background: rgba(0,255,102,0.08);
+      }
+      .tag.pink {
+        border-color: rgba(255,63,159,0.6);
+        color: #FF96CB;
+        background: rgba(255,63,159,0.1);
+      }
+      .tag.yellow {
+        border-color: rgba(255,248,152,0.6);
+        color: #FFF898;
+        background: rgba(255,248,152,0.1);
+      }
+
+      /* ASCII Banner */
+      .ascii-banner {
+        font-family: 'Share Tech Mono', monospace;
+        font-size: clamp(8px, 1.6vw, 14px);
+        line-height: 1;
+        color: #00ff66;
+        text-shadow: 0 0 8px rgba(0,255,102,0.7);
+        white-space: pre;
+        text-align: center;
+        opacity: 0.95;
+      }
+
+      /* Reveal */
+      .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+      .reveal.in { opacity: 1; transform: none; }
+
+      /* Category section heading */
+      .cat-heading {
+        font-family: 'Share Tech Mono', monospace;
+        font-size: 2.5rem;
+        color: #00ff66;
+        position: relative;
+        padding-left: 2.5rem;
+      }
+      .cat-heading::before {
+        content: ">";
+        position: absolute;
+        left: 0;
+        color: #FF3F9F;
+        animation: blink 1.2s step-end infinite;
+      }
+
+      /* Highlight (skill) text */
+      .hi-pink { color: #FF3F9F; }
+      .hi-green { color: #00ff66; }
+      .hi-yellow { color: #FFF898; }
+
+      /* Subtle background dots */
+      .dots-bg {
+        background-image: radial-gradient(rgba(0,255,102,0.12) 1px, transparent 1px);
+        background-size: 24px 24px;
+      }
+    </style>
+  </head>
+
+  <body class="font-epunda m-0 p-0">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-medic-hot-pink h-20 flex items-center justify-between px-6 shadow-md transition-transform duration-300 ease-in-out">
+      <a href="../" class="flex items-center space-x-3">
+        <img class="h-12 align-middle" src="pics/marianne gagnamagnid.png" alt="Logo" />
+        <span class="text-xl font-semibold text-white">The Medic Zone</span>
+      </a>
+      <button id="menuToggle" class="sm:hidden focus:outline-none text-white">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+      <ul class="hidden sm:flex space-x-4">
+        <li><a href="../" class="block px-4 py-3 text-white font-medium hover:bg-medic-light-pink rounded transition-all duration-300">Home</a></li>
+        <li class="relative group">
+          <a href="./" class="flex items-center space-x-1 px-4 py-3 text-white font-medium bg-medic-light-pink rounded transition-all duration-300">
+            <span>Coding Projects</span>
+            <svg class="w-4 h-4 transform transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6" /></svg>
+          </a>
+          <ul class="absolute hidden group-hover:block bg-medic-light-pink shadow-md rounded-md w-48 z-20">
+            <li><a href="../TaskRNG" class="block px-4 py-2 text-white hover:bg-medic-hot-pink transition-colors duration-300">Task RNG</a></li>
+            <li><a href="../HTMLShooterGame" class="block px-4 py-2 text-white hover:bg-medic-hot-pink transition-colors duration-300">Stellar Shooter</a></li>
+          </ul>
+        </li>
+        <li class="relative group">
+          <a href="../creatives" class="flex items-center space-x-1 px-4 py-3 text-white font-medium hover:bg-medic-light-pink rounded transition-all duration-300">
+            <span>The Creatives</span>
+            <svg class="w-4 h-4 transform transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6" /></svg>
+          </a>
+          <ul class="absolute hidden group-hover:block bg-medic-light-pink shadow-md rounded-md w-48 z-20">
+            <li><a href="../music" class="block px-4 py-2 text-white hover:bg-medic-hot-pink transition-colors duration-300">Music</a></li>
+            <li><a href="../artwork" class="block px-4 py-2 text-white hover:bg-medic-hot-pink transition-colors duration-300">Artworks</a></li>
+          </ul>
+        </li>
+        <li><a href="../about_me" class="block px-4 py-3 text-white font-medium hover:bg-medic-light-pink rounded transition-all duration-300">About Me</a></li>
+      </ul>
+    </nav>
+
+    <div id="backdrop" class="fixed inset-0 z-30 bg-black bg-opacity-50 hidden transition-opacity duration-300 ease-in-out"></div>
+
+    <!-- Side Drawer -->
+    <div id="sideDrawer" class="bg-medic-light-pink text-white fixed top-20 right-0 h-[calc(100%-80px)] w-64 transform translate-x-full transition-transform duration-300 ease-in-out z-40">
+      <div class="p-6 space-y-4">
+        <a href="../" class="block px-4 py-3 hover:bg-medic-hot-pink hover:text-white rounded">Home</a>
+        <a href="./" class="block px-4 py-3 bg-medic-hot-pink text-white rounded">Coding Projects</a>
+        <a href="../music" class="block px-4 py-3 hover:bg-medic-hot-pink hover:text-white rounded">Music</a>
+        <a href="../artwork" class="block px-4 py-3 hover:bg-medic-hot-pink hover:text-white rounded">Artworks</a>
+        <a href="../about_me" class="block px-4 py-3 hover:bg-medic-hot-pink hover:text-white rounded">About Me</a>
+      </div>
+    </div>
+
+    <!-- HERO / TERMINAL -->
+    <section class="relative min-h-screen w-full bg-matrix-bg overflow-hidden flex items-center justify-center crt pt-28 pb-20">
+      <!-- Matrix rain background -->
+      <div id="matrixRain" class="absolute inset-0 z-0 overflow-hidden pointer-events-none opacity-50"></div>
+
+      <div class="relative z-10 max-w-5xl w-full px-6">
+        <!-- ASCII banner -->
+        <pre class="ascii-banner mb-6 hidden lg:block" style="font-size: clamp(7px, 1.1vw, 11px);">
+   ____ ___  ____ ___ _   _  ____   ____  ____   ___      _ _____ ____ _____ ____
+  / ___/ _ \|  _ \_ _| \ | |/ ___| |  _ \|  _ \ / _ \    | | ____/ ___|_   _/ ___|
+ | |  | | | | | | | ||  \| | |  _  | |_) | |_) | | | |_  | |  _|| |     | | \___ \
+ | |__| |_| | |_| | || |\  | |_| | |  __/|  _ <| |_| | |_| | |__| |___  | |  ___) |
+  \____\___/|____/___|_| \_|\____| |_|   |_| \_\\___/ \___/|_____\____| |_| |____/
+        </pre>
+
+        <!-- Terminal -->
+        <div class="terminal">
+          <div class="terminal-header">
+            <span class="terminal-dot bg-red-500"></span>
+            <span class="terminal-dot bg-yellow-400"></span>
+            <span class="terminal-dot bg-green-400"></span>
+            <span class="ml-4 opacity-70">medic@thezone:~/projects $</span>
+          </div>
+          <div class="p-6 md:p-10 font-sharetechmono text-base md:text-lg leading-relaxed">
+            <p><span class="hi-pink">medic@thezone</span><span class="opacity-50">:</span><span class="hi-yellow">~/projects</span><span class="opacity-50">$</span> <span id="cmd1"></span></p>
+            <p class="mt-1 text-matrix-green/80" id="line1"></p>
+            <p class="mt-3"><span class="hi-pink">medic@thezone</span><span class="opacity-50">:</span><span class="hi-yellow">~/projects</span><span class="opacity-50">$</span> <span id="cmd2"></span></p>
+            <p class="mt-1 text-matrix-green/80" id="line2"></p>
+            <p class="mt-3"><span class="hi-pink">medic@thezone</span><span class="opacity-50">:</span><span class="hi-yellow">~/projects</span><span class="opacity-50">$</span> <span id="cmd3"></span><span class="cursor"></span></p>
+          </div>
         </div>
-        <div class = "container-fluid">
-            <div class = "accordion" id="codeAccordion">
-                <div class = "accordion-item" id="code">
-                    <h4 class = "accordion-header">
-                        <button style="background-color: rgb(173, 173, 173);" class="accordion-button d-flex justify-content-between" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCode" aria-expanded="true" aria-controls="collapseCode">
-                            Code
-                        </button>
-                    </h4>
-                    <div id="collapseCode" class="accordion-collapse collapse" data-bs-parent="#codeAccordion">
-                        <div class = "accordion-body text-center" style="background-color: rgb(173, 173, 173);">
-                            <a href="https://github.com/stars/MedicMedic/lists/code">
-                                <img style="width:auto" src="https://opengraph.githubassets.com/a687952e75ea331fbb52c7bb0cd04c20ace95fcc713b1f2a48eeae6ef77bd5bd/stars/MedicMedic/lists/code">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class = "accordion" id="sitesAccordion">
-                <div class = "accordion-item" id="sites">
-                    <h4 class = "accordion-header">
-                        <button style="background-color: rgb(246, 255, 208);" class="accordion-button d-flex justify-content-between" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSites" aria-expanded="true" aria-controls="collapseSites">
-                            Sites
-                        </button>
-                    </h4>
-                    <div id="collapseSites" class="accordion-collapse collapse" data-bs-parent="#sitesAccordion">
-                        <div class = "accordion-body text-center" style="background-color: rgb(246, 255, 208);">
-                            <a href="https://github.com/stars/MedicMedic/lists/websites">
-                                <img style="width:auto" src="https://opengraph.githubassets.com/a687952e75ea331fbb52c7bb0cd04c20ace95fcc713b1f2a48eeae6ef77bd5bd/stars/MedicMedic/lists/websites">
-                            </a>
-                            <br>
-                            <h3>Try out Task RNG!</h3>
-                            <embed src="https://medicmedic.github.io/TaskRNG/" style="width: 500px; height: 800px;">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class = "accordion" id="gamesAccordion">
-                <div class = "accordion-item" id="games">
-                    <h4 class = "accordion-header">
-                        <button style="background-color: rgb(215, 151, 255);" class="accordion-button d-flex justify-content-between" type="button" data-bs-toggle="collapse" data-bs-target="#collapseGames" aria-expanded="true" aria-controls="collapseGames">
-                            Games
-                        </button>
-                    </h4>
-                    <div id="collapseGames" class="accordion-collapse collapse" data-bs-parent="#gamesAccordion">
-                        <div class = "accordion-body text-center" style="background-color: rgb(215, 151, 255);">
-                            <a href="https://github.com/stars/MedicMedic/lists/games">
-                                <img style="width:auto" src="https://opengraph.githubassets.com/a687952e75ea331fbb52c7bb0cd04c20ace95fcc713b1f2a48eeae6ef77bd5bd/stars/MedicMedic/lists/games">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class = "accordion" id="appsAccordion">
-                <div class = "accordion-item" id="apps">
-                    <h4 class = "accordion-header">
-                        <button style="background-color: rgb(0, 105, 191);" class="accordion-button d-flex justify-content-between" type="button" data-bs-toggle="collapse" data-bs-target="#collapseApps" aria-expanded="true" aria-controls="collapseApps">
-                            Apps
-                        </button>
-                    </h4>
-                    <div id="collapseApps" class="accordion-collapse collapse" data-bs-parent="#appsAccordion">
-                        <div class = "accordion-body text-center" style="background-color: rgb(0, 105, 191);">
-                            <a href="https://github.com/stars/MedicMedic/lists/apps">
-                                <img style="width:auto" src="https://opengraph.githubassets.com/a687952e75ea331fbb52c7bb0cd04c20ace95fcc713b1f2a48eeae6ef77bd5bd/stars/MedicMedic/lists/apps">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
+
+        <h1 class="text-5xl sm:text-6xl md:text-7xl text-matrix-green glow-green font-sharetechmono text-center mt-8 hover:text-medic-hot-pink hover:glow-pink transition-colors duration-300">
+          Coding Projects
+        </h1>
+      </div>
+
+      <div class="absolute bottom-8 left-0 right-0 text-center z-10">
+        <svg class="mx-auto w-6 h-6 text-matrix-green animate-bounce" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+        </svg>
+      </div>
+    </section>
+
+    <!-- STATS STRIP -->
+    <section class="relative bg-matrix-bg dots-bg px-6 py-20 border-y border-matrix-green/30">
+      <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div class="reveal">
+          <p class="text-5xl md:text-6xl font-sharetechmono text-matrix-green glow-green">04</p>
+          <p class="font-sharetechmono text-xs md:text-sm tracking-widest uppercase mt-2 text-matrix-dim">years coding</p>
         </div>
-    </body>
+        <div class="reveal">
+          <p class="text-5xl md:text-6xl font-sharetechmono text-matrix-green glow-green">12+</p>
+          <p class="font-sharetechmono text-xs md:text-sm tracking-widest uppercase mt-2 text-matrix-dim">repos shipped</p>
+        </div>
+        <div class="reveal">
+          <p class="text-5xl md:text-6xl font-sharetechmono text-matrix-green glow-green">6</p>
+          <p class="font-sharetechmono text-xs md:text-sm tracking-widest uppercase mt-2 text-matrix-dim">languages</p>
+        </div>
+        <div class="reveal">
+          <p class="text-5xl md:text-6xl font-sharetechmono text-matrix-green glow-green">∞</p>
+          <p class="font-sharetechmono text-xs md:text-sm tracking-widest uppercase mt-2 text-matrix-dim">cups of coffee</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURED PROJECT -->
+    <section class="relative bg-matrix-bg px-6 md:px-12 py-24 crt overflow-hidden">
+      <div class="max-w-6xl mx-auto">
+        <p class="font-sharetechmono text-medic-hot-pink text-sm tracking-[0.3em] uppercase mb-3 reveal">// featured.exe</p>
+        <h2 class="cat-heading mb-12 reveal">stellar_shooter/</h2>
+
+        <div class="grid md:grid-cols-5 gap-8 items-start">
+          <div class="md:col-span-3 reveal">
+            <div class="terminal">
+              <div class="terminal-header">
+                <span class="terminal-dot bg-red-500"></span>
+                <span class="terminal-dot bg-yellow-400"></span>
+                <span class="terminal-dot bg-green-400"></span>
+                <span class="ml-4 opacity-70">stellar-shooter — live preview</span>
+              </div>
+              <div class="aspect-video bg-black flex items-center justify-center">
+                <img src="pics/stellar_banner.png" alt="Stellar Shooter banner" class="w-full h-full object-cover" />
+              </div>
+            </div>
+          </div>
+
+          <div class="md:col-span-2 reveal">
+            <h3 class="text-3xl md:text-4xl font-sharetechmono text-matrix-green mb-3">Stellar Shooter</h3>
+            <p class="text-lg leading-snug mb-5">
+              Help Stellar shoot her insecurities. A small browser shoot-em-up built in plain HTML5 canvas, with hand-drawn sprites and chiptune music I wrote myself.
+            </p>
+            <div class="mb-5">
+              <span class="tag">HTML</span>
+              <span class="tag">Canvas</span>
+              <span class="tag">JavaScript</span>
+              <span class="tag pink">Game</span>
+            </div>
+            <div class="flex flex-wrap gap-3">
+              <a href="../HTMLShooterGame" class="px-5 py-2 bg-medic-hot-pink text-white rounded hover:scale-105 hover:bg-medic-light-pink transition-all duration-300 font-sharetechmono">
+                <i class="bi bi-controller mr-2"></i>Play
+              </a>
+              <a href="https://github.com/MedicMedic" class="px-5 py-2 border border-matrix-green text-matrix-green rounded hover:bg-matrix-green hover:text-matrix-bg hover:scale-105 transition-all duration-300 font-sharetechmono">
+                <i class="bi bi-github mr-2"></i>Repo
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CATEGORIES -->
+    <!-- == CODE / experiments == -->
+    <section id="code" class="relative px-6 md:px-12 py-20 crt overflow-hidden" style="background-color:#0e1610;">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="cat-heading reveal mb-3">code/</h2>
+        <p class="text-lg mb-10 max-w-2xl text-matrix-dim reveal font-sharetechmono">
+          # experiments, compilers, and the homework I'm actually proud of
+        </p>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <a href="https://github.com/MedicMedic/The-Super-Stellar-Compiler" class="project-card reveal block terminal p-6 border border-matrix-green/40">
+            <span class="stripe"></span>
+            <div class="flex items-start justify-between mb-3">
+              <i class="bi bi-file-earmark-code text-3xl text-matrix-green"></i>
+              <span class="font-sharetechmono text-xs text-matrix-dim">v1.0.0</span>
+            </div>
+            <h3 class="card-title text-2xl font-sharetechmono text-matrix-green mb-2 transition-colors">The Super Stellar Compiler</h3>
+            <p class="text-sm leading-snug mb-4">
+              A toy compiler that checks if a Java variable initialization is valid. Built for a class, polished after for fun.
+            </p>
+            <div>
+              <span class="tag">Java</span>
+              <span class="tag">Compiler</span>
+              <span class="tag yellow">Coursework+</span>
+            </div>
+          </a>
+
+          <a href="https://github.com/MedicMedic" class="project-card reveal block terminal p-6 border border-matrix-green/40">
+            <span class="stripe"></span>
+            <div class="flex items-start justify-between mb-3">
+              <i class="bi bi-cpu text-3xl text-matrix-green"></i>
+              <span class="font-sharetechmono text-xs text-matrix-dim">starred list</span>
+            </div>
+            <h3 class="card-title text-2xl font-sharetechmono text-matrix-green mb-2 transition-colors">Algorithms & Data Structures</h3>
+            <p class="text-sm leading-snug mb-4">
+              Tiny implementations I wrote to understand them better: linked lists, sorting demos, graph traversals. The "huh, so that's how it works" pile.
+            </p>
+            <div>
+              <span class="tag">Python</span>
+              <span class="tag">C++</span>
+              <span class="tag">Learning</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- == SITES == -->
+    <section id="sites" class="relative px-6 md:px-12 py-20 crt overflow-hidden" style="background-color:#101a14;">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="cat-heading reveal mb-3">sites/</h2>
+        <p class="text-lg mb-10 max-w-2xl text-matrix-dim reveal font-sharetechmono">
+          # things that live on the open web
+        </p>
+
+        <div class="grid md:grid-cols-3 gap-6">
+          <a href="../TaskRNG" class="project-card reveal block terminal p-6 border border-matrix-green/40">
+            <span class="stripe"></span>
+            <div class="flex items-start justify-between mb-3">
+              <i class="bi bi-shuffle text-3xl text-matrix-green"></i>
+              <span class="font-sharetechmono text-xs text-matrix-dim">live</span>
+            </div>
+            <h3 class="card-title text-2xl font-sharetechmono text-matrix-green mb-2 transition-colors">Task RNG</h3>
+            <p class="text-sm leading-snug mb-4">
+              Write down your tasks. Let RNG decide what you should do. Built because deciding is the hardest part.
+            </p>
+            <div>
+              <span class="tag">HTML</span>
+              <span class="tag">JS</span>
+              <span class="tag pink">Tool</span>
+            </div>
+          </a>
+
+          <a href="../" class="project-card reveal block terminal p-6 border border-matrix-green/40">
+            <span class="stripe"></span>
+            <div class="flex items-start justify-between mb-3">
+              <i class="bi bi-globe text-3xl text-matrix-green"></i>
+              <span class="font-sharetechmono text-xs text-matrix-dim">you are here</span>
+            </div>
+            <h3 class="card-title text-2xl font-sharetechmono text-matrix-green mb-2 transition-colors">The Medic Zone</h3>
+            <p class="text-sm leading-snug mb-4">
+              This very site. Tailwind, GSAP, hand-written everything. A landing pad for everything I make.
+            </p>
+            <div>
+              <span class="tag">Tailwind</span>
+              <span class="tag">GSAP</span>
+              <span class="tag">Portfolio</span>
+            </div>
+          </a>
+
+          <a href="../blog" class="project-card reveal block terminal p-6 border border-matrix-green/40">
+            <span class="stripe"></span>
+            <div class="flex items-start justify-between mb-3">
+              <i class="bi bi-journal-text text-3xl text-matrix-green"></i>
+              <span class="font-sharetechmono text-xs text-matrix-dim">wip</span>
+            </div>
+            <h3 class="card-title text-2xl font-sharetechmono text-matrix-green mb-2 transition-colors">The Blog</h3>
+            <p class="text-sm leading-snug mb-4">
+              Static-site blog rendered from markdown. Mostly devlogs and the occasional rant about CSS.
+            </p>
+            <div>
+              <span class="tag">Markdown</span>
+              <span class="tag">Static</span>
+              <span class="tag yellow">In progress</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- == GAMES == -->
+    <section id="games" class="relative px-6 md:px-12 py-20 crt overflow-hidden" style="background-color:#0e1610;">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="cat-heading reveal mb-3">games/</h2>
+        <p class="text-lg mb-10 max-w-2xl text-matrix-dim reveal font-sharetechmono">
+          # places where Stellar gets to shoot things
+        </p>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <a href="../HTMLShooterGame" class="project-card reveal block terminal border border-matrix-green/40 overflow-hidden">
+            <span class="stripe"></span>
+            <div class="aspect-video bg-black">
+              <img src="pics/stellar_banner.png" alt="" class="w-full h-full object-cover opacity-90" />
+            </div>
+            <div class="p-5">
+              <h3 class="card-title text-2xl font-sharetechmono text-matrix-green mb-2 transition-colors">Stellar Shooter</h3>
+              <p class="text-sm leading-snug mb-3">
+                Browser shoot-em-up. Pixel art sprites, chiptune music, one increasingly anxious heroine.
+              </p>
+              <div>
+                <span class="tag">Canvas</span>
+                <span class="tag">JS</span>
+                <span class="tag pink">Original</span>
+              </div>
+            </div>
+          </a>
+
+          <a href="https://github.com/MedicMedic" class="project-card reveal block terminal border border-matrix-green/40 overflow-hidden">
+            <span class="stripe"></span>
+            <div class="aspect-video bg-black flex items-center justify-center">
+              <img src="pics/player_idle_big.png" alt="" class="h-3/4 object-contain" style="image-rendering:pixelated;" />
+            </div>
+            <div class="p-5">
+              <h3 class="card-title text-2xl font-sharetechmono text-matrix-green mb-2 transition-colors">Sprite Lab</h3>
+              <p class="text-sm leading-snug mb-3">
+                A scratchpad for the game's sprites — idle, walk, attack frames. Half asset library, half doodle book.
+              </p>
+              <div>
+                <span class="tag">Pixel art</span>
+                <span class="tag">Assets</span>
+                <span class="tag yellow">Ongoing</span>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- == APPS == -->
+    <section id="apps" class="relative px-6 md:px-12 py-20 crt overflow-hidden" style="background-color:#101a14;">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="cat-heading reveal mb-3">apps/</h2>
+        <p class="text-lg mb-10 max-w-2xl text-matrix-dim reveal font-sharetechmono">
+          # standalone executables, mobile, desktop
+        </p>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <a href="https://github.com/MedicMedic" class="project-card reveal block terminal p-6 border border-matrix-green/40">
+            <span class="stripe"></span>
+            <div class="flex items-start justify-between mb-3">
+              <i class="bi bi-phone text-3xl text-matrix-green"></i>
+              <span class="font-sharetechmono text-xs text-matrix-dim">android</span>
+            </div>
+            <h3 class="card-title text-2xl font-sharetechmono text-matrix-green mb-2 transition-colors">Glee Companion</h3>
+            <p class="text-sm leading-snug mb-4">
+              Choir-rehearsal helper: pitch reference, attendance tracking, and the world's tiniest metronome. Built to scratch my own itch as Glee Club prez.
+            </p>
+            <div>
+              <span class="tag">Kotlin</span>
+              <span class="tag">Android</span>
+              <span class="tag pink">Personal</span>
+            </div>
+          </a>
+
+          <a href="https://github.com/MedicMedic" class="project-card reveal block terminal p-6 border border-matrix-green/40">
+            <span class="stripe"></span>
+            <div class="flex items-start justify-between mb-3">
+              <i class="bi bi-display text-3xl text-matrix-green"></i>
+              <span class="font-sharetechmono text-xs text-matrix-dim">desktop</span>
+            </div>
+            <h3 class="card-title text-2xl font-sharetechmono text-matrix-green mb-2 transition-colors">Duck Dock</h3>
+            <p class="text-sm leading-snug mb-4">
+              A pet duck waddles across your screen. Click it for affirmations. There is no productivity value. That is the point.
+            </p>
+            <div>
+              <span class="tag">Python</span>
+              <span class="tag">Tkinter</span>
+              <span class="tag yellow">Silly</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- GITHUB CTA -->
+    <section class="relative px-6 md:px-12 py-24 bg-matrix-bg text-center crt overflow-hidden">
+      <div class="max-w-3xl mx-auto reveal">
+        <p class="font-sharetechmono text-medic-hot-pink text-sm tracking-[0.3em] uppercase mb-3">
+          // the full archive
+        </p>
+        <h2 class="text-4xl md:text-6xl font-sharetechmono text-matrix-green glow-green mb-6">
+          See everything on GitHub
+        </h2>
+        <p class="text-lg md:text-xl mb-8 text-matrix-dim font-sharetechmono">
+          $ git clone https://github.com/MedicMedic/everything.git
+        </p>
+        <a href="https://github.com/MedicMedic" class="inline-block px-8 py-4 border-2 border-matrix-green text-matrix-green font-sharetechmono text-lg hover:bg-matrix-green hover:text-matrix-bg hover:scale-110 hover:shadow-[0_0_40px_#00ff66] transition-all duration-300 rounded">
+          <i class="bi bi-github mr-2"></i>@MedicMedic →
+        </a>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-medic-hot-pink text-white py-12">
+      <div class="container mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div>
+            <h3 class="text-lg font-bold mb-4">The Medic Zone</h3>
+            <ul class="space-y-2">
+              <li><a href="../" class="hover:text-medic-pink transition-colors">Home</a></li>
+              <li><a href="../about_me/" class="hover:text-medic-pink transition-colors">About Me</a></li>
+              <li><a href="./" class="hover:text-medic-pink transition-colors">Projects</a></li>
+              <li><a href="../creatives/" class="hover:text-medic-pink transition-colors">Creatives</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold mb-4">Important Stuff</h3>
+            <ul class="space-y-2">
+              <li><a href="../HTMLShooterGame" class="hover:text-medic-pink transition-colors">Stellar Shooter</a></li>
+              <li><a href="#" class="hover:text-medic-pink transition-colors">My Thesis</a></li>
+              <li><a href="#" class="hover:text-medic-pink transition-colors">Final School Portfolio</a></li>
+              <li><a href="#" class="hover:text-medic-pink transition-colors">Resume</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold mb-4">Connect</h3>
+            <div class="flex space-x-4">
+              <a href="https://linkedin.com/in/marianne-edic" class="text-2xl hover:text-medic-pink transition-colors"><i class="bi bi-linkedin"></i></a>
+              <a href="https://youtube.com/@StellarSong" class="text-2xl hover:text-medic-pink transition-colors"><i class="bi bi-youtube"></i></a>
+              <a href="https://github.com/MedicMedic" class="text-2xl hover:text-medic-pink transition-colors"><i class="bi bi-github"></i></a>
+            </div>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold mb-4">Credits</h3>
+            <p class="mt-2">© <span id="copyrightYear"></span> The Medic Zone</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById("copyrightYear").textContent = new Date().getFullYear();
+
+      // Side drawer
+      const toggle = document.getElementById("menuToggle");
+      const drawer = document.getElementById("sideDrawer");
+      const backdrop = document.getElementById("backdrop");
+      toggle.addEventListener("click", () => {
+        drawer.classList.toggle("translate-x-full");
+        backdrop.classList.toggle("hidden");
+      });
+      backdrop.addEventListener("click", () => {
+        drawer.classList.add("translate-x-full");
+        backdrop.classList.add("hidden");
+      });
+
+      // Hide-on-scroll nav
+      if (window.gsap && window.ScrollTrigger) {
+        gsap.registerPlugin(ScrollTrigger);
+        let lastScrollY = window.scrollY;
+        const navbar = document.querySelector("nav");
+        ScrollTrigger.create({
+          start: 20,
+          end: document.body.scrollHeight,
+          onUpdate: (self) => {
+            const y = self.scroll();
+            gsap.to(navbar, { y: y > lastScrollY ? -100 : 0, duration: 0.3 });
+            lastScrollY = y;
+          },
+        });
+      }
+
+      // Matrix rain — disabled on reduced-motion, throttled on mobile
+      (() => {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        const container = document.getElementById("matrixRain");
+        const chars = "01アイウエオカキクケコサシスセソタチツテトナニヌネノ{}[]()<>;=+-/!?_$";
+        const isMobile = window.innerWidth < 768;
+        const colWidth = isMobile ? 36 : 18;
+        const maxCols = isMobile ? 12 : 55;
+        const cols = Math.min(Math.floor(window.innerWidth / colWidth), maxCols);
+        const frag = document.createDocumentFragment();
+        for (let i = 0; i < cols; i++) {
+          const col = document.createElement("div");
+          col.className = "code-rain";
+          col.style.left = (i * colWidth) + "px";
+          const len = 8 + Math.floor(Math.random() * 18);
+          let text = "";
+          for (let j = 0; j < len; j++) text += chars[Math.floor(Math.random() * chars.length)] + "\n";
+          col.textContent = text;
+          col.style.top = (-Math.random() * 400) + "px";
+          col.style.opacity = (0.2 + Math.random() * 0.5).toFixed(2);
+          col.style.willChange = "transform";
+          col.style.animation = `fall ${6 + Math.random() * 10}s linear ${Math.random() * 4}s infinite`;
+          frag.appendChild(col);
+        }
+        container.appendChild(frag);
+        const style = document.createElement("style");
+        style.textContent = `@keyframes fall { from { transform: translateY(-100%); } to { transform: translateY(120vh); } }`;
+        document.head.appendChild(style);
+        // Pause rain when tab is hidden
+        document.addEventListener("visibilitychange", () => {
+          container.style.animationPlayState = document.hidden ? "paused" : "running";
+        });
+      })();
+
+      // Type-on commands
+      const typeOn = (el, text, delay = 0, speed = 38) => new Promise((res) => {
+        setTimeout(() => {
+          let i = 0;
+          const id = setInterval(() => {
+            el.textContent = text.slice(0, ++i);
+            if (i >= text.length) { clearInterval(id); res(); }
+          }, speed);
+        }, delay);
+      });
+      (async () => {
+        await typeOn(document.getElementById("cmd1"), "whoami");
+        document.getElementById("line1").textContent = "marianne edic · computer science · new era university";
+        await typeOn(document.getElementById("cmd2"), "ls --sort=fun", 300);
+        document.getElementById("line2").innerHTML = '<span class="hi-pink">stellar_shooter/</span>  <span class="hi-green">task_rng/</span>  <span class="hi-yellow">super_compiler/</span>  glee_companion/  duck_dock/  ...';
+        await typeOn(document.getElementById("cmd3"), "cat README.md", 300);
+      })();
+
+      // Reveal — skip animations for reduced-motion users
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.querySelectorAll(".reveal").forEach((el) => el.classList.add("in"));
+      } else {
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+          });
+        }, { threshold: 0.1 });
+        document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+      }
+    </script>
+  </body>
 </html>
