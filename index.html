@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -147,7 +147,9 @@
         text-decoration: underline;
         color: #f472b6;
         /* Tailwind pink-400 */
-        transition: color 0.2s ease, transform 0.2s ease;
+        transition:
+          color 0.2s ease,
+          transform 0.2s ease;
       }
 
       .open-modal:hover {
@@ -205,15 +207,19 @@
       }
 
       .welcome-banner {
-        background-image: url('pics/stellar_banner.png');
+        background-image: url("pics/stellar_banner.png");
       }
 
       .hero-text {
-        text-shadow: -1px 0 white, 1px 0 white, 0 -1px white, 0 1px white;
+        text-shadow:
+          -1px 0 white,
+          1px 0 white,
+          0 -1px white,
+          0 1px white;
       }
 
       #creativesBackground {
-        background-image: url('pics/the_creatives banner.png');
+        background-image: url("pics/the_creatives banner.png");
         image-rendering: pixelated;
       }
 
@@ -311,6 +317,13 @@
                 href="/HTMLShooterGame"
                 class="block px-4 py-2 text-white hover:bg-medic-hot-pink dark:hover:bg-medic-hot-pink dark:hover:text-black transition-colors duration-300"
                 >Stellar Shooter</a
+              >
+            </li>
+            <li>
+              <a
+                href="/gubbins-cheat"
+                class="block px-4 py-2 text-white hover:bg-medic-hot-pink dark:hover:bg-medic-hot-pink dark:hover:text-black transition-colors duration-300"
+                >Gubbins Cheat Tool</a
               >
             </li>
           </ul>
@@ -544,10 +557,7 @@
         <div id="bgLayer" class="absolute inset-0 z-0 bg-cover bg-center"></div>
 
         <!-- Slideshow container (hidden by default) -->
-        <div
-          id="slideshowContainer"
-          class="absolute inset-0 z-0"
-        >
+        <div id="slideshowContainer" class="absolute inset-0 z-0">
           <div id="collageTrack" class="collage-masonry h-full"></div>
         </div>
 
@@ -655,7 +665,6 @@
               >oratorio</a
             >
           </h3>
-
         </div>
 
         <!-- Skills Section -->
@@ -1487,7 +1496,7 @@
           duration: 0.5,
           ease: "power2.out",
         },
-        "-=0.3"
+        "-=0.3",
       );
 
       tl.to(".welcome-banner", {
@@ -1503,7 +1512,7 @@
             duration: 0.5,
             ease: "power2.out",
           },
-          "-=0.5"
+          "-=0.5",
         )
         .to(
           ".welcome-banner h3",
@@ -1513,7 +1522,7 @@
             duration: 0.5,
             ease: "power2.out",
           },
-          "-=0.6"
+          "-=0.6",
         );
 
       // Track scroll attempts with much lower threshold
@@ -1548,7 +1557,7 @@
             touchMoved = false;
           }
         },
-        { passive: false }
+        { passive: false },
       );
 
       window.addEventListener(
@@ -1567,7 +1576,7 @@
             }
           }
         },
-        { passive: false }
+        { passive: false },
       );
     </script>
     <!--Intro-->
@@ -1691,7 +1700,7 @@
       document.addEventListener("DOMContentLoaded", () => {
         if (typeof gsap === "undefined") {
           console.warn(
-            "GSAP not found — include GSAP + ScrollTrigger before this script."
+            "GSAP not found — include GSAP + ScrollTrigger before this script.",
           );
           return;
         }
@@ -1731,7 +1740,7 @@
               // optional: add data-no-animate attribute to exclude specific items
               if (el.hasAttribute("data-no-animate")) return false;
               return true;
-            }
+            },
           );
 
           // build timeline and animate each element from the center to its real position
@@ -1761,11 +1770,11 @@
                   duration: 0.5,
                   ease: "back.out(2)",
                 },
-                staggerDelay
+                staggerDelay,
               ).to(
                 el,
                 { scale: 1, duration: 0.25, ease: "power2.inOut" },
-                "-=0.2"
+                "-=0.2",
               );
             } else {
               // regular element: fly from center to its position
@@ -1779,7 +1788,7 @@
                   duration: 0.3,
                   ease: "back.out(1.7)",
                 },
-                staggerDelay
+                staggerDelay,
               );
             }
           });
@@ -1881,14 +1890,14 @@
         const nextBirthday = new Date(
           now.getFullYear(),
           birthDate.getMonth(),
-          birthDate.getDate()
+          birthDate.getDate(),
         );
         if (nextBirthday < now) {
           nextBirthday.setFullYear(now.getFullYear() + 1);
         }
 
         const daysUntil = Math.ceil(
-          (nextBirthday - now) / (1000 * 60 * 60 * 24)
+          (nextBirthday - now) / (1000 * 60 * 60 * 24),
         );
         document.getElementById("birthdayCountdown").textContent = daysUntil;
         document.getElementById("birthdayCountdownModal").textContent =
@@ -1937,7 +1946,7 @@
           gsap.fromTo(
             ageContents,
             { height: 0, opacity: 0 },
-            { height: "auto", opacity: 1, duration: 0.4, ease: "power2.out" }
+            { height: "auto", opacity: 1, duration: 0.4, ease: "power2.out" },
           );
           gsap.fromTo(
             lines,
@@ -1948,7 +1957,7 @@
               duration: 0.4,
               ease: "power2.out",
               stagger: 0.1,
-            }
+            },
           );
         }
       });
@@ -1969,7 +1978,7 @@
           gsap.fromTo(
             wishlistModal.querySelector(".relative"),
             { scale: 0.7, opacity: 0 },
-            { scale: 1, opacity: 1, duration: 0.4, ease: "back.out(1.7)" }
+            { scale: 1, opacity: 1, duration: 0.4, ease: "back.out(1.7)" },
           );
         } else {
           gsap.to(wishlistModal.querySelector(".relative"), {
@@ -2001,7 +2010,7 @@
           (!gsap.plugins.TextPlugin && typeof gsap.getProperty === "undefined")
         ) {
           console.warn(
-            "GSAP or TextPlugin not loaded. Include TextPlugin before this script."
+            "GSAP or TextPlugin not loaded. Include TextPlugin before this script.",
           );
           return;
         }
@@ -2113,7 +2122,7 @@
               gsap.fromTo(
                 visibleH3,
                 { scale: 1.02 },
-                { scale: 1, duration: 0.6 }
+                { scale: 1, duration: 0.6 },
               ),
           });
           startSpawning();
@@ -2269,7 +2278,7 @@
         const singleSetWidth = trackWidth / 3;
 
         console.log(
-          `Track: ${trackWidth}px, Container: ${containerWidth}px, Set: ${singleSetWidth}px`
+          `Track: ${trackWidth}px, Container: ${containerWidth}px, Set: ${singleSetWidth}px`,
         );
 
         if (singleSetWidth <= containerWidth) {
@@ -2344,7 +2353,7 @@
                 onComplete: () => el.remove(),
               });
             },
-          }
+          },
         );
       }
 
@@ -2386,7 +2395,7 @@
         gsap.fromTo(
           card,
           { opacity: 0, scale: 0.85, y: 30 },
-          { opacity: 1, scale: 1, y: 0, duration: 0.45, ease: "back.out(1.7)" }
+          { opacity: 1, scale: 1, y: 0, duration: 0.45, ease: "back.out(1.7)" },
         );
       }
 
@@ -2518,7 +2527,7 @@
           (e) => {
             startX = e.touches[0].clientX;
           },
-          { passive: true }
+          { passive: true },
         );
         track.addEventListener(
           "touchend",
@@ -2527,7 +2536,7 @@
             if (diff > 50) goPrev();
             if (diff < -50) goNext();
           },
-          { passive: true }
+          { passive: true },
         );
 
         // --- Initialize ---
@@ -2686,7 +2695,7 @@
               gsap.fromTo(
                 modal,
                 { opacity: 0 },
-                { opacity: 1, duration: 0.3, ease: "power2.out" }
+                { opacity: 1, duration: 0.3, ease: "power2.out" },
               );
             }
           });
@@ -2766,7 +2775,7 @@
               duration: Math.random() * 3 + 2,
               ease: "none",
               onComplete: () => column.remove(),
-            }
+            },
           );
         }
 
@@ -2852,7 +2861,7 @@
             scale: 1,
             rotation: 0,
             ease: "back.out(2)",
-          }
+          },
         );
 
         // Each card spins and zooms in with classic cartoon timing
@@ -2883,7 +2892,7 @@
                 });
               },
             },
-            startDelay
+            startDelay,
           );
         });
 
@@ -2893,7 +2902,7 @@
             createCartoonPoof();
           },
           [],
-          "+=0.3"
+          "+=0.3",
         );
 
         // Scroll trigger
@@ -3007,7 +3016,7 @@
                       onComplete: () => poof.remove(),
                     });
                   },
-                }
+                },
               );
             }
           });
@@ -3051,7 +3060,7 @@
                     onComplete: () => star.remove(),
                   });
                 },
-              }
+              },
             );
           }
         }
