@@ -130,8 +130,8 @@
         <p class="text-xl md:text-2xl text-white mb-4 opacity-90" id="heroSub">Deep down, I'm an artist.</p>
         <p class="text-lg text-medic-pink mb-10 opacity-80" id="heroSub2">I create music, art, and literature. Check out my work — made with passion and love.</p>
         <div class="flex flex-wrap justify-center gap-4" id="heroLinks">
-          <a href="#art" class="px-6 py-3 bg-medic-hot-pink text-white rounded-full font-semibold hover:bg-medic-light-pink transition-colors duration-300"><i class="bi bi-palette-fill mr-2"></i>Art</a>
           <a href="#music" class="px-6 py-3 bg-medic-yellow text-gray-800 rounded-full font-semibold hover:bg-white transition-colors duration-300"><i class="bi bi-music-note-beamed mr-2"></i>Music</a>
+          <a href="#art" class="px-6 py-3 bg-medic-hot-pink text-white rounded-full font-semibold hover:bg-medic-light-pink transition-colors duration-300"><i class="bi bi-palette-fill mr-2"></i>Art</a>
           <a href="#writing" class="px-6 py-3 bg-purple-500 text-white rounded-full font-semibold hover:bg-purple-400 transition-colors duration-300"><i class="bi bi-book-fill mr-2"></i>Writing</a>
         </div>
       </div>
@@ -142,46 +142,10 @@
 
     <!-- Sticky Section Nav -->
     <nav class="sticky top-20 z-40 bg-medic-hot-pink/95 dark:bg-medic-dark-nav/95 backdrop-blur-sm py-3 px-6 flex gap-2 overflow-x-auto shadow-md" id="sectionNav">
-      <a href="#art" class="section-nav-link" data-section="art"><i class="bi bi-palette-fill mr-1"></i>Art</a>
       <a href="#music" class="section-nav-link" data-section="music"><i class="bi bi-music-note-beamed mr-1"></i>Music</a>
+      <a href="#art" class="section-nav-link" data-section="art"><i class="bi bi-palette-fill mr-1"></i>Art</a>
       <a href="#writing" class="section-nav-link" data-section="writing"><i class="bi bi-book-fill mr-1"></i>Writing</a>
     </nav>
-
-    <!-- ==================== ART SECTION ==================== -->
-    <section id="art" class="py-20 relative overflow-hidden section-reveal art-section-bg">
-      <div class="container mx-auto px-6 max-w-5xl">
-
-        <div class="text-center mb-10">
-          <p class="font-sharetechmono text-white/60 text-sm tracking-widest uppercase mb-3">✎ The Creatives — Side B ✎</p>
-          <h2 class="text-5xl md:text-6xl font-bold text-white mb-4">Artworks</h2>
-          <p class="text-white/80 text-lg">Doodles, character art, album covers, and the occasional very serious duck.</p>
-        </div>
-
-        <!-- Preview grid -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-10">
-          <div class="aspect-square rounded-2xl overflow-hidden shadow-lg hover:-rotate-2 hover:scale-105 transition-transform duration-300">
-            <img src="pics/bim bam toi thumbnail.png" alt="Bim Bam Toi cover art" class="w-full h-full object-cover" />
-          </div>
-          <div class="aspect-square rounded-2xl overflow-hidden shadow-lg hover:rotate-2 hover:scale-105 transition-transform duration-300">
-            <img src="pics/rose.png" alt="Rose study" class="w-full h-full object-cover" />
-          </div>
-          <div class="aspect-square rounded-2xl overflow-hidden shadow-lg bg-medic-pink hover:-rotate-1 hover:scale-105 transition-transform duration-300">
-            <img src="pics/duck (2).png" alt="The Duck" class="w-full h-full object-cover" />
-          </div>
-          <div class="aspect-square rounded-2xl overflow-hidden shadow-lg hover:rotate-1 hover:scale-105 transition-transform duration-300">
-            <img src="pics/themarianne.png" alt="The Marianne banner" class="w-full h-full object-cover" />
-          </div>
-        </div>
-
-        <div class="text-center">
-          <a href="https://instagram.com/stellarsong_official" target="_blank" rel="noopener noreferrer"
-            class="inline-flex items-center gap-3 px-8 py-4 bg-white text-pink-600 rounded-full font-bold text-lg hover:bg-medic-yellow hover:scale-105 transition-all duration-300 shadow-lg">
-            <i class="bi bi-instagram"></i> View on Instagram →
-          </a>
-        </div>
-
-      </div>
-    </section>
 
     <!-- ==================== MUSIC SECTION ==================== -->
     <section id="music" class="py-20 relative overflow-hidden section-reveal bg-medic-yellow dark:bg-[rgb(80,74,0)]">
@@ -225,6 +189,45 @@
       </div>
     </section>
 
+    <!-- ==================== ART SECTION ==================== -->
+    <section id="art" class="py-20 relative overflow-hidden section-reveal art-section-bg">
+      <div class="container mx-auto px-6 max-w-6xl">
+
+        <div class="text-center mb-10">
+          <p class="font-sharetechmono text-white/60 text-sm tracking-widest uppercase mb-3">✎ The Creatives — Side B ✎</p>
+          <h2 class="text-5xl md:text-6xl font-bold text-white mb-4">Artworks</h2>
+          <p class="text-white/80 text-lg">Doodles, character art, album covers, and the occasional very serious duck.</p>
+        </div>
+
+        <!-- Horizontal scroll gallery -->
+        <div class="relative mb-10">
+          <div class="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory">
+            <div class="flex-none w-56 h-56 rounded-2xl overflow-hidden shadow-lg snap-start hover:scale-105 transition-transform duration-300">
+              <img src="pics/bim bam toi thumbnail.png" alt="Bim Bam Toi cover art" class="w-full h-full object-cover" />
+            </div>
+            <div class="flex-none w-56 h-56 rounded-2xl overflow-hidden shadow-lg snap-start hover:scale-105 transition-transform duration-300">
+              <img src="pics/rose.png" alt="Rose study" class="w-full h-full object-cover" />
+            </div>
+            <div class="flex-none w-56 h-56 rounded-2xl overflow-hidden shadow-lg snap-start bg-medic-pink hover:scale-105 transition-transform duration-300">
+              <img src="pics/duck (2).png" alt="The Duck" class="w-full h-full object-cover" />
+            </div>
+            <div class="flex-none w-56 h-56 rounded-2xl overflow-hidden shadow-lg snap-start hover:scale-105 transition-transform duration-300">
+              <img src="pics/themarianne.png" alt="The Marianne banner" class="w-full h-full object-cover" />
+            </div>
+          </div>
+          <p class="text-white/40 text-sm text-right mt-1 select-none">scroll →</p>
+        </div>
+
+        <div class="text-center">
+          <a href="https://instagram.com/stellarsong_official" target="_blank" rel="noopener noreferrer"
+            class="inline-flex items-center gap-3 px-8 py-4 bg-white text-pink-600 rounded-full font-bold text-lg hover:bg-medic-yellow hover:scale-105 transition-all duration-300 shadow-lg">
+            <i class="bi bi-instagram"></i> View on Instagram →
+          </a>
+        </div>
+
+      </div>
+    </section>
+
     <!-- ==================== WRITING SECTION ==================== -->
     <section id="writing" class="py-20 relative overflow-hidden section-reveal writing-section-bg">
       <div class="container mx-auto px-6">
@@ -236,11 +239,18 @@
 
         <div class="text-center mb-10">
           <p class="text-white/80 text-lg mb-6">I'm a professional writer — but these are my personal creations, made with heart.</p>
-          <a href="https://www.wattpad.com/user/StellarSong_official" target="_blank" rel="noopener noreferrer"
-            class="inline-flex items-center gap-3 px-8 py-4 bg-orange-500 text-white rounded-full font-bold text-lg hover:bg-orange-600 transition-colors duration-300 shadow-lg">
-            <i class="bi bi-file-word-fill text-2xl"></i>
-            StellarSong on Wattpad
-          </a>
+          <div class="flex flex-wrap justify-center gap-4">
+            <a href="https://www.wattpad.com/user/StellarSong_official" target="_blank" rel="noopener noreferrer"
+              class="inline-flex items-center gap-3 px-8 py-4 bg-orange-500 text-white rounded-full font-bold text-lg hover:bg-orange-600 transition-colors duration-300 shadow-lg">
+              <i class="bi bi-file-word-fill text-2xl"></i>
+              StellarSong on Wattpad
+            </a>
+            <a href="#"
+              class="inline-flex items-center gap-3 px-8 py-4 bg-white/20 text-white rounded-full font-bold text-lg hover:bg-white/30 transition-colors duration-300 shadow-lg">
+              <i class="bi bi-pencil-square text-2xl"></i>
+              Blog
+            </a>
+          </div>
         </div>
 
         <div class="max-w-2xl mx-auto">
@@ -351,7 +361,7 @@
       }
 
       // Section nav active state
-      const sections = ['art', 'music', 'writing'];
+      const sections = ['music', 'art', 'writing'];
       const navLinks = document.querySelectorAll('.section-nav-link');
 
       const observer = new IntersectionObserver((entries) => {
