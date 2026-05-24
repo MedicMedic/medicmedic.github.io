@@ -1,0 +1,104 @@
+<!-- Reusable Card Component Templates -->
+
+<!-- Project Card Template -->
+<template id="project-card-template">
+  <div class="project-item card-component p-6 border-2 border-medic-hot-pink dark:border-medic-dark-img rounded-lg hover:border-medic-yellow dark:hover:border-medic-yellow transition-all duration-300">
+    <h3 class="text-2xl font-bold mb-2 text-medic-hot-pink dark:text-medic-light-pink" data-field="title"></h3>
+    <p class="text-gray-700 dark:text-green-300 mb-4" data-field="description"></p>
+    <div class="flex gap-2 flex-wrap" data-field="tags"></div>
+  </div>
+</template>
+
+<!-- Creative Card Template -->
+<template id="creative-card-template">
+  <div class="creative-item card-component relative w-full h-64 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300">
+    <img class="w-full h-full object-cover" data-field="image" alt="" />
+    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex flex-col items-center justify-end p-4">
+      <span class="text-white font-bold text-xl mb-2" data-field="title"></span>
+      <p class="text-white text-sm text-center" data-field="description"></p>
+    </div>
+  </div>
+</template>
+
+<!-- Blog Card Template -->
+<template id="blog-card-template">
+  <div class="blog-item card-component border-2 border-medic-hot-pink dark:border-medic-dark-img rounded-lg overflow-hidden hover:border-medic-yellow dark:hover:border-medic-yellow transition-all duration-300">
+    <div class="p-6">
+      <h3 class="text-2xl font-bold mb-2 text-medic-hot-pink dark:text-medic-light-pink" data-field="title"></h3>
+      <p class="text-sm text-gray-600 dark:text-gray-400 mb-3" data-field="date"></p>
+      <p class="text-gray-700 dark:text-gray-300 mb-4" data-field="excerpt"></p>
+      <a href="#" class="inline-block px-4 py-2 bg-medic-hot-pink text-white rounded hover:bg-medic-light-pink transition-colors duration-300" data-field="link">Read More</a>
+    </div>
+  </div>
+</template>
+
+<!-- Accordion Section Template -->
+<template id="accordion-template">
+  <div class="accordion-item border-2 border-medic-hot-pink dark:border-medic-dark-img rounded-lg mb-4 overflow-hidden">
+    <button class="accordion-header w-full p-4 text-left bg-medic-light-pink dark:bg-medic-dark-nav text-white font-bold flex justify-between items-center hover:bg-medic-hot-pink transition-colors duration-300" data-field="toggle">
+      <span data-field="title"></span>
+      <svg class="w-5 h-5 transform transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+      </svg>
+    </button>
+    <div class="accordion-body hidden p-6 bg-white dark:bg-medic-dark-bg border-t-2 border-medic-hot-pink dark:border-medic-dark-img" data-field="content">
+      <!-- Content will be inserted here -->
+    </div>
+  </div>
+</template>
+
+<script>
+// Card Component JavaScript
+window.MedicCards = {
+  // Create a card from template
+  createCard: function(templateId, data) {
+    const template = document.getElementById(templateId);
+    if (!template) return null;
+
+    const clone = template.content.cloneNode(true);
+    const element = clone.querySelector('[class*="-item"]');
+
+    // Populate fields
+    Object.keys(data).forEach(key => {
+      const field = clone.querySelector(`[data-field="${key}"]`);
+      if (field) {
+        if (key === 'image') {
+          field.src = data[key];
+          field.alt = data.title || '';
+        } else if (key === 'link') {
+          field.href = data[key];
+        } else if (key === 'tags' && Array.isArray(data[key])) {
+          data[key].forEach(tag => {
+            const span = document.createElement('span');
+            span.className = 'px-3 py-1 bg-medic-light-pink dark:bg-medic-hot-pink text-white text-sm rounded-full';
+            span.textContent = tag;
+            field.appendChild(span);
+          });
+        } else {
+          field.textContent = data[key];
+        }
+      }
+    });
+
+    // Add click handler if provided
+    if (data.onClick && element) {
+      element.addEventListener('click', data.onClick);
+    }
+
+    return clone;
+  },
+
+  // Setup accordion functionality
+  setupAccordion: function(accordionElement) {
+    const toggle = accordionElement.querySelector('[data-field="toggle"]');
+    const content = accordionElement.querySelector('[data-field="content"]');
+    const arrow = toggle.querySelector('svg');
+
+    toggle.addEventListener('click', () => {
+      const isHidden = content.classList.contains('hidden');
+      content.classList.toggle('hidden', !isHidden);
+      arrow.classList.toggle('rotate-180', isHidden);
+    });
+  }
+};
+</script>

@@ -1,0 +1,228 @@
+/* Unified CSS for The Medic Zone */
+
+/* Global Styles */
+html,
+body {
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  font-family: 'Epunda Slab', serif;
+}
+
+/* Remove underlines from links */
+a {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+/* Carousel Styles */
+.carousel-img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 9999px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s ease-in-out;
+}
+
+.carousel-img.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Image Stack for Photo Carousel */
+.image-stack {
+  width: 300px;
+  height: 300px;
+  position: relative;
+  margin: 0 auto;
+}
+
+.image-stack img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Masonry Layout */
+.collage-masonry {
+  column-count: 4;
+  column-gap: 12px;
+  min-width: 100%;
+  height: 100%;
+}
+
+.collage-masonry img {
+  width: 100%;
+  margin-bottom: 12px;
+  break-inside: avoid;
+}
+
+/* Floating Elements */
+.floating-musical {
+  position: fixed;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+/* Background Layer */
+#bgLayer {
+  transition: opacity 0.6s ease-in-out;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0;
+}
+
+/* Card Component Styles */
+.card-component {
+  transition: all 0.3s ease-in-out;
+}
+
+.card-component:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Modal Styles */
+.modal-overlay {
+  transition: opacity 0.3s ease-in-out;
+}
+
+.modal-content {
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Project/Creative Item Styles */
+.project-item,
+.creative-item {
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.project-item:hover,
+.creative-item:hover {
+  transform: scale(1.05);
+}
+
+/* Animations */
+@keyframes color-change {
+  0% { color: rgb(255, 81, 0); }
+  33.33% { color: rgb(144, 0, 255); }
+  66.67% { color: rgb(255, 0, 153); }
+  100% { color: rgb(255, 81, 0); }
+}
+
+@keyframes photo-change1 {
+  0%, 33.33% { opacity: 1; }
+  33.34%, 100% { opacity: 0; }
+}
+
+@keyframes photo-change2 {
+  0%, 33.33% { opacity: 0; }
+  33.34%, 66.66% { opacity: 1; }
+  66.67%, 100% { opacity: 0; }
+}
+
+@keyframes photo-change3 {
+  0%, 66.66% { opacity: 0; }
+  66.67%, 100% { opacity: 1; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Color Change Animation */
+h1.color-animate {
+  animation: color-change 10s infinite;
+}
+
+/* Photo Stack Animations */
+.marianne1 {
+  animation: photo-change1 30s infinite;
+  z-index: 2;
+}
+
+.marianne2 {
+  animation: photo-change2 30s infinite;
+  z-index: 1;
+}
+
+.marianne3 {
+  animation: photo-change3 30s infinite;
+  z-index: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .collage-masonry {
+    column-count: 2;
+    column-gap: 8px;
+  }
+
+  .image-stack {
+    width: 200px;
+    height: 200px;
+  }
+
+  #slideshowContainer {
+    overflow-y: hidden;
+    scroll-snap-type: y mandatory;
+    scrollbar-width: none;
+  }
+
+  .collage-masonry {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    scroll-snap-align: start;
+  }
+}
+
+@media (max-width: 640px) {
+  .collage-masonry {
+    column-count: 1;
+  }
+}
+
+/* Dark Mode Specific Styles */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: rgb(27, 0, 12.24);
+    color: white;
+  }
+}
+
+/* Utility Classes */
+.fade-in {
+  animation: fadeIn 0.5s ease-in;
+}
+
+.slide-up {
+  animation: slideUp 0.5s ease-out;
+}
+
+/* Page Spacing for Fixed Navigation */
+body {
+  padding-top: 80px;
+}
