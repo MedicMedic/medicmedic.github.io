@@ -206,12 +206,6 @@
     <script src="../components/js/loader.js"></script>
 
     <script>
-      // Configure marked.js
-      marked.setOptions({
-        breaks: true,
-        gfm: true,
-      });
-
       const postsContainer = document.getElementById("postsContainer");
       const loadingMessage = document.getElementById("loadingMessage");
       const noPosts = document.getElementById("noPosts");
@@ -220,19 +214,28 @@
       const postContent = document.getElementById("postContent");
       const backButton = document.getElementById("backButton");
 
+      // Function to fetch with one automatic retry on failure
+      async function fetchWithRetry(url) {
+        try {
+          const res = await fetch(url);
+          if (res.ok) return res;
+        } catch (_) {}
+        // One retry after a short delay
+        await new Promise(r => setTimeout(r, 600));
+        return fetch(url);
+      }
+
       // Function to load blog file list from index.json
       async function loadBlogFileList() {
         try {
-          const response = await fetch("blog-posts/index.json");
+          const response = await fetchWithRetry("blog-posts/index.json");
           if (!response.ok) {
             console.error("Failed to load blog index. Using fallback.");
-            // Fallback to manual list if index.json doesn't exist yet
             return ["October-2025.md"];
           }
           return await response.json();
         } catch (error) {
           console.error("Error loading blog index:", error);
-          // Fallback to manual list
           return ["October-2025.md"];
         }
       }
@@ -276,7 +279,7 @@
 
         for (const filename of blogFiles) {
           try {
-            const response = await fetch(`blog-posts/${filename}`);
+            const response = await fetchWithRetry(`blog-posts/${filename}`);
             if (!response.ok) {
               console.warn(`Failed to load ${filename}`);
               continue;
@@ -396,23 +399,35 @@
       backButton.addEventListener("click", showBlogList);
 
       // Initialize when everything is ready
+      let initRetries = 0;
+      const MAX_RETRIES = 15;
+
       function init() {
-        // Verify libraries are loaded
         if (typeof marked === "undefined" || typeof gsap === "undefined") {
-          console.error("Required libraries not loaded:", {
-            marked: typeof marked !== "undefined",
-            gsap: typeof gsap !== "undefined"
-          });
-          loadingMessage.innerHTML = '<p class="text-red-600 text-xl">Error loading blog libraries. Please refresh the page.</p>';
+          if (initRetries < MAX_RETRIES) {
+            initRetries++;
+            setTimeout(init, 200);
+            return;
+          }
+          loadingMessage.innerHTML = `
+            <p class="text-red-500 text-xl mb-4">Failed to load blog libraries.</p>
+            <button onclick="location.reload()" class="px-6 py-3 bg-medic-hot-pink text-white rounded-lg hover:bg-medic-light-pink transition-colors">
+              Retry
+            </button>`;
           return;
+        }
+
+        // Configure marked now that we know it's loaded
+        if (typeof marked.use === "function") {
+          marked.use({ breaks: true, gfm: true });
+        } else if (typeof marked.setOptions === "function") {
+          marked.setOptions({ breaks: true, gfm: true });
         }
 
         gsap.registerPlugin(ScrollTrigger);
         initBlog();
       }
 
-      // Wait for window.onload to ensure all external scripts are loaded
-      // This is more reliable than DOMContentLoaded for CDN scripts
       window.addEventListener("load", init);
     </script>
   </body>
