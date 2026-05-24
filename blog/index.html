@@ -307,7 +307,7 @@
       }
 
       // Function to create blog card
-      function createBlogCard(post, index) {
+      function createBlogCard(post) {
         const card = document.createElement("div");
         card.className =
           "blog-card bg-white dark:bg-medic-dark-nav rounded-xl p-6 shadow-lg";
@@ -321,16 +321,6 @@
       `;
 
         card.addEventListener("click", () => loadBlogPost(post));
-
-        // Animate card entrance
-        gsap.from(card, {
-          opacity: 0,
-          y: 50,
-          duration: 0.5,
-          delay: index * 0.1,
-          ease: "back.out(1.7)",
-        });
-
         return card;
       }
 
@@ -390,8 +380,15 @@
         }
 
         posts.forEach((post, index) => {
-          const card = createBlogCard(post, index);
+          const card = createBlogCard(post);
           postsContainer.appendChild(card);
+          gsap.from(card, {
+            opacity: 0,
+            y: 50,
+            duration: 0.5,
+            delay: index * 0.1,
+            ease: "back.out(1.7)",
+          });
         });
       }
 
