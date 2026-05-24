@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -204,11 +204,27 @@
         }
       }
 
+      .welcome-banner {
+        background-image: url('pics/stellar_banner.png');
+      }
+
+      .hero-text {
+        text-shadow: -1px 0 white, 1px 0 white, 0 -1px white, 0 1px white;
+      }
+
+      #creativesBackground {
+        background-image: url('pics/the_creatives banner.png');
+        image-rendering: pixelated;
+      }
+
       @media (max-width: 768px) {
         #slideshowContainer {
           overflow-y: hidden;
           scroll-snap-type: y mandatory;
           scrollbar-width: none;
+        }
+        #slideshowContainer::-webkit-scrollbar {
+          display: none;
         }
 
         .collage-masonry {
@@ -391,21 +407,18 @@
     <section
       id="home"
       class="welcome-banner relative h-screen w-full bg-cover bg-center grayscale transition-all duration-700"
-      style="background-image: url('pics/stellar_banner.png')"
     >
       <div
         class="absolute inset-0 flex flex-col items-center justify-center text-center text-gray-50 px-6"
       >
         <h1
-          class="z-50 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mt-4 text-center leading-tight px-4 hover:text-pink-800 transition-colors duration-300"
-          style="text-shadow: -1px 0 white, 1px 0 white, 0 -1px white, 0 1px white;"
+          class="hero-text z-50 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mt-4 text-center leading-tight px-4 hover:text-pink-800 transition-colors duration-300"
         >
           Welcome to The Medic Zone!
         </h1>
 
         <h3
-          class="z-50 text-base sm:text-lg md:text-2xl mt-4 text-center leading-snug px-4 hover:text-pink-500 transition-colors duration-300"
-          style="text-shadow: -1px 0 white, 1px 0 white, 0 -1px white, 0 1px white;"
+          class="hero-text z-50 text-base sm:text-lg md:text-2xl mt-4 text-center leading-snug px-4 hover:text-pink-500 transition-colors duration-300"
         >
           The fabulous world of coding and creativity!
         </h3>
@@ -534,7 +547,6 @@
         <div
           id="slideshowContainer"
           class="absolute inset-0 z-0"
-          style="opacity: 0"
         >
           <div id="collageTrack" class="collage-masonry h-full"></div>
         </div>
@@ -638,14 +650,12 @@
               id="oratorioLink"
               href="https://www.youtube.com/watch?v=xmtsnGuWDuQ"
               target="_blank"
+              rel="noopener noreferrer"
               class="text-yellow-600 hover:text-4xl duration-300"
               >oratorio</a
             >
           </h3>
 
-          <div id="slideshowContainer">
-            <div id="collageTrack"></div>
-          </div>
         </div>
 
         <!-- Skills Section -->
@@ -696,6 +706,7 @@
                     >
                       <img
                         src="pics/medic_singer_carousel.jpg"
+                        alt="Marianne performing as a singer"
                         class="w-full h-full object-cover rounded-lg"
                       />
                     </div>
@@ -704,6 +715,7 @@
                     >
                       <img
                         src="pics/medic_singer_carousel.webp"
+                        alt="Marianne performing as a singer"
                         class="w-full h-full object-cover rounded-lg"
                       />
                     </div>
@@ -714,6 +726,7 @@
                       <iframe
                         src="https://www.youtube.com/embed/xmtsnGuWDuQ"
                         class="w-full h-full rounded-lg"
+                        title="Oratorio performance by Marianne Edic"
                         allowfullscreen
                       ></iframe>
                     </div>
@@ -767,6 +780,7 @@
                     >
                       <img
                         src="pics/medic_songwriter_carousel.png"
+                        alt="Marianne composing as a songwriter"
                         class="w-full h-full object-cover rounded-lg"
                       />
                     </div>
@@ -775,6 +789,7 @@
                     >
                       <img
                         src="pics/medic_songwriter_carousel.jpg"
+                        alt="Marianne composing as a songwriter"
                         class="w-full h-full object-cover rounded-lg"
                       />
                     </div>
@@ -783,6 +798,7 @@
                     >
                       <img
                         src="pics/medic_songwriter_carousel (2).jpg"
+                        alt="Marianne composing as a songwriter"
                         class="w-full h-full object-cover rounded-lg"
                       />
                     </div>
@@ -793,6 +809,7 @@
                       <iframe
                         src="https://www.youtube.com/embed/mX3P5oyl-H0?si=m-Tox4pPDGopUCqy"
                         class="w-full h-full rounded-lg"
+                        title="Original song by Marianne Edic"
                         allowfullscreen
                       ></iframe>
                     </div>
@@ -846,6 +863,7 @@
                     >
                       <img
                         src="pics/medic_writer_carousel (1).jpg"
+                        alt="Marianne writing as an author"
                         class="w-full h-full object-cover rounded-lg"
                       />
                     </div>
@@ -854,6 +872,7 @@
                     >
                       <img
                         src="pics/medic_writer_carousel (2).jpg"
+                        alt="Marianne writing as an author"
                         class="w-full h-full object-cover rounded-lg"
                       />
                     </div>
@@ -862,6 +881,7 @@
                     >
                       <img
                         src="pics/medic_writer_carousel (3).jpg"
+                        alt="Marianne writing as an author"
                         class="w-full h-full object-cover rounded-lg"
                       />
                     </div>
@@ -915,6 +935,7 @@
                     >
                       <img
                         src="pics/rose.png"
+                        alt="Rose illustration by Marianne"
                         class="w-full h-full object-cover rounded-lg"
                       />
                     </div>
@@ -923,6 +944,7 @@
                     >
                       <img
                         src="pics/bim bam toi thumbnail.png"
+                        alt="Bim Bam Toi album cover art"
                         class="w-full h-full object-cover rounded-lg"
                       />
                     </div>
@@ -932,6 +954,7 @@
                     >
                       <img
                         src="pics/duck (2).png"
+                        alt="Duck illustration by Marianne"
                         class="w-full h-full object-cover rounded-lg"
                       />
                     </div>
@@ -985,6 +1008,7 @@
                     >
                       <img
                         src="pics/medic_coder_carousel.png"
+                        alt="Marianne coding"
                         class="w-full h-full object-cover rounded-lg"
                       />
                     </div>
@@ -993,6 +1017,7 @@
                     >
                       <img
                         src="pics/medic_coder_carousel.jpg"
+                        alt="Marianne coding"
                         class="w-full h-full object-cover rounded-lg"
                       />
                     </div>
@@ -1001,6 +1026,7 @@
                     >
                       <img
                         src="pics/player_idle_big.png"
+                        alt="Stellar game sprite"
                         class="w-full h-full object-cover rounded-lg"
                       />
                     </div>
@@ -1074,12 +1100,14 @@
                   <iframe
                     class="h-[50vh] w-full"
                     src="https://medicmedic.github.io/TaskRNG"
+                    title="Task RNG app"
                   ></iframe>
                 </div>
                 <div class="flex gap-4">
                   <a
                     href="https://medicmedic.github.io/TaskRNG"
                     target="_blank"
+                    rel="noopener noreferrer"
                     class="bg-pink-600 text-white text-2xl px-6 py-2 rounded-lg hover:bg-gray-700 transition-colors duration-300"
                   >
                     Visit Site
@@ -1129,12 +1157,14 @@
                   <iframe
                     class="h-[50vh] w-full"
                     src="https://github.com/MedicMedic/The-Super-Stellar-Compiler/releases/tag/v1.0.0"
+                    title="The Super Stellar Compiler release page"
                   ></iframe>
                 </div>
                 <div class="flex gap-4">
                   <a
                     href="https://github.com/MedicMedic/The-Super-Stellar-Compiler"
                     target="_blank"
+                    rel="noopener noreferrer"
                     class="bg-pink-600 text-white text-2xl px-6 py-2 rounded-lg hover:bg-gray-700 transition-colors duration-300"
                   >
                     Visit Repo
@@ -1185,12 +1215,14 @@
                   <iframe
                     class="h-[50vh] w-full"
                     src="https://medicmedic.github.io/HTMLShooterGame"
+                    title="Stellar Shooter game"
                   ></iframe>
                 </div>
                 <div class="flex gap-4">
                   <a
                     href="https://medicmedic.github.io/HTMLShooterGame"
                     target="_blank"
+                    rel="noopener noreferrer"
                     class="bg-pink-600 text-white text-2xl px-6 py-2 rounded-lg hover:bg-gray-700 transition-colors duration-300"
                   >
                     Visit Site
@@ -1222,10 +1254,6 @@
       <div
         id="creativesBackground"
         class="absolute inset-0 bg-cover bg-center z-[0]"
-        style="
-          background-image: url('pics/the_creatives banner.png');
-          image-rendering: pixelated;
-        "
       ></div>
 
       <!-- Dark mode overlay (z-[1], non-interactive) -->
@@ -1366,16 +1394,19 @@
             <div class="flex space-x-4">
               <a
                 href="https://linkedin.com/in/marianne-edic"
+                aria-label="LinkedIn"
                 class="text-2xl hover:text-medic-pink transition-colors duration-300"
                 ><i class="bi bi-linkedin"></i
               ></a>
               <a
                 href="https://youtube.com/@StellarSong"
+                aria-label="YouTube"
                 class="text-2xl hover:text-medic-pink transition-colors duration-300"
                 ><i class="bi bi-youtube"></i
               ></a>
               <a
                 href="https://github.com/MedicMedic"
+                aria-label="GitHub"
                 class="text-2xl hover:text-medic-pink transition-colors duration-300"
                 ><i class="bi bi-github"></i
               ></a>

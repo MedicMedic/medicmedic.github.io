@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -56,6 +56,7 @@
         color: #00ff66;
         line-height: 1.2;
         pointer-events: none;
+        -webkit-user-select: none;
         user-select: none;
         text-shadow: 0 0 6px rgba(0,255,102,0.6);
       }
@@ -98,6 +99,7 @@
         background: rgba(8,16,8,0.85);
         border: 1px solid rgba(0,255,102,0.4);
         border-radius: 12px;
+        -webkit-backdrop-filter: blur(6px);
         backdrop-filter: blur(6px);
         position: relative;
         overflow: hidden;
@@ -179,7 +181,7 @@
       /* ASCII Banner */
       .ascii-banner {
         font-family: 'Share Tech Mono', monospace;
-        font-size: clamp(8px, 1.6vw, 14px);
+        font-size: clamp(7px, 1.1vw, 11px);
         line-height: 1;
         color: #00ff66;
         text-shadow: 0 0 8px rgba(0,255,102,0.7);
@@ -218,6 +220,13 @@
         background-image: radial-gradient(rgba(0,255,102,0.12) 1px, transparent 1px);
         background-size: 24px 24px;
       }
+
+      /* Section background colors */
+      #code, #games { background-color: #0e1610; }
+      #sites, #apps { background-color: #101a14; }
+
+      /* Pixel-art rendering */
+      .pixel-art { image-rendering: pixelated; }
     </style>
   </head>
 
@@ -278,7 +287,7 @@
 
       <div class="relative z-10 max-w-5xl w-full px-6">
         <!-- ASCII banner -->
-        <pre class="ascii-banner mb-6 hidden lg:block" style="font-size: clamp(7px, 1.1vw, 11px);">
+        <pre class="ascii-banner mb-6 hidden lg:block">
    ____ ___  ____ ___ _   _  ____   ____  ____   ___      _ _____ ____ _____ ____
   / ___/ _ \|  _ \_ _| \ | |/ ___| |  _ \|  _ \ / _ \    | | ____/ ___|_   _/ ___|
  | |  | | | | | | | ||  \| | |  _  | |_) | |_) | | | |_  | |  _|| |     | | \___ \
@@ -384,7 +393,7 @@
 
     <!-- CATEGORIES -->
     <!-- == CODE / experiments == -->
-    <section id="code" class="relative px-6 md:px-12 py-20 crt overflow-hidden" style="background-color:#0e1610;">
+    <section id="code" class="relative px-6 md:px-12 py-20 crt overflow-hidden">
       <div class="max-w-6xl mx-auto">
         <h2 class="cat-heading reveal mb-3">code/</h2>
         <p class="text-lg mb-10 max-w-2xl text-matrix-dim reveal font-sharetechmono">
@@ -430,7 +439,7 @@
     </section>
 
     <!-- == SITES == -->
-    <section id="sites" class="relative px-6 md:px-12 py-20 crt overflow-hidden" style="background-color:#101a14;">
+    <section id="sites" class="relative px-6 md:px-12 py-20 crt overflow-hidden">
       <div class="max-w-6xl mx-auto">
         <h2 class="cat-heading reveal mb-3">sites/</h2>
         <p class="text-lg mb-10 max-w-2xl text-matrix-dim reveal font-sharetechmono">
@@ -493,7 +502,7 @@
     </section>
 
     <!-- == GAMES == -->
-    <section id="games" class="relative px-6 md:px-12 py-20 crt overflow-hidden" style="background-color:#0e1610;">
+    <section id="games" class="relative px-6 md:px-12 py-20 crt overflow-hidden">
       <div class="max-w-6xl mx-auto">
         <h2 class="cat-heading reveal mb-3">games/</h2>
         <p class="text-lg mb-10 max-w-2xl text-matrix-dim reveal font-sharetechmono">
@@ -522,7 +531,7 @@
           <a href="https://github.com/MedicMedic" class="project-card reveal block terminal border border-matrix-green/40 overflow-hidden">
             <span class="stripe"></span>
             <div class="aspect-video bg-black flex items-center justify-center">
-              <img src="pics/player_idle_big.png" alt="" class="h-3/4 object-contain" style="image-rendering:pixelated;" />
+              <img src="pics/player_idle_big.png" alt="" class="h-3/4 object-contain pixel-art" />
             </div>
             <div class="p-5">
               <h3 class="card-title text-2xl font-sharetechmono text-matrix-green mb-2 transition-colors">Sprite Lab</h3>
@@ -541,7 +550,7 @@
     </section>
 
     <!-- == APPS == -->
-    <section id="apps" class="relative px-6 md:px-12 py-20 crt overflow-hidden" style="background-color:#101a14;">
+    <section id="apps" class="relative px-6 md:px-12 py-20 crt overflow-hidden">
       <div class="max-w-6xl mx-auto">
         <h2 class="cat-heading reveal mb-3">apps/</h2>
         <p class="text-lg mb-10 max-w-2xl text-matrix-dim reveal font-sharetechmono">
@@ -629,9 +638,9 @@
           <div>
             <h3 class="text-lg font-bold mb-4">Connect</h3>
             <div class="flex space-x-4">
-              <a href="https://linkedin.com/in/marianne-edic" class="text-2xl hover:text-medic-pink transition-colors"><i class="bi bi-linkedin"></i></a>
-              <a href="https://youtube.com/@StellarSong" class="text-2xl hover:text-medic-pink transition-colors"><i class="bi bi-youtube"></i></a>
-              <a href="https://github.com/MedicMedic" class="text-2xl hover:text-medic-pink transition-colors"><i class="bi bi-github"></i></a>
+              <a href="https://linkedin.com/in/marianne-edic" aria-label="LinkedIn" class="text-2xl hover:text-medic-pink transition-colors"><i class="bi bi-linkedin"></i></a>
+              <a href="https://youtube.com/@StellarSong" aria-label="YouTube" class="text-2xl hover:text-medic-pink transition-colors"><i class="bi bi-youtube"></i></a>
+              <a href="https://github.com/MedicMedic" aria-label="GitHub" class="text-2xl hover:text-medic-pink transition-colors"><i class="bi bi-github"></i></a>
             </div>
           </div>
           <div>
