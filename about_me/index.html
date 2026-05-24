@@ -1,293 +1,465 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>The Medic Zone</title>
-        <link rel="icon" href="pics/marianne-gagnamagnid.png">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-        <!-- Google tag (gtag.js) -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-RTS1Z5XYJ4"></script>
-        <script>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-        
-          gtag('config', 'G-RTS1Z5XYJ4');
-        </script>
-        <script>
-            $(document).ready(function () {
-               $('body').scrollspy({ target: '.navbar', offset: 50 });
-            });
-         </script>
-         <style>
-            a 
-            {
-                text-decoration: none; /* Remove underlines */
-                color: inherit; /* Inherit the text color from parent */
-                cursor: pointer; /* Change cursor on hover */
-            }
-            .navbar-custom 
-            {
-                max-height: 50px;
-            }
-            .nav li 
-            {
-                display: table-cell !important;
-            }
-            h1
-            {
-                animation: color-change 10s infinite;
-            }
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Medic Zone: About Me</title>
+    <link rel="icon" href="pics/marianne-gagnamagnid.png" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Epunda+Slab:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RTS1Z5XYJ4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-RTS1Z5XYJ4');
+    </script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              "medic-pink": "#FFB4D6",
+              "medic-hot-pink": "#FF3F9F",
+              "medic-light-pink": "#FF96CB",
+              "medic-yellow": "#FFF898",
+              "medic-dark-bg": "rgb(27, 0, 12)",
+              "medic-dark-nav": "rgb(63, 0, 32)",
+              "medic-dark-menu": "rgb(150, 0, 76)",
+            },
+            fontFamily: {
+              epunda: ["Epunda Slab", "serif"],
+              sharetechmono: ["Share Tech Mono", "monospace"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      html, body { overflow-x: hidden; }
 
-            .marianne1
-            {
-                animation: photo-change1 30s infinite;
-                z-index: 2;
-            }
+      .carousel-img {
+        position: absolute;
+        width: 100%; height: 100%;
+        object-fit: cover;
+        border-radius: 9999px;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.6s ease;
+      }
+      .carousel-img.active { opacity: 1; pointer-events: auto; }
 
-            .marianne2
-            {
-                animation: photo-change2 30s infinite;
-                z-index: 1;
-            }
+      .resume-section { opacity: 0; transform: translateY(40px); }
 
-            .marianne3
-            {
-                animation: photo-change3 30s infinite;
-                z-index: 0;
-            }
+      .skill-bar { transition: width 0s; width: 0%; }
+      .hero-photo { box-shadow: 0 0 40px rgba(255,63,159,0.4); }
+      .hero-glow { background: radial-gradient(ellipse at center, #FF3F9F 0%, transparent 70%); }
+      .why-card { box-shadow: 0 0 30px rgba(255,63,159,0.15); }
+    </style>
+  </head>
 
-            .image-stack 
-            {
-                width: 300px; /* Adjust as needed */
-                height: 300px; /* Adjust as needed */
-                position: relative;
-                margin: 0 auto; /* Center horizontally */
-            }
+  <body class="bg-medic-pink font-epunda m-0 p-0 dark:bg-medic-dark-bg dark:text-white">
 
-            .image-stack img 
-            {
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                width: 100%;
-                height: 100%;
-                object-fit: cover; /* Maintain aspect ratio */
-            }
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-medic-hot-pink dark:bg-medic-dark-nav h-20 flex items-center justify-between px-6 shadow-md transition-transform duration-300 ease-in-out">
+      <div class="flex items-center space-x-3">
+        <img class="h-12 align-middle" src="pics/marianne-gagnamagnid.png" alt="Logo" />
+        <span class="text-xl font-semibold text-white">The Medic Zone</span>
+      </div>
+      <button id="menuToggle" type="button" class="sm:hidden focus:outline-none text-white" aria-label="Open menu">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+      <ul class="hidden sm:flex space-x-4">
+        <li>
+          <a href="../" class="block px-4 py-3 text-white font-medium hover:bg-medic-light-pink dark:hover:bg-medic-hot-pink rounded transition-all duration-300">Home</a>
+        </li>
+        <li class="relative group">
+          <a href="../projects" class="flex items-center space-x-1 px-4 py-3 text-white font-medium hover:bg-medic-light-pink dark:hover:bg-medic-hot-pink rounded transition-all duration-300">
+            <span>Coding Projects</span>
+            <svg class="w-4 h-4 transform transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6" />
+            </svg>
+          </a>
+          <ul class="absolute hidden group-hover:block bg-medic-light-pink dark:bg-medic-dark-menu shadow-md rounded-md w-48 z-20">
+            <li><a href="/TaskRNG" class="block px-4 py-2 text-white hover:bg-medic-hot-pink transition-colors duration-300">Task RNG</a></li>
+            <li><a href="/HTMLShooterGame" class="block px-4 py-2 text-white hover:bg-medic-hot-pink transition-colors duration-300">Stellar Shooter</a></li>
+          </ul>
+        </li>
+        <li class="relative group">
+          <a href="../creatives" class="flex items-center space-x-1 px-4 py-3 text-white font-medium hover:bg-medic-light-pink dark:hover:bg-medic-hot-pink rounded transition-all duration-300">
+            <span>The Creatives</span>
+            <svg class="w-4 h-4 transform transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6" />
+            </svg>
+          </a>
+          <ul class="absolute hidden group-hover:block bg-medic-light-pink dark:bg-medic-dark-menu shadow-md rounded-md w-48 z-20">
+            <li><a href="https://youtube.com/@StellarSong" target="_blank" rel="noopener noreferrer" class="block px-4 py-2 text-white hover:bg-medic-hot-pink transition-colors duration-300">SMS YouTube Channel</a></li>
+            <li><a href="https://instagram.com/stellarsong_official" target="_blank" rel="noopener noreferrer" class="block px-4 py-2 text-white hover:bg-medic-hot-pink transition-colors duration-300">Instagram</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="../about_me" class="block px-4 py-3 text-white font-medium bg-medic-light-pink dark:bg-medic-hot-pink rounded transition-all duration-300">About Me</a>
+        </li>
+      </ul>
+    </nav>
 
-            @keyframes color-change 
-            {
-                0% { color: rgb(255, 81, 0); }
-                33.33% { color: rgb(144, 0, 255); }
-                66.67% { color: rgb(255, 0, 153); }
-                100% { color: rgb(255, 81, 0); }
-            }
+    <!-- Backdrop -->
+    <div id="backdrop" class="fixed inset-0 z-30 bg-black bg-opacity-50 hidden transition-opacity duration-300 ease-in-out"></div>
 
-            @keyframes photo-change1 
-            {
-                0%, 33.33% { opacity: 1; }
-                33.34%, 66.66% { opacity: 0; }
-                66.67%, 100% { opacity: 0; }
-            }
+    <!-- Side Drawer -->
+    <div id="sideDrawer" class="bg-medic-light-pink dark:bg-medic-dark-menu dark:text-white fixed top-20 right-0 h-[calc(100%-80px)] w-64 transform translate-x-full transition-transform duration-300 ease-in-out z-40">
+      <div class="p-6 space-y-4">
+        <a href="../" class="block px-4 py-3 font-medium hover:bg-medic-hot-pink hover:text-white rounded transition-all duration-300">Home</a>
+        <a href="../projects" class="block px-4 py-3 font-medium hover:bg-medic-hot-pink hover:text-white rounded transition-all duration-300">Coding Projects</a>
+        <a href="../creatives" class="block px-4 py-3 font-medium hover:bg-medic-hot-pink hover:text-white rounded transition-all duration-300">The Creatives</a>
+        <a href="../about_me" class="block px-4 py-3 font-medium bg-medic-hot-pink text-white rounded">About Me</a>
+      </div>
+    </div>
 
-            @keyframes photo-change2 
-            {
-                0%, 33.33% { opacity: 0; }
-                33.34%, 66.66% { opacity: 1; }
-                66.67%, 100% { opacity: 0; }
-            }
+    <!-- Hero -->
+    <section class="pt-20 min-h-screen bg-medic-dark-bg text-white flex items-center justify-center relative overflow-hidden">
+      <div class="absolute inset-0 opacity-[0.07] hero-glow"></div>
+      <div class="container mx-auto px-6 py-24 text-center relative z-10">
 
-            @keyframes photo-change3 
-            {
-                0%, 33.33% { opacity: 0; }
-                33.34%, 66.66% { opacity: 0; }
-                66.67%, 100% { opacity: 1; }
-            }
-
-         </style>
-    </head>
-
-    <body data-bs-spy="scroll" data-bs-target=".navbar" style = "background: #fee1f4;">
-        <div class="container-fluid">
-            <nav class="navbar navbar-expand-lg navbar-custom fixed-top d-flex justify-content-between">
-                <span class="font-weight-bold" style="font-size: x-large; color: rgb(255, 43, 139)";><img src="pics/marianne-gagnamagnid.png">Medic's (Marianne Edic)</span>
-                <ul class = "text-light navbar-nav">
-                   <li class="nav-item"><a class = "nav-link" href = "../">Home</a></li>
-                   <li class="nav-item"><a class = "nav-link" href = "../projects">Coding Projects</a></li>
-                   <li class="nav-item"><a class = "nav-link" href = "../creatives">The Creatives</a></li>
-                   <li class="nav-item"><a class = "nav-link active">About Me</a></li>
-                </ul>
-             </nav>
+        <div class="relative w-44 h-44 mx-auto mb-8 rounded-full border-4 border-medic-hot-pink hero-photo" id="heroPhoto">
+          <img class="carousel-img active" src="pics/serious.png" alt="Marianne Edic" />
+          <img class="carousel-img" src="pics/hats.png" alt="Marianne Edic" />
+          <img class="carousel-img" src="pics/thumbsup.png" alt="Marianne Edic" />
         </div>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <section id = "home">
-            <div class="container">
-                <div style="background-color: #fcffad;" class="container-fluid">
-                    <h1 class="text-center">Marianne Edic</h1>
-                    <div class="image-stack" style="background-color: #f6ff00;">
-                        <img style="width:300px; height:300px; background-color: #ffa0f9;" class="marianne1 rounded-circle" src="pics/serious.png">
-                        <img style="width:300px; height: 300px; background-color: #ffa0f9;" class="marianne2 rounded-circle" src="pics/hats.png">
-                        <img style="width:300px; height: 300px; background-color: #ffa0f9;"class="marianne3 rounded-circle" src="pics/thumbsup.png">
-                    </div>
-                    <h4 class="text-center">Singer, Songwriter, Writer, Drawer (Artist), Coder</h4>
-                    <div>
-                        <h6 class="d-flex justify-content-between">
-                            <i class="bi bi-house-fill"> Palmera Homes, Brgy. Sto. Cristo, San Jose del Monte City, Bulacan, Philippines</i>
-                            <i class="bi bi-phone-fill"> +63 997 971 1076</i>
-                            <i class="bi bi-envelope-at-fill"> marianneedic.13@gmail.com</i>
-                        </h6>
-                    </div>
-                </div>
-                <div class="card text-bg-info">
-                    <h3 class="card-header">About Me</h3>
-                    <p class="card-body">A versatile worker that gets any job done with consistent quality. With four years experience as a freelancer especializing in various creative fields, including music, literature, audio, and art and 
-                        received dozens of positive reviews. Majoring in Computer Science, with specialty in data analytics, web and application development, and machine learning. The job will always be finished well, no matter what.</p>
-                </div>
-                <div class="col card text-bg-warning">
-                    <h3 class="card-header">Educational Background</h3>
-                    <div class="card-body">
-                        <div class="row justify-content-between">
-                            <div class="col-auto">
-                                <p class="fs-5 fw-bold">New Era University Integrated School</p>
-                                <p>General Academic Strand</p>
-                                <p>Academic Honors Awardee</p>
-                            </div>
-                            <div class="col-auto">
-                                <p class="text-end fs-6">2019-2021</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="row justify-content-between">
-                            <div class="col-auto">
-                                <p class="fs-5 fw-bold">New Era University College of Informatics and Computing Studies</p>
-                                <p>Bachelor of Science in Computer Science</p>
-                                <p>President's List (2023)</p>
-                            </div>
-                            <div class="col-auto">
-                                <p class="text-end fs-6">2021-</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>                
-                <div class="col card text-bg-danger">
-                    <h3 class="card-header">Work Experience</h3>
-                    <div class="card-body">
-                        <div class="row justify-content-between">
-                            <div class="col-auto">
-                                <p class="fs-5 fw-bold">Fiverr Freelancer</p>
-                                <p>Level 2 Seller</p>
-                                <p>Specialization in Songwriting, Music Composition, Creative Writing, Voice Acting, Illustration, and Animation.</p>
-                                <!-- Put this code anywhere in the body of your page where you want the badge to show up. -->
 
-                                <div itemscope itemtype='http://schema.org/Person' class='fiverr-seller-widget' style='display: inline-block;'>
-                                    <a itemprop='url' href=https://www.fiverr.com/stellarsong rel="nofollow" target="_blank" style='display: inline-block;'>
-                                    <div class='fiverr-seller-content' id='fiverr-seller-widget-content-656fb16b-60b9-4fec-a190-b35a2374bd69' itemprop='contentURL' style='display: none;'></div>
-                                    <div id='fiverr-widget-seller-data' style='display: none;'>
-                                        <div itemprop='name' >stellarsong</div>
-                                        <div itemscope itemtype='http://schema.org/Organization'><span itemprop='name'>Fiverr</span></div>
-                                        <div itemprop='jobtitle'>StellarSong</div>
-                                        <div itemprop='description'>I am Stellar, a writer, singer, composer, producer, and occasionally an artist. I have written short stories, poems, and speeches for various people. If you want to request my services, feel free and I'll do it immediately and to the best of my ability. </div>
-                                    </div>
-                                </a>
-                                </div>
+        <h1 class="text-5xl md:text-7xl font-bold mb-3 text-medic-pink" id="heroName">Marianne Edic</h1>
+        <p class="text-lg md:text-2xl text-medic-yellow mb-8 tracking-wide" id="heroTitle">Singer · Songwriter · Writer · Artist · Coder</p>
 
-                                <script id='fiverr-seller-widget-script-656fb16b-60b9-4fec-a190-b35a2374bd69' src='https://widgets.fiverr.com/api/v1/seller/stellarsong?widget_id=656fb16b-60b9-4fec-a190-b35a2374bd69' data-config='{"category_name":"Writing \u0026 Translation"}' async='true' defer='true'></script>
+        <div class="flex flex-wrap justify-center gap-x-8 gap-y-3 text-sm text-medic-light-pink mb-6" id="heroContact">
+          <span><i class="bi bi-house-fill mr-2"></i>San Jose del Monte City, Bulacan, Philippines</span>
+          <span><i class="bi bi-phone-fill mr-2"></i>+63 997 971 1076</span>
+          <span><i class="bi bi-envelope-at-fill mr-2"></i>marianneedic.13@gmail.com</span>
+        </div>
 
-                            </div>
-                            <div class="col-auto">
-                                <p class="text-end fs-6">2020-</p>
-                            </div>
-                        </div>
-                    </div>
+        <div class="flex justify-center gap-6" id="heroSocial">
+          <a href="https://linkedin.com/in/marianne-edic" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="text-3xl text-medic-light-pink hover:text-medic-pink transition-colors duration-300"><i class="bi bi-linkedin"></i></a>
+          <a href="https://github.com/MedicMedic" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="text-3xl text-medic-light-pink hover:text-medic-pink transition-colors duration-300"><i class="bi bi-github"></i></a>
+          <a href="https://youtube.com/@StellarSong" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="text-3xl text-medic-light-pink hover:text-medic-pink transition-colors duration-300"><i class="bi bi-youtube"></i></a>
+          <a href="https://www.fiverr.com/stellarsong" target="_blank" rel="noopener noreferrer" aria-label="Fiverr" class="text-3xl text-medic-light-pink hover:text-medic-pink transition-colors duration-300"><i class="bi bi-briefcase-fill"></i></a>
+        </div>
+
+        <div class="mt-14 animate-bounce" id="scrollHint">
+          <i class="bi bi-chevron-down text-3xl text-medic-light-pink opacity-60"></i>
+        </div>
+      </div>
+    </section>
+
+    <!-- Resume Content -->
+    <div class="bg-medic-pink dark:bg-medic-dark-bg">
+      <div class="container mx-auto px-6 py-16 max-w-4xl">
+
+        <!-- About Me -->
+        <section class="mb-16 resume-section" id="aboutSection">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-1.5 h-12 bg-medic-hot-pink rounded-full flex-shrink-0"></div>
+            <h2 class="text-3xl md:text-4xl font-bold text-medic-dark-bg dark:text-medic-yellow">About Me</h2>
+          </div>
+          <div class="bg-white dark:bg-medic-dark-nav rounded-2xl p-8 shadow-md">
+            <p class="text-lg leading-relaxed text-gray-700 dark:text-gray-200">
+              A versatile worker that gets any job done with consistent quality. With four years experience as a freelancer
+              specializing in various creative fields — including music, literature, audio, and art — and receiving dozens
+              of positive reviews. Majoring in Computer Science, with specialty in data analytics, web and application
+              development, and machine learning. The job will always be finished well, no matter what.
+            </p>
+          </div>
+        </section>
+
+        <!-- Education -->
+        <section class="mb-16 resume-section" id="educationSection">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-1.5 h-12 bg-medic-hot-pink rounded-full flex-shrink-0"></div>
+            <h2 class="text-3xl md:text-4xl font-bold text-medic-dark-bg dark:text-medic-yellow">Education</h2>
+          </div>
+          <div class="border-l-2 border-medic-hot-pink pl-8 ml-4 space-y-6">
+
+            <div class="relative">
+              <div class="absolute -left-[41px] top-2 w-4 h-4 rounded-full bg-medic-hot-pink border-2 border-medic-pink dark:border-medic-dark-bg"></div>
+              <div class="bg-white dark:bg-medic-dark-nav rounded-2xl p-6 shadow-md">
+                <div class="flex flex-wrap justify-between items-start gap-2 mb-2">
+                  <h3 class="text-xl font-bold">New Era University College of Informatics and Computing Studies</h3>
+                  <span class="text-sm font-medium text-medic-hot-pink bg-pink-100 dark:bg-medic-dark-bg px-3 py-1 rounded-full whitespace-nowrap">2021 – Present</span>
                 </div>
-                <div class="col card text-bg-success">
-                    <h3 class="card-header">Skills</h3>
-                    <div class="card-body">
-                        <div class="row justify-content-between">
-                            <div class="col-auto">
-                                <p>Programming (Java, Python, PHP, C++, JavaScript)</p>
-                            </div>
-                            <div class="col-auto">
-                                <div class="progress" role="progressbar" style="width:500px" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
-                                    <div class="progress-bar" style="width: 60%">60%</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row justify-content-between">
-                            <div class="col-auto">
-                                <p>Web Development (HTML, CSS, JavaScript, PHP, Bootstrap)</p>
-                            </div>
-                            <div class="col-auto">
-                                <div class="progress" role="progressbar" style="width:500px" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
-                                    <div class="progress-bar" style="width: 70%">70%</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row justify-content-between">
-                            <div class="col-auto">
-                                <p>Data Analytics (SQL, Tableau, Pentaho BI, Power BI)</p>
-                            </div>
-                            <div class="col-auto">
-                                <div class="progress" role="progressbar" style="width:500px" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
-                                    <div class="progress-bar" style="width: 60%">60%</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row justify-content-between">
-                            <div class="col-auto">
-                                <p>Writing (Songs, Novels, Poems, Short Stories, Letters)</p>
-                            </div>
-                            <div class="col-auto">
-                                <div class="progress" role="progressbar" style="width:500px" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100">
-                                    <div class="progress-bar bg-warning" style="width: 95%">95%</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row justify-content-between">
-                            <div class="col-auto">
-                                <p>Music (Composing, Transcribing, Producing, Singing, Arranging)</p>
-                            </div>
-                            <div class="col-auto">
-                                <div class="progress" role="progressbar" style="width:500px" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
-                                    <div class="progress-bar bg-warning" style="width: 75%">75%</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row justify-content-between">
-                            <div class="col-auto">
-                                <p>Text Editing (Document Editing, Proofreading, Translating, Transcribing, Beta Reading)</p>
-                            </div>
-                            <div class="col-auto">
-                                <div class="progress" role="progressbar" style="width:500px" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
-                                    <div class="progress-bar bg-warning" style="width: 70%">70%</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row justify-content-between">
-                            <div class="col-auto">
-                                <p>Audio-Visual (Video Editing, Sound Engineering, Voice Acting, Animation, Jingle Production)</p>
-                            </div>
-                            <div class="col-auto">
-                                <div class="progress" role="progressbar" style="width:500px" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
-                                    <div class="progress-bar bg-warning" style="width: 60%">60%</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col card text-bg-primary">
-                    <h3 class="card-header">Why Medic?</h3>
-                    <div class="card-body">
-                        I am a hardworker and problem solver. I can find the most efficient way to complete a task while still making sure that the product is functional and high-quality. 
-                    </div>
-                </div>
+                <p class="text-medic-hot-pink font-semibold">Bachelor of Science in Computer Science</p>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">President's List (2023)</p>
+              </div>
             </div>
-         </section>
-    </body>
+
+            <div class="relative">
+              <div class="absolute -left-[41px] top-2 w-4 h-4 rounded-full bg-medic-light-pink border-2 border-medic-pink dark:border-medic-dark-bg"></div>
+              <div class="bg-white dark:bg-medic-dark-nav rounded-2xl p-6 shadow-md">
+                <div class="flex flex-wrap justify-between items-start gap-2 mb-2">
+                  <h3 class="text-xl font-bold">New Era University Integrated School</h3>
+                  <span class="text-sm font-medium text-medic-hot-pink bg-pink-100 dark:bg-medic-dark-bg px-3 py-1 rounded-full whitespace-nowrap">2019 – 2021</span>
+                </div>
+                <p class="text-medic-hot-pink font-semibold">General Academic Strand</p>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">Academic Honors Awardee</p>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- Work Experience -->
+        <section class="mb-16 resume-section" id="workSection">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-1.5 h-12 bg-medic-hot-pink rounded-full flex-shrink-0"></div>
+            <h2 class="text-3xl md:text-4xl font-bold text-medic-dark-bg dark:text-medic-yellow">Work Experience</h2>
+          </div>
+          <div class="border-l-2 border-medic-hot-pink pl-8 ml-4 space-y-6">
+
+            <div class="relative">
+              <div class="absolute -left-[41px] top-2 w-4 h-4 rounded-full bg-medic-hot-pink border-2 border-medic-pink dark:border-medic-dark-bg"></div>
+              <div class="bg-white dark:bg-medic-dark-nav rounded-2xl p-6 shadow-md">
+                <div class="flex flex-wrap justify-between items-start gap-2 mb-2">
+                  <h3 class="text-xl font-bold">Fiverr Freelancer</h3>
+                  <span class="text-sm font-medium text-medic-hot-pink bg-pink-100 dark:bg-medic-dark-bg px-3 py-1 rounded-full whitespace-nowrap">2020 – Present</span>
+                </div>
+                <p class="text-medic-hot-pink font-semibold">Level 2 Seller — StellarSong</p>
+                <p class="mt-3 text-gray-700 dark:text-gray-300 leading-relaxed">
+                  Specialization in Songwriting, Music Composition, Creative Writing, Voice Acting, Illustration, and Animation.
+                </p>
+                <a href="https://www.fiverr.com/stellarsong" target="_blank" rel="noopener noreferrer"
+                  class="mt-4 inline-flex items-center gap-2 px-5 py-2 bg-medic-hot-pink text-white rounded-full text-sm font-semibold hover:bg-medic-light-pink transition-colors duration-300">
+                  <i class="bi bi-box-arrow-up-right"></i> View on Fiverr
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- Skills -->
+        <section class="mb-16 resume-section" id="skillsSection">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-1.5 h-12 bg-medic-hot-pink rounded-full flex-shrink-0"></div>
+            <h2 class="text-3xl md:text-4xl font-bold text-medic-dark-bg dark:text-medic-yellow">Skills</h2>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+            <div class="bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl p-6 text-white shadow-md hover:scale-[1.02] transition-transform duration-300">
+              <div class="flex items-center gap-3 mb-2">
+                <i class="bi bi-code-slash text-2xl"></i>
+                <h3 class="font-bold text-lg">Programming</h3>
+              </div>
+              <p class="text-sm opacity-90 mb-4">Java, Python, PHP, C++, JavaScript</p>
+              <div class="bg-white/20 rounded-full h-2">
+                <div class="bg-white rounded-full h-2 skill-bar" data-target="60%"></div>
+              </div>
+              <p class="text-xs mt-1 opacity-70 text-right">60%</p>
+            </div>
+
+            <div class="bg-gradient-to-br from-sky-500 to-indigo-600 rounded-2xl p-6 text-white shadow-md hover:scale-[1.02] transition-transform duration-300">
+              <div class="flex items-center gap-3 mb-2">
+                <i class="bi bi-globe text-2xl"></i>
+                <h3 class="font-bold text-lg">Web Development</h3>
+              </div>
+              <p class="text-sm opacity-90 mb-4">HTML, CSS, JavaScript, PHP, Tailwind, Bootstrap</p>
+              <div class="bg-white/20 rounded-full h-2">
+                <div class="bg-white rounded-full h-2 skill-bar" data-target="70%"></div>
+              </div>
+              <p class="text-xs mt-1 opacity-70 text-right">70%</p>
+            </div>
+
+            <div class="bg-gradient-to-br from-cyan-500 to-teal-600 rounded-2xl p-6 text-white shadow-md hover:scale-[1.02] transition-transform duration-300">
+              <div class="flex items-center gap-3 mb-2">
+                <i class="bi bi-bar-chart-fill text-2xl"></i>
+                <h3 class="font-bold text-lg">Data Analytics</h3>
+              </div>
+              <p class="text-sm opacity-90 mb-4">SQL, Tableau, Pentaho BI, Power BI</p>
+              <div class="bg-white/20 rounded-full h-2">
+                <div class="bg-white rounded-full h-2 skill-bar" data-target="60%"></div>
+              </div>
+              <p class="text-xs mt-1 opacity-70 text-right">60%</p>
+            </div>
+
+            <div class="bg-gradient-to-br from-green-500 to-emerald-700 rounded-2xl p-6 text-white shadow-md hover:scale-[1.02] transition-transform duration-300">
+              <div class="flex items-center gap-3 mb-2">
+                <i class="bi bi-pencil-fill text-2xl"></i>
+                <h3 class="font-bold text-lg">Writing</h3>
+              </div>
+              <p class="text-sm opacity-90 mb-4">Songs, Novels, Poems, Short Stories, Letters</p>
+              <div class="bg-white/20 rounded-full h-2">
+                <div class="bg-white rounded-full h-2 skill-bar" data-target="95%"></div>
+              </div>
+              <p class="text-xs mt-1 opacity-70 text-right">95%</p>
+            </div>
+
+            <div class="bg-gradient-to-br from-yellow-500 to-red-500 rounded-2xl p-6 text-white shadow-md hover:scale-[1.02] transition-transform duration-300">
+              <div class="flex items-center gap-3 mb-2">
+                <i class="bi bi-music-note-beamed text-2xl"></i>
+                <h3 class="font-bold text-lg">Music</h3>
+              </div>
+              <p class="text-sm opacity-90 mb-4">Composing, Transcribing, Producing, Singing, Arranging</p>
+              <div class="bg-white/20 rounded-full h-2">
+                <div class="bg-white rounded-full h-2 skill-bar" data-target="75%"></div>
+              </div>
+              <p class="text-xs mt-1 opacity-70 text-right">75%</p>
+            </div>
+
+            <div class="bg-gradient-to-br from-orange-500 to-amber-600 rounded-2xl p-6 text-white shadow-md hover:scale-[1.02] transition-transform duration-300">
+              <div class="flex items-center gap-3 mb-2">
+                <i class="bi bi-spell-check text-2xl"></i>
+                <h3 class="font-bold text-lg">Text Editing</h3>
+              </div>
+              <p class="text-sm opacity-90 mb-4">Proofreading, Translating, Transcribing, Beta Reading</p>
+              <div class="bg-white/20 rounded-full h-2">
+                <div class="bg-white rounded-full h-2 skill-bar" data-target="70%"></div>
+              </div>
+              <p class="text-xs mt-1 opacity-70 text-right">70%</p>
+            </div>
+
+            <div class="md:col-span-2 bg-gradient-to-br from-rose-500 to-pink-700 rounded-2xl p-6 text-white shadow-md hover:scale-[1.02] transition-transform duration-300">
+              <div class="flex items-center gap-3 mb-2">
+                <i class="bi bi-camera-video-fill text-2xl"></i>
+                <h3 class="font-bold text-lg">Audio-Visual</h3>
+              </div>
+              <p class="text-sm opacity-90 mb-4">Video Editing, Sound Engineering, Voice Acting, Animation, Jingle Production</p>
+              <div class="bg-white/20 rounded-full h-2">
+                <div class="bg-white rounded-full h-2 skill-bar" data-target="60%"></div>
+              </div>
+              <p class="text-xs mt-1 opacity-70 text-right">60%</p>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- Why Medic? -->
+        <section class="mb-16 resume-section" id="whySection">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-1.5 h-12 bg-medic-hot-pink rounded-full flex-shrink-0"></div>
+            <h2 class="text-3xl md:text-4xl font-bold text-medic-dark-bg dark:text-medic-yellow">Why Medic?</h2>
+          </div>
+          <div class="bg-medic-dark-bg text-white rounded-2xl p-8 why-card">
+            <p class="text-lg leading-relaxed">
+              I am a hardworker and problem solver. I can find the most efficient way to complete a task while still making
+              sure that the product is functional and high-quality.
+            </p>
+          </div>
+        </section>
+
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-medic-hot-pink dark:bg-medic-dark-nav py-12">
+      <div class="container mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div>
+            <h3 class="text-lg font-bold mb-4">The Medic Zone</h3>
+            <ul class="space-y-2">
+              <li><a href="../" class="hover:text-medic-pink transition-colors duration-300">Home</a></li>
+              <li><a href="../about_me" class="hover:text-medic-pink transition-colors duration-300">About Me</a></li>
+              <li><a href="../projects" class="hover:text-medic-pink transition-colors duration-300">Projects</a></li>
+              <li><a href="../creatives" class="hover:text-medic-pink transition-colors duration-300">Creatives</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold mb-4">Important Stuff</h3>
+            <ul class="space-y-2">
+              <li><a href="/HTMLShooterGame" class="hover:text-medic-pink transition-colors duration-300">Stellar Shooter</a></li>
+              <li><a href="#" class="hover:text-medic-pink transition-colors duration-300">My Thesis</a></li>
+              <li><a href="#" class="hover:text-medic-pink transition-colors duration-300">Final School Portfolio</a></li>
+              <li><a href="#" class="hover:text-medic-pink transition-colors duration-300">Resume</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold mb-4">Connect</h3>
+            <div class="flex space-x-4">
+              <a href="https://linkedin.com/in/marianne-edic" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="text-2xl hover:text-medic-pink transition-colors duration-300"><i class="bi bi-linkedin"></i></a>
+              <a href="https://youtube.com/@StellarSong" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="text-2xl hover:text-medic-pink transition-colors duration-300"><i class="bi bi-youtube"></i></a>
+              <a href="https://github.com/MedicMedic" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="text-2xl hover:text-medic-pink transition-colors duration-300"><i class="bi bi-github"></i></a>
+            </div>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold mb-4">Credits</h3>
+            <p class="mt-2">© <span id="copyrightYear"></span> The Medic Zone</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      gsap.registerPlugin(ScrollTrigger);
+
+      document.getElementById('copyrightYear').textContent = new Date().getFullYear();
+
+      // Photo carousel
+      let carouselIdx = 0;
+      const carouselImgs = document.querySelectorAll('.carousel-img');
+      setInterval(() => {
+        carouselImgs[carouselIdx].classList.remove('active');
+        carouselIdx = (carouselIdx + 1) % carouselImgs.length;
+        carouselImgs[carouselIdx].classList.add('active');
+      }, 4000);
+
+      // Navbar scroll hide
+      let lastScrollY = window.scrollY;
+      const navbar = document.getElementById('navbar');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > lastScrollY && window.scrollY > 80) {
+          navbar.style.transform = 'translateY(-100%)';
+        } else {
+          navbar.style.transform = 'translateY(0)';
+        }
+        lastScrollY = window.scrollY;
+      }, { passive: true });
+
+      // Mobile menu
+      const menuToggle = document.getElementById('menuToggle');
+      const sideDrawer = document.getElementById('sideDrawer');
+      const backdrop = document.getElementById('backdrop');
+      menuToggle.addEventListener('click', () => {
+        sideDrawer.classList.toggle('translate-x-full');
+        backdrop.classList.toggle('hidden');
+      });
+      backdrop.addEventListener('click', () => {
+        sideDrawer.classList.add('translate-x-full');
+        backdrop.classList.add('hidden');
+      });
+
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (reduceMotion) {
+        document.querySelectorAll('.resume-section').forEach((s) => { s.style.opacity = 1; s.style.transform = 'none'; });
+        document.querySelectorAll('.skill-bar').forEach((b) => { b.style.width = b.dataset.target; });
+      } else {
+        // Hero entrance
+        gsap.from('#heroPhoto', { duration: 0.8, scale: 0, opacity: 0, ease: 'back.out(1.5)', delay: 0.2 });
+        gsap.from('#heroName', { duration: 0.7, y: 30, opacity: 0, ease: 'power2.out', delay: 0.45 });
+        gsap.from('#heroTitle', { duration: 0.7, y: 20, opacity: 0, ease: 'power2.out', delay: 0.65 });
+        gsap.from('#heroContact', { duration: 0.6, y: 15, opacity: 0, ease: 'power2.out', delay: 0.82 });
+        gsap.from('#heroSocial', { duration: 0.6, y: 15, opacity: 0, ease: 'power2.out', delay: 0.95 });
+        gsap.from('#scrollHint', { duration: 0.6, opacity: 0, delay: 1.1 });
+
+        // Resume sections scroll reveal
+        document.querySelectorAll('.resume-section').forEach((section) => {
+          gsap.to(section, {
+            scrollTrigger: { trigger: section, start: 'top 85%', toggleActions: 'play none none none' },
+            opacity: 1, y: 0, duration: 0.6, ease: 'power2.out',
+          });
+        });
+
+        // Skill bars
+        ScrollTrigger.create({
+          trigger: '#skillsSection', start: 'top 78%', once: true,
+          onEnter: () => {
+            document.querySelectorAll('.skill-bar').forEach((bar, i) => {
+              gsap.to(bar, { width: bar.dataset.target, duration: 1.0, ease: 'power2.out', delay: i * 0.08 });
+            });
+          },
+        });
+      } // end !reduceMotion
+    </script>
+  </body>
 </html>
