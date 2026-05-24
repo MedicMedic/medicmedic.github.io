@@ -59,6 +59,11 @@
       .hero-gradient-text { background: linear-gradient(135deg, #FF3F9F, #FFB4D6, #FFF898, #FF96CB); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
       .art-section-bg { background: linear-gradient(135deg, #FF6B6B 0%, #FF3F9F 100%); }
       .writing-section-bg { background: linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%); }
+
+      @media (prefers-color-scheme: dark) {
+        .art-section-bg { background: linear-gradient(135deg, #5a0a22 0%, #7a1240 100%); }
+        .writing-section-bg { background: linear-gradient(135deg, #2d1268 0%, #1e1a7a 100%); }
+      }
     </style>
   </head>
 
@@ -93,8 +98,8 @@
             <svg class="w-4 h-4 transform transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6" /></svg>
           </a>
           <ul class="absolute hidden group-hover:block bg-medic-light-pink dark:bg-medic-dark-menu shadow-md rounded-md w-48 z-20">
-            <li><a href="../music" class="block px-4 py-2 text-white hover:bg-medic-hot-pink transition-colors duration-300">Music</a></li>
-            <li><a href="https://instagram.com/stellarsong_official" target="_blank" rel="noopener noreferrer" class="block px-4 py-2 text-white hover:bg-medic-hot-pink transition-colors duration-300">Artworks</a></li>
+            <li><a href="https://youtube.com/@StellarSong" target="_blank" rel="noopener noreferrer" class="block px-4 py-2 text-white hover:bg-medic-hot-pink transition-colors duration-300">SMS YouTube Channel</a></li>
+            <li><a href="https://instagram.com/stellarsong_official" target="_blank" rel="noopener noreferrer" class="block px-4 py-2 text-white hover:bg-medic-hot-pink transition-colors duration-300">Instagram</a></li>
           </ul>
         </li>
         <li><a href="../about_me" class="block px-4 py-3 text-white font-medium hover:bg-medic-light-pink dark:hover:bg-medic-hot-pink rounded transition-all duration-300">About Me</a></li>
@@ -135,7 +140,7 @@
     </section>
 
     <!-- Sticky Section Nav -->
-    <nav class="sticky top-20 z-40 bg-medic-hot-pink/95 backdrop-blur-sm py-3 px-6 flex gap-2 overflow-x-auto shadow-md" id="sectionNav">
+    <nav class="sticky top-20 z-40 bg-medic-hot-pink/95 dark:bg-medic-dark-nav/95 backdrop-blur-sm py-3 px-6 flex gap-2 overflow-x-auto shadow-md" id="sectionNav">
       <a href="#art" class="section-nav-link" data-section="art"><i class="bi bi-palette-fill mr-1"></i>Art</a>
       <a href="#music" class="section-nav-link" data-section="music"><i class="bi bi-music-note-beamed mr-1"></i>Music</a>
       <a href="#writing" class="section-nav-link" data-section="writing"><i class="bi bi-book-fill mr-1"></i>Writing</a>
@@ -154,23 +159,23 @@
         <!-- Preview grid -->
         <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-10">
           <div class="aspect-square rounded-2xl overflow-hidden shadow-lg hover:-rotate-2 hover:scale-105 transition-transform duration-300">
-            <img src="../artwork/pics/bim bam toi thumbnail.png" alt="Bim Bam Toi cover art" class="w-full h-full object-cover" />
+            <img src="pics/bim bam toi thumbnail.png" alt="Bim Bam Toi cover art" class="w-full h-full object-cover" />
           </div>
           <div class="aspect-square rounded-2xl overflow-hidden shadow-lg hover:rotate-2 hover:scale-105 transition-transform duration-300">
-            <img src="../artwork/pics/rose.png" alt="Rose study" class="w-full h-full object-cover" />
+            <img src="pics/rose.png" alt="Rose study" class="w-full h-full object-cover" />
           </div>
           <div class="aspect-square rounded-2xl overflow-hidden shadow-lg bg-medic-pink hover:-rotate-1 hover:scale-105 transition-transform duration-300">
-            <img src="../artwork/pics/duck (2).png" alt="The Duck" class="w-full h-full object-cover" />
+            <img src="pics/duck (2).png" alt="The Duck" class="w-full h-full object-cover" />
           </div>
           <div class="aspect-square rounded-2xl overflow-hidden shadow-lg hover:rotate-1 hover:scale-105 transition-transform duration-300">
-            <img src="../artwork/pics/themarianne.png" alt="The Marianne banner" class="w-full h-full object-cover" />
+            <img src="pics/themarianne.png" alt="The Marianne banner" class="w-full h-full object-cover" />
           </div>
         </div>
 
         <div class="text-center">
-          <a href="../artwork"
+          <a href="https://instagram.com/stellarsong_official" target="_blank" rel="noopener noreferrer"
             class="inline-flex items-center gap-3 px-8 py-4 bg-white text-pink-600 rounded-full font-bold text-lg hover:bg-medic-yellow hover:scale-105 transition-all duration-300 shadow-lg">
-            <i class="bi bi-palette-fill"></i> View the full gallery →
+            <i class="bi bi-instagram"></i> View on Instagram →
           </a>
         </div>
 
@@ -187,7 +192,7 @@
           <div class="flex justify-center">
             <div class="relative">
               <div class="w-72 h-72 rounded-2xl overflow-hidden shadow-2xl rotate-2 hover:rotate-0 transition-transform duration-500">
-                <img src="../music/pics/medic_songwriter_carousel.png" alt="StellarSong music" class="w-full h-full object-cover" />
+                <img src="pics/medic_songwriter_carousel.png" alt="StellarSong music" class="w-full h-full object-cover" />
               </div>
               <!-- Vinyl accent -->
               <div class="absolute -bottom-4 -right-4 w-24 h-24 rounded-full bg-medic-dark-bg border-4 border-medic-hot-pink shadow-lg flex items-center justify-center">
@@ -208,9 +213,9 @@
               <span class="px-3 py-1 bg-medic-hot-pink/20 text-medic-hot-pink rounded-full text-sm font-semibold">Originals &amp; Covers</span>
               <span class="px-3 py-1 bg-medic-hot-pink/20 text-medic-hot-pink rounded-full text-sm font-semibold">NEU Glee Club</span>
             </div>
-            <a href="../music"
+            <a href="https://youtube.com/@StellarSong" target="_blank" rel="noopener noreferrer"
               class="inline-flex items-center gap-3 px-8 py-4 bg-medic-hot-pink text-white rounded-full font-bold text-lg hover:bg-medic-light-pink hover:scale-105 transition-all duration-300 shadow-lg">
-              <i class="bi bi-music-note-beamed"></i> Listen now →
+              <i class="bi bi-youtube"></i> Watch on YouTube →
             </a>
           </div>
 

@@ -223,7 +223,7 @@
 
   <body class="font-epunda m-0 p-0">
     <!-- Navigation -->
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-medic-hot-pink h-20 flex items-center justify-between px-6 shadow-md transition-transform duration-300 ease-in-out">
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-medic-hot-pink dark:bg-medic-dark-nav h-20 flex items-center justify-between px-6 shadow-md transition-transform duration-300 ease-in-out">
       <a href="../" class="flex items-center space-x-3">
         <img class="h-12 align-middle" src="pics/marianne gagnamagnid.png" alt="Logo" />
         <span class="text-xl font-semibold text-white">The Medic Zone</span>
@@ -234,41 +234,40 @@
         </svg>
       </button>
       <ul class="hidden sm:flex space-x-4">
-        <li><a href="../" class="block px-4 py-3 text-white font-medium hover:bg-medic-light-pink rounded transition-all duration-300">Home</a></li>
+        <li><a href="../" class="block px-4 py-3 text-white font-medium hover:bg-medic-light-pink dark:hover:bg-medic-hot-pink rounded transition-all duration-300">Home</a></li>
         <li class="relative group">
-          <a href="./" class="flex items-center space-x-1 px-4 py-3 text-white font-medium bg-medic-light-pink rounded transition-all duration-300">
+          <a href="./" class="flex items-center space-x-1 px-4 py-3 text-white font-medium bg-medic-light-pink dark:bg-medic-hot-pink rounded transition-all duration-300">
             <span>Coding Projects</span>
             <svg class="w-4 h-4 transform transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6" /></svg>
           </a>
-          <ul class="absolute hidden group-hover:block bg-medic-light-pink shadow-md rounded-md w-48 z-20">
+          <ul class="absolute hidden group-hover:block bg-medic-light-pink dark:bg-medic-dark-menu shadow-md rounded-md w-48 z-20">
             <li><a href="../TaskRNG" class="block px-4 py-2 text-white hover:bg-medic-hot-pink transition-colors duration-300">Task RNG</a></li>
             <li><a href="../HTMLShooterGame" class="block px-4 py-2 text-white hover:bg-medic-hot-pink transition-colors duration-300">Stellar Shooter</a></li>
           </ul>
         </li>
         <li class="relative group">
-          <a href="../creatives" class="flex items-center space-x-1 px-4 py-3 text-white font-medium hover:bg-medic-light-pink rounded transition-all duration-300">
+          <a href="../creatives" class="flex items-center space-x-1 px-4 py-3 text-white font-medium hover:bg-medic-light-pink dark:hover:bg-medic-hot-pink rounded transition-all duration-300">
             <span>The Creatives</span>
             <svg class="w-4 h-4 transform transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6" /></svg>
           </a>
-          <ul class="absolute hidden group-hover:block bg-medic-light-pink shadow-md rounded-md w-48 z-20">
-            <li><a href="../music" class="block px-4 py-2 text-white hover:bg-medic-hot-pink transition-colors duration-300">Music</a></li>
-            <li><a href="../artwork" class="block px-4 py-2 text-white hover:bg-medic-hot-pink transition-colors duration-300">Artworks</a></li>
+          <ul class="absolute hidden group-hover:block bg-medic-light-pink dark:bg-medic-dark-menu shadow-md rounded-md w-48 z-20">
+            <li><a href="https://youtube.com/@StellarSong" target="_blank" rel="noopener noreferrer" class="block px-4 py-2 text-white hover:bg-medic-hot-pink transition-colors duration-300">SMS YouTube Channel</a></li>
+            <li><a href="https://instagram.com/stellarsong_official" target="_blank" rel="noopener noreferrer" class="block px-4 py-2 text-white hover:bg-medic-hot-pink transition-colors duration-300">Instagram</a></li>
           </ul>
         </li>
-        <li><a href="../about_me" class="block px-4 py-3 text-white font-medium hover:bg-medic-light-pink rounded transition-all duration-300">About Me</a></li>
+        <li><a href="../about_me" class="block px-4 py-3 text-white font-medium hover:bg-medic-light-pink dark:hover:bg-medic-hot-pink rounded transition-all duration-300">About Me</a></li>
       </ul>
     </nav>
 
     <div id="backdrop" class="fixed inset-0 z-30 bg-black bg-opacity-50 hidden transition-opacity duration-300 ease-in-out"></div>
 
     <!-- Side Drawer -->
-    <div id="sideDrawer" class="bg-medic-light-pink text-white fixed top-20 right-0 h-[calc(100%-80px)] w-64 transform translate-x-full transition-transform duration-300 ease-in-out z-40">
+    <div id="sideDrawer" class="bg-medic-light-pink dark:bg-medic-dark-menu text-white fixed top-20 right-0 h-[calc(100%-80px)] w-64 transform translate-x-full transition-transform duration-300 ease-in-out z-40">
       <div class="p-6 space-y-4">
-        <a href="../" class="block px-4 py-3 hover:bg-medic-hot-pink hover:text-white rounded">Home</a>
+        <a href="../" class="block px-4 py-3 hover:bg-medic-hot-pink hover:text-white dark:hover:bg-medic-hot-pink rounded transition-all duration-300">Home</a>
         <a href="./" class="block px-4 py-3 bg-medic-hot-pink text-white rounded">Coding Projects</a>
-        <a href="../music" class="block px-4 py-3 hover:bg-medic-hot-pink hover:text-white rounded">Music</a>
-        <a href="../artwork" class="block px-4 py-3 hover:bg-medic-hot-pink hover:text-white rounded">Artworks</a>
-        <a href="../about_me" class="block px-4 py-3 hover:bg-medic-hot-pink hover:text-white rounded">About Me</a>
+        <a href="../creatives" class="block px-4 py-3 hover:bg-medic-hot-pink hover:text-white dark:hover:bg-medic-hot-pink rounded transition-all duration-300">The Creatives</a>
+        <a href="../about_me" class="block px-4 py-3 hover:bg-medic-hot-pink hover:text-white dark:hover:bg-medic-hot-pink rounded transition-all duration-300">About Me</a>
       </div>
     </div>
 
@@ -606,7 +605,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-medic-hot-pink text-white py-12">
+    <footer class="bg-medic-hot-pink dark:bg-medic-dark-nav text-white py-12">
       <div class="container mx-auto px-6">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
