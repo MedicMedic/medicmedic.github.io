@@ -1,0 +1,5 @@
+
+# Instagram scrape — auth session & intermediates (never commit)
+ig_session
+ig_posts.json
+ig_session_from_cookies.py

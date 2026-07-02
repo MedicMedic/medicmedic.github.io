@@ -8,6 +8,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <!-- Instagram artwork manifest (sets window.IG_ART_POSTS) -->
+    <script src="pics/instagram/manifest.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
     <link href="https://fonts.googleapis.com/css2?family=Epunda+Slab:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet" />
@@ -64,6 +66,52 @@
         .art-section-bg { background: linear-gradient(135deg, #5a0a22 0%, #7a1240 100%); }
         .writing-section-bg { background: linear-gradient(135deg, #2d1268 0%, #1e1a7a 100%); }
       }
+
+      /* ===== Slideshow component ===== */
+      .slideshow { position: relative; overflow: hidden; border-radius: 1.5rem; }
+      .slideshow-track { display: flex; height: 100%; transition: transform 0.6s ease; }
+      .slideshow-slide { flex: 0 0 100%; height: 100%; position: relative; }
+      .slideshow-arrow {
+        position: absolute; top: 50%; transform: translateY(-50%); z-index: 10;
+        width: 2.5rem; height: 2.5rem; border-radius: 9999px;
+        background: rgba(0, 0, 0, 0.5); color: white; font-size: 1.5rem; line-height: 1;
+        transition: background 0.2s;
+      }
+      .slideshow-arrow:hover { background: #FF3F9F; }
+      .slideshow-arrow.left { left: 0.75rem; }
+      .slideshow-arrow.right { right: 0.75rem; }
+      .slideshow-dots {
+        position: absolute; bottom: 0.75rem; left: 0; right: 0; z-index: 10;
+        display: flex; justify-content: center; gap: 0.5rem;
+      }
+      .slideshow-dot {
+        width: 0.65rem; height: 0.65rem; border-radius: 9999px;
+        background: rgba(255, 255, 255, 0.5); transition: background 0.2s, transform 0.2s;
+      }
+      .slideshow-dot.active { background: #FF3F9F; transform: scale(1.25); }
+      .slideshow-loading { color: white; text-align: center; padding-top: 4rem; opacity: 0.7; }
+
+      .yt-slide { width: 100%; height: 100%; cursor: pointer; position: relative; background: black; }
+      .yt-slide img { width: 100%; height: 100%; object-fit: cover; }
+      .yt-slide iframe { width: 100%; height: 100%; border: 0; }
+      .yt-play {
+        position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+        font-size: 4.5rem; color: white; background: rgba(0, 0, 0, 0.25); transition: color 0.2s, background 0.2s;
+      }
+      .yt-slide:hover .yt-play { background: rgba(0, 0, 0, 0.05); color: #FF3F9F; }
+      .slide-caption {
+        position: absolute; bottom: 0; left: 0; right: 0; z-index: 5;
+        padding: 2rem 1rem 2.2rem; color: white; font-size: 0.95rem;
+        background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+        pointer-events: none;
+      }
+      .art-slide {
+        width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
+        background: rgba(0, 0, 0, 0.2);
+      }
+      .art-slide img { max-width: 100%; max-height: 100%; object-fit: contain; }
+      .ig-slide { width: 100%; height: 100%; }
+      .ig-slide iframe { width: 100%; height: 100%; border: 0; background: white; }
     </style>
   </head>
 
@@ -174,7 +222,7 @@
               Songs, demos &amp; vocal scribbles from a glee-club kid who never stopped humming.
             </p>
             <div class="flex flex-wrap gap-2 mb-8">
-              <span class="px-3 py-1 bg-medic-hot-pink/20 text-medic-hot-pink rounded-full text-sm font-semibold">12 songs</span>
+              <span class="px-3 py-1 bg-medic-hot-pink/20 text-medic-hot-pink rounded-full text-sm font-semibold">20+ songs</span>
               <span class="px-3 py-1 bg-medic-hot-pink/20 text-medic-hot-pink rounded-full text-sm font-semibold">Originals &amp; Covers</span>
               <span class="px-3 py-1 bg-medic-hot-pink/20 text-medic-hot-pink rounded-full text-sm font-semibold">NEU Glee Club</span>
             </div>
@@ -184,6 +232,16 @@
             </a>
           </div>
 
+        </div>
+
+        <!-- Latest uploads slideshow (populated from the YouTube channel feed) -->
+        <div class="mt-16">
+          <h3 class="text-2xl font-bold text-gray-800 dark:text-medic-yellow mb-6 text-center">
+            <i class="bi bi-collection-play mr-2"></i>Latest Uploads
+          </h3>
+          <div id="musicSlideshow" class="slideshow aspect-video max-w-3xl mx-auto shadow-2xl bg-black">
+            <p class="slideshow-loading">Loading videos…</p>
+          </div>
         </div>
 
       </div>
@@ -196,27 +254,14 @@
         <div class="text-center mb-10">
           <p class="font-sharetechmono text-white/60 text-sm tracking-widest uppercase mb-3">✎ The Creatives — Side B ✎</p>
           <h2 class="text-5xl md:text-6xl font-bold text-white mb-4">Artworks</h2>
-          <p class="text-white/80 text-lg">Doodles, character art, album covers, and the occasional very serious duck.</p>
+          <p class="text-white/80 text-lg">Doodles, character art, album covers, and the occasional very serious duck — straight from my Instagram.</p>
         </div>
 
-        <!-- Horizontal scroll gallery -->
-        <div class="relative mb-10">
-          <div class="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory">
-            <div class="flex-none w-56 h-56 rounded-2xl overflow-hidden shadow-lg snap-start hover:scale-105 transition-transform duration-300">
-              <img src="pics/bim bam toi thumbnail.png" alt="Bim Bam Toi cover art" class="w-full h-full object-cover" />
-            </div>
-            <div class="flex-none w-56 h-56 rounded-2xl overflow-hidden shadow-lg snap-start hover:scale-105 transition-transform duration-300">
-              <img src="pics/rose.png" alt="Rose study" class="w-full h-full object-cover" />
-            </div>
-            <div class="flex-none w-56 h-56 rounded-2xl overflow-hidden shadow-lg snap-start bg-medic-pink hover:scale-105 transition-transform duration-300">
-              <img src="pics/duck (2).png" alt="The Duck" class="w-full h-full object-cover" />
-            </div>
-            <div class="flex-none w-56 h-56 rounded-2xl overflow-hidden shadow-lg snap-start hover:scale-105 transition-transform duration-300">
-              <img src="pics/themarianne.png" alt="The Marianne banner" class="w-full h-full object-cover" />
-            </div>
-          </div>
-          <p class="text-white/40 text-sm text-right mt-1 select-none">scroll →</p>
+        <!-- Art slideshow: every artwork from @stellarsong_official (pics/instagram/) -->
+        <div class="mb-4">
+          <div id="artSlideshow" class="slideshow h-[28rem] max-w-3xl mx-auto shadow-2xl"></div>
         </div>
+        <p class="text-white/50 text-sm text-center mb-10">Tap any piece to open the original post on Instagram.</p>
 
         <div class="text-center">
           <a href="https://instagram.com/stellarsong_official" target="_blank" rel="noopener noreferrer"
@@ -238,37 +283,12 @@
         </div>
 
         <div class="text-center mb-10">
-          <p class="text-white/80 text-lg mb-6">I'm a professional writer — but these are my personal creations, made with heart.</p>
-          <div class="flex flex-wrap justify-center gap-4">
-            <a href="https://www.wattpad.com/user/StellarSong_official" target="_blank" rel="noopener noreferrer"
-              class="inline-flex items-center gap-3 px-8 py-4 bg-orange-500 text-white rounded-full font-bold text-lg hover:bg-orange-600 transition-colors duration-300 shadow-lg">
-              <i class="bi bi-file-word-fill text-2xl"></i>
-              StellarSong on Wattpad
-            </a>
-            <a href="/blog"
-              class="inline-flex items-center gap-3 px-8 py-4 bg-white/20 text-white rounded-full font-bold text-lg hover:bg-white/30 transition-colors duration-300 shadow-lg">
-              <i class="bi bi-pencil-square text-2xl"></i>
-              Blog
-            </a>
-          </div>
-        </div>
-
-        <div class="max-w-2xl mx-auto">
-          <div class="bg-white/10 backdrop-blur-sm rounded-3xl p-8 shadow-xl">
-            <h3 class="text-xl font-bold text-white mb-2">
-              <i class="bi bi-book-half text-purple-300 mr-2"></i>Featured Story
-            </h3>
-            <p class="text-purple-200 mb-6 text-sm">One of my favorites from Wattpad</p>
-            <div class="rounded-2xl overflow-hidden shadow-lg">
-              <iframe
-                title="Featured Wattpad Story by StellarSong"
-                width="100%" height="350"
-                frameborder="0"
-                allowfullscreen
-                src="https://embed.wattpad.com/story/208141727">
-              </iframe>
-            </div>
-          </div>
+          <p class="text-white/80 text-lg mb-8">I'm a professional writer — but these are my personal creations, made with heart.</p>
+          <a href="/blog"
+            class="inline-flex items-center gap-3 px-8 py-4 bg-white text-purple-700 rounded-full font-bold text-lg hover:bg-medic-yellow hover:scale-105 transition-all duration-300 shadow-lg">
+            <i class="bi bi-pencil-square text-2xl"></i>
+            Read the Blog →
+          </a>
         </div>
 
       </div>
@@ -389,6 +409,260 @@
           }
         });
       });
+
+      // ==================== SLIDESHOWS ====================
+
+      // "Songs" playlist on the @StellarSong channel
+      const YT_PLAYLIST_ID = 'PL7ZM_qDvqDGotECfzn7SjeST52dGEtYKI';
+
+      // Full playlist contents, in playlist order. The live feed (capped at 15
+      // by YouTube) is merged on top of this at load time, so new additions
+      // still show up without editing this list.
+      const PLAYLIST_VIDEOS = [
+        { id: 'mX3P5oyl-H0', title: 'StellarSong—Master of Poems' },
+        { id: 'Q6FKclWC7D8', title: 'StellarSong—no longer exists (Piano Version)' },
+        { id: 'DcTb52jEt6Q', title: '2. StellarSong—Happy Ending (Original OPM Song)' },
+        { id: '3zrmFhTRVls', title: "Stellar's Stellar Ad" },
+        { id: 'PbSkPBdVm4I', title: 'StellarSong—lonely together' },
+        { id: 'asWBQr3HBbE', title: 'cactus' },
+        { id: 'UGORl9rj0to', title: "StellarSong—I Wouldn't Mind Loving You" },
+        { id: 'lXvqdECtbys', title: 'StellarSong—In This Dream, a Deltarune Chapter 2 song' },
+        { id: '1X9QIe-mUcY', title: 'empty' },
+        { id: 'ydW_thTk5R4', title: "Stellar's Song (I Think That's Okay) an original song by StellarSong" },
+        { id: 'mcHyeQHBGPo', title: 'short videos compilation 1' },
+        { id: '5Aj7Du5kSUE', title: 'doodoottap' },
+        { id: '61O1wPIGqJw', title: 'abc jazz by StellarSong' },
+        { id: 'R7AVd8PXu-k', title: 'The End—a Bendy and The Ink Machine song by StellarSong' },
+        { id: 'XVixJ-V8hjg', title: 'LIAR—a Bendy and The Ink Machine song by StellarSong ft. The Moth Qwing' },
+        { id: 'bYeiG-SZGIY', title: 'brand new song' },
+        { id: 'SMa0RrFwcyM', title: '1. StellarSong—My Heart Goes Out To You' },
+        { id: 'Y9CqyKek3ns', title: 'My Heart Goes Out To You—A Little Misfortune love song by StellarSong' },
+        { id: 'QuvnGAkPjvI', title: 'i am secretly a duck' },
+        { id: 'm8c-z9HbhmU', title: 'What Would It Take (To Just Be Me) - a Detroit: Become Human song by StellarSong' },
+        { id: 'rsTc2LmsUoo', title: 'LIAR- a BATIM song by StellarSong (Inspired by OR3O) Acapella Version' },
+      ];
+
+      // Artworks downloaded from the @stellarsong_official Instagram account.
+      // The list lives in pics/instagram/manifest.json (regenerate by re-running
+      // the download script); each entry is one image, newest post first.
+      const IG_MANIFEST_URL = 'pics/instagram/manifest.json';
+
+      // First caption line makes the nicest slide label.
+      function captionLabel(text) {
+        if (!text) return '';
+        const firstLine = text.split('\n')[0].trim();
+        return firstLine.length > 90 ? firstLine.slice(0, 87) + '…' : firstLine;
+      }
+
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      function createSlideshow(container, slides, { interval = 5000 } = {}) {
+        if (!slides.length) return;
+        container.innerHTML = '';
+
+        const track = document.createElement('div');
+        track.className = 'slideshow-track';
+        slides.forEach((el) => {
+          const slide = document.createElement('div');
+          slide.className = 'slideshow-slide';
+          slide.appendChild(el);
+          track.appendChild(slide);
+        });
+        container.appendChild(track);
+
+        const dots = document.createElement('div');
+        dots.className = 'slideshow-dots';
+        slides.forEach((_, i) => {
+          const dot = document.createElement('button');
+          dot.type = 'button';
+          dot.className = 'slideshow-dot';
+          dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+          dot.addEventListener('click', () => { stop(); go(i); });
+          dots.appendChild(dot);
+        });
+        container.appendChild(dots);
+
+        let index = 0;
+        let timer = null;
+        let held = false; // set once a video starts playing — autoplay stays off
+
+        function makeArrow(side, label, delta) {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'slideshow-arrow ' + side;
+          btn.innerHTML = delta < 0 ? '&#8249;' : '&#8250;';
+          btn.setAttribute('aria-label', label);
+          btn.addEventListener('click', () => { stop(); go(index + delta); });
+          container.appendChild(btn);
+        }
+        makeArrow('left', 'Previous slide', -1);
+        makeArrow('right', 'Next slide', 1);
+
+        function go(i) {
+          index = (i + slides.length) % slides.length;
+          track.style.transform = 'translateX(-' + index * 100 + '%)';
+          dots.querySelectorAll('.slideshow-dot').forEach((d, j) => d.classList.toggle('active', j === index));
+        }
+        function start() {
+          if (!timer && !held && !reducedMotion) timer = setInterval(() => go(index + 1), interval);
+        }
+        function stop() {
+          clearInterval(timer);
+          timer = null;
+        }
+
+        container.addEventListener('mouseenter', stop);
+        container.addEventListener('mouseleave', start);
+        container.addEventListener('slideshow:hold', () => { held = true; stop(); });
+
+        go(0);
+        start();
+      }
+
+      function youtubeSlide(video, container) {
+        const wrap = document.createElement('div');
+        wrap.className = 'yt-slide';
+
+        const thumb = document.createElement('img');
+        thumb.src = 'https://i.ytimg.com/vi/' + video.id + '/hqdefault.jpg';
+        thumb.alt = video.title;
+        thumb.loading = 'lazy';
+        wrap.appendChild(thumb);
+
+        const play = document.createElement('div');
+        play.className = 'yt-play';
+        play.innerHTML = '<i class="bi bi-play-circle-fill"></i>';
+        wrap.appendChild(play);
+
+        const caption = document.createElement('p');
+        caption.className = 'slide-caption';
+        caption.textContent = video.title;
+        wrap.appendChild(caption);
+
+        wrap.addEventListener('click', () => {
+          container.dispatchEvent(new Event('slideshow:hold'));
+          const iframe = document.createElement('iframe');
+          iframe.src = 'https://www.youtube.com/embed/' + video.id + '?autoplay=1';
+          iframe.title = video.title;
+          iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+          iframe.allowFullscreen = true;
+          wrap.replaceChildren(iframe);
+        });
+        return wrap;
+      }
+
+      function imageSlide(item) {
+        const wrap = document.createElement('div');
+        wrap.className = 'art-slide';
+
+        const img = document.createElement('img');
+        img.src = item.src;
+        img.alt = item.alt;
+        img.loading = 'lazy';
+        wrap.appendChild(img);
+
+        if (item.caption) {
+          const caption = document.createElement('p');
+          caption.className = 'slide-caption';
+          caption.textContent = item.caption;
+          wrap.appendChild(caption);
+        }
+        return wrap;
+      }
+
+      function instagramSlide(item) {
+        const wrap = document.createElement('div');
+        wrap.className = 'art-slide';
+
+        const link = document.createElement('a');
+        link.href = 'https://www.instagram.com/p/' + item.code + '/';
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        link.style.display = 'contents';
+
+        const img = document.createElement('img');
+        img.src = 'pics/instagram/' + item.file;
+        img.alt = captionLabel(item.caption) || 'Artwork by StellarSong';
+        img.loading = 'lazy';
+        link.appendChild(img);
+        wrap.appendChild(link);
+
+        const label = captionLabel(item.caption);
+        if (label) {
+          const caption = document.createElement('p');
+          caption.className = 'slide-caption';
+          caption.textContent = item.panels > 1 ? label + ' (' + item.panel + '/' + item.panels + ')' : label;
+          wrap.appendChild(caption);
+        }
+        return wrap;
+      }
+
+      // Free CORS proxies are unreliable individually, so try each in turn.
+      const CORS_PROXIES = [
+        (url) => 'https://api.allorigins.win/raw?url=' + encodeURIComponent(url),
+        (url) => 'https://corsproxy.io/?url=' + encodeURIComponent(url),
+        (url) => 'https://api.codetabs.com/v1/proxy?quest=' + encodeURIComponent(url),
+      ];
+
+      async function fetchViaProxy(url) {
+        for (const wrap of CORS_PROXIES) {
+          try {
+            const res = await fetch(wrap(url), { signal: AbortSignal.timeout(8000) });
+            if (res.ok) return await res.text();
+          } catch (err) { /* try the next proxy */ }
+        }
+        throw new Error('all proxies failed');
+      }
+
+      async function loadMusicSlideshow() {
+        const container = document.getElementById('musicSlideshow');
+        const videos = [...PLAYLIST_VIDEOS];
+        try {
+          const feed = 'https://www.youtube.com/feeds/videos.xml?playlist_id=' + YT_PLAYLIST_ID;
+          const xml = new DOMParser().parseFromString(await fetchViaProxy(feed), 'text/xml');
+          const known = new Set(videos.map((v) => v.id));
+          Array.from(xml.getElementsByTagName('entry')).forEach((entry) => {
+            const id = entry.getElementsByTagName('yt:videoId')[0]?.textContent;
+            const title = entry.getElementsByTagName('title')[0]?.textContent || 'StellarSong video';
+            if (id && !known.has(id)) {
+              known.add(id);
+              videos.push({ id, title });
+            }
+          });
+        } catch (err) {
+          console.warn('Playlist feed unavailable, showing bundled list:', err);
+        }
+        createSlideshow(container, videos.map((v) => youtubeSlide(v, container)));
+      }
+
+      async function loadArtSlideshow() {
+        const container = document.getElementById('artSlideshow');
+        // Prefer the script-injected global (works on file:// previews too);
+        // fall back to fetching the JSON if the script wasn't loaded.
+        let items = Array.isArray(window.IG_ART_POSTS) ? window.IG_ART_POSTS : [];
+        if (!items.length) {
+          try {
+            const res = await fetch(IG_MANIFEST_URL);
+            if (res.ok) items = await res.json();
+          } catch (err) {
+            console.warn('Instagram manifest unavailable:', err);
+          }
+        }
+        if (!items.length) {
+          // Fall back to the local artworks bundled in the repo.
+          createSlideshow(container, [
+            { src: 'pics/bim bam toi thumbnail.png', alt: 'Bim Bam Toi cover art', caption: 'Bim Bam Toi' },
+            { src: 'pics/rose.png', alt: 'Rose study', caption: 'Rose study' },
+            { src: 'pics/duck (2).png', alt: 'The Duck', caption: 'The very serious duck' },
+            { src: 'pics/themarianne.png', alt: 'The Marianne banner', caption: 'The Marianne' },
+          ].map(imageSlide), { interval: 6000 });
+          return;
+        }
+        createSlideshow(container, items.map(instagramSlide), { interval: 6000 });
+      }
+
+      loadMusicSlideshow();
+      loadArtSlideshow();
     </script>
   </body>
 </html>
